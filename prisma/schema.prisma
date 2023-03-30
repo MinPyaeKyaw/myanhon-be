@@ -1,0 +1,166 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Levels {
+  id String @id @default(uuid())
+  name LevelNames @default(N5)
+  courses Courses[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Types {
+  id String @id @default(uuid())
+  name CourseTypes @default(grammer)
+  courses Courses[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Users {
+  id String @id @default(uuid())
+  name String
+  email String
+  phone String
+  password String
+  isPaid Boolean
+  startDate DateTime
+  expiredDate DateTime
+  userCourse UserCourse[]
+  questions Questions[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Instructors {
+  id String @id @default(uuid())
+  name String
+  email String
+  phone String
+  description String
+  photo String
+  address String
+  password String
+  userInstructor UserInstructor[]
+  answers Answers[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Courses {
+  id String @id @default(uuid())
+  name String 
+  isPaid Boolean
+  duration Int
+  courseType Types @relation(fields: [type], references: [id])
+  type String
+  courseLevel Levels @relation(fields: [level], references: [id])
+  level String
+  userCourse UserCourse[]
+  contents Contents[]
+  userInstructor UserInstructor[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model UserInstructor {
+  id String @id @default(uuid())
+  instructor Instructors @relation(fields: [instructorId], references: [id])
+  instructorId String
+  course Courses @relation(fields: [courseId], references: [id])
+  courseId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model UserCourse {
+  id String @id @default(uuid())
+  user Users @relation(fields: [userId], references: [id])
+  userId String
+  course Courses @relation(fields: [courseId], references: [id])
+  courseId String
+  userTracking UserTracking[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Contents {
+  id String @id @default(uuid())
+  name String
+  url String
+  isPublic Boolean
+  course Courses @relation(fields: [courseId], references: [id])
+  courseId String
+  userTracking UserTracking[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Questions {
+  id String @id @default(uuid())
+  question String 
+  user Users @relation(fields: [userId], references: [id])
+  userId String
+  answers Answers[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Answers {
+  id String @id @default(uuid())
+  answer String
+  question Questions @relation(fields: [questionId], references: [id])
+  questionId String
+  instructor Instructors @relation(fields: [instructorId], references: [id])
+  instructorId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model UserTracking {
+  id String @id @default(uuid())
+  userCourse UserCourse @relation(fields: [userCourseId], references: [id])
+  userCourseId String
+  content Contents @relation(fields: [contentId], references: [id])
+  contentId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum CourseTypes {
+  grammer
+  listenting
+  reading
+  kanji
+  vocaburary
+  speaking
+  vlog
+}
+
+enum LevelNames {
+  N5
+  N4
+  N3
+  N2
+  N1
+}
