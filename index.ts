@@ -1,18 +1,10 @@
-import express, {Express, Request, Response} from "express";
-const app: Express = express();
-import { PrismaClient } from '@prisma/client'
+import express, {Application} from "express";
+import authRouter from "./routes/auth";
 
-const prisma = new PrismaClient()
+const app: Application = express();
 
-console.log(prisma);
-
-app.get('/', (req: Request, res: Response) => {
-    res.send("Hello express with typescript!");
-})
-
-app.get('/hi', (req: Request, res: Response) => {
-    res.send("Lee Pl");
-})
+app.use(express.json());
+app.use('/auth', authRouter);
 
 app.listen(1337, () => {
     console.log("now listening to 1337");
