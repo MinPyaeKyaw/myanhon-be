@@ -34,6 +34,7 @@ model Users {
   email String
   phone String
   password String
+  isEmailVerified Boolean
   isPaid Boolean
   startDate DateTime
   expiredDate DateTime

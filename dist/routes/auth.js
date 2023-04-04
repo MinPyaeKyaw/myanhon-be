@@ -8,14 +8,7 @@ const client_1 = require("@prisma/client");
 const authRouter = express_1.default.Router();
 const prisma = new client_1.PrismaClient();
 authRouter.post('/login', (req, res) => {
-    res.status(200).json({
-        statusCode: 200,
-        data: {
-            name: "Sai Min Pyae Kyaw",
-            email: "saiminpyaekyaw@gmail.com"
-        },
-        message: "Successfully retrived!"
-    });
+    res.send("Log in");
 });
 authRouter.post('/signup', (req, res) => {
     res.send("Signup");

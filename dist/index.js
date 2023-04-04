@@ -8,6 +8,7 @@ const auth_1 = __importDefault(require("./routes/auth"));
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use('/auth', auth_1.default);
-app.listen(1337, () => {
-    console.log("now listening to 1337");
+app.listen(4000, () => {
+    console.log("now listening to 4000");
 });
+exports.default = app;
