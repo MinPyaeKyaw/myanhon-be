@@ -22,9 +22,9 @@ describe('auth', () => {
                     photo: expect.any(String),
                     isPaid: expect.any(Boolean),
                     startDate: expect.any(String),
-                    endDate: expect.any(String)
-                },
-                token: expect.any(String)
+                    endDate: expect.any(String),
+                    token: expect.any(String)
+                }
             }));
         });
     });
@@ -88,9 +88,9 @@ describe('auth', () => {
                     photo: expect.any(String),
                     isPaid: expect.any(Boolean),
                     startDate: expect.any(String),
-                    endDate: expect.any(String)
-                },
-                token: expect.any(String)
+                    endDate: expect.any(String),
+                    token: expect.any(String)
+                }
             }));
         });
     });

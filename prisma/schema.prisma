@@ -38,6 +38,7 @@ model Users {
   isPaid Boolean
   startDate DateTime
   expiredDate DateTime
+  verificationCode String @default("000000") @db.VarChar(6)
   userCourse UserCourse[]
   questions Questions[]
 

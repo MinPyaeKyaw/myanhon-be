@@ -1,12 +1,11 @@
 import express, {Request, Response} from "express";
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client';
+import { login } from "../controllers/authController";
 
 const authRouter = express.Router();
 const prisma: PrismaClient = new PrismaClient();
 
-authRouter.post('/login', (req: Request, res: Response) => {
-    res.send("Log in")
-})
+authRouter.post('/login', login);
 
 authRouter.post('/signup', (req: Request, res: Response) => {
     res.send("Signup")
