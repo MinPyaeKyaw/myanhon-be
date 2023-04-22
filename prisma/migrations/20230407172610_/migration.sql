@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Users" ALTER COLUMN "isPaid" SET DEFAULT false,
+ALTER COLUMN "startDate" DROP NOT NULL,
+ALTER COLUMN "expiredDate" DROP NOT NULL,
+ALTER COLUMN "isEmailVerified" SET DEFAULT false;

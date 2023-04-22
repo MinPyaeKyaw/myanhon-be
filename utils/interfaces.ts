@@ -19,7 +19,7 @@ export interface LoginSuccessDataResponse {
     phone: string;
     photo: string;
     isPaid: boolean;
-    startDate: string;
-    endDate: string;
+    startDate: string | null;
+    endDate: string | null;
     token: string;
 }

@@ -1,18 +1,21 @@
-import express, {Request, Response} from "express";
-import { PrismaClient } from '@prisma/client';
-import { login } from "../controllers/authController";
+import express from "express";
+import { checkEmail, login, resetPassword, signup, verifyEmail, verifyCode, test } from "../controllers/authController";
+import { verifyResetPasswordJwt } from "../middlewares/resetPasswordJwtMiddleware";
 
 const authRouter = express.Router();
-const prisma: PrismaClient = new PrismaClient();
 
 authRouter.post('/login', login);
 
-authRouter.post('/signup', (req: Request, res: Response) => {
-    res.send("Signup")
-})
+authRouter.post('/signup', signup);
 
-authRouter.post('/forgot-password', (req: Request, res: Response) => {
-    res.send("Forgot password")
-})
+authRouter.post('/verify-email', verifyEmail);
+
+authRouter.post('/check-email', checkEmail);
+
+authRouter.post('/verify-code', verifyCode);
+
+authRouter.patch('/reset-password', verifyResetPasswordJwt, resetPassword);
+
+authRouter.post('/test', verifyResetPasswordJwt, test);
 
 export default authRouter;

@@ -31,13 +31,13 @@ model Types {
 model Users {
   id String @id @default(uuid())
   name String
-  email String
+  email String @unique
   phone String
   password String
-  isEmailVerified Boolean
-  isPaid Boolean
-  startDate DateTime
-  expiredDate DateTime
+  isEmailVerified Boolean @default(false)
+  isPaid Boolean  @default(false)
+  startDate DateTime?
+  expiredDate DateTime?
   verificationCode String @default("000000") @db.VarChar(6)
   userCourse UserCourse[]
   questions Questions[]
@@ -52,7 +52,7 @@ model Instructors {
   email String
   phone String
   description String
-  photo String
+  photo String?
   address String
   password String
   userInstructor UserInstructor[]
