@@ -39,7 +39,6 @@ model Users {
   startDate DateTime?
   expiredDate DateTime?
   verificationCode String @default("000000") @db.VarChar(6)
-  userCourse UserCourse[]
   questions Questions[]
 
   createdAt DateTime @default(now())
@@ -71,7 +70,6 @@ model Courses {
   type String
   courseLevel Levels @relation(fields: [level], references: [id])
   level String
-  userCourse UserCourse[]
   contents Contents[]
   userInstructor UserInstructor[]
 
@@ -85,18 +83,6 @@ model UserInstructor {
   instructorId String
   course Courses @relation(fields: [courseId], references: [id])
   courseId String
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model UserCourse {
-  id String @id @default(uuid())
-  user Users @relation(fields: [userId], references: [id])
-  userId String
-  course Courses @relation(fields: [courseId], references: [id])
-  courseId String
-  userTracking UserTracking[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -140,8 +126,6 @@ model Answers {
 
 model UserTracking {
   id String @id @default(uuid())
-  userCourse UserCourse @relation(fields: [userCourseId], references: [id])
-  userCourseId String
   content Contents @relation(fields: [contentId], references: [id])
   contentId String
 
@@ -151,7 +135,7 @@ model UserTracking {
 
 enum CourseTypes {
   grammer
-  listenting
+  listening
   reading
   kanji
   vocaburary

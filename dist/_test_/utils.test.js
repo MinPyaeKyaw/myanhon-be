@@ -36,4 +36,10 @@ describe('Utils', () => {
         };
         expect(typeof (0, functions_1.getJwtToken)(data, testEnums_1.tokenSecrets)).toBe('string');
     }));
+    it('Utils / functions / get jwt token form req / req with token', () => {
+        expect(typeof (0, functions_1.getJwtTokenFromReq)('bearer jwt token')).toBe('string');
+    });
+    it('Utils / functions / get jwt token form req / req without token', () => {
+        expect((0, functions_1.getJwtTokenFromReq)(undefined)).toBe(false);
+    });
 });

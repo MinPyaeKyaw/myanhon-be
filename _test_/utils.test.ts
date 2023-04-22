@@ -1,4 +1,4 @@
-import { generateOTPCode, refreshVerificationCode, hashPassword, getJwtToken, verifyPassword } from "../utils/functions"
+import { generateOTPCode, refreshVerificationCode, hashPassword, getJwtToken, verifyPassword, getJwtTokenFromReq } from "../utils/functions"
 import { testUser, tokenSecrets } from "../utils/testEnums";
 
 describe('Utils', () => {
@@ -31,5 +31,13 @@ describe('Utils', () => {
         }
 
         expect(typeof getJwtToken(data, tokenSecrets)).toBe('string');
+    })
+
+    it('Utils / functions / get jwt token form req / req with token', () => {
+        expect(typeof getJwtTokenFromReq('bearer jwt token')).toBe('string');
+    })
+
+    it('Utils / functions / get jwt token form req / req without token', () => {
+        expect(getJwtTokenFromReq(undefined)).toBe(false);
     })
 })

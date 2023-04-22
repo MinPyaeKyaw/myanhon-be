@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getJwtToken = exports.verifyPassword = exports.hashPassword = exports.refreshVerificationCode = exports.generateOTPCode = exports.writeJsonRes = void 0;
+exports.getJwtTokenFromReq = exports.getJwtToken = exports.verifyPassword = exports.hashPassword = exports.refreshVerificationCode = exports.generateOTPCode = exports.writeJsonRes = void 0;
 const client_1 = require("@prisma/client");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
@@ -75,3 +75,10 @@ const getJwtToken = (data, secret) => {
     return token;
 };
 exports.getJwtToken = getJwtToken;
+const getJwtTokenFromReq = (authHeader) => {
+    if (!authHeader) {
+        return false;
+    }
+    return authHeader && authHeader.split(' ')[1];
+};
+exports.getJwtTokenFromReq = getJwtTokenFromReq;

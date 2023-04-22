@@ -65,3 +65,10 @@ export const getJwtToken = (data:any, secret:string):string => {
 
     return token;
 }
+
+export const getJwtTokenFromReq = (authHeader: string | undefined): string | false => {
+    if(!authHeader) {
+        return false;
+    }
+    return authHeader && authHeader.split(' ')[1];
+}

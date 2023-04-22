@@ -8,8 +8,7 @@ const jwt_decode_1 = __importDefault(require("jwt-decode"));
 const functions_1 = require("../utils/functions");
 const verifyResetPasswordJwt = (req, res, next) => {
     try {
-        const authHeader = req.headers['authorization'];
-        const token = authHeader && authHeader.split(' ')[1];
+        const token = (0, functions_1.getJwtTokenFromReq)(req.headers['authorization']);
         if (!token) {
             return (0, functions_1.writeJsonRes)(res, 401, null, "Unthorizied access!");
         }

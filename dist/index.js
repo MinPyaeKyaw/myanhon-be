@@ -29,11 +29,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv = __importStar(require("dotenv"));
 const auth_1 = __importDefault(require("./routes/auth"));
+const courses_1 = __importDefault(require("./routes/courses"));
+const courseTypes_1 = __importDefault(require("./routes/courseTypes"));
+const courseLevels_1 = __importDefault(require("./routes/courseLevels"));
 dotenv.config({ path: __dirname + '/.env' });
 dotenv.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
 app.use('/auth', auth_1.default);
+app.use(courses_1.default);
+app.use(courseTypes_1.default);
+app.use(courseLevels_1.default);
 app.get('/', (req, res) => {
     res.send(process.env.JWT_USER_SECRET);
 });
