@@ -133,4 +133,45 @@ describe('middlewares', () => {
             )
         })
     })
+
+    it('PATCH / edit user / unauthorized access', async () => {
+        return Request(app)
+        .patch('/user/f242dc2d-1328-420d-b0c6-3ad2458f1c15')
+        .send({
+            email: "editeduser@gmail.com",
+            phone: "000000000",
+            name: "editedusername"
+        })
+        .expect(401)
+        .then((response) => {
+            expect(response.body).toEqual(
+                {
+                    status: 401,
+                    message: "Unthorizied access!",
+                    data: null
+                }
+            )
+        })
+    })
+
+    it('PATCH / edit user / invalid token', async () => {
+        return Request(app)
+        .patch('/user/f242dc2d-1328-420d-b0c6-3ad2458f1c15')
+        .set('Authorization', 'bearer ' + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJlbWFpbEBleGFtcGxlLmNvbSIsImNvZGUiOiJCRjVDVkwiLCJyZXNldFBhc3N3b3JkVG9rZW4iOnRydWUsImlhdCI6MTY4MjE4Njk3M30.32L6hNHnjmTS06-kqG_51qtbtikjOC9zankN9rI4WhI")
+        .send({
+            email: "editeduser@gmail.com",
+            phone: "000000000",
+            name: "editedusername"
+        })
+        .expect(401)
+        .then((response) => {
+            expect(response.body).toEqual(
+                {
+                    status: 401,
+                    message: "Invalid token!",
+                    data: null
+                }
+            )
+        })
+    })
 })
