@@ -40,6 +40,7 @@ model Users {
   expiredDate DateTime?
   verificationCode String @default("000000") @db.VarChar(6)
   questions Questions[]
+  userTracking UserTracking[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -63,8 +64,7 @@ model Instructors {
 
 model Courses {
   id String @id @default(uuid())
-  name String 
-  isPaid Boolean
+  name String
   duration Int
   courseType Types @relation(fields: [type], references: [id])
   type String
@@ -91,6 +91,7 @@ model CourseInstructor {
 model Contents {
   id String @id @default(uuid())
   name String
+  thumbnail String
   url String
   isPublic Boolean
   course Courses @relation(fields: [courseId], references: [id])
@@ -128,6 +129,9 @@ model UserTracking {
   id String @id @default(uuid())
   content Contents @relation(fields: [contentId], references: [id])
   contentId String
+  user Users @relation(fields: [userId], references: [id])
+  userId String
+  completedPercent Int @default(0)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -1,7 +1,7 @@
 import * as express from "express"
 import { PrismaClient } from "@prisma/client";
 import bcrypt from 'bcrypt';
-import jwt, { sign } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 
 export const writeJsonRes = <ResDataType>(res: express.Response, status:number, data:ResDataType, message:string) => {
     return res.status(status)

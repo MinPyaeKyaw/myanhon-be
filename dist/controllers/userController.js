@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.editUserById = void 0;
+exports.setUserTrack = exports.editUserById = void 0;
 const client_1 = require("@prisma/client");
 const functions_1 = require("../utils/functions");
 const prisma = new client_1.PrismaClient();
@@ -53,3 +53,39 @@ const editUserById = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.editUserById = editUserById;
+const setUserTrack = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const trackedUser = yield prisma.userTracking.findFirst({
+            where: {
+                userId: req.params.userId,
+                contentId: req.body.contentId
+            }
+        });
+        if (trackedUser) {
+            yield prisma.userTracking.updateMany({
+                where: {
+                    userId: req.params.userId,
+                    contentId: req.body.contentId
+                },
+                data: {
+                    completedPercent: req.body.completedPercent
+                }
+            });
+        }
+        else {
+            yield prisma.userTracking.create({
+                data: {
+                    userId: req.params.userId,
+                    contentId: req.body.contentId,
+                    completedPercent: req.body.completedPercent
+                }
+            });
+        }
+        return (0, functions_1.writeJsonRes)(res, 200, null, "Successfully set user tracking!");
+    }
+    catch (error) {
+        console.log('CREATE USER TRACKING ERROR', error);
+        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+    }
+});
+exports.setUserTrack = setUserTrack;

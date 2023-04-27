@@ -12,14 +12,45 @@ export interface Pagination<T> {
     data: T;
 }
 
-export interface LoginSuccessDataResponse {
+export interface TokenResInterface {
+    token: string;
+}
+
+export interface TypesResInterface {
     id: string;
     name: string;
-    email: string;
-    phone: string;
-    photo: string;
-    isPaid: boolean;
-    startDate: string | null;
-    endDate: string | null;
-    token: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export interface LevelResInterface {
+    id: string;
+    name: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export interface ContentResInterface {
+    id: string;
+    name: string;
+    thumbnail: string;
+    url: string;
+    isPublic: boolean;
+    courseId: string;
+    completedPercent: number;
+    createdAt: string;
+    updatedAt: string;
+}
+
+export interface CourseResInterface {
+    id: string;
+    name: string;
+    duration: number;
+    type: string;
+    level: string;
+    createdAt: Date;
+    updatedAt: Date;
+    courseType: TypesResInterface;
+    courseLevel: LevelResInterface;
+    contents?: ContentResInterface;
 }

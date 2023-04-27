@@ -3,6 +3,7 @@ import { PrismaClient } from '@prisma/client';
 
 import { generateOTPCode, getJwtToken, hashPassword, refreshVerificationCode, verifyPassword, writeJsonRes } from "../utils/functions";
 import mailer from "../utils/nodeMailerFn";
+import { TokenResInterface } from "../utils/interfaces";
 
 const prisma:PrismaClient = new PrismaClient();
 
@@ -63,7 +64,7 @@ export const login = async (req:Request, res:Response) => {
             startDate: user.startDate,
             expiredDate: user.expiredDate
         }
-        return writeJsonRes<any>(res, 200, {
+        return writeJsonRes<TokenResInterface>(res, 200, {
             // @ts-ignore
             token: getJwtToken(tokenData, process.env.JWT_USER_SECRET)
         }, "Successfully logged in!")
@@ -141,7 +142,7 @@ export const verifyEmail = async (req:Request, res:Response) => {
             expiredDate: user.expiredDate
         }
 
-        return writeJsonRes<any>(
+        return writeJsonRes<TokenResInterface>(
             res, 
             200,
             {
@@ -193,7 +194,7 @@ export const verifyCode = async (req:Request, res:Response) => {
         }
 
         // @ts-ignore
-        return writeJsonRes<any>(res, 200, {token: getJwtToken(tokenData, process.env.JWT_RESET_PASSWORD_SECRET)}, "Successfully verified!");
+        return writeJsonRes<TokenResInterface>(res, 200, {token: getJwtToken(tokenData, process.env.JWT_RESET_PASSWORD_SECRET)}, "Successfully verified!");
         
     } catch (error) {
         return writeJsonRes<null>(res, 500, null, "Internal Server Error!")

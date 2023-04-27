@@ -23,6 +23,7 @@ const getTypes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getTypes = getTypes;
+// just for development, remove later
 const createType = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const createdType = yield prisma.types.create({

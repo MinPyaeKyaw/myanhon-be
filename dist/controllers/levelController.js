@@ -23,6 +23,7 @@ const getLevels = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getLevels = getLevels;
+// just for development, remove later
 const createLevel = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const createdLevel = yield prisma.levels.create({

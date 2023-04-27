@@ -8,4 +8,5 @@ const userJwtMiddleware_1 = require("../middlewares/userJwtMiddleware");
 const userController_1 = require("../controllers/userController");
 const userRouter = express_1.default.Router();
 userRouter.patch('/user/:id', userJwtMiddleware_1.verifyUserJwt, userController_1.editUserById);
+userRouter.post('/user/:userId', userJwtMiddleware_1.verifyUserJwt, userController_1.setUserTrack);
 exports.default = userRouter;
