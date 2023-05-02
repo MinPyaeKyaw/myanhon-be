@@ -7,7 +7,20 @@ const prisma: PrismaClient = new PrismaClient();
 
 export const getCourses = async (req: Request, res: Response) => {
     try {
+        const { type, level } = req.query;
+
+        const where = {isPublic: true};
+        if (type) {
+            Object.assign(where, { type: { contains: type } });
+        }
+        if (level) {
+            Object.assign(where, { level: { contains: level } });
+        }
+
         const courses = await prisma.courses.findMany({
+            where,
+            skip: req.query.offset && req.query.offset !== '' ? +req.query.offset : 0,
+            take: req.query.size && req.query.size !== '' ? +req.query.size : 5,
             include: {
                 courseType: true,
                 courseLevel: true
@@ -32,7 +45,9 @@ export const getCourseByID = async (req: Request, res: Response) => {
             },
             include: {
                 courseType: true,
-                courseLevel: true
+                courseLevel: true,
+                contents: true,
+                instructors: true
             }
         })
 
@@ -40,17 +55,13 @@ export const getCourseByID = async (req: Request, res: Response) => {
             return writeJsonRes<null>(res, 404, null, "No data found!");
         }
 
-        const contentsByCourse = await prisma.contents.findMany({
-            where: {
-                courseId: req.params.id
-            }
-        })
         const userTracking = await prisma.userTracking.findMany({
             where: {
                 userId: req.body.userId
             }
         })
-        for(let content of contentsByCourse) {
+
+        for(let content of course.contents) {
             // @ts-ignore
             content.completedPercent = 0;
             for(let trackedUser of userTracking) {
@@ -59,14 +70,49 @@ export const getCourseByID = async (req: Request, res: Response) => {
                     content.completedPercent = trackedUser.completedPercent;
                 }
             }
-        } 
-        // @ts-ignore
-        course.contents = contentsByCourse;
+        }
 
         return writeJsonRes<CourseResInterface>(res, 200, course, "Successfully retrived!");
     } catch (error) {
         console.log('COURSE BY ID ERROR', error);
         return writeJsonRes<null>(res, 500, null, "Internal Server Error!")
+    }
+}
+
+// just for development, remove later
+export const createInstructor = async (req: Request, res: Response) => {
+    try {
+        const createdInstructor = await prisma.instructors.create({
+            data: {
+                name: "test instructor",
+                email: "testinstructor@gmail.com",
+                phone: "09450324985",
+                description: "this is description",
+                photo: "this is photo",
+                address: "instructor address",
+                password: "instructor password"
+            }
+        })
+
+        return writeJsonRes<any>(res, 201, createdInstructor, "Successfully created an instructor!");
+    } catch (error) {
+        return writeJsonRes<null>(res, 500, null, "Internal Server Error!");
+    }
+}
+
+// just for development, remove later
+export const createCourseInstructor = async (req: Request, res: Response) => {
+    try {
+        const createdCourseInstructor = await prisma.courseInstructor.create({
+            data: {
+                instructorId: '2c92f7ab-e38a-48cd-8611-70f22f9f2387',
+                courseId: '06cf43e2-d92d-451d-857f-faeef3458e21'
+            }
+        })
+
+        return writeJsonRes<any>(res, 201, createdCourseInstructor, "Successfully created course instructor!");
+    } catch (error) {
+        return writeJsonRes<null>(res, 500, null, "Internal Server Error!");
     }
 }
 

@@ -37,9 +37,9 @@ export interface ContentResInterface {
     url: string;
     isPublic: boolean;
     courseId: string;
-    completedPercent: number;
-    createdAt: string;
-    updatedAt: string;
+    completedPercent?: number;
+    createdAt: Date;
+    updatedAt: Date;
 }
 
 export interface CourseResInterface {
@@ -52,5 +52,5 @@ export interface CourseResInterface {
     updatedAt: Date;
     courseType: TypesResInterface;
     courseLevel: LevelResInterface;
-    contents?: ContentResInterface;
+    contents?: ContentResInterface[];
 }

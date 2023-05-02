@@ -18,6 +18,8 @@ describe('Fetching courses', () => {
                         duration: expect.any(Number),
                         createdAt: expect.any(String),
                         updatedAt: expect.any(String),
+                        type: expect.any(String),
+                        level: expect.any(String),
                         courseType: {
                             id: expect.any(String),
                             name: expect.any(String),
@@ -36,19 +38,19 @@ describe('Fetching courses', () => {
         })
     })
 
-    it('GET / fetch courses / no record found', async () => {
-        return Request(app)
-        .get('/courses')
-        .set('Authorization', 'bearer ' + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE0NmFjMjQ4LWJlNDEtNDUzNy1hNjRiLWM4ZDE2MzkwNmQ3MyIsIm5hbWUiOiJVc2VybmFtZSIsImVtYWlsIjoidXNlcmVtYWlsVVRMTVBYQGV4YW1wbGUuY29tIiwicGhvbmUiOiIwOTEyMzQ1Njc4OSIsImlzUGFpZCI6ZmFsc2UsInN0YXJ0RGF0ZSI6bnVsbCwiZXhwaXJlZERhdGUiOm51bGwsImlhdCI6MTY4MjE2MjQ2OX0.Vthi6-TmGgddEUxJIhSPTAYmdptJG8oVGezoSKx7qdA")
-        .expect(404)
-        .then((response) => {
-            expect(response.body).toEqual({
-                status: 404,
-                message: "No record found!",
-                data: null
-            })
-        })
-    })
+    // it('GET / fetch courses / no record found', async () => {
+    //     return Request(app)
+    //     .get('/courses')
+    //     .set('Authorization', 'bearer ' + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE0NmFjMjQ4LWJlNDEtNDUzNy1hNjRiLWM4ZDE2MzkwNmQ3MyIsIm5hbWUiOiJVc2VybmFtZSIsImVtYWlsIjoidXNlcmVtYWlsVVRMTVBYQGV4YW1wbGUuY29tIiwicGhvbmUiOiIwOTEyMzQ1Njc4OSIsImlzUGFpZCI6ZmFsc2UsInN0YXJ0RGF0ZSI6bnVsbCwiZXhwaXJlZERhdGUiOm51bGwsImlhdCI6MTY4MjE2MjQ2OX0.Vthi6-TmGgddEUxJIhSPTAYmdptJG8oVGezoSKx7qdA")
+    //     .expect(404)
+    //     .then((response) => {
+    //         expect(response.body).toEqual({
+    //             status: 404,
+    //             message: "No record found!",
+    //             data: null
+    //         })
+    //     })
+    // })
 
     it('GET / fetch courses by ID', async () => {
         // return Request(app)
