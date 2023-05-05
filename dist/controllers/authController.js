@@ -18,24 +18,24 @@ const functions_1 = require("../utils/functions");
 const nodeMailerFn_1 = __importDefault(require("../utils/nodeMailerFn"));
 const prisma = new client_1.PrismaClient();
 const test = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const user = yield prisma.users.findFirst({
-            where: {
-                email: req.body.email
-            }
-        });
-        console.log('USER', user);
-        if (!user) {
-            console.log('NOT FOUND USER', user);
-            return (0, functions_1.writeJsonRes)(res, 404, null, "This email hasn't been registered yet!");
-        }
-        let lee = yield (0, functions_1.verifyPassword)(req.body.password, user.password);
-        return (0, functions_1.writeJsonRes)(res, 404, { lee: lee }, "This email hasn't been registered yet!");
-    }
-    catch (error) {
-        console.log("LEE PL", error);
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
-    }
+    // try {
+    //     const user = await prisma.users.findFirst({
+    //         where: {
+    //             email: req.body.email
+    //         }
+    //     })
+    //     console.log('USER', user);
+    //     if(!user) {
+    //         console.log('NOT FOUND USER', user);
+    //         return writeJsonRes<null>(res, 404, null, "This email hasn't been registered yet!");
+    //     }
+    //     let lee = await verifyPassword(req.body.password, user.password)
+    //     return writeJsonRes<any>(res, 404, {lee: lee}, "This email hasn't been registered yet!");
+    // } catch (error) {
+    //     console.log("LEE PL", error)
+    //     return writeJsonRes<null>(res, 500, null, "Internal Server Error!")
+    // }
+    // logger();
 });
 exports.test = test;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -72,6 +72,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }, "Successfully logged in!");
     }
     catch (error) {
+        (0, functions_1.logError)(error, "Login Controller");
         return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
     }
 });

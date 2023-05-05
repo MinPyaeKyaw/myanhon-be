@@ -12,10 +12,75 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getJwtTokenFromReq = exports.getJwtToken = exports.verifyPassword = exports.hashPassword = exports.refreshVerificationCode = exports.generateOTPCode = exports.writeJsonRes = void 0;
+exports.getJwtTokenFromReq = exports.getJwtToken = exports.verifyPassword = exports.hashPassword = exports.refreshVerificationCode = exports.generateOTPCode = exports.writeJsonRes = exports.logError = exports.zipAndDelFile = exports.getFileSize = exports.zipFile = void 0;
+const fs_1 = __importDefault(require("fs"));
+const zlib_1 = __importDefault(require("zlib"));
 const client_1 = require("@prisma/client");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const dayjs_1 = __importDefault(require("dayjs"));
+const zipFile = (filePath) => {
+    const zipFilename = `./logs/${(0, dayjs_1.default)(new Date()).format('DD-MM-YYYY-h-m-s')}.zip`;
+    const readStream = fs_1.default.createReadStream(filePath);
+    const writeStream = fs_1.default.createWriteStream(zipFilename);
+    const zip = zlib_1.default.createGzip();
+    return readStream.pipe(zip).pipe(writeStream);
+};
+exports.zipFile = zipFile;
+const getFileSize = (filePath, unit) => __awaiter(void 0, void 0, void 0, function* () {
+    const stats = yield fs_1.default.promises.stat(filePath);
+    if (unit === 'kb') {
+        return stats.size / 1024;
+    }
+    if (unit === 'mb') {
+        return stats.size / (1024 * 1024);
+    }
+    if (unit === 'gb') {
+        return stats.size / (1024 * 1024 * 1024);
+    }
+    return stats.size;
+});
+exports.getFileSize = getFileSize;
+const zipAndDelFile = (filePath) => {
+    (0, exports.getFileSize)(filePath, 'kb')
+        .then(result => {
+        console.log("lee", result);
+        if (result > 5) {
+            (0, exports.zipFile)(filePath).on('finish', () => {
+                fs_1.default.unlink(filePath, (err) => {
+                    if (err) {
+                        console.log("delete error file", err);
+                    }
+                });
+            });
+        }
+    });
+};
+exports.zipAndDelFile = zipAndDelFile;
+const logError = (err, label) => {
+    let format = new Date() + "[ " + label + " ]" + '\n' + err.stack + '\n \n';
+    if (!fs_1.default.existsSync('./logs/errors.txt')) {
+        if (err instanceof Error) {
+            fs_1.default.writeFile('./logs/errors.txt', format, error => {
+                if (error) {
+                    console.log("create error file", error);
+                }
+                (0, exports.zipAndDelFile)('./logs/errors.txt');
+            });
+        }
+    }
+    else {
+        if (err instanceof Error) {
+            fs_1.default.appendFile('./logs/errors.txt', format, error => {
+                if (error) {
+                    console.log("append error", error);
+                }
+                (0, exports.zipAndDelFile)('./logs/errors.txt');
+            });
+        }
+    }
+};
+exports.logError = logError;
 const writeJsonRes = (res, status, data, message) => {
     return res.status(status)
         .json({

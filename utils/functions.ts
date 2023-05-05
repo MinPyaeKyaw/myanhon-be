@@ -1,7 +1,76 @@
-import * as express from "express"
+import * as express from "express";
+import fs from 'fs';
+import zlib from "zlib";
 import { PrismaClient } from "@prisma/client";
 import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
+import dayjs from "dayjs";
+
+export const zipFile = (filePath: string) => {
+    const zipFilename = `./logs/${dayjs(new Date()).format('DD-MM-YYYY-h-m-s')}.zip`;
+    const readStream = fs.createReadStream(filePath);
+    const writeStream = fs.createWriteStream(zipFilename);
+    const zip = zlib.createGzip();
+    return readStream.pipe(zip).pipe(writeStream);
+}
+
+export const getFileSize = async (filePath: string, unit: 'byte' | 'kb' | 'mb' | 'gb'): Promise<number> => {
+    const stats = await fs.promises.stat(filePath);
+
+    if(unit === 'kb') {
+        return stats.size / 1024;
+    }
+
+    if(unit === 'mb') {
+        return stats.size / (1024 * 1024);
+    }
+
+    if(unit === 'gb') {
+        return stats.size / (1024 * 1024 * 1024);
+    }
+
+    return stats.size;
+}
+
+export const zipAndDelFile = (filePath: string) => {
+    getFileSize(filePath, 'kb')
+    .then(result => {
+        console.log("lee", result)
+        if(result > 5) {
+            zipFile(filePath).on('finish', () => {
+                fs.unlink(filePath, (err) => {
+                    if(err) {
+                        console.log("delete error file", err);
+                    }
+                })
+            });
+        }
+    })
+}
+
+export const logError = (err: any, label: string): void => {
+    let format =  new Date() + "[ " + label + " ]" + '\n' + err.stack + '\n \n';
+
+    if(!fs.existsSync('./logs/errors.txt')) {
+        if(err instanceof Error) {
+            fs.writeFile('./logs/errors.txt', format, error => {
+                if(error) {
+                    console.log("create error file", error);
+                }
+                zipAndDelFile('./logs/errors.txt');
+            })
+        }
+    }else {
+        if(err instanceof Error) {
+            fs.appendFile('./logs/errors.txt', format, error => {
+                if(error) {
+                    console.log("append error", error);
+                }
+                zipAndDelFile('./logs/errors.txt');
+            })
+        }
+    }
+}
 
 export const writeJsonRes = <ResDataType>(res: express.Response, status:number, data:ResDataType, message:string) => {
     return res.status(status)

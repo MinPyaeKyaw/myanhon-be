@@ -1,35 +1,36 @@
 import {Request, Response} from "express";
 import { PrismaClient } from '@prisma/client';
 
-import { generateOTPCode, getJwtToken, hashPassword, refreshVerificationCode, verifyPassword, writeJsonRes } from "../utils/functions";
+import { generateOTPCode, getJwtToken, hashPassword, logError, refreshVerificationCode, verifyPassword, writeJsonRes } from "../utils/functions";
 import mailer from "../utils/nodeMailerFn";
 import { TokenResInterface } from "../utils/interfaces";
 
-const prisma:PrismaClient = new PrismaClient();
+const prisma: PrismaClient = new PrismaClient();
 
 export const test = async (req:Request, res:Response) => {
-    try {
-        const user = await prisma.users.findFirst({
-            where: {
-                email: req.body.email
-            }
-        })
+    // try {
+    //     const user = await prisma.users.findFirst({
+    //         where: {
+    //             email: req.body.email
+    //         }
+    //     })
 
-        console.log('USER', user);
+    //     console.log('USER', user);
 
-        if(!user) {
-            console.log('NOT FOUND USER', user);
-            return writeJsonRes<null>(res, 404, null, "This email hasn't been registered yet!");
-        }
+    //     if(!user) {
+    //         console.log('NOT FOUND USER', user);
+    //         return writeJsonRes<null>(res, 404, null, "This email hasn't been registered yet!");
+    //     }
 
         
-        let lee = await verifyPassword(req.body.password, user.password)
+    //     let lee = await verifyPassword(req.body.password, user.password)
     
-        return writeJsonRes<any>(res, 404, {lee: lee}, "This email hasn't been registered yet!");
-    } catch (error) {
-        console.log("LEE PL", error)
-        return writeJsonRes<null>(res, 500, null, "Internal Server Error!")
-    }
+    //     return writeJsonRes<any>(res, 404, {lee: lee}, "This email hasn't been registered yet!");
+    // } catch (error) {
+    //     console.log("LEE PL", error)
+    //     return writeJsonRes<null>(res, 500, null, "Internal Server Error!")
+    // }
+    // logger();
 }
 
 export const login = async (req:Request, res:Response) => {
@@ -69,6 +70,7 @@ export const login = async (req:Request, res:Response) => {
             token: getJwtToken(tokenData, process.env.JWT_USER_SECRET)
         }, "Successfully logged in!")
     } catch (error) {
+        logError(error, "Login Controller");
         return writeJsonRes<null>(res, 500, null, "Internal Server Error!")
     }
 }
