@@ -1,7 +1,7 @@
 import jwtDecode from "jwt-decode";
 
 import { NextFunction, Request, Response } from "express";
-import { getJwtTokenFromReq, writeJsonRes } from "../utils/functions";
+import { getJwtTokenFromReq, logError, writeJsonRes } from "../utils/functions";
 
 export const verifyResetPasswordJwt = (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -17,7 +17,7 @@ export const verifyResetPasswordJwt = (req: Request, res: Response, next: NextFu
 
         next();
     } catch (error) {
-        console.log('RESET PASSWORD JWT VERIFICATION ERROR', error);
+        logError(error, "Verify Reset Password JWT Middleware");
         return writeJsonRes<null>(res, 500, null, "Internal Server Error!");
     }
 }

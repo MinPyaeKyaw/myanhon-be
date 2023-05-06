@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { validationResult } from "express-validator";
-import { writeJsonRes } from "../utils/functions";
+import { logError, writeJsonRes } from "../utils/functions";
 
 export const validateCourseQuery = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -12,6 +12,7 @@ export const validateCourseQuery = async (req: Request, res: Response, next: Nex
 
         next();
     } catch (error) {
+        logError(error, "Validate Course Query Middleware");
         return writeJsonRes<null>(res, 500, null, "Internal Server Error!");
     }
 } 

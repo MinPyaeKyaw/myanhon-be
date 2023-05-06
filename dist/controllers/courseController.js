@@ -38,6 +38,7 @@ const getCourses = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         return (0, functions_1.writeJsonRes)(res, 200, courses, "Successfully retrived!");
     }
     catch (error) {
+        (0, functions_1.logError)(error, "Get Courses Controller");
         return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
     }
 });
@@ -76,7 +77,7 @@ const getCourseByID = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         return (0, functions_1.writeJsonRes)(res, 200, course, "Successfully retrived!");
     }
     catch (error) {
-        console.log('COURSE BY ID ERROR', error);
+        (0, functions_1.logError)(error, "Get Course By ID Controller");
         return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
     }
 });

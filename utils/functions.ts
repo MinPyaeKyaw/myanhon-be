@@ -7,7 +7,15 @@ import jwt from "jsonwebtoken";
 import dayjs from "dayjs";
 
 export const zipFile = (filePath: string) => {
-    const zipFilename = `./logs/${dayjs(new Date()).format('DD-MM-YYYY-h-m-s')}.zip`;
+    const splitedFilePath: string[] = filePath.split('/');
+    let parentFolder: string = '';
+    splitedFilePath.forEach((folder: string) => {
+        if(folder !== splitedFilePath[splitedFilePath.length - 1]) {
+            parentFolder = parentFolder + folder + '/';
+        }
+    });
+
+    const zipFilename = `${parentFolder}${dayjs(new Date()).format('DD-MM-YYYY-h-m-s')}.zip`;
     const readStream = fs.createReadStream(filePath);
     const writeStream = fs.createWriteStream(zipFilename);
     const zip = zlib.createGzip();
@@ -20,11 +28,9 @@ export const getFileSize = async (filePath: string, unit: 'byte' | 'kb' | 'mb' |
     if(unit === 'kb') {
         return stats.size / 1024;
     }
-
     if(unit === 'mb') {
         return stats.size / (1024 * 1024);
     }
-
     if(unit === 'gb') {
         return stats.size / (1024 * 1024 * 1024);
     }
@@ -35,8 +41,7 @@ export const getFileSize = async (filePath: string, unit: 'byte' | 'kb' | 'mb' |
 export const zipAndDelFile = (filePath: string) => {
     getFileSize(filePath, 'kb')
     .then(result => {
-        console.log("lee", result)
-        if(result > 5) {
+        if(result > 500) {
             zipFile(filePath).on('finish', () => {
                 fs.unlink(filePath, (err) => {
                     if(err) {
@@ -51,22 +56,27 @@ export const zipAndDelFile = (filePath: string) => {
 export const logError = (err: any, label: string): void => {
     let format =  new Date() + "[ " + label + " ]" + '\n' + err.stack + '\n \n';
 
-    if(!fs.existsSync('./logs/errors.txt')) {
+    // @ts-ignore
+    if(!fs.existsSync(process.env.LOGGER_FILE)) {
         if(err instanceof Error) {
-            fs.writeFile('./logs/errors.txt', format, error => {
+            // @ts-ignore
+            fs.writeFile(process.env.LOGGER_FILE, format, error => {
                 if(error) {
                     console.log("create error file", error);
                 }
-                zipAndDelFile('./logs/errors.txt');
+                // @ts-ignore
+                zipAndDelFile(process.env.LOGGER_FILE);
             })
         }
     }else {
         if(err instanceof Error) {
-            fs.appendFile('./logs/errors.txt', format, error => {
+            // @ts-ignore
+            fs.appendFile(process.env.LOGGER_FILE, format, error => {
                 if(error) {
                     console.log("append error", error);
                 }
-                zipAndDelFile('./logs/errors.txt');
+                // @ts-ignore
+                zipAndDelFile(process.env.LOGGER_FILE);
             })
         }
     }

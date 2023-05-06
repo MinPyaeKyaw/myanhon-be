@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
 import { PrismaClient } from '@prisma/client';
-import { writeJsonRes } from "../utils/functions";
+import { logError, writeJsonRes } from "../utils/functions";
 import { TypesResInterface } from "../utils/interfaces";
 
 const prisma: PrismaClient = new PrismaClient();
@@ -10,6 +10,7 @@ export const getTypes = async (req: Request, res: Response) => {
         const types = await prisma.types.findMany();
         return writeJsonRes<TypesResInterface[]>(res, 200, types, "Successfully retrived!");
     } catch (error) {
+        logError(error, "Get Types Controller");
         return writeJsonRes<null>(res, 500, null, "Internal Server Error!");
     }
 }

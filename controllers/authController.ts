@@ -104,6 +104,7 @@ export const signup = async (req:Request, res:Response) => {
 
         return writeJsonRes<null>(res, 201, null, "Successfully created your account!");
     } catch (error) {
+        logError(error, "Sign Up Controller");
         return writeJsonRes<null>(res, 500, null, "Internal Server Error!")
     }
 }
@@ -154,6 +155,7 @@ export const verifyEmail = async (req:Request, res:Response) => {
             "Successfully verified your email!"
         );
     } catch (error) {
+        logError(error, "Email Verify Controller");
         return writeJsonRes<null>(res, 500, null, "Internal Server Error!")
     }
 }
@@ -169,8 +171,10 @@ export const checkEmail = async (req:Request, res:Response) => {
         if(!user) {
             return writeJsonRes<null>(res, 404, null, "This email hasn't been registered yet!");
         }
+
         return writeJsonRes<null>(res, 200, null, "Verify your email!");
     } catch (error) {
+        logError(error, "Check Email Controller");
         return writeJsonRes<null>(res, 500, null, "Internal Server Error!")
     } 
 }
@@ -199,6 +203,7 @@ export const verifyCode = async (req:Request, res:Response) => {
         return writeJsonRes<TokenResInterface>(res, 200, {token: getJwtToken(tokenData, process.env.JWT_RESET_PASSWORD_SECRET)}, "Successfully verified!");
         
     } catch (error) {
+        logError(error, "Verfiy Code Controller");
         return writeJsonRes<null>(res, 500, null, "Internal Server Error!")
     }
 }
@@ -216,9 +221,8 @@ export const resetPassword = async (req:Request, res:Response) => {
         });
 
         return writeJsonRes<null>(res, 200, null, 'Successfully changed your password!');
-
     } catch (error) {
-        console.log("RESET PASSWORD", error);
+        logError(error, "Reset Password Controller");
         return writeJsonRes<null>(res, 500, null, "Internal Server Error!")
     }
 }

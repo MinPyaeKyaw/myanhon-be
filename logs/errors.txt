@@ -1,0 +1,26 @@
+Sat May 06 2023 09:00:48 GMT+0630 (Myanmar Time)[ Login Controller ]
+TypeError: Cannot read properties of undefined (reading 'findFirst')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/authController.js:61:42
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/authController.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/authController.js:4:12)
+    at login (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/authController.js:59:29)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+ 
+Sat May 06 2023 09:00:57 GMT+0630 (Myanmar Time)[ Login Controller ]
+TypeError: Cannot read properties of undefined (reading 'findFirst')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/authController.js:61:42
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/authController.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/authController.js:4:12)
+    at login (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/authController.js:59:29)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+ 

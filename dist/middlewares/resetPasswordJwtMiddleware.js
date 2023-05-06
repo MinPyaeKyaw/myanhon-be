@@ -19,7 +19,7 @@ const verifyResetPasswordJwt = (req, res, next) => {
         next();
     }
     catch (error) {
-        console.log('RESET PASSWORD JWT VERIFICATION ERROR', error);
+        (0, functions_1.logError)(error, "Verify Reset Password JWT Middleware");
         return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
     }
 };

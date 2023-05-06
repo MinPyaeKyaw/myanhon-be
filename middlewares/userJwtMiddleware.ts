@@ -2,7 +2,7 @@ import jwtDecode from "jwt-decode";
 import { NextFunction, Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 
-import { getJwtTokenFromReq, writeJsonRes } from "../utils/functions";
+import { getJwtTokenFromReq, logError, writeJsonRes } from "../utils/functions";
 
 const prisma: PrismaClient = new PrismaClient();
 
@@ -29,7 +29,7 @@ export const verifyUserJwt = async (req: Request, res: Response, next: NextFunct
 
         next();
     } catch (error) {
-        console.log('USER JWT VERIFICATION ERROR', error);
+        logError(error, "Verify User JWT Middleware");
         return writeJsonRes<null>(res, 500, null, "Internal Server Error!");
     }
 }

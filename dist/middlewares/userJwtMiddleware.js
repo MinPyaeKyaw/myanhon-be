@@ -38,7 +38,7 @@ const verifyUserJwt = (req, res, next) => __awaiter(void 0, void 0, void 0, func
         next();
     }
     catch (error) {
-        console.log('USER JWT VERIFICATION ERROR', error);
+        (0, functions_1.logError)(error, "Verify User JWT Middleware");
         return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
     }
 });

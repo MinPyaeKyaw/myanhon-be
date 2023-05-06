@@ -19,6 +19,7 @@ const getTypes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return (0, functions_1.writeJsonRes)(res, 200, types, "Successfully retrived!");
     }
     catch (error) {
+        (0, functions_1.logError)(error, "Get Types Controller");
         return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
     }
 });

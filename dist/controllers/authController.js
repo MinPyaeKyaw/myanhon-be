@@ -104,6 +104,7 @@ const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return (0, functions_1.writeJsonRes)(res, 201, null, "Successfully created your account!");
     }
     catch (error) {
+        (0, functions_1.logError)(error, "Sign Up Controller");
         return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
     }
 });
@@ -146,6 +147,7 @@ const verifyEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         }, "Successfully verified your email!");
     }
     catch (error) {
+        (0, functions_1.logError)(error, "Email Verify Controller");
         return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
     }
 });
@@ -163,6 +165,7 @@ const checkEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         return (0, functions_1.writeJsonRes)(res, 200, null, "Verify your email!");
     }
     catch (error) {
+        (0, functions_1.logError)(error, "Check Email Controller");
         return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
     }
 });
@@ -187,6 +190,7 @@ const verifyCode = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         return (0, functions_1.writeJsonRes)(res, 200, { token: (0, functions_1.getJwtToken)(tokenData, process.env.JWT_RESET_PASSWORD_SECRET) }, "Successfully verified!");
     }
     catch (error) {
+        (0, functions_1.logError)(error, "Verfiy Code Controller");
         return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
     }
 });
@@ -205,7 +209,7 @@ const resetPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         return (0, functions_1.writeJsonRes)(res, 200, null, 'Successfully changed your password!');
     }
     catch (error) {
-        console.log("RESET PASSWORD", error);
+        (0, functions_1.logError)(error, "Reset Password Controller");
         return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
     }
 });

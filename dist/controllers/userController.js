@@ -48,7 +48,7 @@ const editUserById = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         }, "Successfully edited your info!");
     }
     catch (error) {
-        console.log("EDIT USER", error);
+        (0, functions_1.logError)(error, "Edit User Controller");
         return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
     }
 });
@@ -84,7 +84,7 @@ const setUserTrack = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         return (0, functions_1.writeJsonRes)(res, 200, null, "Successfully set user tracking!");
     }
     catch (error) {
-        console.log('CREATE USER TRACKING ERROR', error);
+        (0, functions_1.logError)(error, "Set User Track Controller");
         return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
     }
 });

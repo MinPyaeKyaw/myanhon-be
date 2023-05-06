@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
 import { PrismaClient } from '@prisma/client';
-import { getJwtToken, writeJsonRes } from "../utils/functions";
+import { getJwtToken, logError, writeJsonRes } from "../utils/functions";
 import { TokenResInterface } from "../utils/interfaces";
 
 const prisma: PrismaClient = new PrismaClient();
@@ -42,7 +42,7 @@ export const editUserById = async (req: Request, res: Response) => {
             token: getJwtToken(tokenData, process.env.JWT_USER_SECRET)
         }, "Successfully edited your info!");
     } catch (error) {
-        console.log("EDIT USER", error);
+        logError(error, "Edit User Controller");
         return writeJsonRes<null>(res, 500, null, "Internal Server Error!");
     }
 }
@@ -78,7 +78,7 @@ export const setUserTrack = async (req: Request, res: Response) => {
 
         return writeJsonRes<null>(res, 200, null, "Successfully set user tracking!")
     } catch (error) {
-        console.log('CREATE USER TRACKING ERROR', error);
+        logError(error, "Set User Track Controller");
         return writeJsonRes<null>(res, 500, null, "Internal Server Error!")
     }
 }

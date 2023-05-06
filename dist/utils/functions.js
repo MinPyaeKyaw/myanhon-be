@@ -20,7 +20,14 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const dayjs_1 = __importDefault(require("dayjs"));
 const zipFile = (filePath) => {
-    const zipFilename = `./logs/${(0, dayjs_1.default)(new Date()).format('DD-MM-YYYY-h-m-s')}.zip`;
+    const splitedFilePath = filePath.split('/');
+    let parentFolder = '';
+    splitedFilePath.forEach((folder) => {
+        if (folder !== splitedFilePath[splitedFilePath.length - 1]) {
+            parentFolder = parentFolder + folder + '/';
+        }
+    });
+    const zipFilename = `${parentFolder}${(0, dayjs_1.default)(new Date()).format('DD-MM-YYYY-h-m-s')}.zip`;
     const readStream = fs_1.default.createReadStream(filePath);
     const writeStream = fs_1.default.createWriteStream(zipFilename);
     const zip = zlib_1.default.createGzip();
@@ -44,8 +51,7 @@ exports.getFileSize = getFileSize;
 const zipAndDelFile = (filePath) => {
     (0, exports.getFileSize)(filePath, 'kb')
         .then(result => {
-        console.log("lee", result);
-        if (result > 5) {
+        if (result > 500) {
             (0, exports.zipFile)(filePath).on('finish', () => {
                 fs_1.default.unlink(filePath, (err) => {
                     if (err) {
@@ -59,23 +65,28 @@ const zipAndDelFile = (filePath) => {
 exports.zipAndDelFile = zipAndDelFile;
 const logError = (err, label) => {
     let format = new Date() + "[ " + label + " ]" + '\n' + err.stack + '\n \n';
-    if (!fs_1.default.existsSync('./logs/errors.txt')) {
+    // @ts-ignore
+    if (!fs_1.default.existsSync(process.env.LOGGER_FILE)) {
         if (err instanceof Error) {
-            fs_1.default.writeFile('./logs/errors.txt', format, error => {
+            // @ts-ignore
+            fs_1.default.writeFile(process.env.LOGGER_FILE, format, error => {
                 if (error) {
                     console.log("create error file", error);
                 }
-                (0, exports.zipAndDelFile)('./logs/errors.txt');
+                // @ts-ignore
+                (0, exports.zipAndDelFile)(process.env.LOGGER_FILE);
             });
         }
     }
     else {
         if (err instanceof Error) {
-            fs_1.default.appendFile('./logs/errors.txt', format, error => {
+            // @ts-ignore
+            fs_1.default.appendFile(process.env.LOGGER_FILE, format, error => {
                 if (error) {
                     console.log("append error", error);
                 }
-                (0, exports.zipAndDelFile)('./logs/errors.txt');
+                // @ts-ignore
+                (0, exports.zipAndDelFile)(process.env.LOGGER_FILE);
             });
         }
     }

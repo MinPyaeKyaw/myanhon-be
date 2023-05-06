@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
 import { PrismaClient } from '@prisma/client';
-import { writeJsonRes } from "../utils/functions";
+import { logError, writeJsonRes } from "../utils/functions";
 import { CourseResInterface } from "../utils/interfaces";
 
 const prisma: PrismaClient = new PrismaClient();
@@ -33,6 +33,7 @@ export const getCourses = async (req: Request, res: Response) => {
 
         return writeJsonRes<CourseResInterface[]>(res, 200, courses, "Successfully retrived!");
     } catch (error) {
+        logError(error, "Get Courses Controller");
         return writeJsonRes<null>(res, 500, null, "Internal Server Error!");
     }
 }
@@ -74,7 +75,7 @@ export const getCourseByID = async (req: Request, res: Response) => {
 
         return writeJsonRes<CourseResInterface>(res, 200, course, "Successfully retrived!");
     } catch (error) {
-        console.log('COURSE BY ID ERROR', error);
+        logError(error, "Get Course By ID Controller");
         return writeJsonRes<null>(res, 500, null, "Internal Server Error!")
     }
 }
