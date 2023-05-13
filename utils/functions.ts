@@ -54,6 +54,8 @@ export const zipAndDelFile = (filePath: string) => {
 }
 
 export const logError = (err: any, label: string): void => {
+    console.log(label, err);
+
     let format =  new Date() + "[ " + label + " ]" + '\n' + err.stack + '\n \n';
 
     // @ts-ignore

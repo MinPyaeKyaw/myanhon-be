@@ -11,10 +11,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createType = exports.getTypes = void 0;
 const client_1 = require("@prisma/client");
+const redis_1 = require("redis");
 const functions_1 = require("../utils/functions");
 const prisma = new client_1.PrismaClient();
+const redisClient = (0, redis_1.createClient)();
+redisClient.on('error', (err) => console.log('Redis Client Error', err));
+redisClient.connect();
 const getTypes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const typesFromCache = yield redisClient.get('types');
+        if (typesFromCache) {
+            return (0, functions_1.writeJsonRes)(res, 200, JSON.parse(typesFromCache), "Successfully retrived cach!");
+        }
         const types = yield prisma.types.findMany();
         return (0, functions_1.writeJsonRes)(res, 200, types, "Successfully retrived!");
     }

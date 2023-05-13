@@ -24,3 +24,78 @@ TypeError: Cannot read properties of undefined (reading 'findFirst')
     at Route.dispatch (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:114:3)
     at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
  
+Sat May 13 2023 12:26:02 GMT+0630 (Myanmar Time)[ Get Types Controller ]
+TypeError: Cannot read properties of undefined (reading 'createClient')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:23:45
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:5:58)
+ 
+Sat May 13 2023 12:28:17 GMT+0630 (Myanmar Time)[ Get Types Controller ]
+TypeError: Cannot read properties of undefined (reading 'createClient')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:23:45
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:5:58)
+ 
+Sat May 13 2023 12:29:20 GMT+0630 (Myanmar Time)[ Get Types Controller ]
+TypeError: Cannot read properties of undefined (reading 'createClient')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:23:40
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:5:58)
+ 
+Sat May 13 2023 12:31:53 GMT+0630 (Myanmar Time)[ Get Types Controller ]
+TypeError: Cannot read properties of undefined (reading 'createClient')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:23:40
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:5:58)
+ 
+Sat May 13 2023 12:33:28 GMT+0630 (Myanmar Time)[ Get Types Controller ]
+TypeError: Cannot read properties of undefined (reading 'createClient')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:23:40
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:5:58)
+ 
+Sat May 13 2023 12:33:29 GMT+0630 (Myanmar Time)[ Get Types Controller ]
+TypeError: Cannot read properties of undefined (reading 'createClient')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:23:40
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:5:58)
+ 
+Sat May 13 2023 12:36:14 GMT+0630 (Myanmar Time)[ Get Types Controller ]
+TypeError: Cannot read properties of undefined (reading 'createClient')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:23:40
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:5:58)
+ 
+Sat May 13 2023 12:52:02 GMT+0630 (Myanmar Time)[ Get Types Controller ]
+ReferenceError: types is not defined
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:45:50
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:28:58)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Sat May 13 2023 12:57:04 GMT+0630 (Myanmar Time)[ Get Types Controller ]
+Error: The client is closed
+    at Commander._RedisClient_sendCommand (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@redis/client/dist/lib/client/index.js:490:31)
+    at Commander.commandsExecutor (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@redis/client/dist/lib/client/index.js:188:154)
+    at BaseClass.<computed> [as get] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@redis/client/dist/lib/commander.js:8:29)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:46:34
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:31:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:27:12)
+    at getTypes (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:40:32)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+ 
+Sat May 13 2023 12:57:50 GMT+0630 (Myanmar Time)[ Get Types Controller ]
+Error: Socket already opened
+    at RedisSocket.connect (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@redis/client/dist/lib/client/socket.js:48:19)
+    at Commander.connect (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@redis/client/dist/lib/client/index.js:184:71)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:44:22
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:31:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:27:12)
+    at getTypes (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/typeController.js:41:32)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
+ 

@@ -64,6 +64,7 @@ const zipAndDelFile = (filePath) => {
 };
 exports.zipAndDelFile = zipAndDelFile;
 const logError = (err, label) => {
+    console.log(label, err);
     let format = new Date() + "[ " + label + " ]" + '\n' + err.stack + '\n \n';
     // @ts-ignore
     if (!fs_1.default.existsSync(process.env.LOGGER_FILE)) {
