@@ -1,13 +1,27 @@
 import {Request, Response} from "express";
+
 import { PrismaClient } from '@prisma/client';
+import { createClient } from 'redis';
+
 import { logError, writeJsonRes } from "../utils/functions";
 import { LevelResInterface } from "../utils/interfaces";
+import { CACHE_KEYS } from "../utils/enums";
 
 const prisma: PrismaClient = new PrismaClient();
+const redisClient = createClient();
+redisClient.on('error', (err) => console.log('Redis Client Error', err));
+redisClient.connect();
 
 export const getLevels = async (req: Request, res: Response) => {
     try {
+        const levelsFromCache = await redisClient.get(CACHE_KEYS.LEVELS);
+
+        if(levelsFromCache) {
+            return writeJsonRes<LevelResInterface[]>(res, 200, JSON.parse(levelsFromCache), "Successfully retrived cach!");
+        }
+
         const levels = await prisma.levels.findMany();
+        await redisClient.set(CACHE_KEYS.LEVELS, JSON.stringify(levels));
         return writeJsonRes<LevelResInterface[]>(res, 200, levels, "Successfully retrived!");
     } catch (error) {
         logError(error, "Get Levels Controller");

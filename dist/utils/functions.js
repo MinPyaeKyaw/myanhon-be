@@ -12,13 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getJwtTokenFromReq = exports.getJwtToken = exports.verifyPassword = exports.hashPassword = exports.refreshVerificationCode = exports.generateOTPCode = exports.writeJsonRes = exports.logError = exports.zipAndDelFile = exports.getFileSize = exports.zipFile = void 0;
+exports.getConnectedRedisClient = exports.getJwtTokenFromReq = exports.getJwtToken = exports.verifyPassword = exports.hashPassword = exports.refreshVerificationCode = exports.generateOTPCode = exports.writeJsonRes = exports.logError = exports.zipAndDelFile = exports.getFileSize = exports.zipFile = void 0;
 const fs_1 = __importDefault(require("fs"));
 const zlib_1 = __importDefault(require("zlib"));
 const client_1 = require("@prisma/client");
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const dayjs_1 = __importDefault(require("dayjs"));
+const redis_1 = require("redis");
 const zipFile = (filePath) => {
     const splitedFilePath = filePath.split('/');
     let parentFolder = '';
@@ -159,3 +160,10 @@ const getJwtTokenFromReq = (authHeader) => {
     return authHeader && authHeader.split(' ')[1];
 };
 exports.getJwtTokenFromReq = getJwtTokenFromReq;
+const getConnectedRedisClient = () => __awaiter(void 0, void 0, void 0, function* () {
+    const redisClient = (0, redis_1.createClient)();
+    redisClient.on('error', (err) => console.log('Redis Client Error', err));
+    yield redisClient.connect();
+    return redisClient;
+});
+exports.getConnectedRedisClient = getConnectedRedisClient;

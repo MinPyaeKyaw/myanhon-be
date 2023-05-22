@@ -1,6 +1,7 @@
-import jwtDecode from "jwt-decode";
 import { NextFunction, Request, Response } from "express";
+
 import { PrismaClient } from "@prisma/client";
+import jwtDecode from "jwt-decode";
 
 import { getJwtTokenFromReq, logError, writeJsonRes } from "../utils/functions";
 

@@ -13,8 +13,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.verifyUserJwt = void 0;
-const jwt_decode_1 = __importDefault(require("jwt-decode"));
 const client_1 = require("@prisma/client");
+const jwt_decode_1 = __importDefault(require("jwt-decode"));
 const functions_1 = require("../utils/functions");
 const prisma = new client_1.PrismaClient();
 const verifyUserJwt = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {

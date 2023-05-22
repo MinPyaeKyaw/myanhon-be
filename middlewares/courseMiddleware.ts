@@ -1,5 +1,7 @@
 import { NextFunction, Request, Response } from "express";
+
 import { validationResult } from "express-validator";
+
 import { logError, writeJsonRes } from "../utils/functions";
 
 export const validateCourseQuery = async (req: Request, res: Response, next: NextFunction) => {

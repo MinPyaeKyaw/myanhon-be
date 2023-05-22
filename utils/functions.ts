@@ -1,10 +1,12 @@
 import * as express from "express";
 import fs from 'fs';
 import zlib from "zlib";
+
 import { PrismaClient } from "@prisma/client";
 import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
 import dayjs from "dayjs";
+import { RedisClientType, createClient } from "redis";
 
 export const zipFile = (filePath: string) => {
     const splitedFilePath: string[] = filePath.split('/');
@@ -152,4 +154,12 @@ export const getJwtTokenFromReq = (authHeader: string | undefined): string | fal
         return false;
     }
     return authHeader && authHeader.split(' ')[1];
+}
+
+export const getConnectedRedisClient = async (): Promise<RedisClientType> => {
+    const redisClient: RedisClientType = createClient();
+    redisClient.on('error', (err) => console.log('Redis Client Error', err));
+    await redisClient.connect();
+
+    return redisClient;
 }

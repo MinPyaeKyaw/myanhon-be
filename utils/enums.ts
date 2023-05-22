@@ -15,3 +15,8 @@ export enum COURSE_TYPES {
     SPEAKING = 'speaking',
     VLOG = 'vlog'
 }
+
+export enum CACHE_KEYS {
+    TYPES = 'types',
+    LEVELS = 'levels'
+}

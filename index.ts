@@ -1,6 +1,6 @@
 import express, {Application} from "express";
 
-import * as dotenv from "dotenv"
+import * as dotenv from "dotenv";
 
 import authRouter from "./routes/auth";
 import courseRouter from "./routes/courses";
@@ -14,11 +14,11 @@ dotenv.config();
 const app: Application = express();
 app.use(express.json());
 
-app.use('/auth', authRouter);
-app.use(courseRouter);
-app.use(typeRouter);
-app.use(levelRouter);
-app.use(userRouter);
+app.use(process.env.API_PREFIX+'/auth', authRouter);
+app.use(`${process.env.API_PREFIX}`, courseRouter);
+app.use(`${process.env.API_PREFIX}`, typeRouter);
+app.use(`${process.env.API_PREFIX}`, levelRouter);
+app.use(`${process.env.API_PREFIX}`, userRouter);
 
 app.listen(4000, () => {
     console.log("now listening to 4000");

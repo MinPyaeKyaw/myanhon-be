@@ -7,7 +7,7 @@
     "build": "rimraf dist && npx tsc",
     "prestart": "npm run build",
     "start": "node dist/index.js",
-    "dev": "concurrently \"npx tsc -w\" \"nodemon dist/index.js\"",
+    "dev": "concurrently \"npx tsc -w\" \"nodemon dist/index.js\" \"redis-server\"",
     "test": "set PORT=0 && jest --watchAll"
   },
   "repository": {

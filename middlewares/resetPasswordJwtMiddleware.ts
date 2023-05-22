@@ -1,6 +1,7 @@
+import { NextFunction, Request, Response } from "express";
+
 import jwtDecode from "jwt-decode";
 
-import { NextFunction, Request, Response } from "express";
 import { getJwtTokenFromReq, logError, writeJsonRes } from "../utils/functions";
 
 export const verifyResetPasswordJwt = (req: Request, res: Response, next: NextFunction) => {

@@ -10,6 +10,38 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Admins {
+  id String @id @default(uuid())
+  name String
+  email String @unique
+  loginTryCount Int @default(0)
+  role Roles @relation(fields: [roleId], references: [id])
+  roleId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Roles {
+  id String @id @default(uuid())
+  name RoleNames @default(viewer)
+  permissions Permissions[]
+  admins Admins[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Permissions {
+  id String @id @default(uuid())
+  name PermissionNames @default(read)
+  role Roles @relation(fields: [roleId], references: [id])
+  roleId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Levels {
   id String @id @default(uuid())
   name LevelNames @default(N5)
@@ -156,4 +188,18 @@ enum LevelNames {
   N3
   N2
   N1
+}
+
+enum PermissionNames {
+  create
+  update
+  read
+  delete
+}
+
+enum RoleNames {
+  superAdmin
+  admin
+  editor
+  viewer
 }
