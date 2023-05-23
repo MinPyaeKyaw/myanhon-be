@@ -6,6 +6,19 @@ export interface CreatedAdminResDataInterface {
     updatedAt: Date;
 }
 
+export interface AdminObjInterface {
+    id: string;
+    name: string;
+    email: string;
+    password: string;
+    loginTryCount: number;
+    roleId: string;
+    verificationCode: string;
+    hasLogin: boolean;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
 export interface RoleResInterface {
     id: string;
     name: string;

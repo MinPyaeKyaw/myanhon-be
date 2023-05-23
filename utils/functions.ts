@@ -7,6 +7,9 @@ import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
 import dayjs from "dayjs";
 import { RedisClientType, createClient } from "redis";
+import { AdminObjInterface } from "./interfaces";
+
+const prisma: PrismaClient = new PrismaClient();
 
 export const zipFile = (filePath: string) => {
     const splitedFilePath: string[] = filePath.split('/');
@@ -108,8 +111,6 @@ export const generateOTPCode = ():string => {
 }
 
 export const refreshVerificationCode = async (email: string) => {
-    const prisma: PrismaClient = new PrismaClient();
-    
     try {
         const newCode = generateOTPCode();
         const updateCode = await prisma.users.update({
@@ -162,4 +163,34 @@ export const getConnectedRedisClient = async (): Promise<RedisClientType> => {
     await redisClient.connect();
 
     return redisClient;
+}
+
+export const updateAdminLoginCount = async (admin: AdminObjInterface): Promise<boolean> => {
+    try {
+        // @ts-ignore
+        if(admin.loginTryCount < +process.env.ALLOWED_LOGIN_COUNT) {
+            await prisma.admins.update({
+                where: {
+                    email: admin.email
+                },
+                data: {
+                    loginTryCount: admin.loginTryCount + 1
+                }
+            })
+        }else {
+            await prisma.admins.update({
+                where: {
+                    email: admin.email
+                },
+                data: {
+                    loginTryCount: 0,
+                    latestLogin: new Date()
+                }
+            })
+        }
+        return true;
+    } catch (error) {
+        logError(error, 'Admin Update Count');
+        return false;
+    }
 }

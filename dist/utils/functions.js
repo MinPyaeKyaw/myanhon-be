@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getConnectedRedisClient = exports.getJwtTokenFromReq = exports.getJwtToken = exports.verifyPassword = exports.hashPassword = exports.refreshVerificationCode = exports.generateOTPCode = exports.writeJsonRes = exports.logError = exports.zipAndDelFile = exports.getFileSize = exports.zipFile = void 0;
+exports.updateAdminLoginCount = exports.getConnectedRedisClient = exports.getJwtTokenFromReq = exports.getJwtToken = exports.verifyPassword = exports.hashPassword = exports.refreshVerificationCode = exports.generateOTPCode = exports.writeJsonRes = exports.logError = exports.zipAndDelFile = exports.getFileSize = exports.zipFile = void 0;
 const fs_1 = __importDefault(require("fs"));
 const zlib_1 = __importDefault(require("zlib"));
 const client_1 = require("@prisma/client");
@@ -20,6 +20,7 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const dayjs_1 = __importDefault(require("dayjs"));
 const redis_1 = require("redis");
+const prisma = new client_1.PrismaClient();
 const zipFile = (filePath) => {
     const splitedFilePath = filePath.split('/');
     let parentFolder = '';
@@ -114,7 +115,6 @@ const generateOTPCode = () => {
 };
 exports.generateOTPCode = generateOTPCode;
 const refreshVerificationCode = (email) => __awaiter(void 0, void 0, void 0, function* () {
-    const prisma = new client_1.PrismaClient();
     try {
         const newCode = (0, exports.generateOTPCode)();
         const updateCode = yield prisma.users.update({
@@ -167,3 +167,35 @@ const getConnectedRedisClient = () => __awaiter(void 0, void 0, void 0, function
     return redisClient;
 });
 exports.getConnectedRedisClient = getConnectedRedisClient;
+const updateAdminLoginCount = (admin) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        // @ts-ignore
+        if (admin.loginTryCount < +process.env.ALLOWED_LOGIN_COUNT) {
+            yield prisma.admins.update({
+                where: {
+                    email: admin.email
+                },
+                data: {
+                    loginTryCount: admin.loginTryCount + 1
+                }
+            });
+        }
+        else {
+            yield prisma.admins.update({
+                where: {
+                    email: admin.email
+                },
+                data: {
+                    loginTryCount: 0,
+                    latestLogin: new Date()
+                }
+            });
+        }
+        return true;
+    }
+    catch (error) {
+        (0, exports.logError)(error, 'Admin Update Count');
+        return false;
+    }
+});
+exports.updateAdminLoginCount = updateAdminLoginCount;

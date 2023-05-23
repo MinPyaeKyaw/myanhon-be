@@ -10,4 +10,7 @@ adminAuthRoute.get('/test', authController_1.test);
 adminAuthRoute.post('/login', authController_1.login);
 adminAuthRoute.post('/create-admin', authController_1.createAdmin);
 adminAuthRoute.post('/invite-admin', authController_1.inviteAdmin);
+adminAuthRoute.post('/check-email', authController_1.checkEmail);
+adminAuthRoute.post('/verify-code', authController_1.verfiyCode);
+adminAuthRoute.post('/reset-password', authController_1.resetPassword);
 exports.default = adminAuthRoute;

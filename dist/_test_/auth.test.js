@@ -17,8 +17,8 @@ const __1 = __importDefault(require(".."));
 const functions_1 = require("../utils/functions");
 const client_1 = require("@prisma/client");
 const testEnums_1 = require("../utils/testEnums");
+const prisma = new client_1.PrismaClient();
 const getValidVerificationCode = (email) => __awaiter(void 0, void 0, void 0, function* () {
-    const prisma = new client_1.PrismaClient();
     const user = yield prisma.users.findFirst({
         where: {
             email: email

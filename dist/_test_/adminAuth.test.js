@@ -15,14 +15,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const __1 = __importDefault(require(".."));
 const client_1 = require("@prisma/client");
+const prisma = new client_1.PrismaClient();
 const getValidVerificationCode = (email) => __awaiter(void 0, void 0, void 0, function* () {
-    const prisma = new client_1.PrismaClient();
-    const user = yield prisma.users.findFirst({
+    const admin = yield prisma.admins.findFirst({
         where: {
             email: email
         }
     });
-    return user === null || user === void 0 ? void 0 : user.verificationCode;
+    return admin.verificationCode;
 });
 describe('admin auth', () => {
     it('POST / admin / log in', () => __awaiter(void 0, void 0, void 0, function* () {
@@ -47,14 +47,14 @@ describe('admin auth', () => {
         return (0, supertest_1.default)(__1.default)
             .post(process.env.API_PREFIX + '/admin/auth/login')
             .send({
-            email: "admin@test.com",
-            password: "12345"
+            email: "saiminR4MJIL@test.com",
+            password: "123"
         })
             .expect(400)
             .then((response) => {
             expect(response.body).toEqual({
                 status: 400,
-                message: "Try again after 30 minutes!",
+                message: expect.any(String),
                 data: null
             });
         });
@@ -183,9 +183,9 @@ describe('admin auth', () => {
     }));
     it('POST / admin / reset password / check email', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .post('/admin/auth/check-email')
+            .post(process.env.API_PREFIX + '/admin/auth/check-email')
             .send({
-            email: 'admin@test.com'
+            email: "postman@test.com"
         })
             .expect(200)
             .then((response) => {
@@ -198,7 +198,7 @@ describe('admin auth', () => {
     }));
     it('POST / admin / reset password / check email / email not found', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .post('/admin/auth/check-email')
+            .post(process.env.API_PREFIX + '/admin/auth/check-email')
             .send({
             email: "funnyadmin@test.com"
         })
@@ -213,10 +213,10 @@ describe('admin auth', () => {
     }));
     it('POST / admin / reset password / verify code', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .post('/admin/auth/verify-code')
+            .post(process.env.API_PREFIX + '/admin/auth/verify-code')
             .send({
-            email: 'saimin@test.com',
-            verificationCode: yield getValidVerificationCode('saimin@test.com')
+            email: 'postman@test.com',
+            verificationCode: yield getValidVerificationCode('postman@test.com')
         })
             .expect(200)
             .then((response) => {
@@ -231,7 +231,7 @@ describe('admin auth', () => {
     }));
     it('POST / admin / reset password / invalid verification code', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .post('/admin/auth/verify-code')
+            .post(process.env.API_PREFIX + '/admin/auth/verify-code')
             .send({
             email: 'admin@test.com',
             verificationCode: "FAKECO"
@@ -247,9 +247,9 @@ describe('admin auth', () => {
     }));
     it('POST / admin / reset password', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .post('admin/auth/reset-password')
+            .post(process.env.API_PREFIX + '/admin/auth/reset-password')
             .send({
-            email: "test@test.com",
+            email: "postman@test.com",
             newPassword: "12345"
         })
             .expect(200)

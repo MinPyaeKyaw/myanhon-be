@@ -3,17 +3,18 @@ import app from '..';
 import { generateOTPCode } from '../utils/functions';
 import { PrismaClient } from '@prisma/client';
 import { testUser } from '../utils/testEnums';
+import { AdminObjInterface } from '../utils/interfaces';
+
+const prisma:PrismaClient = new PrismaClient()
 
 const getValidVerificationCode = async (email:string) => {
-    const prisma:PrismaClient = new PrismaClient()
-
-    const user = await prisma.users.findFirst({
+    const admin = await prisma.admins.findFirst({
         where: {
             email: email
         }
-    })
+    }) as AdminObjInterface;
 
-    return user?.verificationCode;
+    return admin.verificationCode;
 }
 
 describe('admin auth', () => {
@@ -42,15 +43,15 @@ describe('admin auth', () => {
         return Request(app)
         .post(process.env.API_PREFIX+'/admin/auth/login')
         .send({
-            email: "admin@test.com",
-            password: "12345"
+            email: "saiminR4MJIL@test.com",
+            password: "123"
         })
         .expect(400)
         .then((response) => {
             expect(response.body).toEqual(
                 {
                     status: 400,
-                    message: "Try again after 30 minutes!",
+                    message: expect.any(String),
                     data: null
                 }
             )
@@ -201,9 +202,9 @@ describe('admin auth', () => {
 
     it('POST / admin / reset password / check email', async () => {
         return Request(app)
-        .post('/admin/auth/check-email')
+        .post(process.env.API_PREFIX+'/admin/auth/check-email')
         .send({
-            email: 'admin@test.com'
+            email: "postman@test.com"
         })
         .expect(200)
         .then((response) => {
@@ -219,7 +220,7 @@ describe('admin auth', () => {
 
     it('POST / admin / reset password / check email / email not found', async () => {
         return Request(app)
-        .post('/admin/auth/check-email')
+        .post(process.env.API_PREFIX+'/admin/auth/check-email')
         .send({
             email: "funnyadmin@test.com"
         })
@@ -237,10 +238,10 @@ describe('admin auth', () => {
 
     it('POST / admin / reset password / verify code', async () => {
         return Request(app)
-        .post('/admin/auth/verify-code')
+        .post(process.env.API_PREFIX+'/admin/auth/verify-code')
         .send({
-            email: 'saimin@test.com',
-            verificationCode: await getValidVerificationCode('saimin@test.com') 
+            email: 'postman@test.com',
+            verificationCode: await getValidVerificationCode('postman@test.com') 
         })
         .expect(200)
         .then((response) => {
@@ -260,7 +261,7 @@ describe('admin auth', () => {
 
     it('POST / admin / reset password / invalid verification code', async () => {
         return Request(app)
-        .post('/admin/auth/verify-code')
+        .post(process.env.API_PREFIX+'/admin/auth/verify-code')
         .send({
             email: 'admin@test.com',
             verificationCode: "FAKECO"      
@@ -279,9 +280,9 @@ describe('admin auth', () => {
 
     it('POST / admin / reset password', async () => {
         return Request(app)
-        .post('admin/auth/reset-password')
+        .post(process.env.API_PREFIX+'/admin/auth/reset-password')
         .send({
-            email: "test@test.com",
+            email: "postman@test.com",
             newPassword: "12345"
         })
         .expect(200)

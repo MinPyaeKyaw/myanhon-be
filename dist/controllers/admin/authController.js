@@ -12,10 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.inviteAdmin = exports.createAdmin = exports.login = exports.test = void 0;
+exports.resetPassword = exports.verfiyCode = exports.checkEmail = exports.inviteAdmin = exports.createAdmin = exports.login = exports.test = void 0;
 const client_1 = require("@prisma/client");
 const functions_1 = require("../../utils/functions");
 const nodeMailerFn_1 = __importDefault(require("../../utils/nodeMailerFn"));
+const dayjs_1 = __importDefault(require("dayjs"));
 const prisma = new client_1.PrismaClient();
 const test = (req, res) => {
     res.json({
@@ -34,11 +35,12 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             return (0, functions_1.writeJsonRes)(res, 404, null, "This email hasn't been registered yet!");
         }
         // @ts-ignore
-        if (admin.loginTryCount > +process.env.ALLOWED_LOGIN_COUNT) {
-            return (0, functions_1.writeJsonRes)(res, 400, null, "Try again after 30 minutes!");
+        if ((0, dayjs_1.default)(new Date()).diff((0, dayjs_1.default)(admin.latestLogin), 'minute') < 30 && admin.loginTryCount > +process.env.ALLOWED_LOGIN_COUNT) {
+            return (0, functions_1.writeJsonRes)(res, 400, null, `Try again after ${(0, dayjs_1.default)(admin.latestLogin).diff((0, dayjs_1.default)(new Date()))} minutes!`);
         }
         const isVerifiedPassword = yield (0, functions_1.verifyPassword)(req.body.password, admin.password);
         if (!isVerifiedPassword) {
+            yield (0, functions_1.updateAdminLoginCount)(admin);
             return (0, functions_1.writeJsonRes)(res, 400, null, "Invalid password!");
         }
         const tokenData = {
@@ -50,7 +52,6 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         return (0, functions_1.writeJsonRes)(res, 200, {
             // @ts-ignore
             token: (0, functions_1.getJwtToken)(tokenData, process.env.JWT_USER_SECRET)
-            // token: "leepl"
         }, "Successfully logged in!");
     }
     catch (error) {
@@ -114,3 +115,66 @@ const inviteAdmin = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.inviteAdmin = inviteAdmin;
+const checkEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const admin = yield prisma.admins.findFirst({
+            where: {
+                email: req.body.email
+            }
+        });
+        if (!admin) {
+            return (0, functions_1.writeJsonRes)(res, 404, null, "This email hasn't been registered yet!");
+        }
+        return (0, functions_1.writeJsonRes)(res, 200, null, "Verify your email!");
+    }
+    catch (error) {
+        (0, functions_1.logError)(error, "Check Email Admin Controller");
+        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+    }
+});
+exports.checkEmail = checkEmail;
+const verfiyCode = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const admin = yield prisma.admins.findFirst({
+            where: {
+                email: req.body.email
+            }
+        });
+        if ((admin === null || admin === void 0 ? void 0 : admin.verificationCode) !== req.body.verificationCode) {
+            return (0, functions_1.writeJsonRes)(res, 400, null, "Invalid verification code");
+        }
+        const tokenData = {
+            verificationCode: req.body.verificationCode,
+            email: admin === null || admin === void 0 ? void 0 : admin.email,
+            adminResetPasswordToken: true
+        };
+        return (0, functions_1.writeJsonRes)(res, 200, {
+            // @ts-ignore
+            token: (0, functions_1.getJwtToken)(tokenData, process.env.JWT_USER_SECRET)
+        }, "Successfully verified!");
+    }
+    catch (error) {
+        (0, functions_1.logError)(error, "Verify Code Admin Controller");
+        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+    }
+});
+exports.verfiyCode = verfiyCode;
+const resetPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const hashedPassword = yield (0, functions_1.hashPassword)(req.body.newPassword);
+        yield prisma.admins.update({
+            where: {
+                email: req.body.email
+            },
+            data: {
+                password: hashedPassword
+            }
+        });
+        return (0, functions_1.writeJsonRes)(res, 200, null, 'Successfully changed your password!');
+    }
+    catch (error) {
+        (0, functions_1.logError)(error, "Reset Password Controller");
+        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+    }
+});
+exports.resetPassword = resetPassword;

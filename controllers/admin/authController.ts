@@ -2,9 +2,10 @@ import { Request, Response } from "express";
 
 import { PrismaClient } from '@prisma/client';
 
-import { getJwtToken, hashPassword, logError, verifyPassword, writeJsonRes } from "../../utils/functions";
+import { getJwtToken, hashPassword, logError, updateAdminLoginCount, verifyPassword, writeJsonRes } from "../../utils/functions";
 import mailer from "../../utils/nodeMailerFn";
 import { CreatedAdminResDataInterface, TokenResInterface } from "../../utils/interfaces";
+import dayjs from "dayjs";
 
 const prisma: PrismaClient = new PrismaClient();
 
@@ -27,12 +28,13 @@ export const login = async (req: Request, res: Response) => {
         }
 
         // @ts-ignore
-        if(admin.loginTryCount > +process.env.ALLOWED_LOGIN_COUNT) {
-            return writeJsonRes<null>(res, 400, null, "Try again after 30 minutes!");
+        if(dayjs(new Date()).diff(dayjs(admin.latestLogin), 'minute') < 30 && admin.loginTryCount > +process.env.ALLOWED_LOGIN_COUNT) {
+            return writeJsonRes<null>(res, 400, null, `Try again after ${dayjs(admin.latestLogin).diff(dayjs(new Date()))} minutes!`);
         }
 
         const isVerifiedPassword = await verifyPassword(req.body.password, admin.password);
         if(!isVerifiedPassword) {
+            await updateAdminLoginCount(admin);
             return writeJsonRes<null>(res, 400, null, "Invalid password!");
         }
 
@@ -46,7 +48,6 @@ export const login = async (req: Request, res: Response) => {
         return writeJsonRes<TokenResInterface>(res, 200, {
             // @ts-ignore
             token: getJwtToken(tokenData, process.env.JWT_USER_SECRET)
-            // token: "leepl"
         }, "Successfully logged in!")
     } catch (error) {
         logError(error, "Create Admin Controller");
@@ -110,5 +111,71 @@ export const inviteAdmin = async (req: Request, res: Response) => {
     } catch (error) {
         logError(error, "Invite Admin Controller");
         return writeJsonRes<null>(res, 500, null, "Internal Server Error!");
+    }
+}
+
+export const checkEmail = async (req: Request, res: Response) => {
+    try {
+        const admin = await prisma.admins.findFirst({
+            where: {
+                email: req.body.email
+            }
+        })
+
+        if(!admin) {
+            return writeJsonRes<null>(res, 404, null, "This email hasn't been registered yet!");
+        }
+
+        return writeJsonRes<null>(res, 200, null, "Verify your email!");
+    } catch (error) {
+        logError(error, "Check Email Admin Controller");
+        return writeJsonRes<null>(res, 500, null, "Internal Server Error!");
+    }
+}
+
+export const verfiyCode = async (req: Request, res: Response) => {
+    try {
+        const admin = await prisma.admins.findFirst({
+            where: {
+                email: req.body.email
+            }
+        })
+
+        if(admin?.verificationCode !== req.body.verificationCode) {
+            return writeJsonRes<null>(res, 400, null, "Invalid verification code");
+        }
+
+        const tokenData = {
+            verificationCode: req.body.verificationCode,
+            email: admin?.email,
+            adminResetPasswordToken: true
+        }
+
+        return writeJsonRes<TokenResInterface>(res, 200, {
+            // @ts-ignore
+            token: getJwtToken(tokenData, process.env.JWT_USER_SECRET)
+        }, "Successfully verified!")
+    } catch (error) {
+        logError(error, "Verify Code Admin Controller");
+        return writeJsonRes<null>(res, 500, null, "Internal Server Error!");
+    }
+}
+
+export const resetPassword = async (req: Request, res: Response) => {
+    try {
+        const hashedPassword = await hashPassword(req.body.newPassword);
+        await prisma.admins.update({
+            where: {
+                email: req.body.email
+            },
+            data: {
+                password: hashedPassword
+            }
+        });
+
+        return writeJsonRes<null>(res, 200, null, 'Successfully changed your password!');
+    } catch (error) {
+        logError(error, "Reset Password Controller");
+        return writeJsonRes<null>(res, 500, null, "Internal Server Error!")
     }
 }

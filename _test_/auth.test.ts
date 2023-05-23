@@ -4,9 +4,9 @@ import { generateOTPCode } from '../utils/functions';
 import { PrismaClient } from '@prisma/client';
 import { testUser } from '../utils/testEnums';
 
-const getValidVerificationCode = async (email:string) => {
-    const prisma:PrismaClient = new PrismaClient()
+const prisma:PrismaClient = new PrismaClient()
 
+const getValidVerificationCode = async (email:string) => {
     const user = await prisma.users.findFirst({
         where: {
             email: email
