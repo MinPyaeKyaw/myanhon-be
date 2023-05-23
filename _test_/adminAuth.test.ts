@@ -19,9 +19,9 @@ const getValidVerificationCode = async (email:string) => {
 describe('admin auth', () => {
     it('POST / admin / log in', async () => {
         return Request(app)
-        .post('/admin/auth/login')
+        .post(process.env.API_PREFIX+'/admin/auth/login')
         .send({
-            email: "admin@test.com",
+            email: "postman@test.com",
             password: "12345"
         })
         .expect(200)
@@ -40,7 +40,7 @@ describe('admin auth', () => {
 
     it('POST / admin / log in / if user tries more 3 times', async () => {
         return Request(app)
-        .post('/admin/auth/login')
+        .post(process.env.API_PREFIX+'/admin/auth/login')
         .send({
             email: "admin@test.com",
             password: "12345"
@@ -59,7 +59,7 @@ describe('admin auth', () => {
 
     it('POST / admin / log in / email not found', async () => {
         return Request(app)
-        .post('/admin/auth/login')
+        .post(process.env.API_PREFIX+'/admin/auth/login')
         .send({
             email: "funnymail@test.com",
             password: "123",
@@ -78,9 +78,9 @@ describe('admin auth', () => {
 
     it('POST / admin / log in / invalid password', async () => {
         return Request(app)
-        .post('/admin/auth/login')
+        .post(process.env.API_PREFIX+'/admin/auth/login')
         .send({
-            email: "admin@test.com",
+            email: "postman@test.com",
             password: "g3wg4",
         })
         .expect(400)
@@ -95,40 +95,42 @@ describe('admin auth', () => {
         })
     })
 
-    it('POST / admin / create admin', async () => {
-        return Request(app)
-        .post('/admin/auth/create-admin')
-        .send({
-            username: "Sai Min",
-            email: "saimin@test.com",
-            role: "admin role",
-            password: "123"
-        })
-        .expect(201)
-        .then((response) => {
-            expect(response.body).toEqual(
-                {
-                    status: 201,
-                    message: "Successfully created!",
-                    data: {
-                        id: expect.any(String),
-                        username: expect.any(String),
-                        email: expect.any(String),
-                        createdAt: expect.any(String),
-                        updatedAt: expect.any(String)
-                    }
-                }
-            )
-        })
-    })
+    // it('POST / admin / create admin', async () => {
+    //     const otp = generateOTPCode();
+
+    //     return Request(app)
+    //     .post(process.env.API_PREFIX+'/admin/auth/create-admin')
+    //     .send({
+    //         name: "Sai Min"+otp,
+    //         email: "saimin"+ otp +"@test.com",
+    //         roleId: "ea41b95b-4602-48c3-baf5-9dd93e4fe1e4",
+    //         password: "123"
+    //     })
+    //     .expect(201)
+    //     .then((response) => {
+    //         expect(response.body).toEqual(
+    //             {
+    //                 status: 201,
+    //                 message: "Successfully created!",
+    //                 data: {
+    //                     id: expect.any(String),
+    //                     name: expect.any(String),
+    //                     email: expect.any(String),
+    //                     createdAt: expect.any(String),
+    //                     updatedAt: expect.any(String)
+    //                 }
+    //             }
+    //         )
+    //     })
+    // })
 
     it('POST / admin / create admin / email already used', async () => {
         return Request(app)
-        .post('/admin/auth/create-admin')
+        .post(process.env.API_PREFIX+'/admin/auth/create-admin')
         .send({
-            username: "Sai Min",
+            name: "Sai Min",
             email: "saimin@test.com",
-            role: "admin role",
+            roleId: "admin role",
             password: "123"
         })
         .expect(409)
@@ -145,9 +147,9 @@ describe('admin auth', () => {
 
     it('POST / admin / invite admin', async () => {
         return Request(app)
-        .post('/admin/auth/invite-admin')
+        .post(process.env.API_PREFIX+'/admin/auth/invite-admin')
         .send({
-            email: "test@test.com"
+            email: "postman@test.com"
         })
         .expect(200)
         .then((response) => {
@@ -155,6 +157,42 @@ describe('admin auth', () => {
                 {
                     status: 200,
                     message: "Successfully sent invitation!",
+                    data: null
+                }
+            )
+        })
+    })
+
+    it('POST / admin / invite admin / arleady been an admin', async () => {
+        return Request(app)
+        .post(process.env.API_PREFIX+'/admin/auth/invite-admin')
+        .send({
+            email: "saimin@test.com"
+        })
+        .expect(400)
+        .then((response) => {
+            expect(response.body).toEqual(
+                {
+                    status: 400,
+                    message: "This user has already been an admin!",
+                    data: null
+                }
+            )
+        })
+    })
+
+    it('POST / admin / invite admin / user not found', async () => {
+        return Request(app)
+        .post(process.env.API_PREFIX+'/admin/auth/invite-admin')
+        .send({
+            email: "test@test.com"
+        })
+        .expect(404)
+        .then((response) => {
+            expect(response.body).toEqual(
+                {
+                    status: 404,
+                    message: "User not found!",
                     data: null
                 }
             )

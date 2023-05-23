@@ -25,7 +25,7 @@ const getLevels = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             return (0, functions_1.writeJsonRes)(res, 200, JSON.parse(levelsFromCache), "Successfully retrived cach!");
         }
         const levels = yield prisma.levels.findMany();
-        // await redisClient.set(CACHE_KEYS.LEVELS, JSON.stringify(levels));
+        yield redisClient.set(enums_1.CACHE_KEYS.LEVELS, JSON.stringify(levels));
         return (0, functions_1.writeJsonRes)(res, 200, levels, "Successfully retrived!");
     }
     catch (error) {

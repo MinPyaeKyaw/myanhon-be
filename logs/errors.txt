@@ -99,3 +99,704 @@ Error: Socket already opened
     at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
     at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
  
+Tue May 23 2023 13:33:59 GMT+0630 (Myanmar Time)[ Create Admin Controller ]
+Error: data and salt arguments required
+    at Object.hash (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/bcrypt/bcrypt.js:137:17)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/bcrypt/promises.js:29:12
+    at new Promise (<anonymous>)
+    at module.exports.promise (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/bcrypt/promises.js:20:12)
+    at Object.hash (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/bcrypt/bcrypt.js:133:25)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/utils/functions.js:138:35
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/utils/functions.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/utils/functions.js:4:12)
+ 
+Tue May 23 2023 13:46:36 GMT+0630 (Myanmar Time)[ Create Admin Controller ]
+Error: 
+Invalid `prisma.admins.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/authController.ts:41:50
+
+  38 }
+  39 
+  40 const hashedPassword = await hashPassword(req.body.password);
+→ 41 const createdAdmin = await prisma.admins.create({
+       data: {
+     +   name: String,
+         email: 'saimin@test.com',
+         password: '$2b$10$ub3pbeuI7TJTHL.O4Ldcp.jfZoZAHMvjgTuip0bRBL7dKAIgylYTm',
+         role: 'admin role',
+               ~~~~~~~~~~~~
+     ?   id?: String,
+     ?   loginTryCount?: Int,
+     ?   verificationCode?: String,
+     ?   hasLogin?: Boolean,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Argument role: Got invalid value 'admin role' on prisma.createOneAdmins. Provided String, expected RolesCreateNestedOneWithoutAdminsInput:
+type RolesCreateNestedOneWithoutAdminsInput {
+  create?: RolesCreateWithoutAdminsInput | RolesUncheckedCreateWithoutAdminsInput
+  connectOrCreate?: RolesCreateOrConnectWithoutAdminsInput
+  connect?: RolesWhereUniqueInput
+}
+Argument name for data.name is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Tue May 23 2023 13:47:02 GMT+0630 (Myanmar Time)[ Create Admin Controller ]
+Error: 
+Invalid `prisma.admins.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/authController.ts:41:50
+
+  38 }
+  39 
+  40 const hashedPassword = await hashPassword(req.body.password);
+→ 41 const createdAdmin = await prisma.admins.create({
+       data: {
+     +   name: String,
+         email: 'saimin@test.com',
+         password: '$2b$10$e6NHhR5NI0b6NQ3fQIgFEOw4VcJV973nSLZf2E82TC54FyCcwLpiW',
+         role: 'admin role',
+               ~~~~~~~~~~~~
+     ?   id?: String,
+     ?   loginTryCount?: Int,
+     ?   verificationCode?: String,
+     ?   hasLogin?: Boolean,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Argument role: Got invalid value 'admin role' on prisma.createOneAdmins. Provided String, expected RolesCreateNestedOneWithoutAdminsInput:
+type RolesCreateNestedOneWithoutAdminsInput {
+  create?: RolesCreateWithoutAdminsInput | RolesUncheckedCreateWithoutAdminsInput
+  connectOrCreate?: RolesCreateOrConnectWithoutAdminsInput
+  connect?: RolesWhereUniqueInput
+}
+Argument name for data.name is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Tue May 23 2023 13:48:20 GMT+0630 (Myanmar Time)[ Create Admin Controller ]
+Error: 
+Invalid `prisma.admins.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/authController.ts:41:50
+
+  38 }
+  39 
+  40 const hashedPassword = await hashPassword(req.body.password);
+→ 41 const createdAdmin = await prisma.admins.create({
+       data: {
+     +   name: String,
+         email: 'saimin@test.com',
+         password: '$2b$10$q8qBNPa.ho8tmhcKAu9Qyu4pn08jmUMpyJBoi4SIeBfLh78i9xGOu',
+         role: 'admin role',
+               ~~~~~~~~~~~~
+     ?   id?: String,
+     ?   loginTryCount?: Int,
+     ?   verificationCode?: String,
+     ?   hasLogin?: Boolean,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Argument role: Got invalid value 'admin role' on prisma.createOneAdmins. Provided String, expected RolesCreateNestedOneWithoutAdminsInput:
+type RolesCreateNestedOneWithoutAdminsInput {
+  create?: RolesCreateWithoutAdminsInput | RolesUncheckedCreateWithoutAdminsInput
+  connectOrCreate?: RolesCreateOrConnectWithoutAdminsInput
+  connect?: RolesWhereUniqueInput
+}
+Argument name for data.name is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Tue May 23 2023 13:48:32 GMT+0630 (Myanmar Time)[ Create Admin Controller ]
+Error: 
+Invalid `prisma.admins.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/authController.ts:41:50
+
+  38 }
+  39 
+  40 const hashedPassword = await hashPassword(req.body.password);
+→ 41 const createdAdmin = await prisma.admins.create({
+       data: {
+     +   name: String,
+         email: 'saimin@test.com',
+         password: '$2b$10$PGh6u1y6wnUIJQ7es9pD4OC9YpHKQb02B9ey0z30IBSmjosRRHD7m',
+         role: 'admin role',
+               ~~~~~~~~~~~~
+     ?   id?: String,
+     ?   loginTryCount?: Int,
+     ?   verificationCode?: String,
+     ?   hasLogin?: Boolean,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Argument role: Got invalid value 'admin role' on prisma.createOneAdmins. Provided String, expected RolesCreateNestedOneWithoutAdminsInput:
+type RolesCreateNestedOneWithoutAdminsInput {
+  create?: RolesCreateWithoutAdminsInput | RolesUncheckedCreateWithoutAdminsInput
+  connectOrCreate?: RolesCreateOrConnectWithoutAdminsInput
+  connect?: RolesWhereUniqueInput
+}
+Argument name for data.name is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Tue May 23 2023 13:49:40 GMT+0630 (Myanmar Time)[ Create Admin Controller ]
+Error: 
+Invalid `prisma.admins.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/authController.ts:41:50
+
+  38 }
+  39 
+  40 const hashedPassword = await hashPassword(req.body.password);
+→ 41 const createdAdmin = await prisma.admins.create({
+       data: {
+     +   name: String,
+         email: 'saimin@test.com',
+         password: '$2b$10$OYMisrd1Y9qIYxNIypuMkOO0TDPmxMX4t/umjR12XowVRNKYJb20S',
+         role: 'admin role',
+               ~~~~~~~~~~~~
+     ?   id?: String,
+     ?   loginTryCount?: Int,
+     ?   verificationCode?: String,
+     ?   hasLogin?: Boolean,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Argument role: Got invalid value 'admin role' on prisma.createOneAdmins. Provided String, expected RolesCreateNestedOneWithoutAdminsInput:
+type RolesCreateNestedOneWithoutAdminsInput {
+  create?: RolesCreateWithoutAdminsInput | RolesUncheckedCreateWithoutAdminsInput
+  connectOrCreate?: RolesCreateOrConnectWithoutAdminsInput
+  connect?: RolesWhereUniqueInput
+}
+Argument name for data.name is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Tue May 23 2023 13:52:13 GMT+0630 (Myanmar Time)[ Create Admin Controller ]
+Error: 
+Invalid `prisma.admins.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/authController.ts:41:50
+
+  38 }
+  39 
+  40 const hashedPassword = await hashPassword(req.body.password);
+→ 41 const createdAdmin = await prisma.admins.create({
+       data: {
+     +   name: String,
+         email: 'saimin@test.com',
+         password: '$2b$10$tHtUzX8W4frNuZtgomCuyOVHAkwRP9subazOzfWVmfVt76oTCDiLS',
+         role: 'admin role',
+               ~~~~~~~~~~~~
+     ?   id?: String,
+     ?   loginTryCount?: Int,
+     ?   verificationCode?: String,
+     ?   hasLogin?: Boolean,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Argument role: Got invalid value 'admin role' on prisma.createOneAdmins. Provided String, expected RolesCreateNestedOneWithoutAdminsInput:
+type RolesCreateNestedOneWithoutAdminsInput {
+  create?: RolesCreateWithoutAdminsInput | RolesUncheckedCreateWithoutAdminsInput
+  connectOrCreate?: RolesCreateOrConnectWithoutAdminsInput
+  connect?: RolesWhereUniqueInput
+}
+Argument name for data.name is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Tue May 23 2023 13:52:42 GMT+0630 (Myanmar Time)[ Create Admin Controller ]
+Error: 
+Invalid `prisma.admins.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/authController.ts:41:50
+
+  38 }
+  39 
+  40 const hashedPassword = await hashPassword(req.body.password);
+→ 41 const createdAdmin = await prisma.admins.create({
+       data: {
+     +   name: String,
+         email: 'saimin@test.com',
+         password: '$2b$10$sNRotowtI5KvkHNYujfXK.tWKHuU0jTjKp/F7P1oBiPgo6eWr.35m',
+         role: 'admin role',
+               ~~~~~~~~~~~~
+     ?   id?: String,
+     ?   loginTryCount?: Int,
+     ?   verificationCode?: String,
+     ?   hasLogin?: Boolean,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Argument role: Got invalid value 'admin role' on prisma.createOneAdmins. Provided String, expected RolesCreateNestedOneWithoutAdminsInput:
+type RolesCreateNestedOneWithoutAdminsInput {
+  create?: RolesCreateWithoutAdminsInput | RolesUncheckedCreateWithoutAdminsInput
+  connectOrCreate?: RolesCreateOrConnectWithoutAdminsInput
+  connect?: RolesWhereUniqueInput
+}
+Argument name for data.name is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Tue May 23 2023 13:54:08 GMT+0630 (Myanmar Time)[ Create Admin Controller ]
+Error: 
+Invalid `prisma.admins.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/authController.ts:41:50
+
+  38 }
+  39 
+  40 const hashedPassword = await hashPassword(req.body.password);
+→ 41 const createdAdmin = await prisma.admins.create({
+       data: {
+     +   name: String,
+         email: 'saimin@test.com',
+         password: '$2b$10$NgglEEZUwBNofxEuAhIo/Ozl5UkKNXPnFo8TvFYxY86b8IhwkbYbe',
+         role: 'admin role',
+               ~~~~~~~~~~~~
+     ?   id?: String,
+     ?   loginTryCount?: Int,
+     ?   verificationCode?: String,
+     ?   hasLogin?: Boolean,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Argument role: Got invalid value 'admin role' on prisma.createOneAdmins. Provided String, expected RolesCreateNestedOneWithoutAdminsInput:
+type RolesCreateNestedOneWithoutAdminsInput {
+  create?: RolesCreateWithoutAdminsInput | RolesUncheckedCreateWithoutAdminsInput
+  connectOrCreate?: RolesCreateOrConnectWithoutAdminsInput
+  connect?: RolesWhereUniqueInput
+}
+Argument name for data.name is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Tue May 23 2023 13:56:13 GMT+0630 (Myanmar Time)[ Create Admin Controller ]
+Error: 
+Invalid `prisma.admins.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/authController.ts:41:50
+
+  38 }
+  39 
+  40 const hashedPassword = await hashPassword(req.body.password);
+→ 41 const createdAdmin = await prisma.admins.create({
+       data: {
+     +   name: String,
+         email: 'saimin@test.com',
+         password: '$2b$10$PJ4oFr67roKd2GwEWvcOQuDkdAwi/PdmdHSE1Jqr5KtdZ1i6GJzYi',
+         role: 'admin role',
+               ~~~~~~~~~~~~
+     ?   id?: String,
+     ?   loginTryCount?: Int,
+     ?   verificationCode?: String,
+     ?   hasLogin?: Boolean,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Argument role: Got invalid value 'admin role' on prisma.createOneAdmins. Provided String, expected RolesCreateNestedOneWithoutAdminsInput:
+type RolesCreateNestedOneWithoutAdminsInput {
+  create?: RolesCreateWithoutAdminsInput | RolesUncheckedCreateWithoutAdminsInput
+  connectOrCreate?: RolesCreateOrConnectWithoutAdminsInput
+  connect?: RolesWhereUniqueInput
+}
+Argument name for data.name is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Tue May 23 2023 13:57:58 GMT+0630 (Myanmar Time)[ Create Admin Controller ]
+Error: 
+Invalid `prisma.admins.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/authController.ts:41:50
+
+  38 }
+  39 
+  40 const hashedPassword = await hashPassword(req.body.password);
+→ 41 const createdAdmin = await prisma.admins.create({
+       data: {
+     +   name: String,
+         email: 'saimin@test.com',
+         password: '$2b$10$IyauHXVkZSYeptfsw5eOhuyzwcLr/NMyfp9mjLfTIrFB4lY3SKmOa',
+         role: 'admin role',
+               ~~~~~~~~~~~~
+     ?   id?: String,
+     ?   loginTryCount?: Int,
+     ?   verificationCode?: String,
+     ?   hasLogin?: Boolean,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Argument role: Got invalid value 'admin role' on prisma.createOneAdmins. Provided String, expected RolesCreateNestedOneWithoutAdminsInput:
+type RolesCreateNestedOneWithoutAdminsInput {
+  create?: RolesCreateWithoutAdminsInput | RolesUncheckedCreateWithoutAdminsInput
+  connectOrCreate?: RolesCreateOrConnectWithoutAdminsInput
+  connect?: RolesWhereUniqueInput
+}
+Argument name for data.name is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Tue May 23 2023 13:59:41 GMT+0630 (Myanmar Time)[ Create Admin Controller ]
+Error: 
+Invalid `prisma.admins.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/authController.ts:41:50
+
+  38 }
+  39 
+  40 const hashedPassword = await hashPassword(req.body.password);
+→ 41 const createdAdmin = await prisma.admins.create({
+       data: {
+     +   name: String,
+         email: 'saimin@test.com',
+         password: '$2b$10$o6v61EMPfmV8BNYghCuyu.T7Ba/Wfc1gMLkE5nmulP3nc71w9JnpK',
+         role: 'admin role',
+               ~~~~~~~~~~~~
+     ?   id?: String,
+     ?   loginTryCount?: Int,
+     ?   verificationCode?: String,
+     ?   hasLogin?: Boolean,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Argument role: Got invalid value 'admin role' on prisma.createOneAdmins. Provided String, expected RolesCreateNestedOneWithoutAdminsInput:
+type RolesCreateNestedOneWithoutAdminsInput {
+  create?: RolesCreateWithoutAdminsInput | RolesUncheckedCreateWithoutAdminsInput
+  connectOrCreate?: RolesCreateOrConnectWithoutAdminsInput
+  connect?: RolesWhereUniqueInput
+}
+Argument name for data.name is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Tue May 23 2023 14:00:30 GMT+0630 (Myanmar Time)[ Create Admin Controller ]
+Error: 
+Invalid `prisma.admins.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/authController.ts:41:50
+
+  38 }
+  39 
+  40 const hashedPassword = await hashPassword(req.body.password);
+→ 41 const createdAdmin = await prisma.admins.create({
+       data: {
+     +   name: String,
+         email: 'saimin@test.com',
+         password: '$2b$10$V/8.zwKo7DwBJHs8Hp0ju.BPRzr8VuYogg9ZmcDzFFGbGQvPSv5ay',
+         role: 'admin role',
+               ~~~~~~~~~~~~
+     ?   id?: String,
+     ?   loginTryCount?: Int,
+     ?   verificationCode?: String,
+     ?   hasLogin?: Boolean,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Argument role: Got invalid value 'admin role' on prisma.createOneAdmins. Provided String, expected RolesCreateNestedOneWithoutAdminsInput:
+type RolesCreateNestedOneWithoutAdminsInput {
+  create?: RolesCreateWithoutAdminsInput | RolesUncheckedCreateWithoutAdminsInput
+  connectOrCreate?: RolesCreateOrConnectWithoutAdminsInput
+  connect?: RolesWhereUniqueInput
+}
+Argument name for data.name is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Tue May 23 2023 14:04:26 GMT+0630 (Myanmar Time)[ Create Admin Controller ]
+Error: 
+Invalid `prisma.admins.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/authController.ts:41:50
+
+  38 }
+  39 
+  40 const hashedPassword = await hashPassword(req.body.password);
+→ 41 const createdAdmin = await prisma.admins.create({
+       data: {
+     +   name: String,
+         email: 'saimin@test.com',
+         password: '$2b$10$wKFv4OIu3tUTq2pkz0XvR.QmOLTd09F20Fsdh6yo6/1yv/kqcwhTa',
+         role: 'admin role',
+               ~~~~~~~~~~~~
+     ?   id?: String,
+     ?   loginTryCount?: Int,
+     ?   verificationCode?: String,
+     ?   hasLogin?: Boolean,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Argument role: Got invalid value 'admin role' on prisma.createOneAdmins. Provided String, expected RolesCreateNestedOneWithoutAdminsInput:
+type RolesCreateNestedOneWithoutAdminsInput {
+  create?: RolesCreateWithoutAdminsInput | RolesUncheckedCreateWithoutAdminsInput
+  connectOrCreate?: RolesCreateOrConnectWithoutAdminsInput
+  connect?: RolesWhereUniqueInput
+}
+Argument name for data.name is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Tue May 23 2023 14:13:27 GMT+0630 (Myanmar Time)[ Create Admin Controller ]
+Error: 
+Invalid `prisma.admins.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/authController.ts:41:50
+
+  38 }
+  39 
+  40 const hashedPassword = await hashPassword(req.body.password);
+→ 41 const createdAdmin = await prisma.admins.create({
+       data: {
+     +   name: String,
+         email: 'saimin@test.com',
+         password: '$2b$10$hob0.DYdtLHK3LZOaat/m.kXJ6T.WnkaAXphnAnTwHPJZ2BCVLy6W',
+         role: 'admin role',
+               ~~~~~~~~~~~~
+     ?   id?: String,
+     ?   loginTryCount?: Int,
+     ?   verificationCode?: String,
+     ?   hasLogin?: Boolean,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Argument role: Got invalid value 'admin role' on prisma.createOneAdmins. Provided String, expected RolesCreateNestedOneWithoutAdminsInput:
+type RolesCreateNestedOneWithoutAdminsInput {
+  create?: RolesCreateWithoutAdminsInput | RolesUncheckedCreateWithoutAdminsInput
+  connectOrCreate?: RolesCreateOrConnectWithoutAdminsInput
+  connect?: RolesWhereUniqueInput
+}
+Argument name for data.name is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Tue May 23 2023 14:13:44 GMT+0630 (Myanmar Time)[ Create Admin Controller ]
+Error: 
+Invalid `prisma.admins.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/authController.ts:41:50
+
+  38 }
+  39 
+  40 const hashedPassword = await hashPassword(req.body.password);
+→ 41 const createdAdmin = await prisma.admins.create({
+       data: {
+     +   name: String,
+         email: 'saimin@test.com',
+         password: '$2b$10$eh5kNjE//HxvklRj30grfOITJiFOk0iyDnAdN7a1Y4u2qdYo/f72y',
+         role: 'admin role',
+               ~~~~~~~~~~~~
+     ?   id?: String,
+     ?   loginTryCount?: Int,
+     ?   verificationCode?: String,
+     ?   hasLogin?: Boolean,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Argument role: Got invalid value 'admin role' on prisma.createOneAdmins. Provided String, expected RolesCreateNestedOneWithoutAdminsInput:
+type RolesCreateNestedOneWithoutAdminsInput {
+  create?: RolesCreateWithoutAdminsInput | RolesUncheckedCreateWithoutAdminsInput
+  connectOrCreate?: RolesCreateOrConnectWithoutAdminsInput
+  connect?: RolesWhereUniqueInput
+}
+Argument name for data.name is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Tue May 23 2023 14:56:55 GMT+0630 (Myanmar Time)[ Create Admin Controller ]
+Error: 
+Invalid `prisma.admins.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/authController.ts:41:50
+
+  38 }
+  39 
+  40 const hashedPassword = await hashPassword(req.body.password);
+→ 41 const createdAdmin = await prisma.admins.create({
+       data: {
+     +   name: String,
+         email: 'saimin@test.com',
+         password: '$2b$10$FArOwId4g3fC0y1N4kk2qOMYZ9x1eFllVYMHdQ0ZFjsRiIYNxyvyi',
+         roleId: ea41b95b-4602-48c3-baf5-9dd93e4fe1e4,
+         ~~~~~~
+     +   role: {
+     +     create?: RolesCreateWithoutAdminsInput | RolesUncheckedCreateWithoutAdminsInput,
+     +     connectOrCreate?: RolesCreateOrConnectWithoutAdminsInput,
+     +     connect?: RolesWhereUniqueInput
+     +   },
+     ?   id?: String,
+     ?   loginTryCount?: Int,
+     ?   verificationCode?: String,
+     ?   hasLogin?: Boolean,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Unknown arg `roleId` in data.roleId for type AdminsCreateInput. Did you mean `role`?
+Argument name for data.name is missing.
+Argument role for data.role is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Tue May 23 2023 14:57:01 GMT+0630 (Myanmar Time)[ Create Admin Controller ]
+Error: 
+Invalid `prisma.admins.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/authController.ts:41:50
+
+  38 }
+  39 
+  40 const hashedPassword = await hashPassword(req.body.password);
+→ 41 const createdAdmin = await prisma.admins.create({
+       data: {
+     +   name: String,
+         email: 'saimin@test.com',
+         password: '$2b$10$AwVZwk2ctb6xrL3PhAHhfeH91.d9H5N9KbdTlSfLJZeVUvxACbpBS',
+         roleId: ea41b95b-4602-48c3-baf5-9dd93e4fe1e4,
+         ~~~~~~
+     +   role: {
+     +     create?: RolesCreateWithoutAdminsInput | RolesUncheckedCreateWithoutAdminsInput,
+     +     connectOrCreate?: RolesCreateOrConnectWithoutAdminsInput,
+     +     connect?: RolesWhereUniqueInput
+     +   },
+     ?   id?: String,
+     ?   loginTryCount?: Int,
+     ?   verificationCode?: String,
+     ?   hasLogin?: Boolean,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Unknown arg `roleId` in data.roleId for type AdminsCreateInput. Did you mean `role`?
+Argument name for data.name is missing.
+Argument role for data.role is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Tue May 23 2023 15:23:29 GMT+0630 (Myanmar Time)[ Create Admin Controller ]
+ReferenceError: getJwtToken is not defined
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/authController.ts:47:20
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/authController.ts:5:58)
+ 

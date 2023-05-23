@@ -14,9 +14,12 @@ model Admins {
   id String @id @default(uuid())
   name String
   email String @unique
+  password String
   loginTryCount Int @default(0)
   role Roles @relation(fields: [roleId], references: [id])
   roleId String
+  verificationCode String @default("000000") @db.VarChar(6)
+  hasLogin Boolean @default(false)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

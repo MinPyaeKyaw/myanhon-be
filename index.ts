@@ -7,6 +7,9 @@ import courseRouter from "./routes/courses";
 import typeRouter from "./routes/courseTypes";
 import levelRouter from "./routes/courseLevels";
 import userRouter from "./routes/user";
+import adminAuthRoute from "./routes/admin/auth";
+import roleRoutes from "./routes/admin/roles";
+import permissionRoutes from "./routes/admin/permissions";
 
 dotenv.config({ path: __dirname+'/.env' });
 dotenv.config();
@@ -14,6 +17,13 @@ dotenv.config();
 const app: Application = express();
 app.use(express.json());
 
+// Admin routes
+let adminAPIPrefix = process.env.API_PREFIX + '/admin';
+app.use(adminAPIPrefix+'/auth', adminAuthRoute);
+app.use(adminAPIPrefix, roleRoutes);
+app.use(adminAPIPrefix, permissionRoutes);
+
+// User routes
 app.use(process.env.API_PREFIX+'/auth', authRouter);
 app.use(`${process.env.API_PREFIX}`, courseRouter);
 app.use(`${process.env.API_PREFIX}`, typeRouter);

@@ -17,7 +17,7 @@ export const getTypes = async (req: Request, res: Response) => {
         const typesFromCache = await redisClient.get(CACHE_KEYS.TYPES);
 
         if(typesFromCache) {
-            return writeJsonRes<TypesResInterface[]>(res, 200, JSON.parse(typesFromCache), "Successfully retrived cach!");
+            return writeJsonRes<TypesResInterface[]>(res, 200, JSON.parse(typesFromCache), "Successfully retrived!");
         }
 
         const types = await prisma.types.findMany();

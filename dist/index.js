@@ -33,10 +33,19 @@ const courses_1 = __importDefault(require("./routes/courses"));
 const courseTypes_1 = __importDefault(require("./routes/courseTypes"));
 const courseLevels_1 = __importDefault(require("./routes/courseLevels"));
 const user_1 = __importDefault(require("./routes/user"));
+const auth_2 = __importDefault(require("./routes/admin/auth"));
+const roles_1 = __importDefault(require("./routes/admin/roles"));
+const permissions_1 = __importDefault(require("./routes/admin/permissions"));
 dotenv.config({ path: __dirname + '/.env' });
 dotenv.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+// Admin routes
+let adminAPIPrefix = process.env.API_PREFIX + '/admin';
+app.use(adminAPIPrefix + '/auth', auth_2.default);
+app.use(adminAPIPrefix, roles_1.default);
+app.use(adminAPIPrefix, permissions_1.default);
+// User routes
 app.use(process.env.API_PREFIX + '/auth', auth_1.default);
 app.use(`${process.env.API_PREFIX}`, courses_1.default);
 app.use(`${process.env.API_PREFIX}`, courseTypes_1.default);

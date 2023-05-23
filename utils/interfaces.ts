@@ -1,3 +1,27 @@
+export interface CreatedAdminResDataInterface {
+    id: string;
+    name: string;
+    email: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export interface RoleResInterface {
+    id: string;
+    name: string;
+    permissions?: PermissionResInterface[];
+    createdAt: Date;
+    updatedAt: Date;
+}
+
+export interface PermissionResInterface {
+    id: string;
+    name: string;
+    roleId: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
 export interface ResponseStandard<T> {
     status: number;
     data?: T;
