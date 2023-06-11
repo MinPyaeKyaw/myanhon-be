@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createRole = exports.getRoleById = exports.getRoles = void 0;
+exports.deleteRole = exports.updateRole = exports.createRole = exports.removePermissionFromRole = exports.addPermissionToRole = exports.getRoleById = exports.getRoles = void 0;
 const client_1 = require("@prisma/client");
 const redis_1 = require("redis");
 const functions_1 = require("../../utils/functions");
@@ -24,6 +24,7 @@ const getRoles = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 permissions: true
             }
         });
+        // RoleResInterface[]
         return (0, functions_1.writeJsonRes)(res, 200, roles, "Successfully retrived!");
     }
     catch (error) {
@@ -53,12 +54,62 @@ const getRoleById = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.getRoleById = getRoleById;
-// just for development, remove later
+const addPermissionToRole = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const existedPermission = yield prisma.permissions.findFirst({
+            where: {
+                id: req.body.permission,
+                role: {
+                    some: {
+                        id: req.params.roleId
+                    }
+                }
+            }
+        });
+        if (existedPermission) {
+            return (0, functions_1.writeJsonRes)(res, 400, null, "Permission already existed!");
+        }
+        yield prisma.roles.update({
+            where: {
+                id: req.params.roleId
+            },
+            data: {
+                permissions: {
+                    connect: { id: req.body.permission }
+                }
+            }
+        });
+        return (0, functions_1.writeJsonRes)(res, 200, null, "Successfully added!");
+    }
+    catch (error) {
+        (0, functions_1.logError)(error, "Add Permission to Role Controller");
+        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+    }
+});
+exports.addPermissionToRole = addPermissionToRole;
+const removePermissionFromRole = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield prisma.roles.update({
+            where: { id: req.params.roleId },
+            data: {
+                permissions: {
+                    disconnect: { id: req.body.permission },
+                },
+            },
+        });
+        return (0, functions_1.writeJsonRes)(res, 200, null, "Successfully deleted!");
+    }
+    catch (error) {
+        (0, functions_1.logError)(error, "Remove Permission from Role Controller");
+        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+    }
+});
+exports.removePermissionFromRole = removePermissionFromRole;
 const createRole = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const createdRole = yield prisma.roles.create({
             data: {
-                name: req.body.name
+                name: req.body.role
             }
         });
         return (0, functions_1.writeJsonRes)(res, 201, createdRole, "Successfully created!");
@@ -69,3 +120,32 @@ const createRole = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.createRole = createRole;
+const updateRole = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const updatedRole = yield prisma.roles.update({
+            where: { id: req.params.id },
+            data: { name: req.body.name }
+        });
+        return (0, functions_1.writeJsonRes)(res, 200, updatedRole, "Successfully updated!");
+    }
+    catch (error) {
+        console.log("UPDATE ROLE ERROR", error);
+        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+    }
+});
+exports.updateRole = updateRole;
+const deleteRole = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield prisma.roles.delete({
+            where: {
+                id: req.params.id
+            }
+        });
+        return (0, functions_1.writeJsonRes)(res, 200, null, "Successfully deleted!");
+    }
+    catch (error) {
+        console.log("DELETE ROLE ERROR", error);
+        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+    }
+});
+exports.deleteRole = deleteRole;

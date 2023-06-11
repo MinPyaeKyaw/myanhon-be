@@ -6,6 +6,17 @@ export interface CreatedAdminResDataInterface {
     updatedAt: Date;
 }
 
+export interface AdminResInterface {
+    id: string;
+    name: string;
+    email: string;
+    hasLogin: boolean;
+    latestLogin: Date;
+    roleId: string;
+    createdAt: Date;
+    updatedAt: Date;
+}
+
 export interface AdminObjInterface {
     id: string;
     name: string;
@@ -22,7 +33,7 @@ export interface AdminObjInterface {
 export interface RoleResInterface {
     id: string;
     name: string;
-    permissions?: PermissionResInterface[];
+    permissions?: any;
     createdAt: Date;
     updatedAt: Date;
 }
@@ -30,7 +41,7 @@ export interface RoleResInterface {
 export interface PermissionResInterface {
     id: string;
     name: string;
-    roleId: string;
+    roleId?: string;
     createdAt: Date;
     updatedAt: Date;
 }

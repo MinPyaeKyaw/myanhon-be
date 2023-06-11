@@ -800,3 +800,882 @@ ReferenceError: getJwtToken is not defined
     at Generator.next (<anonymous>)
     at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/authController.ts:5:58)
  
+Sun Jun 04 2023 23:15:13 GMT+0630 (Myanmar Time)[ Get Roles Controller ]
+Error: 
+Invalid `prisma.roles.findMany()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/admin/roleController.js:22:42
+
+  19 redisClient.connect();
+  20 const getRoles = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  21     try {
+→ 22         const roles = yield prisma.roles.findMany({
+               include: {
+               ~~~~~~~
+                 rolePermission: {
+                   select: {
+                     permission: true
+                   },
+                   include: {
+                     permission: true
+                   }
+                 }
+               }
+             })
+
+
+Please either use `include` or `select`, but not both at the same time.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Sun Jun 04 2023 23:20:22 GMT+0630 (Myanmar Time)[ Get Roles Controller ]
+Error: 
+Invalid `prisma.roles.findMany()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/admin/roleController.js:22:42
+
+  19 redisClient.connect();
+  20 const getRoles = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  21     try {
+→ 22         const roles = yield prisma.roles.findMany({
+               include: {
+               ~~~~~~~
+                 permissions: {
+                   select: {
+                     permissions: true
+                   },
+                   include: {
+                     permissions: true
+                   }
+                 }
+               }
+             })
+
+
+Please either use `include` or `select`, but not both at the same time.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Sun Jun 04 2023 23:23:38 GMT+0630 (Myanmar Time)[ Get Roles Controller ]
+Error: 
+Invalid `prisma.roles.findMany()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/admin/roleController.js:22:42
+
+  19 redisClient.connect();
+  20 const getRoles = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  21     try {
+→ 22         const roles = yield prisma.roles.findMany({
+               include: {
+               ~~~~~~~
+                 permissions: {
+                   select: {
+                     permissions: true
+                   },
+                   include: {
+                     permissions: true
+                   }
+                 }
+               }
+             })
+
+
+Please either use `include` or `select`, but not both at the same time.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Sun Jun 04 2023 23:23:39 GMT+0630 (Myanmar Time)[ Get Roles Controller ]
+Error: 
+Invalid `prisma.roles.findMany()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/admin/roleController.js:22:42
+
+  19 redisClient.connect();
+  20 const getRoles = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  21     try {
+→ 22         const roles = yield prisma.roles.findMany({
+               include: {
+               ~~~~~~~
+                 permissions: {
+                   select: {
+                     permissions: true
+                   },
+                   include: {
+                     permissions: true
+                   }
+                 }
+               }
+             })
+
+
+Please either use `include` or `select`, but not both at the same time.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Tue Jun 06 2023 00:22:00 GMT+0630 (Myanmar Time)[ Get Role By ID Controller ]
+Error: 
+Invalid `prisma.roles.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/roleController.ts:54:28
+
+  51 export const addPermissionToRole = async (req: Request, res: Response) => {
+  52     console.log("LEE LR", req.params);
+  53     try {
+→ 54         await prisma.roles.update({
+               where: {
+                 id: 'baf77acc-69a5-4b0b-b89a-2c897c39ffa1'
+               },
+               data: {
+                 permissions: [
+                   '297d3afc-9680-44d5-9542-cd1f86d77559',
+                   '1150b554-7063-437e-9dff-80b96ef49b4e'
+                 ]
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+               }
+             })
+
+Argument permissions: Got invalid value 
+[
+  '297d3afc-9680-44d5-9542-cd1f86d77559',
+  '1150b554-7063-437e-9dff-80b96ef49b4e'
+]
+on prisma.updateOneRoles. Provided List<UUID>, expected PermissionsUpdateManyWithoutRoleNestedInput:
+type PermissionsUpdateManyWithoutRoleNestedInput {
+  create?: PermissionsCreateWithoutRoleInput | List<PermissionsCreateWithoutRoleInput> | PermissionsUncheckedCreateWithoutRoleInput | List<PermissionsUncheckedCreateWithoutRoleInput>
+  connectOrCreate?: PermissionsCreateOrConnectWithoutRoleInput | List<PermissionsCreateOrConnectWithoutRoleInput>
+  upsert?: PermissionsUpsertWithWhereUniqueWithoutRoleInput | List<PermissionsUpsertWithWhereUniqueWithoutRoleInput>
+  set?: PermissionsWhereUniqueInput | List<PermissionsWhereUniqueInput>
+  disconnect?: PermissionsWhereUniqueInput | List<PermissionsWhereUniqueInput>
+  delete?: PermissionsWhereUniqueInput | List<PermissionsWhereUniqueInput>
+  connect?: PermissionsWhereUniqueInput | List<PermissionsWhereUniqueInput>
+  update?: PermissionsUpdateWithWhereUniqueWithoutRoleInput | List<PermissionsUpdateWithWhereUniqueWithoutRoleInput>
+  updateMany?: PermissionsUpdateManyWithWhereWithoutRoleInput | List<PermissionsUpdateManyWithWhereWithoutRoleInput>
+  deleteMany?: PermissionsScalarWhereInput | List<PermissionsScalarWhereInput>
+}
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Tue Jun 06 2023 00:22:02 GMT+0630 (Myanmar Time)[ Get Role By ID Controller ]
+Error: 
+Invalid `prisma.roles.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/admin/roleController.js:60:28
+
+  57 const addPermissionToRole = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  58     console.log("LEE LR", req.params);
+  59     try {
+→ 60         yield prisma.roles.update({
+               where: {
+                 id: 'ea41b95b-4602-48c3-baf5-9dd93e4fe1e4'
+               },
+               data: {
+                 permissions: [
+                   '7d22f980-381e-435e-a932-71db64d4d7f9',
+                   '297d3afc-9680-44d5-9542-cd1f86d77559'
+                 ]
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+               }
+             })
+
+Argument permissions: Got invalid value 
+[
+  '7d22f980-381e-435e-a932-71db64d4d7f9',
+  '297d3afc-9680-44d5-9542-cd1f86d77559'
+]
+on prisma.updateOneRoles. Provided List<UUID>, expected PermissionsUpdateManyWithoutRoleNestedInput:
+type PermissionsUpdateManyWithoutRoleNestedInput {
+  create?: PermissionsCreateWithoutRoleInput | List<PermissionsCreateWithoutRoleInput> | PermissionsUncheckedCreateWithoutRoleInput | List<PermissionsUncheckedCreateWithoutRoleInput>
+  connectOrCreate?: PermissionsCreateOrConnectWithoutRoleInput | List<PermissionsCreateOrConnectWithoutRoleInput>
+  upsert?: PermissionsUpsertWithWhereUniqueWithoutRoleInput | List<PermissionsUpsertWithWhereUniqueWithoutRoleInput>
+  set?: PermissionsWhereUniqueInput | List<PermissionsWhereUniqueInput>
+  disconnect?: PermissionsWhereUniqueInput | List<PermissionsWhereUniqueInput>
+  delete?: PermissionsWhereUniqueInput | List<PermissionsWhereUniqueInput>
+  connect?: PermissionsWhereUniqueInput | List<PermissionsWhereUniqueInput>
+  update?: PermissionsUpdateWithWhereUniqueWithoutRoleInput | List<PermissionsUpdateWithWhereUniqueWithoutRoleInput>
+  updateMany?: PermissionsUpdateManyWithWhereWithoutRoleInput | List<PermissionsUpdateManyWithWhereWithoutRoleInput>
+  deleteMany?: PermissionsScalarWhereInput | List<PermissionsScalarWhereInput>
+}
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Tue Jun 06 2023 00:23:04 GMT+0630 (Myanmar Time)[ Get Role By ID Controller ]
+Error: 
+Invalid `prisma.roles.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/roleController.ts:54:28
+
+  51 export const addPermissionToRole = async (req: Request, res: Response) => {
+  52     console.log("LEE LR", req.params);
+  53     try {
+→ 54         await prisma.roles.update({
+               where: {
+                 id: 'baf77acc-69a5-4b0b-b89a-2c897c39ffa1'
+               },
+               data: {
+                 permissions: {
+                   connect: [
+                     '297d3afc-9680-44d5-9542-cd1f86d77559',
+                     '1150b554-7063-437e-9dff-80b96ef49b4e'
+                   ]
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 }
+               }
+             })
+
+Argument data.permissions.connect of type PermissionsWhereUniqueInput needs exactly one argument, but you provided 0 and 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 and 10 and 11 and 12 and 13 and 14 and 15 and 16 and 17 and 18 and 19 and 20 and 21 and 22 and 23 and 24 and 25 and 26 and 27 and 28 and 29 and 30 and 31 and 32 and 33 and 34 and 35. Please choose one. Available args: 
+type PermissionsWhereUniqueInput {
+  id?: String
+}
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Tue Jun 06 2023 00:23:06 GMT+0630 (Myanmar Time)[ Get Role By ID Controller ]
+Error: 
+Invalid `prisma.roles.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/admin/roleController.js:60:28
+
+  57 const addPermissionToRole = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  58     console.log("LEE LR", req.params);
+  59     try {
+→ 60         yield prisma.roles.update({
+               where: {
+                 id: 'ea41b95b-4602-48c3-baf5-9dd93e4fe1e4'
+               },
+               data: {
+                 permissions: {
+                   connect: [
+                     '7d22f980-381e-435e-a932-71db64d4d7f9',
+                     '297d3afc-9680-44d5-9542-cd1f86d77559'
+                   ]
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 }
+               }
+             })
+
+Argument data.permissions.connect of type PermissionsWhereUniqueInput needs exactly one argument, but you provided 0 and 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 and 10 and 11 and 12 and 13 and 14 and 15 and 16 and 17 and 18 and 19 and 20 and 21 and 22 and 23 and 24 and 25 and 26 and 27 and 28 and 29 and 30 and 31 and 32 and 33 and 34 and 35. Please choose one. Available args: 
+type PermissionsWhereUniqueInput {
+  id?: String
+}
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Tue Jun 06 2023 00:23:50 GMT+0630 (Myanmar Time)[ Get Role By ID Controller ]
+Error: 
+Invalid `prisma.roles.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/roleController.ts:53:28
+
+  50 
+  51 export const addPermissionToRole = async (req: Request, res: Response) => {
+  52     try {
+→ 53         await prisma.roles.update({
+               where: {
+                 id: 'baf77acc-69a5-4b0b-b89a-2c897c39ffa1'
+               },
+               data: {
+                 permissions: {
+                   connect: [
+                     '297d3afc-9680-44d5-9542-cd1f86d77559',
+                     '1150b554-7063-437e-9dff-80b96ef49b4e'
+                   ]
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 }
+               }
+             })
+
+Argument data.permissions.connect of type PermissionsWhereUniqueInput needs exactly one argument, but you provided 0 and 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 and 10 and 11 and 12 and 13 and 14 and 15 and 16 and 17 and 18 and 19 and 20 and 21 and 22 and 23 and 24 and 25 and 26 and 27 and 28 and 29 and 30 and 31 and 32 and 33 and 34 and 35. Please choose one. Available args: 
+type PermissionsWhereUniqueInput {
+  id?: String
+}
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Tue Jun 06 2023 00:24:16 GMT+0630 (Myanmar Time)[ Get Role By ID Controller ]
+Error: 
+Invalid `prisma.roles.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/admin/roleController.js:59:28
+
+  56 exports.getRoleById = getRoleById;
+  57 const addPermissionToRole = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  58     try {
+→ 59         yield prisma.roles.update({
+               where: {
+                 id: 'ea41b95b-4602-48c3-baf5-9dd93e4fe1e4'
+               },
+               data: {
+                 permissions: {
+                   connect: [
+                     '7d22f980-381e-435e-a932-71db64d4d7f9',
+                     '297d3afc-9680-44d5-9542-cd1f86d77559'
+                   ]
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 }
+               }
+             })
+
+Argument data.permissions.connect of type PermissionsWhereUniqueInput needs exactly one argument, but you provided 0 and 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 and 10 and 11 and 12 and 13 and 14 and 15 and 16 and 17 and 18 and 19 and 20 and 21 and 22 and 23 and 24 and 25 and 26 and 27 and 28 and 29 and 30 and 31 and 32 and 33 and 34 and 35. Please choose one. Available args: 
+type PermissionsWhereUniqueInput {
+  id?: String
+}
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Tue Jun 06 2023 00:24:55 GMT+0630 (Myanmar Time)[ Get Role By ID Controller ]
+Error: 
+Invalid `prisma.roles.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/roleController.ts:54:28
+
+  51 export const addPermissionToRole = async (req: Request, res: Response) => {
+  52     console.log("LEE LR", req.params);
+  53     try {
+→ 54         await prisma.roles.update({
+               where: {
+                 id: 'baf77acc-69a5-4b0b-b89a-2c897c39ffa1'
+               },
+               data: {
+                 permissions: {
+                   connect: [
+                     '297d3afc-9680-44d5-9542-cd1f86d77559',
+                     '1150b554-7063-437e-9dff-80b96ef49b4e'
+                   ]
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 }
+               }
+             })
+
+Argument data.permissions.connect of type PermissionsWhereUniqueInput needs exactly one argument, but you provided 0 and 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 and 10 and 11 and 12 and 13 and 14 and 15 and 16 and 17 and 18 and 19 and 20 and 21 and 22 and 23 and 24 and 25 and 26 and 27 and 28 and 29 and 30 and 31 and 32 and 33 and 34 and 35. Please choose one. Available args: 
+type PermissionsWhereUniqueInput {
+  id?: String
+}
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Tue Jun 06 2023 00:24:58 GMT+0630 (Myanmar Time)[ Get Role By ID Controller ]
+Error: 
+Invalid `prisma.roles.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/admin/roleController.js:60:28
+
+  57 const addPermissionToRole = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  58     console.log("LEE LR", req.params);
+  59     try {
+→ 60         yield prisma.roles.update({
+               where: {
+                 id: 'ea41b95b-4602-48c3-baf5-9dd93e4fe1e4'
+               },
+               data: {
+                 permissions: {
+                   connect: [
+                     '7d22f980-381e-435e-a932-71db64d4d7f9',
+                     '297d3afc-9680-44d5-9542-cd1f86d77559'
+                   ]
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 }
+               }
+             })
+
+Argument data.permissions.connect of type PermissionsWhereUniqueInput needs exactly one argument, but you provided 0 and 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 and 10 and 11 and 12 and 13 and 14 and 15 and 16 and 17 and 18 and 19 and 20 and 21 and 22 and 23 and 24 and 25 and 26 and 27 and 28 and 29 and 30 and 31 and 32 and 33 and 34 and 35. Please choose one. Available args: 
+type PermissionsWhereUniqueInput {
+  id?: String
+}
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Tue Jun 06 2023 00:25:34 GMT+0630 (Myanmar Time)[ Get Role By ID Controller ]
+Error: 
+Invalid `prisma.roles.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/roleController.ts:54:28
+
+  51 export const addPermissionToRole = async (req: Request, res: Response) => {
+  52     console.log("LEE LR", req.body.permissions);
+  53     try {
+→ 54         await prisma.roles.update({
+               where: {
+                 id: 'baf77acc-69a5-4b0b-b89a-2c897c39ffa1'
+               },
+               data: {
+                 permissions: {
+                   connect: [
+                     '297d3afc-9680-44d5-9542-cd1f86d77559',
+                     '1150b554-7063-437e-9dff-80b96ef49b4e'
+                   ]
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 }
+               }
+             })
+
+Argument data.permissions.connect of type PermissionsWhereUniqueInput needs exactly one argument, but you provided 0 and 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 and 10 and 11 and 12 and 13 and 14 and 15 and 16 and 17 and 18 and 19 and 20 and 21 and 22 and 23 and 24 and 25 and 26 and 27 and 28 and 29 and 30 and 31 and 32 and 33 and 34 and 35. Please choose one. Available args: 
+type PermissionsWhereUniqueInput {
+  id?: String
+}
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Tue Jun 06 2023 00:25:36 GMT+0630 (Myanmar Time)[ Get Role By ID Controller ]
+Error: 
+Invalid `prisma.roles.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/admin/roleController.js:60:28
+
+  57 const addPermissionToRole = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  58     console.log("LEE LR", req.body.permissions);
+  59     try {
+→ 60         yield prisma.roles.update({
+               where: {
+                 id: 'ea41b95b-4602-48c3-baf5-9dd93e4fe1e4'
+               },
+               data: {
+                 permissions: {
+                   connect: [
+                     '7d22f980-381e-435e-a932-71db64d4d7f9',
+                     '297d3afc-9680-44d5-9542-cd1f86d77559'
+                   ]
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 }
+               }
+             })
+
+Argument data.permissions.connect of type PermissionsWhereUniqueInput needs exactly one argument, but you provided 0 and 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 and 10 and 11 and 12 and 13 and 14 and 15 and 16 and 17 and 18 and 19 and 20 and 21 and 22 and 23 and 24 and 25 and 26 and 27 and 28 and 29 and 30 and 31 and 32 and 33 and 34 and 35. Please choose one. Available args: 
+type PermissionsWhereUniqueInput {
+  id?: String
+}
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Tue Jun 06 2023 00:25:56 GMT+0630 (Myanmar Time)[ Get Role By ID Controller ]
+Error: 
+Invalid `prisma.roles.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/roleController.ts:54:28
+
+  51 export const addPermissionToRole = async (req: Request, res: Response) => {
+  52     console.log("LEE LR", typeof req.body.permissions);
+  53     try {
+→ 54         await prisma.roles.update({
+               where: {
+                 id: 'baf77acc-69a5-4b0b-b89a-2c897c39ffa1'
+               },
+               data: {
+                 permissions: {
+                   connect: [
+                     '297d3afc-9680-44d5-9542-cd1f86d77559',
+                     '1150b554-7063-437e-9dff-80b96ef49b4e'
+                   ]
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 }
+               }
+             })
+
+Argument data.permissions.connect of type PermissionsWhereUniqueInput needs exactly one argument, but you provided 0 and 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 and 10 and 11 and 12 and 13 and 14 and 15 and 16 and 17 and 18 and 19 and 20 and 21 and 22 and 23 and 24 and 25 and 26 and 27 and 28 and 29 and 30 and 31 and 32 and 33 and 34 and 35. Please choose one. Available args: 
+type PermissionsWhereUniqueInput {
+  id?: String
+}
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Tue Jun 06 2023 00:25:58 GMT+0630 (Myanmar Time)[ Get Role By ID Controller ]
+Error: 
+Invalid `prisma.roles.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/admin/roleController.js:60:28
+
+  57 const addPermissionToRole = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  58     console.log("LEE LR", typeof req.body.permissions);
+  59     try {
+→ 60         yield prisma.roles.update({
+               where: {
+                 id: 'ea41b95b-4602-48c3-baf5-9dd93e4fe1e4'
+               },
+               data: {
+                 permissions: {
+                   connect: [
+                     '7d22f980-381e-435e-a932-71db64d4d7f9',
+                     '297d3afc-9680-44d5-9542-cd1f86d77559'
+                   ]
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 }
+               }
+             })
+
+Argument data.permissions.connect of type PermissionsWhereUniqueInput needs exactly one argument, but you provided 0 and 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 and 10 and 11 and 12 and 13 and 14 and 15 and 16 and 17 and 18 and 19 and 20 and 21 and 22 and 23 and 24 and 25 and 26 and 27 and 28 and 29 and 30 and 31 and 32 and 33 and 34 and 35. Please choose one. Available args: 
+type PermissionsWhereUniqueInput {
+  id?: String
+}
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Tue Jun 06 2023 00:26:12 GMT+0630 (Myanmar Time)[ Get Role By ID Controller ]
+Error: 
+Invalid `prisma.roles.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/roleController.ts:54:28
+
+  51 export const addPermissionToRole = async (req: Request, res: Response) => {
+  52     console.log("LEE LR", req.body.permissions);
+  53     try {
+→ 54         await prisma.roles.update({
+               where: {
+                 id: 'baf77acc-69a5-4b0b-b89a-2c897c39ffa1'
+               },
+               data: {
+                 permissions: {
+                   connect: [
+                     '297d3afc-9680-44d5-9542-cd1f86d77559',
+                     '1150b554-7063-437e-9dff-80b96ef49b4e'
+                   ]
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 }
+               }
+             })
+
+Argument data.permissions.connect of type PermissionsWhereUniqueInput needs exactly one argument, but you provided 0 and 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 and 10 and 11 and 12 and 13 and 14 and 15 and 16 and 17 and 18 and 19 and 20 and 21 and 22 and 23 and 24 and 25 and 26 and 27 and 28 and 29 and 30 and 31 and 32 and 33 and 34 and 35. Please choose one. Available args: 
+type PermissionsWhereUniqueInput {
+  id?: String
+}
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Tue Jun 06 2023 00:26:15 GMT+0630 (Myanmar Time)[ Get Role By ID Controller ]
+Error: 
+Invalid `prisma.roles.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/admin/roleController.js:60:28
+
+  57 const addPermissionToRole = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  58     console.log("LEE LR", req.body.permissions);
+  59     try {
+→ 60         yield prisma.roles.update({
+               where: {
+                 id: 'ea41b95b-4602-48c3-baf5-9dd93e4fe1e4'
+               },
+               data: {
+                 permissions: {
+                   connect: [
+                     '7d22f980-381e-435e-a932-71db64d4d7f9',
+                     '297d3afc-9680-44d5-9542-cd1f86d77559'
+                   ]
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 }
+               }
+             })
+
+Argument data.permissions.connect of type PermissionsWhereUniqueInput needs exactly one argument, but you provided 0 and 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 and 10 and 11 and 12 and 13 and 14 and 15 and 16 and 17 and 18 and 19 and 20 and 21 and 22 and 23 and 24 and 25 and 26 and 27 and 28 and 29 and 30 and 31 and 32 and 33 and 34 and 35. Please choose one. Available args: 
+type PermissionsWhereUniqueInput {
+  id?: String
+}
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Tue Jun 06 2023 00:26:35 GMT+0630 (Myanmar Time)[ Get Role By ID Controller ]
+Error: 
+Invalid `prisma.roles.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/roleController.ts:54:28
+
+  51 export const addPermissionToRole = async (req: Request, res: Response) => {
+  52     console.log("LEE LR", typeof [1,2]);
+  53     try {
+→ 54         await prisma.roles.update({
+               where: {
+                 id: 'baf77acc-69a5-4b0b-b89a-2c897c39ffa1'
+               },
+               data: {
+                 permissions: {
+                   connect: [
+                     '297d3afc-9680-44d5-9542-cd1f86d77559',
+                     '1150b554-7063-437e-9dff-80b96ef49b4e'
+                   ]
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 }
+               }
+             })
+
+Argument data.permissions.connect of type PermissionsWhereUniqueInput needs exactly one argument, but you provided 0 and 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 and 10 and 11 and 12 and 13 and 14 and 15 and 16 and 17 and 18 and 19 and 20 and 21 and 22 and 23 and 24 and 25 and 26 and 27 and 28 and 29 and 30 and 31 and 32 and 33 and 34 and 35. Please choose one. Available args: 
+type PermissionsWhereUniqueInput {
+  id?: String
+}
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Tue Jun 06 2023 00:26:35 GMT+0630 (Myanmar Time)[ Get Role By ID Controller ]
+Error: 
+Invalid `prisma.roles.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/admin/roleController.js:60:28
+
+  57 const addPermissionToRole = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  58     console.log("LEE LR", typeof [1, 2]);
+  59     try {
+→ 60         yield prisma.roles.update({
+               where: {
+                 id: 'ea41b95b-4602-48c3-baf5-9dd93e4fe1e4'
+               },
+               data: {
+                 permissions: {
+                   connect: [
+                     '7d22f980-381e-435e-a932-71db64d4d7f9',
+                     '297d3afc-9680-44d5-9542-cd1f86d77559'
+                   ]
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 }
+               }
+             })
+
+Argument data.permissions.connect of type PermissionsWhereUniqueInput needs exactly one argument, but you provided 0 and 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 and 10 and 11 and 12 and 13 and 14 and 15 and 16 and 17 and 18 and 19 and 20 and 21 and 22 and 23 and 24 and 25 and 26 and 27 and 28 and 29 and 30 and 31 and 32 and 33 and 34 and 35. Please choose one. Available args: 
+type PermissionsWhereUniqueInput {
+  id?: String
+}
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Tue Jun 06 2023 00:26:51 GMT+0630 (Myanmar Time)[ Get Role By ID Controller ]
+Error: 
+Invalid `prisma.roles.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/roleController.ts:53:28
+
+  50 
+  51 export const addPermissionToRole = async (req: Request, res: Response) => {
+  52     try {
+→ 53         await prisma.roles.update({
+               where: {
+                 id: 'baf77acc-69a5-4b0b-b89a-2c897c39ffa1'
+               },
+               data: {
+                 permissions: {
+                   connect: [
+                     '297d3afc-9680-44d5-9542-cd1f86d77559',
+                     '1150b554-7063-437e-9dff-80b96ef49b4e'
+                   ]
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+                 }
+               }
+             })
+
+Argument data.permissions.connect of type PermissionsWhereUniqueInput needs exactly one argument, but you provided 0 and 1 and 2 and 3 and 4 and 5 and 6 and 7 and 8 and 9 and 10 and 11 and 12 and 13 and 14 and 15 and 16 and 17 and 18 and 19 and 20 and 21 and 22 and 23 and 24 and 25 and 26 and 27 and 28 and 29 and 30 and 31 and 32 and 33 and 34 and 35. Please choose one. Available args: 
+type PermissionsWhereUniqueInput {
+  id?: String
+}
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Tue Jun 06 2023 23:49:27 GMT+0630 (Myanmar Time)[ Get Role By ID Controller ]
+TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/roleController.ts:59:51
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/roleController.ts:8:71
+    at new Promise (<anonymous>)
+    at Object.<anonymous>.__awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/roleController.ts:4:12)
+    at addPermissionToRole (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/roleController.ts:51:74)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:284:15
+    at param (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:365:14)
+    at param (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:376:14)
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:421:3)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/body-parser/lib/read.js:137:5
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:231:16)
+    at done (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:220:7)
+    at IncomingMessage.onEnd (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:280:7)
+    at IncomingMessage.emit (node:events:512:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+ 
+Tue Jun 06 2023 23:49:33 GMT+0630 (Myanmar Time)[ Get Role By ID Controller ]
+Error: 
+Invalid `prisma.roles.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/roleController.ts:57:28
+
+  54 //     where: 
+  55 // })
+  56 
+→ 57 await prisma.roles.update({
+       where: {
+         id: 'baf77acc-69a5-4b0b-b89a-2c897c39ffa1'
+       },
+       data: {
+         permissions: {
+           connect: {
+     ?       id?: String
+           },
+     ?     create?: PermissionsCreateWithoutRoleInput | PermissionsCreateWithoutRoleInput[] | PermissionsUncheckedCreateWithoutRoleInput | PermissionsUncheckedCreateWithoutRoleInput[],
+     ?     connectOrCreate?: PermissionsCreateOrConnectWithoutRoleInput | PermissionsCreateOrConnectWithoutRoleInput[],
+     ?     upsert?: PermissionsUpsertWithWhereUniqueWithoutRoleInput | PermissionsUpsertWithWhereUniqueWithoutRoleInput[],
+     ?     set?: PermissionsWhereUniqueInput | PermissionsWhereUniqueInput[],
+     ?     disconnect?: PermissionsWhereUniqueInput | PermissionsWhereUniqueInput[],
+     ?     delete?: PermissionsWhereUniqueInput | PermissionsWhereUniqueInput[],
+     ?     update?: PermissionsUpdateWithWhereUniqueWithoutRoleInput | PermissionsUpdateWithWhereUniqueWithoutRoleInput[],
+     ?     updateMany?: PermissionsUpdateManyWithWhereWithoutRoleInput | PermissionsUpdateManyWithWhereWithoutRoleInput[],
+     ?     deleteMany?: PermissionsScalarWhereInput | PermissionsScalarWhereInput[]
+         }
+       }
+     })
+
+Argument data.permissions.connect of type PermissionsWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Tue Jun 06 2023 23:50:06 GMT+0630 (Myanmar Time)[ Get Role By ID Controller ]
+Error: 
+Invalid `prisma.roles.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/roleController.ts:57:28
+
+  54 //     where: 
+  55 // })
+  56 
+→ 57 await prisma.roles.update({
+       where: {
+         id: 'baf77acc-69a5-4b0b-b89a-2c897c39ffa1'
+       },
+       data: {
+         permissions: {
+           connect: {
+     ?       id?: String
+           },
+     ?     create?: PermissionsCreateWithoutRoleInput | PermissionsCreateWithoutRoleInput[] | PermissionsUncheckedCreateWithoutRoleInput | PermissionsUncheckedCreateWithoutRoleInput[],
+     ?     connectOrCreate?: PermissionsCreateOrConnectWithoutRoleInput | PermissionsCreateOrConnectWithoutRoleInput[],
+     ?     upsert?: PermissionsUpsertWithWhereUniqueWithoutRoleInput | PermissionsUpsertWithWhereUniqueWithoutRoleInput[],
+     ?     set?: PermissionsWhereUniqueInput | PermissionsWhereUniqueInput[],
+     ?     disconnect?: PermissionsWhereUniqueInput | PermissionsWhereUniqueInput[],
+     ?     delete?: PermissionsWhereUniqueInput | PermissionsWhereUniqueInput[],
+     ?     update?: PermissionsUpdateWithWhereUniqueWithoutRoleInput | PermissionsUpdateWithWhereUniqueWithoutRoleInput[],
+     ?     updateMany?: PermissionsUpdateManyWithWhereWithoutRoleInput | PermissionsUpdateManyWithWhereWithoutRoleInput[],
+     ?     deleteMany?: PermissionsScalarWhereInput | PermissionsScalarWhereInput[]
+         }
+       }
+     })
+
+Argument data.permissions.connect of type PermissionsWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 

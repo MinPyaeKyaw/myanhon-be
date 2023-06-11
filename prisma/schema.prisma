@@ -39,8 +39,7 @@ model Roles {
 model Permissions {
   id String @id @default(uuid())
   name PermissionNames @default(read)
-  role Roles @relation(fields: [roleId], references: [id])
-  roleId String
+  role Roles[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

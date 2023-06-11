@@ -25,8 +25,7 @@ export const createPermission = async (req: Request, res: Response) => {
     try {
         const createdPermission = await prisma.permissions.create({
             data: {
-                name: req.body.name,
-                roleId: req.body.roleId
+                name: req.body.name
             }
         })
 

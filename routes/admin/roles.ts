@@ -1,11 +1,18 @@
 import express from 'express';
-import { createRole, getRoles } from '../../controllers/admin/roleController';
+import { addPermissionToRole, createRole, deleteRole, getRoles, removePermissionFromRole, updateRole } from '../../controllers/admin/roleController';
 
 const roleRoutes = express.Router();
 
 roleRoutes.get('/roles', getRoles);
 
-// just for development, remove later
+roleRoutes.post('/roles/:roleId/add-permission', addPermissionToRole);
+
+roleRoutes.post('/roles/:roleId/remove-permission', removePermissionFromRole);
+
 roleRoutes.post('/role', createRole);
+
+roleRoutes.patch('/roles/:id', updateRole);
+
+roleRoutes.delete('/roles/:id', deleteRole);
 
 export default roleRoutes;

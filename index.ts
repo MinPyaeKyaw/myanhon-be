@@ -10,6 +10,7 @@ import userRouter from "./routes/user";
 import adminAuthRoute from "./routes/admin/auth";
 import roleRoutes from "./routes/admin/roles";
 import permissionRoutes from "./routes/admin/permissions";
+import adminRoutes from "./routes/admin/admins";
 
 dotenv.config({ path: __dirname+'/.env' });
 dotenv.config();
@@ -18,10 +19,11 @@ const app: Application = express();
 app.use(express.json());
 
 // Admin routes
-let adminAPIPrefix = process.env.API_PREFIX + '/admin';
+let adminAPIPrefix: string = process.env.API_PREFIX + '/admin';
 app.use(adminAPIPrefix+'/auth', adminAuthRoute);
 app.use(adminAPIPrefix, roleRoutes);
 app.use(adminAPIPrefix, permissionRoutes);
+app.use(adminAPIPrefix, adminRoutes);
 
 // User routes
 app.use(process.env.API_PREFIX+'/auth', authRouter);

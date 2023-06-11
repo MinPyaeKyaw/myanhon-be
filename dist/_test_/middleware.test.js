@@ -17,7 +17,7 @@ const __1 = __importDefault(require(".."));
 describe('middlewares', () => {
     it('POST / user / reset password / unauthorized access', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .patch('/auth/reset-password')
+            .patch(process.env.API_PREFIX + '/auth/reset-password')
             .send({
             newPassword: "4321",
             email: "useremailUTLMPX@example.com"
@@ -33,7 +33,7 @@ describe('middlewares', () => {
     }));
     it('POST / user / reset password / invalid token', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .patch('/auth/reset-password')
+            .patch(process.env.API_PREFIX + '/auth/reset-password')
             .set('Authorization', 'bearer ' + "1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImJjMGU0NjNlLTA2MDMtNDY1NS1iNTI0LTI1YWUwZTQ2MTNjNSIsIm5hbWUiOiJVc2VybmFtZSIsImVtYWlsIjoidXNlcmVtYWlsQGV4YW1wbGUuY29tIiwicGhvbmUiOiIwOTEyMzQ1Njc4OSIsImlzUGFpZCI6ZmFsc2UsInN0YXJ0RGF0ZSI6bnVsbCwiZXhwaXJlZERhdGUiOm51bGwsImlhdCI6MTY4MjA5MzEyMn0.HXxPp4issE6Kqzj8ekuOpAcZ_eXPNV_AOwGk_W12S5A")
             .send({
             newPassword: "4321",

@@ -33,8 +33,7 @@ const createPermission = (req, res) => __awaiter(void 0, void 0, void 0, functio
     try {
         const createdPermission = yield prisma.permissions.create({
             data: {
-                name: req.body.name,
-                roleId: req.body.roleId
+                name: req.body.name
             }
         });
         return (0, functions_1.writeJsonRes)(res, 201, createdPermission, "Successfully created!");
