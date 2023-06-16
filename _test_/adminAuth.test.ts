@@ -5,7 +5,7 @@ import { PrismaClient } from '@prisma/client';
 import { testUser } from '../utils/testEnums';
 import { AdminObjInterface } from '../utils/interfaces';
 
-const prisma:PrismaClient = new PrismaClient()
+const prisma:PrismaClient = new PrismaClient();
 
 const getValidVerificationCode = async (email:string) => {
     const admin = await prisma.admins.findFirst({

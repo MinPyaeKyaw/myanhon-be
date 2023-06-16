@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CACHE_KEYS = exports.COURSE_TYPES = exports.COURSE_LEVELS = void 0;
+exports.ROLES = exports.CACHE_KEYS = exports.COURSE_TYPES = exports.COURSE_LEVELS = void 0;
 var COURSE_LEVELS;
 (function (COURSE_LEVELS) {
     COURSE_LEVELS["N5"] = "N5";
@@ -24,3 +24,10 @@ var CACHE_KEYS;
     CACHE_KEYS["TYPES"] = "types";
     CACHE_KEYS["LEVELS"] = "levels";
 })(CACHE_KEYS = exports.CACHE_KEYS || (exports.CACHE_KEYS = {}));
+var ROLES;
+(function (ROLES) {
+    ROLES["SUPER_ADMIN"] = "superAdmin";
+    ROLES["ADMIN"] = "admin";
+    ROLES["EDITOR"] = "editor";
+    ROLES["VIEWER"] = "viewer";
+})(ROLES = exports.ROLES || (exports.ROLES = {}));

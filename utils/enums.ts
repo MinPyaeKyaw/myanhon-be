@@ -20,3 +20,10 @@ export enum CACHE_KEYS {
     TYPES = 'types',
     LEVELS = 'levels'
 }
+
+export enum ROLES {
+    SUPER_ADMIN = 'superAdmin',
+    ADMIN = 'admin',
+    EDITOR = 'editor',
+    VIEWER = 'viewer'
+}
