@@ -1,5 +1,5 @@
 import Request from 'supertest';
-import app from '..';
+import app from '../..';
 
 describe('admin list', () => {
     it('GET / admin / get admin list', async () => {

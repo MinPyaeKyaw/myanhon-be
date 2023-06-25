@@ -79,7 +79,7 @@ describe('middlewares', () => {
     }));
     it('GET / types / unauthorized access', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .get('/types')
+            .get(process.env.API_PREFIX + '/types')
             .expect(401)
             .then((response) => {
             expect(response.body).toEqual({
@@ -91,7 +91,7 @@ describe('middlewares', () => {
     }));
     it('GET / types / invalid token', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .get('/types')
+            .get(process.env.API_PREFIX + '/types')
             .set('Authorization', 'bearer ' + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJlbWFpbEBleGFtcGxlLmNvbSIsImNvZGUiOiJCRjVDVkwiLCJyZXNldFBhc3N3b3JkVG9rZW4iOnRydWUsImlhdCI6MTY4MjE4Njk3M30.32L6hNHnjmTS06-kqG_51qtbtikjOC9zankN9rI4WhI")
             .expect(401)
             .then((response) => {
@@ -104,7 +104,7 @@ describe('middlewares', () => {
     }));
     it('GET / levels / unauthorized access', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .get('/levels')
+            .get(process.env.API_PREFIX + '/levels')
             .expect(401)
             .then((response) => {
             expect(response.body).toEqual({
@@ -116,7 +116,7 @@ describe('middlewares', () => {
     }));
     it('GET / levels / invalid token', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .get('/levels')
+            .get(process.env.API_PREFIX + '/levels')
             .set('Authorization', 'bearer ' + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJlbWFpbEBleGFtcGxlLmNvbSIsImNvZGUiOiJCRjVDVkwiLCJyZXNldFBhc3N3b3JkVG9rZW4iOnRydWUsImlhdCI6MTY4MjE4Njk3M30.32L6hNHnjmTS06-kqG_51qtbtikjOC9zankN9rI4WhI")
             .expect(401)
             .then((response) => {
@@ -129,7 +129,7 @@ describe('middlewares', () => {
     }));
     it('PATCH / edit user / unauthorized access', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .patch('/user/f242dc2d-1328-420d-b0c6-3ad2458f1c15')
+            .patch(process.env.API_PREFIX + '/user/f242dc2d-1328-420d-b0c6-3ad2458f1c15')
             .send({
             email: "editeduser@gmail.com",
             phone: "000000000",
@@ -146,7 +146,7 @@ describe('middlewares', () => {
     }));
     it('PATCH / edit user / invalid token', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .patch('/user/f242dc2d-1328-420d-b0c6-3ad2458f1c15')
+            .patch(process.env.API_PREFIX + '/user/f242dc2d-1328-420d-b0c6-3ad2458f1c15')
             .set('Authorization', 'bearer ' + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJlbWFpbEBleGFtcGxlLmNvbSIsImNvZGUiOiJCRjVDVkwiLCJyZXNldFBhc3N3b3JkVG9rZW4iOnRydWUsImlhdCI6MTY4MjE4Njk3M30.32L6hNHnjmTS06-kqG_51qtbtikjOC9zankN9rI4WhI")
             .send({
             email: "editeduser@gmail.com",

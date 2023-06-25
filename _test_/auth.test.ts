@@ -20,7 +20,7 @@ describe('auth', () => {
 
     it('POST / user / log in', async () => {
         return Request(app)
-        .post('/auth/login')
+        .post(process.env.API_PREFIX+'/auth/login')
         .send({
             email: "useremailUTLMPX@example.com",
             password: "4321",
@@ -41,7 +41,7 @@ describe('auth', () => {
 
     it('POST / user / log in / email not found', async () => {
         return Request(app)
-        .post('/auth/login')
+        .post(process.env.API_PREFIX+'/auth/login')
         .send({
             email: "useremailnotfound@example.com",
             password: "123",
@@ -60,7 +60,7 @@ describe('auth', () => {
 
     it('POST / user / log in / invalid password', async () => {
         return Request(app)
-        .post('/auth/login')
+        .post(process.env.API_PREFIX+'/auth/login')
         .send({
             email: "useremailUTLMPX@example.com",
             password: "g3wg4",
@@ -79,7 +79,7 @@ describe('auth', () => {
 
     it("POST / user / log in / email not verified", async () => {
         return Request(app)
-        .post('/auth/login')
+        .post(process.env.API_PREFIX+'/auth/login')
         .send({
             email: "useremailGHCR5P@example.com",
             password: '123',
@@ -101,7 +101,7 @@ describe('auth', () => {
         const otp = generateOTPCode();
 
         return Request(app)
-        .post('/auth/signup')
+        .post(process.env.API_PREFIX+'/auth/signup')
         .send({
             name: "Username",
             email: "useremail"+otp+"@example.com",
@@ -126,7 +126,7 @@ describe('auth', () => {
         const otp = generateOTPCode();
 
         return Request(app)
-        .post('/auth/signup')
+        .post(process.env.API_PREFIX+'/auth/signup')
         .send({
             name: testUser.name,
             email: testUser.email,
@@ -148,7 +148,7 @@ describe('auth', () => {
 
     it('POST / user / verify email', async () => {
         return Request(app)
-        .post('/auth/verify-email')
+        .post(process.env.API_PREFIX+'/auth/verify-email')
         .send({
             email: testUser.email,
             verificationCode: await getValidVerificationCode(testUser.email)
@@ -169,7 +169,7 @@ describe('auth', () => {
 
     it('POST / user / verify email / invalid verification code', async () => {
         return Request(app)
-        .post('/auth/verify-email')
+        .post(process.env.API_PREFIX+'/auth/verify-email')
         .send({
             email: testUser.email,
             verificationCode: "2FF3JG"
@@ -188,7 +188,7 @@ describe('auth', () => {
 
     it('POST / user / verify email / email not found', async () => {
         return Request(app)
-        .post('/auth/verify-email')
+        .post(process.env.API_PREFIX+'/auth/verify-email')
         .send({
             email: "useremailnotfoundtoverify@example.com",
             verificationCode: "2FF3JG"
@@ -207,7 +207,7 @@ describe('auth', () => {
 
     it('POST / user / reset password / check email', async () => {
         return Request(app)
-        .post('/auth/check-email')
+        .post(process.env.API_PREFIX+'/auth/check-email')
         .send({
             email: testUser.email
         })
@@ -225,7 +225,7 @@ describe('auth', () => {
 
     it('POST / user / reset password / check email / email not found', async () => {
         return Request(app)
-        .post('/auth/check-email')
+        .post(process.env.API_PREFIX+'/auth/check-email')
         .send({
             email: "useremailnotfound@example.com"
         })
@@ -243,7 +243,7 @@ describe('auth', () => {
 
     it('POST / user / reset password / verify code', async () => {
         return Request(app)
-        .post('/auth/verify-code')
+        .post(process.env.API_PREFIX+'/auth/verify-code')
         .send({
             email: testUser.email,
             verificationCode: await getValidVerificationCode(testUser.email) 
@@ -266,7 +266,7 @@ describe('auth', () => {
 
     it('POST / user / reset password / invalid verification code', async () => {
         return Request(app)
-        .post('/auth/verify-code')
+        .post(process.env.API_PREFIX+'/auth/verify-code')
         .send({
             email: testUser.email,
             verificationCode: "FAKECO"      
@@ -285,7 +285,7 @@ describe('auth', () => {
 
     it('POST / user / reset password', async () => {
         return Request(app)
-        .patch('/auth/reset-password')
+        .patch(process.env.API_PREFIX+'/auth/reset-password')
         .set('Authorization', 'bearer ' + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJlbWFpbEBleGFtcGxlLmNvbSIsImNvZGUiOiJMMVVZNlciLCJyZXNldFBhc3N3b3JkVG9rZW4iOnRydWUsImlhdCI6MTY4MjE0NjEwOX0.Sa2lvJ4wfBnLuXSYYXFWWQWnuQOLAfI3Klh98HaiRQw")
         .send({
             newPassword: "4321",

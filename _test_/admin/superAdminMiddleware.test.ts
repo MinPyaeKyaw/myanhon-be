@@ -1,5 +1,5 @@
 import Request from 'supertest';
-import app from '..';
+import app from '../..';
 
 import { PrismaClient } from '@prisma/client';
 

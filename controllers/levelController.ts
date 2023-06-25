@@ -17,7 +17,7 @@ export const getLevels = async (req: Request, res: Response) => {
         const levelsFromCache = await redisClient.get(CACHE_KEYS.LEVELS);
 
         if(levelsFromCache) {
-            return writeJsonRes<LevelResInterface[]>(res, 200, JSON.parse(levelsFromCache), "Successfully retrived cach!");
+            return writeJsonRes<LevelResInterface[]>(res, 200, JSON.parse(levelsFromCache), "Successfully retrived!");
         }
 
         const levels = await prisma.levels.findMany();

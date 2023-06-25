@@ -1,9 +1,9 @@
 import Request from 'supertest';
-import app from '..';
-import { generateOTPCode } from '../utils/functions';
+import app from '../..';
+import { generateOTPCode } from '../../utils/functions';
 import { PrismaClient } from '@prisma/client';
-import { testUser } from '../utils/testEnums';
-import { AdminObjInterface } from '../utils/interfaces';
+import { testUser } from '../../utils/testEnums';
+import { AdminObjInterface } from '../../utils/interfaces';
 
 const prisma:PrismaClient = new PrismaClient();
 

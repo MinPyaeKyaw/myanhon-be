@@ -1,5 +1,5 @@
 import Request from 'supertest';
-import app from '..';
+import app from '../..';
 
 describe('admin middlewares', () => {
     it('POST / admin / reset password / unauthorized access', async () => {

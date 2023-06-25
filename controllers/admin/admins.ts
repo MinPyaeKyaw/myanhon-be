@@ -3,7 +3,7 @@ import {Request, Response} from "express";
 import { PrismaClient } from '@prisma/client';
 import { RedisClientType, createClient } from 'redis';
 import { logError, writeJsonRes } from "../../utils/functions";
-import { AdminResInterface, PermissionResInterface } from "../../utils/interfaces";
+import { AdminResInterface } from "../../utils/interfaces";
 
 const prisma: PrismaClient = new PrismaClient();
 const redisClient: RedisClientType = createClient();

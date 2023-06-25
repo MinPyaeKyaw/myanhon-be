@@ -29,7 +29,7 @@ const getValidVerificationCode = (email) => __awaiter(void 0, void 0, void 0, fu
 describe('auth', () => {
     it('POST / user / log in', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .post('/auth/login')
+            .post(process.env.API_PREFIX + '/auth/login')
             .send({
             email: "useremailUTLMPX@example.com",
             password: "4321",
@@ -47,7 +47,7 @@ describe('auth', () => {
     }));
     it('POST / user / log in / email not found', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .post('/auth/login')
+            .post(process.env.API_PREFIX + '/auth/login')
             .send({
             email: "useremailnotfound@example.com",
             password: "123",
@@ -63,7 +63,7 @@ describe('auth', () => {
     }));
     it('POST / user / log in / invalid password', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .post('/auth/login')
+            .post(process.env.API_PREFIX + '/auth/login')
             .send({
             email: "useremailUTLMPX@example.com",
             password: "g3wg4",
@@ -79,7 +79,7 @@ describe('auth', () => {
     }));
     it("POST / user / log in / email not verified", () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .post('/auth/login')
+            .post(process.env.API_PREFIX + '/auth/login')
             .send({
             email: "useremailGHCR5P@example.com",
             password: '123',
@@ -96,7 +96,7 @@ describe('auth', () => {
     it('POST / user / sign up', () => __awaiter(void 0, void 0, void 0, function* () {
         const otp = (0, functions_1.generateOTPCode)();
         return (0, supertest_1.default)(__1.default)
-            .post('/auth/signup')
+            .post(process.env.API_PREFIX + '/auth/signup')
             .send({
             name: "Username",
             email: "useremail" + otp + "@example.com",
@@ -116,7 +116,7 @@ describe('auth', () => {
     it('POST / user / sign up / email is already used', () => __awaiter(void 0, void 0, void 0, function* () {
         const otp = (0, functions_1.generateOTPCode)();
         return (0, supertest_1.default)(__1.default)
-            .post('/auth/signup')
+            .post(process.env.API_PREFIX + '/auth/signup')
             .send({
             name: testEnums_1.testUser.name,
             email: testEnums_1.testUser.email,
@@ -135,7 +135,7 @@ describe('auth', () => {
     }));
     it('POST / user / verify email', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .post('/auth/verify-email')
+            .post(process.env.API_PREFIX + '/auth/verify-email')
             .send({
             email: testEnums_1.testUser.email,
             verificationCode: yield getValidVerificationCode(testEnums_1.testUser.email)
@@ -153,7 +153,7 @@ describe('auth', () => {
     }));
     it('POST / user / verify email / invalid verification code', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .post('/auth/verify-email')
+            .post(process.env.API_PREFIX + '/auth/verify-email')
             .send({
             email: testEnums_1.testUser.email,
             verificationCode: "2FF3JG"
@@ -169,7 +169,7 @@ describe('auth', () => {
     }));
     it('POST / user / verify email / email not found', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .post('/auth/verify-email')
+            .post(process.env.API_PREFIX + '/auth/verify-email')
             .send({
             email: "useremailnotfoundtoverify@example.com",
             verificationCode: "2FF3JG"
@@ -185,7 +185,7 @@ describe('auth', () => {
     }));
     it('POST / user / reset password / check email', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .post('/auth/check-email')
+            .post(process.env.API_PREFIX + '/auth/check-email')
             .send({
             email: testEnums_1.testUser.email
         })
@@ -200,7 +200,7 @@ describe('auth', () => {
     }));
     it('POST / user / reset password / check email / email not found', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .post('/auth/check-email')
+            .post(process.env.API_PREFIX + '/auth/check-email')
             .send({
             email: "useremailnotfound@example.com"
         })
@@ -215,7 +215,7 @@ describe('auth', () => {
     }));
     it('POST / user / reset password / verify code', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .post('/auth/verify-code')
+            .post(process.env.API_PREFIX + '/auth/verify-code')
             .send({
             email: testEnums_1.testUser.email,
             verificationCode: yield getValidVerificationCode(testEnums_1.testUser.email)
@@ -233,7 +233,7 @@ describe('auth', () => {
     }));
     it('POST / user / reset password / invalid verification code', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .post('/auth/verify-code')
+            .post(process.env.API_PREFIX + '/auth/verify-code')
             .send({
             email: testEnums_1.testUser.email,
             verificationCode: "FAKECO"
@@ -249,7 +249,7 @@ describe('auth', () => {
     }));
     it('POST / user / reset password', () => __awaiter(void 0, void 0, void 0, function* () {
         return (0, supertest_1.default)(__1.default)
-            .patch('/auth/reset-password')
+            .patch(process.env.API_PREFIX + '/auth/reset-password')
             .set('Authorization', 'bearer ' + "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InVzZXJlbWFpbEBleGFtcGxlLmNvbSIsImNvZGUiOiJMMVVZNlciLCJyZXNldFBhc3N3b3JkVG9rZW4iOnRydWUsImlhdCI6MTY4MjE0NjEwOX0.Sa2lvJ4wfBnLuXSYYXFWWQWnuQOLAfI3Klh98HaiRQw")
             .send({
             newPassword: "4321",
