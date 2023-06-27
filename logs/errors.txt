@@ -1679,3 +1679,192 @@ Note: Lines with ? are optional.
     at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
     at processTicksAndRejections (node:internal/process/task_queues:95:5)
  
+Mon Jun 26 2023 22:28:57 GMT+0630 (Myanmar Time)[ Get Admins Controller ]
+Error: 
+Invalid `prisma.courses.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/admin/courseController.js:20:49
+
+  17 try {
+  18     const createdCourse = yield prisma.$transaction((prisma) => __awaiter(void 0, void 0, void 0, function* () {
+  19         // Perform multiple database operations within the transaction
+→ 20         const course = yield prisma.courses.create(
+Foreign key constraint failed on the field: `Courses_type_fkey (index)`
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Mon Jun 26 2023 22:43:34 GMT+0630 (Myanmar Time)[ Get Admins Controller ]
+Error: 
+Invalid `prisma.courses.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/admin/courseController.js:20:49
+
+  17 try {
+  18     const createdCourse = yield prisma.$transaction((prisma) => __awaiter(void 0, void 0, void 0, function* () {
+  19         // Perform multiple database operations within the transaction
+→ 20         const course = yield prisma.courses.create(
+Foreign key constraint failed on the field: `Courses_type_fkey (index)`
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Mon Jun 26 2023 23:26:31 GMT+0630 (Myanmar Time)[ Get Admins Controller ]
+Error: 
+Invalid `prisma.courses.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/admin/courseController.js:20:49
+
+  17 try {
+  18     const createdCourse = yield prisma.$transaction((prisma) => __awaiter(void 0, void 0, void 0, function* () {
+  19         // Perform multiple database operations within the transaction
+→ 20         const course = yield prisma.courses.create(
+Foreign key constraint failed on the field: `Courses_type_fkey (index)`
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Mon Jun 26 2023 23:34:20 GMT+0630 (Myanmar Time)[ Get Admins Controller ]
+Error: 
+Invalid `prisma.courses.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/admin/courseController.js:20:49
+
+  17 try {
+  18     const createdCourse = yield prisma.$transaction((prisma) => __awaiter(void 0, void 0, void 0, function* () {
+  19         // Perform multiple database operations within the transaction
+→ 20         const course = yield prisma.courses.create(
+Foreign key constraint failed on the field: `Courses_type_fkey (index)`
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Tue Jun 27 2023 20:42:36 GMT+0630 (Myanmar Time)[ Get Admins Controller ]
+Error: 
+Invalid `prisma.courses.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/admin/courseController.js:20:49
+
+  17 try {
+  18     const createdCourse = yield prisma.$transaction((prisma) => __awaiter(void 0, void 0, void 0, function* () {
+  19         // Perform multiple database operations within the transaction
+→ 20         const course = yield prisma.courses.create(
+Foreign key constraint failed on the field: `Courses_type_fkey (index)`
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Tue Jun 27 2023 22:21:37 GMT+0630 (Myanmar Time)[ Get Admins Controller ]
+Error: 
+Invalid `prisma.contents.createMany()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/admin/courseController.js:29:52
+
+  26         level: req.body.level
+  27     },
+  28 });
+→ 29 const contents = yield prisma.contents.createMany({
+       data: [
+         {
+           name: 'N1 content 1',
+           thumbnail: 'thumbnail',
+           url: 'url',
+           isPublic: true
+         },
+         {
+           name: 'N1 content 2',
+           thumbnail: 'thumbnail',
+           url: 'url',
+           isPublic: false
+         }
+       ]
+       ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     })
+
+Argument data: Got invalid value 
+[
+  {
+    name: 'N1 content 1',
+    thumbnail: 'thumbnail',
+    url: 'url',
+    isPublic: true
+  },
+  {
+    name: 'N1 content 2',
+    thumbnail: 'thumbnail',
+    url: 'url',
+    isPublic: false
+  }
+]
+on prisma.createManyContents. Provided List<Json>, expected ContentsCreateManyInput or ContentsCreateManyInput:
+type ContentsCreateManyInput {
+  id?: String
+  name: String
+  thumbnail: String
+  url: String
+  isPublic: Boolean
+  courseId: String
+  createdAt?: DateTime
+  updatedAt?: DateTime
+}
+type ContentsCreateManyInput {
+  id?: String
+  name: String
+  thumbnail: String
+  url: String
+  isPublic: Boolean
+  courseId: String
+  createdAt?: DateTime
+  updatedAt?: DateTime
+}
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Tue Jun 27 2023 22:34:24 GMT+0630 (Myanmar Time)[ Get Admins Controller ]
+Error: 
+Invalid `prisma.contents.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/admin/courseController.js:33:52
+
+  30 req.body.contents.forEach((c) => {
+  31     c.courseId = course.id;
+  32 });
+→ 33 const contents = yield prisma.contents.create({
+       data: []
+       ~~~~~~
+     })
+
+Argument data: Got invalid value [] on prisma.createOneContents. Provided List<>, expected ContentsCreateInput or ContentsUncheckedCreateInput:
+type ContentsCreateInput {
+  id?: String
+  name: String
+  thumbnail: String
+  url: String
+  isPublic: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  course: CoursesCreateNestedOneWithoutContentsInput
+  userTracking?: UserTrackingCreateNestedManyWithoutContentInput
+}
+type ContentsCreateInput {
+  id?: String
+  name: String
+  thumbnail: String
+  url: String
+  isPublic: Boolean
+  createdAt?: DateTime
+  updatedAt?: DateTime
+  course: CoursesCreateNestedOneWithoutContentsInput
+  userTracking?: UserTrackingCreateNestedManyWithoutContentInput
+}
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 

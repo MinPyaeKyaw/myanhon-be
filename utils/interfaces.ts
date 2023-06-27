@@ -90,6 +90,14 @@ export interface ContentResInterface {
     updatedAt: Date;
 }
 
+export interface ContentReqInterface {
+    name: string;
+    thumbnail: string;
+    url: string;
+    isPublic: boolean;
+    courseId: string;
+}
+
 export interface CourseResInterface {
     id: string;
     name: string;
@@ -98,7 +106,7 @@ export interface CourseResInterface {
     level: string;
     createdAt: Date;
     updatedAt: Date;
-    courseType: TypesResInterface;
-    courseLevel: LevelResInterface;
+    courseType?: TypesResInterface;
+    courseLevel?: LevelResInterface;
     contents?: ContentResInterface[];
 }

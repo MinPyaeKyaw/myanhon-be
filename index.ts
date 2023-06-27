@@ -11,6 +11,7 @@ import adminAuthRoute from "./routes/admin/auth";
 import roleRoutes from "./routes/admin/roles";
 import permissionRoutes from "./routes/admin/permissions";
 import adminRoutes from "./routes/admin/admins";
+import adminCourseRoute from "./routes/admin/courses";
 
 dotenv.config({ path: __dirname+'/.env' });
 dotenv.config();
@@ -24,6 +25,7 @@ app.use(adminAPIPrefix+'/auth', adminAuthRoute);
 app.use(adminAPIPrefix, roleRoutes);
 app.use(adminAPIPrefix, permissionRoutes);
 app.use(adminAPIPrefix, adminRoutes);
+app.use(adminAPIPrefix, adminCourseRoute);
 
 // User routes
 app.use(process.env.API_PREFIX+'/auth', authRouter);
