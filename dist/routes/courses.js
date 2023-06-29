@@ -12,7 +12,7 @@ const courseRouter = express_1.default.Router();
 courseRouter.get('/courses', userJwtMiddleware_1.verifyUserJwt, queryValidators_1.courseQueryValidation, courseMiddleware_1.validateCourseQuery, courseController_1.getCourses);
 courseRouter.get('/courses/:id', userJwtMiddleware_1.verifyUserJwt, courseController_1.getCourseByID);
 // just for development, remove later
-courseRouter.post('/create-course-instructor', courseController_1.createCourseInstructor);
+// courseRouter.post('/create-course-instructor', createCourseInstructor);
 // just for development, remove later
 courseRouter.post('/create-instructor', courseController_1.createInstructor);
 // just for development, remove later

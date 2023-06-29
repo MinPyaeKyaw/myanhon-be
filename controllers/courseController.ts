@@ -104,20 +104,20 @@ export const createInstructor = async (req: Request, res: Response) => {
 }
 
 // just for development, remove later
-export const createCourseInstructor = async (req: Request, res: Response) => {
-    try {
-        const createdCourseInstructor = await prisma.courseInstructor.create({
-            data: {
-                instructorId: '2c92f7ab-e38a-48cd-8611-70f22f9f2387',
-                courseId: '06cf43e2-d92d-451d-857f-faeef3458e21'
-            }
-        })
+// export const createCourseInstructor = async (req: Request, res: Response) => {
+//     try {
+//         const createdCourseInstructor = await prisma.courseInstructor.create({
+//             data: {
+//                 instructorId: '2c92f7ab-e38a-48cd-8611-70f22f9f2387',
+//                 courseId: '06cf43e2-d92d-451d-857f-faeef3458e21'
+//             }
+//         })
 
-        return writeJsonRes<any>(res, 201, createdCourseInstructor, "Successfully created course instructor!");
-    } catch (error) {
-        return writeJsonRes<null>(res, 500, null, "Internal Server Error!");
-    }
-}
+//         return writeJsonRes<any>(res, 201, createdCourseInstructor, "Successfully created course instructor!");
+//     } catch (error) {
+//         return writeJsonRes<null>(res, 500, null, "Internal Server Error!");
+//     }
+// }
 
 // just for development, remove later
 export const createCourse = async (req: Request, res: Response) => {
