@@ -1868,3 +1868,284 @@ type ContentsCreateInput {
     at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
     at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
  
+Fri Jun 30 2023 01:20:45 GMT+0630 (Myanmar Time)[ Admin Create Course Controller ]
+Error: 
+Invalid `prisma.courses.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/admin/courseController.js:36:34
+
+  33         level: req.body.level
+  34     },
+  35 });
+→ 36 yield prisma.courses.update({
+       where: {
+         id: '49a2a25b-15e4-427a-8757-de73c760d265'
+       },
+       data: {
+         instructors: {
+           connect: {
+             '0': {
+     ?         id?: String
+             }
+           },
+     ?     create?: InstructorsCreateWithoutCoursesInput | InstructorsCreateWithoutCoursesInput[] | InstructorsUncheckedCreateWithoutCoursesInput | InstructorsUncheckedCreateWithoutCoursesInput[],
+     ?     connectOrCreate?: InstructorsCreateOrConnectWithoutCoursesInput | InstructorsCreateOrConnectWithoutCoursesInput[],
+     ?     upsert?: InstructorsUpsertWithWhereUniqueWithoutCoursesInput | InstructorsUpsertWithWhereUniqueWithoutCoursesInput[],
+     ?     set?: InstructorsWhereUniqueInput | InstructorsWhereUniqueInput[],
+     ?     disconnect?: InstructorsWhereUniqueInput | InstructorsWhereUniqueInput[],
+     ?     delete?: InstructorsWhereUniqueInput | InstructorsWhereUniqueInput[],
+     ?     update?: InstructorsUpdateWithWhereUniqueWithoutCoursesInput | InstructorsUpdateWithWhereUniqueWithoutCoursesInput[],
+     ?     updateMany?: InstructorsUpdateManyWithWhereWithoutCoursesInput | InstructorsUpdateManyWithWhereWithoutCoursesInput[],
+     ?     deleteMany?: InstructorsScalarWhereInput | InstructorsScalarWhereInput[]
+         }
+       }
+     })
+
+Argument data.instructors.connect of type InstructorsWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Fri Jul 07 2023 06:23:11 GMT+0630 (Myanmar Time)[ Admin Remove Content Controller ]
+Error: 
+Invalid `prisma.contents.delete()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/courseController.ts:96:37
+
+  93 
+  94 export const removeContent = async (req: Request, res: Response) => {
+  95     try {
+→ 96         await prisma.contents.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Fri Jul 07 2023 06:27:59 GMT+0630 (Myanmar Time)[ Admin Remove Content Controller ]
+Error: 
+Invalid `prisma.contents.delete()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/courseController.ts:96:37
+
+  93 
+  94 export const removeContent = async (req: Request, res: Response) => {
+  95     try {
+→ 96         await prisma.contents.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Fri Jul 07 2023 06:28:49 GMT+0630 (Myanmar Time)[ Admin Remove Content Controller ]
+Error: 
+Invalid `prisma.contents.delete()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/courseController.ts:96:37
+
+  93 
+  94 export const removeContent = async (req: Request, res: Response) => {
+  95     try {
+→ 96         await prisma.contents.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Fri Jul 07 2023 06:28:49 GMT+0630 (Myanmar Time)[ Admin Remove Content Controller ]
+Error: 
+Invalid `prisma.instructors.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/courseController.ts:148:34
+
+  145 
+  146 export const removeInstructor = async (req: Request, res: Response) => {
+  147     try {
+→ 148         await prisma.instructors.update({
+                where: {
+                  id: '2c92f7ab-e38a-48cd-8611-70f22f9f2387'
+                },
+                data: {
+                  courses: {
+                    disconnect: {
+              ?       id?: String
+                    },
+              ?     create?: CoursesCreateWithoutInstructorsInput | CoursesCreateWithoutInstructorsInput[] | CoursesUncheckedCreateWithoutInstructorsInput | CoursesUncheckedCreateWithoutInstructorsInput[],
+              ?     connectOrCreate?: CoursesCreateOrConnectWithoutInstructorsInput | CoursesCreateOrConnectWithoutInstructorsInput[],
+              ?     upsert?: CoursesUpsertWithWhereUniqueWithoutInstructorsInput | CoursesUpsertWithWhereUniqueWithoutInstructorsInput[],
+              ?     set?: CoursesWhereUniqueInput | CoursesWhereUniqueInput[],
+              ?     delete?: CoursesWhereUniqueInput | CoursesWhereUniqueInput[],
+              ?     connect?: CoursesWhereUniqueInput | CoursesWhereUniqueInput[],
+              ?     update?: CoursesUpdateWithWhereUniqueWithoutInstructorsInput | CoursesUpdateWithWhereUniqueWithoutInstructorsInput[],
+              ?     updateMany?: CoursesUpdateManyWithWhereWithoutInstructorsInput | CoursesUpdateManyWithWhereWithoutInstructorsInput[],
+              ?     deleteMany?: CoursesScalarWhereInput | CoursesScalarWhereInput[]
+                  }
+                }
+              })
+
+Argument data.courses.disconnect of type CoursesWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Fri Jul 07 2023 06:33:34 GMT+0630 (Myanmar Time)[ Admin Remove Content Controller ]
+Error: 
+Invalid `prisma.contents.delete()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/courseController.ts:96:37
+
+  93 
+  94 export const removeContent = async (req: Request, res: Response) => {
+  95     try {
+→ 96         await prisma.contents.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Fri Jul 07 2023 06:33:34 GMT+0630 (Myanmar Time)[ Admin Remove Content Controller ]
+Error: 
+Invalid `prisma.instructors.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/courseController.ts:148:34
+
+  145 
+  146 export const removeInstructor = async (req: Request, res: Response) => {
+  147     try {
+→ 148         await prisma.instructors.update({
+                where: {
+                  id: '2c92f7ab-e38a-48cd-8611-70f22f9f2387'
+                },
+                data: {
+                  courses: {
+                    disconnect: {
+              ?       id?: String
+                    },
+              ?     create?: CoursesCreateWithoutInstructorsInput | CoursesCreateWithoutInstructorsInput[] | CoursesUncheckedCreateWithoutInstructorsInput | CoursesUncheckedCreateWithoutInstructorsInput[],
+              ?     connectOrCreate?: CoursesCreateOrConnectWithoutInstructorsInput | CoursesCreateOrConnectWithoutInstructorsInput[],
+              ?     upsert?: CoursesUpsertWithWhereUniqueWithoutInstructorsInput | CoursesUpsertWithWhereUniqueWithoutInstructorsInput[],
+              ?     set?: CoursesWhereUniqueInput | CoursesWhereUniqueInput[],
+              ?     delete?: CoursesWhereUniqueInput | CoursesWhereUniqueInput[],
+              ?     connect?: CoursesWhereUniqueInput | CoursesWhereUniqueInput[],
+              ?     update?: CoursesUpdateWithWhereUniqueWithoutInstructorsInput | CoursesUpdateWithWhereUniqueWithoutInstructorsInput[],
+              ?     updateMany?: CoursesUpdateManyWithWhereWithoutInstructorsInput | CoursesUpdateManyWithWhereWithoutInstructorsInput[],
+              ?     deleteMany?: CoursesScalarWhereInput | CoursesScalarWhereInput[]
+                  }
+                }
+              })
+
+Argument data.courses.disconnect of type CoursesWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Fri Jul 07 2023 06:36:07 GMT+0630 (Myanmar Time)[ Admin Remove Content Controller ]
+Error: 
+Invalid `prisma.contents.delete()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/courseController.ts:96:37
+
+  93 
+  94 export const removeContent = async (req: Request, res: Response) => {
+  95     try {
+→ 96         await prisma.contents.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+ 
+Fri Jul 07 2023 06:36:07 GMT+0630 (Myanmar Time)[ Admin Remove Content Controller ]
+Error: 
+Invalid `prisma.instructors.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/courseController.ts:148:34
+
+  145 
+  146 export const removeInstructor = async (req: Request, res: Response) => {
+  147     try {
+→ 148         await prisma.instructors.update({
+                where: {
+                  id: '2c92f7ab-e38a-48cd-8611-70f22f9f2387'
+                },
+                data: {
+                  courses: {
+                    disconnect: {
+              ?       id?: String
+                    },
+              ?     create?: CoursesCreateWithoutInstructorsInput | CoursesCreateWithoutInstructorsInput[] | CoursesUncheckedCreateWithoutInstructorsInput | CoursesUncheckedCreateWithoutInstructorsInput[],
+              ?     connectOrCreate?: CoursesCreateOrConnectWithoutInstructorsInput | CoursesCreateOrConnectWithoutInstructorsInput[],
+              ?     upsert?: CoursesUpsertWithWhereUniqueWithoutInstructorsInput | CoursesUpsertWithWhereUniqueWithoutInstructorsInput[],
+              ?     set?: CoursesWhereUniqueInput | CoursesWhereUniqueInput[],
+              ?     delete?: CoursesWhereUniqueInput | CoursesWhereUniqueInput[],
+              ?     connect?: CoursesWhereUniqueInput | CoursesWhereUniqueInput[],
+              ?     update?: CoursesUpdateWithWhereUniqueWithoutInstructorsInput | CoursesUpdateWithWhereUniqueWithoutInstructorsInput[],
+              ?     updateMany?: CoursesUpdateManyWithWhereWithoutInstructorsInput | CoursesUpdateManyWithWhereWithoutInstructorsInput[],
+              ?     deleteMany?: CoursesScalarWhereInput | CoursesScalarWhereInput[]
+                  }
+                }
+              })
+
+Argument data.courses.disconnect of type CoursesWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Fri Jul 07 2023 06:46:09 GMT+0630 (Myanmar Time)[ Admin Remove Content Controller ]
+Error: 
+Invalid `prisma.instructors.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/admin/courseController.ts:148:34
+
+  145 
+  146 export const removeInstructor = async (req: Request, res: Response) => {
+  147     try {
+→ 148         await prisma.instructors.update({
+                where: {
+                  id: '2c92f7ab-e38a-48cd-8611-70f22f9f2387'
+                },
+                data: {
+                  courses: {
+                    disconnect: {
+              ?       id?: String
+                    },
+              ?     create?: CoursesCreateWithoutInstructorsInput | CoursesCreateWithoutInstructorsInput[] | CoursesUncheckedCreateWithoutInstructorsInput | CoursesUncheckedCreateWithoutInstructorsInput[],
+              ?     connectOrCreate?: CoursesCreateOrConnectWithoutInstructorsInput | CoursesCreateOrConnectWithoutInstructorsInput[],
+              ?     upsert?: CoursesUpsertWithWhereUniqueWithoutInstructorsInput | CoursesUpsertWithWhereUniqueWithoutInstructorsInput[],
+              ?     set?: CoursesWhereUniqueInput | CoursesWhereUniqueInput[],
+              ?     delete?: CoursesWhereUniqueInput | CoursesWhereUniqueInput[],
+              ?     connect?: CoursesWhereUniqueInput | CoursesWhereUniqueInput[],
+              ?     update?: CoursesUpdateWithWhereUniqueWithoutInstructorsInput | CoursesUpdateWithWhereUniqueWithoutInstructorsInput[],
+              ?     updateMany?: CoursesUpdateManyWithWhereWithoutInstructorsInput | CoursesUpdateManyWithWhereWithoutInstructorsInput[],
+              ?     deleteMany?: CoursesScalarWhereInput | CoursesScalarWhereInput[]
+                  }
+                }
+              })
+
+Argument data.courses.disconnect of type CoursesWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
