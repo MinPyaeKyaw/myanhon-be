@@ -7,7 +7,10 @@ import bcrypt from 'bcrypt';
 import jwt from "jsonwebtoken";
 import dayjs from "dayjs";
 import { RedisClientType, createClient } from "redis";
-import { AdminObjInterface } from "./interfaces";
+import multer from "multer";
+import NodeRSA from "node-rsa";
+
+import { AdminObjInterface, PaymentTokenInterface } from "./interfaces";
 
 const prisma: PrismaClient = new PrismaClient();
 
@@ -193,4 +196,34 @@ export const updateAdminLoginCount = async (admin: AdminObjInterface): Promise<b
         logError(error, 'Admin Update Count');
         return false;
     }
+}
+
+export const uploadFile = () => {
+    const storage = multer.diskStorage({
+        destination: (req, file, cb) => {
+            console.log('lee', file)
+          cb(null, 'uploads/');
+        },
+        filename: (req, file, cb) => {
+          cb(null, Date.now() + '-' + file.originalname);
+        }
+    });
+    
+    const upload = multer({ storage: storage });
+
+    return upload;
+}
+
+export const encryptPaymentPayload = (paymentPayload: any): string | null => {
+    // Encrypt payload
+    const publicKey = new NodeRSA();
+    // @ts-ignore
+    publicKey.importKey(process.env.PAYMENT_PUBLIC_KEY, "pkcs8-public");
+    publicKey.setOptions({ encryptionScheme: "pkcs1" });
+    const encrytpStr = publicKey.encrypt(paymentPayload, "base64");
+    const param = { payload: encrytpStr };
+    const payloadData = new URLSearchParams(param);
+    const data = payloadData.get('payload');
+
+    return data;
 }

@@ -9,10 +9,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.removeInstructor = exports.addInstructor = exports.removeContent = exports.addContent = exports.createCourse = void 0;
+exports.removeInstructor = exports.addInstructor = exports.removeContent = exports.addContent = exports.createCourse = exports.testUpload = void 0;
 const client_1 = require("@prisma/client");
 const functions_1 = require("../../utils/functions");
 const prisma = new client_1.PrismaClient();
+const testUpload = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        return (0, functions_1.writeJsonRes)(res, 201, null, 'Successfully uploaded!');
+    }
+    catch (error) {
+        (0, functions_1.logError)(error, "Admin Create Course Controller");
+        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+    }
+});
+exports.testUpload = testUpload;
 const createCourse = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const existedCourse = yield prisma.courses.findFirst({

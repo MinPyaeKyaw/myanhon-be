@@ -110,3 +110,13 @@ export interface CourseResInterface {
     courseLevel?: LevelResInterface;
     contents?: ContentResInterface[];
 }
+
+export interface PaymentTokenInterface {
+    code: string;
+    message: string;
+    time: string;
+    response: {
+        paymentToken: string;
+        expireIn: string;
+    }
+}

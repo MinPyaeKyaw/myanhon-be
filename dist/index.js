@@ -38,6 +38,7 @@ const roles_1 = __importDefault(require("./routes/admin/roles"));
 const permissions_1 = __importDefault(require("./routes/admin/permissions"));
 const admins_1 = __importDefault(require("./routes/admin/admins"));
 const courses_2 = __importDefault(require("./routes/admin/courses"));
+const payment_1 = __importDefault(require("./routes/payment/payment"));
 dotenv.config({ path: __dirname + '/.env' });
 dotenv.config();
 const app = (0, express_1.default)();
@@ -55,6 +56,7 @@ app.use(`${process.env.API_PREFIX}`, courses_1.default);
 app.use(`${process.env.API_PREFIX}`, courseTypes_1.default);
 app.use(`${process.env.API_PREFIX}`, courseLevels_1.default);
 app.use(`${process.env.API_PREFIX}`, user_1.default);
+app.use(`${process.env.API_PREFIX}`, payment_1.default);
 app.listen(4000, () => {
     console.log("now listening to 4000");
 });

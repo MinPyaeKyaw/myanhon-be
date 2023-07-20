@@ -12,6 +12,7 @@ import roleRoutes from "./routes/admin/roles";
 import permissionRoutes from "./routes/admin/permissions";
 import adminRoutes from "./routes/admin/admins";
 import adminCourseRoute from "./routes/admin/courses";
+import paymentRouter from "./routes/payment/payment";
 
 dotenv.config({ path: __dirname+'/.env' });
 dotenv.config();
@@ -33,6 +34,7 @@ app.use(`${process.env.API_PREFIX}`, courseRouter);
 app.use(`${process.env.API_PREFIX}`, typeRouter);
 app.use(`${process.env.API_PREFIX}`, levelRouter);
 app.use(`${process.env.API_PREFIX}`, userRouter);
+app.use(`${process.env.API_PREFIX}`, paymentRouter);
 
 app.listen(4000, () => {
     console.log("now listening to 4000");

@@ -2149,3 +2149,211 @@ Note: Lines with ? are optional.
     at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
     at processTicksAndRejections (node:internal/process/task_queues:95:5)
  
+Wed Jul 12 2023 22:18:40 GMT+0630 (Myanmar Time)[ Reset Password Controller ]
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'ClientRequest'
+    |     property 'res' -> object with constructor 'IncomingMessage'
+    --- property 'req' closes the circle
+    at JSON.stringify (<anonymous>)
+    at stringify (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:1150:12)
+    at ServerResponse.json (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:271:14)
+    at writeJsonRes (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/utils/functions.js:102:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:44:45
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:5:58)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Wed Jul 12 2023 22:26:38 GMT+0630 (Myanmar Time)[ Reset Password Controller ]
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'ClientRequest'
+    |     property 'res' -> object with constructor 'IncomingMessage'
+    --- property 'req' closes the circle
+    at JSON.stringify (<anonymous>)
+    at stringify (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:1150:12)
+    at ServerResponse.json (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:271:14)
+    at writeJsonRes (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/utils/functions.js:102:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:44:45
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:5:58)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Wed Jul 12 2023 22:28:56 GMT+0630 (Myanmar Time)[ Reset Password Controller ]
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'ClientRequest'
+    |     property 'res' -> object with constructor 'IncomingMessage'
+    --- property 'req' closes the circle
+    at JSON.stringify (<anonymous>)
+    at stringify (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:1150:12)
+    at ServerResponse.json (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:271:14)
+    at writeJsonRes (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/utils/functions.js:102:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:44:45
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:5:58)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Wed Jul 12 2023 22:29:08 GMT+0630 (Myanmar Time)[ Reset Password Controller ]
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'ClientRequest'
+    |     property 'res' -> object with constructor 'IncomingMessage'
+    --- property 'req' closes the circle
+    at JSON.stringify (<anonymous>)
+    at stringify (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:1150:12)
+    at ServerResponse.json (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:271:14)
+    at writeJsonRes (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/utils/functions.js:102:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:44:45
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:5:58)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Wed Jul 12 2023 22:37:47 GMT+0630 (Myanmar Time)[ Reset Password Controller ]
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'ClientRequest'
+    |     property 'res' -> object with constructor 'IncomingMessage'
+    --- property 'req' closes the circle
+    at JSON.stringify (<anonymous>)
+    at stringify (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:1150:12)
+    at ServerResponse.json (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:271:14)
+    at writeJsonRes (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/utils/functions.js:102:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:44:45
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:5:58)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Wed Jul 12 2023 22:38:25 GMT+0630 (Myanmar Time)[ Reset Password Controller ]
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'ClientRequest'
+    |     property 'res' -> object with constructor 'IncomingMessage'
+    --- property 'req' closes the circle
+    at JSON.stringify (<anonymous>)
+    at stringify (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:1150:12)
+    at ServerResponse.json (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:271:14)
+    at writeJsonRes (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/utils/functions.js:102:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:44:45
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:5:58)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Wed Jul 12 2023 22:38:43 GMT+0630 (Myanmar Time)[ Payment Controller ]
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'ClientRequest'
+    |     property 'res' -> object with constructor 'IncomingMessage'
+    --- property 'req' closes the circle
+    at JSON.stringify (<anonymous>)
+    at stringify (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:1150:12)
+    at ServerResponse.json (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:271:14)
+    at writeJsonRes (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/utils/functions.js:102:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:44:45
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:5:58)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Wed Jul 12 2023 22:40:09 GMT+0630 (Myanmar Time)[ Payment Controller ]
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'ClientRequest'
+    |     property 'res' -> object with constructor 'IncomingMessage'
+    --- property 'req' closes the circle
+    at JSON.stringify (<anonymous>)
+    at stringify (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:1150:12)
+    at ServerResponse.json (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:271:14)
+    at writeJsonRes (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/utils/functions.js:102:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:47:45
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:5:58)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Fri Jul 14 2023 02:11:15 GMT+0630 (Myanmar Time)[ Payment Controller ]
+AxiosError: Request failed with status code 500
+    at settle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/axios/dist/node/axios.cjs:1909:12)
+    at IncomingMessage.handleStreamEnd (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/axios/dist/node/axios.cjs:2989:11)
+    at IncomingMessage.emit (node:events:524:35)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+ 
+Fri Jul 14 2023 02:24:01 GMT+0630 (Myanmar Time)[ Payment Controller ]
+AxiosError: Request failed with status code 404
+    at settle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/axios/dist/node/axios.cjs:1909:12)
+    at IncomingMessage.handleStreamEnd (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/axios/dist/node/axios.cjs:2989:11)
+    at IncomingMessage.emit (node:events:524:35)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+ 
+Fri Jul 14 2023 02:24:58 GMT+0630 (Myanmar Time)[ Payment Controller ]
+AxiosError: Request failed with status code 404
+    at settle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/axios/dist/node/axios.cjs:1909:12)
+    at IncomingMessage.handleStreamEnd (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/axios/dist/node/axios.cjs:2989:11)
+    at IncomingMessage.emit (node:events:524:35)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+ 
+Fri Jul 14 2023 02:25:34 GMT+0630 (Myanmar Time)[ Payment Controller ]
+AxiosError: Request failed with status code 404
+    at settle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/axios/dist/node/axios.cjs:1909:12)
+    at IncomingMessage.handleStreamEnd (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/axios/dist/node/axios.cjs:2989:11)
+    at IncomingMessage.emit (node:events:524:35)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+ 
+Fri Jul 14 2023 02:26:06 GMT+0630 (Myanmar Time)[ Payment Controller ]
+AxiosError: Request failed with status code 404
+    at settle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/axios/dist/node/axios.cjs:1909:12)
+    at IncomingMessage.handleStreamEnd (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/axios/dist/node/axios.cjs:2989:11)
+    at IncomingMessage.emit (node:events:524:35)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
+ 
+Fri Jul 14 2023 02:29:56 GMT+0630 (Myanmar Time)[ Payment Controller ]
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'ClientRequest'
+    |     property 'res' -> object with constructor 'IncomingMessage'
+    --- property 'req' closes the circle
+    at JSON.stringify (<anonymous>)
+    at stringify (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:1150:12)
+    at ServerResponse.json (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:271:14)
+    at writeJsonRes (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/utils/functions.js:102:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:50:49
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:5:58)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Fri Jul 14 2023 02:30:24 GMT+0630 (Myanmar Time)[ Payment Controller ]
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'ClientRequest'
+    |     property 'res' -> object with constructor 'IncomingMessage'
+    --- property 'req' closes the circle
+    at JSON.stringify (<anonymous>)
+    at stringify (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:1150:12)
+    at ServerResponse.json (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:271:14)
+    at writeJsonRes (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/utils/functions.js:102:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:50:49
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:5:58)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Sun Jul 16 2023 23:00:00 GMT+0630 (Myanmar Time)[ Payment Controller ]
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'ClientRequest'
+    |     property 'res' -> object with constructor 'IncomingMessage'
+    --- property 'req' closes the circle
+    at JSON.stringify (<anonymous>)
+    at stringify (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:1150:12)
+    at ServerResponse.json (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:271:14)
+    at writeJsonRes (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/utils/functions.js:102:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:51:45
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:5:58)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 
+Sun Jul 16 2023 23:47:41 GMT+0630 (Myanmar Time)[ Payment Controller ]
+TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'ClientRequest'
+    |     property 'res' -> object with constructor 'IncomingMessage'
+    --- property 'req' closes the circle
+    at JSON.stringify (<anonymous>)
+    at stringify (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:1150:12)
+    at ServerResponse.json (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/response.js:271:14)
+    at writeJsonRes (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/utils/functions.js:102:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:48:45
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:5:58)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+ 

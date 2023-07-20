@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateAdminLoginCount = exports.getConnectedRedisClient = exports.getJwtTokenFromReq = exports.getJwtToken = exports.verifyPassword = exports.hashPassword = exports.refreshVerificationCode = exports.generateOTPCode = exports.writeJsonRes = exports.logError = exports.zipAndDelFile = exports.getFileSize = exports.zipFile = void 0;
+exports.encryptPaymentPayload = exports.uploadFile = exports.updateAdminLoginCount = exports.getConnectedRedisClient = exports.getJwtTokenFromReq = exports.getJwtToken = exports.verifyPassword = exports.hashPassword = exports.refreshVerificationCode = exports.generateOTPCode = exports.writeJsonRes = exports.logError = exports.zipAndDelFile = exports.getFileSize = exports.zipFile = void 0;
 const fs_1 = __importDefault(require("fs"));
 const zlib_1 = __importDefault(require("zlib"));
 const client_1 = require("@prisma/client");
@@ -20,6 +20,8 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const dayjs_1 = __importDefault(require("dayjs"));
 const redis_1 = require("redis");
+const multer_1 = __importDefault(require("multer"));
+const node_rsa_1 = __importDefault(require("node-rsa"));
 const prisma = new client_1.PrismaClient();
 const zipFile = (filePath) => {
     const splitedFilePath = filePath.split('/');
@@ -199,3 +201,30 @@ const updateAdminLoginCount = (admin) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.updateAdminLoginCount = updateAdminLoginCount;
+const uploadFile = () => {
+    const storage = multer_1.default.diskStorage({
+        destination: (req, file, cb) => {
+            console.log('lee', file);
+            cb(null, 'uploads/');
+        },
+        filename: (req, file, cb) => {
+            cb(null, Date.now() + '-' + file.originalname);
+        }
+    });
+    const upload = (0, multer_1.default)({ storage: storage });
+    return upload;
+};
+exports.uploadFile = uploadFile;
+const encryptPaymentPayload = (paymentPayload) => {
+    // Encrypt payload
+    const publicKey = new node_rsa_1.default();
+    // @ts-ignore
+    publicKey.importKey(process.env.PAYMENT_PUBLIC_KEY, "pkcs8-public");
+    publicKey.setOptions({ encryptionScheme: "pkcs1" });
+    const encrytpStr = publicKey.encrypt(paymentPayload, "base64");
+    const param = { payload: encrytpStr };
+    const payloadData = new URLSearchParams(param);
+    const data = payloadData.get('payload');
+    return data;
+};
+exports.encryptPaymentPayload = encryptPaymentPayload;

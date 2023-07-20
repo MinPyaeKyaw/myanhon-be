@@ -7,6 +7,15 @@ import { ContentReqInterface, ContentResInterface, CourseResInterface } from "..
 
 const prisma: PrismaClient = new PrismaClient();
 
+export const testUpload = async (req: Request, res: Response) => {
+    try {
+        return writeJsonRes<null>(res, 201, null, 'Successfully uploaded!');
+    } catch (error) {
+        logError(error, "Admin Create Course Controller");
+        return writeJsonRes<null>(res, 500, null, "Internal Server Error!");
+    }
+}
+
 export const createCourse = async (req: Request, res: Response) => {
     try {
         const existedCourse = await prisma.courses.findFirst({

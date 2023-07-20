@@ -1,7 +1,22 @@
 import express from 'express';
-import { addContent, addInstructor, createCourse, removeContent, removeInstructor } from '../../controllers/admin/courseController';
+
+import multer from 'multer';
+
+import { addContent, addInstructor, createCourse, removeContent, removeInstructor, testUpload } from '../../controllers/admin/courseController';
+import { uploadFile } from '../../utils/functions';
+
+// const uploadFile = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//       cb(null, 'uploads/');
+//     },
+//     filename: (req, file, cb) => {
+//       cb(null, Date.now() + '-' + file.originalname);
+//     }
+// });
 
 const adminCourseRoute = express.Router();
+
+adminCourseRoute.post('/test-upload', uploadFile().single('file'), testUpload);
 
 adminCourseRoute.post('/create-course', createCourse);
 
