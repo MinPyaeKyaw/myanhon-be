@@ -1,5 +1,5 @@
 import Request from 'supertest';
-import app from '..';
+import app from '../..';
 
 describe('Fetching levels', () => {
     it('GET / fetch levels', async () => {

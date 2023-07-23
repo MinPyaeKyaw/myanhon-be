@@ -2357,3 +2357,1067 @@ TypeError: Converting circular structure to JSON
     at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/payment/payment.js:5:58)
     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
  
+Sun Jul 23 2023 12:26:40 GMT+0630 (Myanmar Time)[ Get Questioniar Controller ]
+TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:36:36
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:8:71
+    at new Promise (<anonymous>)
+    at Object.<anonymous>.__awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:4:12)
+    at createQuizz (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:30:66)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/body-parser/lib/read.js:137:5
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:231:16)
+    at done (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:220:7)
+    at IncomingMessage.onEnd (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:280:7)
+    at IncomingMessage.emit (node:events:512:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+ 
+Sun Jul 23 2023 12:26:43 GMT+0630 (Myanmar Time)[ Get Questioniar Controller ]
+TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:36:36
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:8:71
+    at new Promise (<anonymous>)
+    at Object.<anonymous>.__awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:4:12)
+    at createQuizz (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:30:66)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/body-parser/lib/read.js:137:5
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:231:16)
+    at done (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:220:7)
+    at IncomingMessage.onEnd (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:280:7)
+    at IncomingMessage.emit (node:events:512:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+ 
+Sun Jul 23 2023 12:28:12 GMT+0630 (Myanmar Time)[ Get Questioniar Controller ]
+TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:36:36
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:8:71
+    at new Promise (<anonymous>)
+    at Object.<anonymous>.__awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:4:12)
+    at createQuizz (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:30:66)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/body-parser/lib/read.js:137:5
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:231:16)
+    at done (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:220:7)
+    at IncomingMessage.onEnd (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:280:7)
+    at IncomingMessage.emit (node:events:512:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+ 
+Sun Jul 23 2023 12:28:27 GMT+0630 (Myanmar Time)[ Get Questioniar Controller ]
+TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:36:36
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:8:71
+    at new Promise (<anonymous>)
+    at Object.<anonymous>.__awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:4:12)
+    at createQuizz (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:30:66)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/body-parser/lib/read.js:137:5
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:231:16)
+    at done (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:220:7)
+    at IncomingMessage.onEnd (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:280:7)
+    at IncomingMessage.emit (node:events:512:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+ 
+Sun Jul 23 2023 12:31:57 GMT+0630 (Myanmar Time)[ Get Questioniar Controller ]
+TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:36:36
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:8:71
+    at new Promise (<anonymous>)
+    at Object.<anonymous>.__awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:4:12)
+    at createQuizz (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:30:66)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/body-parser/lib/read.js:137:5
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:231:16)
+    at done (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:220:7)
+    at IncomingMessage.onEnd (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:280:7)
+    at IncomingMessage.emit (node:events:512:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+ 
+Sun Jul 23 2023 12:32:36 GMT+0630 (Myanmar Time)[ Get Questioniar Controller ]
+TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:36:36
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:8:71
+    at new Promise (<anonymous>)
+    at Object.<anonymous>.__awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:4:12)
+    at createQuizz (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:30:66)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/body-parser/lib/read.js:137:5
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:231:16)
+    at done (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:220:7)
+    at IncomingMessage.onEnd (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:280:7)
+    at IncomingMessage.emit (node:events:512:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+ 
+Sun Jul 23 2023 14:19:09 GMT+0630 (Myanmar Time)[ Get Questioniar Controller ]
+TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:44:36
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:8:71
+    at new Promise (<anonymous>)
+    at Object.<anonymous>.__awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:4:12)
+    at createQuizz (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:38:66)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/body-parser/lib/read.js:137:5
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:231:16)
+    at done (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:220:7)
+    at IncomingMessage.onEnd (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:280:7)
+    at IncomingMessage.emit (node:events:512:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+ 
+Mon Jul 24 2023 02:32:40 GMT+0630 (Myanmar Time)[ Get Questioniar Controller ]
+TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:65:36
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:8:71
+    at new Promise (<anonymous>)
+    at Object.<anonymous>.__awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:4:12)
+    at createQuizz (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:59:66)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/body-parser/lib/read.js:137:5
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:231:16)
+    at done (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:220:7)
+    at IncomingMessage.onEnd (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:280:7)
+    at IncomingMessage.emit (node:events:512:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+ 
+Mon Jul 24 2023 02:46:17 GMT+0630 (Myanmar Time)[ Get Questioniar Controller ]
+TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:65:36
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:8:71
+    at new Promise (<anonymous>)
+    at Object.<anonymous>.__awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:4:12)
+    at createQuizz (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:59:66)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/body-parser/lib/read.js:137:5
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:231:16)
+    at done (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:220:7)
+    at IncomingMessage.onEnd (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:280:7)
+    at IncomingMessage.emit (node:events:512:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+ 
+Mon Jul 24 2023 02:46:21 GMT+0630 (Myanmar Time)[ Get Questioniar Controller ]
+TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:65:36
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:8:71
+    at new Promise (<anonymous>)
+    at Object.<anonymous>.__awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:4:12)
+    at createQuizz (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:59:66)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/body-parser/lib/read.js:137:5
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:231:16)
+    at done (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:220:7)
+    at IncomingMessage.onEnd (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:280:7)
+    at IncomingMessage.emit (node:events:512:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+ 
+Mon Jul 24 2023 02:46:28 GMT+0630 (Myanmar Time)[ Get Questioniar Controller ]
+TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:65:36
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:8:71
+    at new Promise (<anonymous>)
+    at Object.<anonymous>.__awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:4:12)
+    at createQuizz (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:59:66)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/body-parser/lib/read.js:137:5
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:231:16)
+    at done (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:220:7)
+    at IncomingMessage.onEnd (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:280:7)
+    at IncomingMessage.emit (node:events:512:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+ 
+Mon Jul 24 2023 02:46:34 GMT+0630 (Myanmar Time)[ Get Questioniar Controller ]
+TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:65:36
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:8:71
+    at new Promise (<anonymous>)
+    at Object.<anonymous>.__awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:4:12)
+    at createQuizz (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:59:66)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/body-parser/lib/read.js:137:5
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:231:16)
+    at done (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:220:7)
+    at IncomingMessage.onEnd (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:280:7)
+    at IncomingMessage.emit (node:events:512:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+ 
+Mon Jul 24 2023 02:54:19 GMT+0630 (Myanmar Time)[ Get Questioniar Controller ]
+TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:65:36
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:8:71
+    at new Promise (<anonymous>)
+    at Object.<anonymous>.__awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:4:12)
+    at createQuizz (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:59:66)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/body-parser/lib/read.js:137:5
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:231:16)
+    at done (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:220:7)
+    at IncomingMessage.onEnd (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:280:7)
+    at IncomingMessage.emit (node:events:512:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+ 
+Mon Jul 24 2023 02:54:41 GMT+0630 (Myanmar Time)[ Get Questioniar Controller ]
+TypeError: Cannot read properties of undefined (reading 'map')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:65:36
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:8:71
+    at new Promise (<anonymous>)
+    at Object.<anonymous>.__awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:4:12)
+    at createQuizz (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/controllers/questioniar.ts:59:66)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
+    at Route.dispatch (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:114:3)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:284:15
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:646:15
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:265:14)
+    at Function.handle (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:175:3)
+    at router (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:47:12)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at trim_prefix (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:328:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:286:9
+    at Function.process_params (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:346:12)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/index.js:280:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/body-parser/lib/read.js:137:5
+    at AsyncResource.runInAsyncScope (node:async_hooks:204:9)
+    at invokeCallback (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:231:16)
+    at done (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:220:7)
+    at IncomingMessage.onEnd (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/raw-body/index.js:280:7)
+    at IncomingMessage.emit (node:events:512:28)
+    at endReadableNT (node:internal/streams/readable:1359:12)
+    at processTicksAndRejections (node:internal/process/task_queues:82:21)
+ 

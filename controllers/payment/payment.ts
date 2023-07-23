@@ -4,7 +4,11 @@ import { PrismaClient } from "@prisma/client";
 import NodeRSA from "node-rsa";
 import axios from "axios";
 
-import { encryptPaymentPayload, logError, writeJsonRes } from "../../utils/functions";
+import {
+  encryptPaymentPayload,
+  logError,
+  writeJsonRes,
+} from "../../utils/functions";
 
 const prisma: PrismaClient = new PrismaClient();
 
@@ -17,7 +21,7 @@ export const pay = async (req: Request, res: Response) => {
       orderId: req.body.orderId,
       customerPhone: req.body.customerPhone,
       customerName: req.body.customerName,
-      items: JSON.stringify(req.body.items)
+      items: JSON.stringify(req.body.items),
     };
 
     const data = encryptPaymentPayload(paymentPayload);
@@ -27,8 +31,8 @@ export const pay = async (req: Request, res: Response) => {
     );
 
     const payload = new FormData();
-    if(data) {
-      payload.append('payload', data);
+    if (data) {
+      payload.append("payload", data);
     }
 
     const status = await axios.post(

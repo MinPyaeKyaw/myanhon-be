@@ -11,33 +11,33 @@ datasource db {
 }
 
 model Admins {
-  id String @id @default(uuid())
-  name String
-  email String @unique
-  password String
-  loginTryCount Int @default(0)
-  role Roles @relation(fields: [roleId], references: [id])
-  roleId String
-  verificationCode String @default("000000") @db.VarChar(6)
-  hasLogin Boolean @default(false)
-  latestLogin DateTime @default(now())
+  id               String   @id @default(uuid())
+  name             String
+  email            String   @unique
+  password         String
+  loginTryCount    Int      @default(0)
+  role             Roles    @relation(fields: [roleId], references: [id])
+  roleId           String
+  verificationCode String   @default("000000") @db.VarChar(6)
+  hasLogin         Boolean  @default(false)
+  latestLogin      DateTime @default(now())
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Roles {
-  id String @id @default(uuid())
-  name RoleNames @default(viewer)
+  id          String        @id @default(uuid())
+  name        RoleNames     @default(viewer)
   permissions Permissions[]
-  admins Admins[]
+  admins      Admins[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Permissions {
-  id String @id @default(uuid())
+  id   String          @id @default(uuid())
   name PermissionNames @default(read)
   role Roles[]
 
@@ -46,8 +46,8 @@ model Permissions {
 }
 
 model Levels {
-  id String @id @default(uuid())
-  name LevelNames @default(N5)
+  id      String     @id @default(uuid())
+  name    LevelNames @default(N5)
   courses Courses[]
 
   createdAt DateTime @default(now())
@@ -55,8 +55,8 @@ model Levels {
 }
 
 model Types {
-  id String @id @default(uuid())
-  name CourseTypes @default(grammer)
+  id      String      @id @default(uuid())
+  name    CourseTypes @default(grammer)
   courses Courses[]
 
   createdAt DateTime @default(now())
@@ -64,50 +64,50 @@ model Types {
 }
 
 model Users {
-  id String @id @default(uuid())
-  name String
-  email String @unique
-  phone String
-  password String
-  isEmailVerified Boolean @default(false)
-  isPaid Boolean  @default(false)
-  startDate DateTime?
-  expiredDate DateTime?
-  verificationCode String @default("000000") @db.VarChar(6)
-  questions Questions[]
-  userTracking UserTracking[]
+  id               String         @id @default(uuid())
+  name             String
+  email            String         @unique
+  phone            String
+  password         String
+  isEmailVerified  Boolean        @default(false)
+  isPaid           Boolean        @default(false)
+  startDate        DateTime?
+  expiredDate      DateTime?
+  verificationCode String         @default("000000") @db.VarChar(6)
+  questions        Questions[]
+  userTracking     UserTracking[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Instructors {
-  id String @id @default(uuid())
-  name String
-  email String
-  phone String
+  id          String    @id @default(uuid())
+  name        String
+  email       String
+  phone       String
   description String
-  photo String?
-  address String
-  password String
+  photo       String?
+  address     String
+  password    String
   // CourseInstructor CourseInstructor[]
-  answers Answers[]
-  courses Courses[]
+  answers     Answers[]
+  courses     Courses[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Courses {
-  id String @id @default(uuid())
-  name String
-  duration Int
-  isPublic Boolean @default(false)
-  courseType Types @relation(fields: [type], references: [id])
-  type String
-  courseLevel Levels @relation(fields: [level], references: [id])
-  level String
-  contents Contents[]
+  id          String        @id @default(uuid())
+  name        String
+  duration    Int
+  isPublic    Boolean       @default(false)
+  courseType  Types         @relation(fields: [type], references: [id])
+  type        String
+  courseLevel Levels        @relation(fields: [level], references: [id])
+  level       String
+  contents    Contents[]
   instructors Instructors[]
 
   createdAt DateTime @default(now())
@@ -117,13 +117,13 @@ model Courses {
 }
 
 model Contents {
-  id String @id @default(uuid())
-  name String
-  thumbnail String
-  url String
-  isPublic Boolean
-  course Courses @relation(fields: [courseId], references: [id])
-  courseId String
+  id           String         @id @default(uuid())
+  name         String
+  thumbnail    String
+  url          String
+  isPublic     Boolean
+  course       Courses        @relation(fields: [courseId], references: [id])
+  courseId     String
   userTracking UserTracking[]
 
   createdAt DateTime @default(now())
@@ -131,22 +131,22 @@ model Contents {
 }
 
 model Questions {
-  id String @id @default(uuid())
-  question String 
-  user Users @relation(fields: [userId], references: [id])
-  userId String
-  answers Answers[]
+  id       String    @id @default(uuid())
+  question String
+  user     Users     @relation(fields: [userId], references: [id])
+  userId   String
+  answers  Answers[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Answers {
-  id String @id @default(uuid())
-  answer String
-  question Questions @relation(fields: [questionId], references: [id])
-  questionId String
-  instructor Instructors @relation(fields: [instructorId], references: [id])
+  id           String      @id @default(uuid())
+  answer       String
+  question     Questions   @relation(fields: [questionId], references: [id])
+  questionId   String
+  instructor   Instructors @relation(fields: [instructorId], references: [id])
   instructorId String
 
   createdAt DateTime @default(now())
@@ -154,12 +154,41 @@ model Answers {
 }
 
 model UserTracking {
-  id String @id @default(uuid())
-  content Contents @relation(fields: [contentId], references: [id])
-  contentId String
-  user Users @relation(fields: [userId], references: [id])
-  userId String
-  completedPercent Int @default(0)
+  id               String   @id @default(uuid())
+  content          Contents @relation(fields: [contentId], references: [id])
+  contentId        String
+  user             Users    @relation(fields: [userId], references: [id])
+  userId           String
+  completedPercent Int      @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model QuestioniarsQuizz {
+  id       String              @id @default(uuid())
+  question String
+  answers  QuestioniarAnswer[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model QuestioniarAnswer {
+  id         String            @id @default(uuid())
+  answer     String
+  count      Int
+  question   QuestioniarsQuizz @relation(fields: [questionId], references: [id])
+  questionId String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Suggestion {
+  id         String @id @default(uuid())
+  title      String
+  suggestion String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

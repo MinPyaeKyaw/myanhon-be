@@ -1,5 +1,5 @@
 import Request from 'supertest';
-import app from '..';
+import app from '../..';
 
 describe('User', () => {
     it('PATCH / edit user', async () => {
