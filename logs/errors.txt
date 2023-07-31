@@ -3421,3 +3421,261 @@ TypeError: Cannot read properties of undefined (reading 'map')
     at endReadableNT (node:internal/streams/readable:1359:12)
     at processTicksAndRejections (node:internal/process/task_queues:82:21)
  
+Sun Jul 30 2023 23:00:48 GMT+0630 (Myanmar Time)[ Submit Exam Controller ]
+Error: 
+Invalid `prisma.examResult.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:95:52
+
+  92     },
+  93 });
+  94 // calculate result
+→ 95 const examResult = yield prisma.examResult.create({
+       data: {
+         result: 'result',
+         examId: undefined,
+         levelId: undefined,
+         userId: undefined,
+     +   exam: {
+     +     create?: ExamCreateWithoutExamResultInput | ExamUncheckedCreateWithoutExamResultInput,
+     +     connectOrCreate?: ExamCreateOrConnectWithoutExamResultInput,
+     +     connect?: ExamWhereUniqueInput
+     +   },
+     +   level: {
+     +     create?: LevelsCreateWithoutExamResultInput | LevelsUncheckedCreateWithoutExamResultInput,
+     +     connectOrCreate?: LevelsCreateOrConnectWithoutExamResultInput,
+     +     connect?: LevelsWhereUniqueInput
+     +   },
+     +   user: {
+     +     create?: UsersCreateWithoutExamResultInput | UsersUncheckedCreateWithoutExamResultInput,
+     +     connectOrCreate?: UsersCreateOrConnectWithoutExamResultInput,
+     +     connect?: UsersWhereUniqueInput
+     +   },
+     ?   id?: String,
+     ?   createdAt?: DateTime,
+     ?   updatedAt?: DateTime
+       }
+     })
+
+Argument exam for data.exam is missing.
+Argument level for data.level is missing.
+Argument user for data.user is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Mon Jul 31 2023 00:36:07 GMT+0630 (Myanmar Time)[ Submit Exam Controller ]
+TypeError: Cannot read properties of undefined (reading 'isCorrect')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:111:41
+    at Array.forEach (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:110:31
+    at Array.forEach (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:102:18
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:5:58)
+ 
+Mon Jul 31 2023 00:36:37 GMT+0630 (Myanmar Time)[ Submit Exam Controller ]
+TypeError: Cannot read properties of undefined (reading 'isCorrect')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:111:41
+    at Array.forEach (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:110:31
+    at Array.forEach (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:102:18
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:5:58)
+ 
+Mon Jul 31 2023 00:37:46 GMT+0630 (Myanmar Time)[ Submit Exam Controller ]
+TypeError: Cannot read properties of undefined (reading 'isCorrect')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:111:41
+    at Array.forEach (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:110:31
+    at Array.forEach (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:102:18
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:5:58)
+ 
+Mon Jul 31 2023 00:39:02 GMT+0630 (Myanmar Time)[ Submit Exam Controller ]
+TypeError: Cannot read properties of undefined (reading 'isCorrect')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:111:59
+    at Array.forEach (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:110:31
+    at Array.forEach (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:102:18
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:5:58)
+ 
+Mon Jul 31 2023 00:45:53 GMT+0630 (Myanmar Time)[ Submit Exam Controller ]
+Error: 
+Invalid `prisma.examResult.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:123:33
+
+  120     totalScore: 100,
+  121     sectionResults,
+  122 };
+→ 123 yield prisma.examResult.create({
+        data: {
+          result: '{"result":1,"totalScore":100,"sectionResults":[{"section":"Grammer","result":50,"totalScore":2},{"section":"Listening","result":0,"totalScore":2}]}',
+          examId: undefined,
+          levelId: undefined,
+          userId: undefined,
+      +   exam: {
+      +     create?: ExamCreateWithoutExamResultInput | ExamUncheckedCreateWithoutExamResultInput,
+      +     connectOrCreate?: ExamCreateOrConnectWithoutExamResultInput,
+      +     connect?: ExamWhereUniqueInput
+      +   },
+      +   level: {
+      +     create?: LevelsCreateWithoutExamResultInput | LevelsUncheckedCreateWithoutExamResultInput,
+      +     connectOrCreate?: LevelsCreateOrConnectWithoutExamResultInput,
+      +     connect?: LevelsWhereUniqueInput
+      +   },
+      +   user: {
+      +     create?: UsersCreateWithoutExamResultInput | UsersUncheckedCreateWithoutExamResultInput,
+      +     connectOrCreate?: UsersCreateOrConnectWithoutExamResultInput,
+      +     connect?: UsersWhereUniqueInput
+      +   },
+      ?   id?: String,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Argument exam for data.exam is missing.
+Argument level for data.level is missing.
+Argument user for data.user is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Mon Jul 31 2023 21:57:36 GMT+0630 (Myanmar Time)[ Submit Exam Controller ]
+Error: 
+Invalid `prisma.examResult.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:128:33
+
+  125     totalScore,
+  126     sectionResults,
+  127 };
+→ 128 yield prisma.examResult.create({
+        data: {
+          result: {
+            result: 1,
+            totalScore: 4,
+            sectionResults: [
+              {
+                section: 'Grammer',
+                result: 50,
+                totalScore: 2
+              },
+              {
+                section: 'Listening',
+                result: 0,
+                totalScore: 2
+              }
+            ]
+          },
+          examId: undefined,
+          levelId: undefined,
+          userId: undefined,
+      +   exam: {
+      +     create?: ExamCreateWithoutExamResultInput | ExamUncheckedCreateWithoutExamResultInput,
+      +     connectOrCreate?: ExamCreateOrConnectWithoutExamResultInput,
+      +     connect?: ExamWhereUniqueInput
+      +   },
+      +   level: {
+      +     create?: LevelsCreateWithoutExamResultInput | LevelsUncheckedCreateWithoutExamResultInput,
+      +     connectOrCreate?: LevelsCreateOrConnectWithoutExamResultInput,
+      +     connect?: LevelsWhereUniqueInput
+      +   },
+      +   user: {
+      +     create?: UsersCreateWithoutExamResultInput | UsersUncheckedCreateWithoutExamResultInput,
+      +     connectOrCreate?: UsersCreateOrConnectWithoutExamResultInput,
+      +     connect?: UsersWhereUniqueInput
+      +   },
+      ?   id?: String,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Argument exam for data.exam is missing.
+Argument level for data.level is missing.
+Argument user for data.user is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 
+Mon Jul 31 2023 21:58:50 GMT+0630 (Myanmar Time)[ Submit Exam Controller ]
+Error: 
+Invalid `prisma.examResult.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:128:33
+
+  125     totalScore,
+  126     sectionResults,
+  127 };
+→ 128 yield prisma.examResult.create({
+        data: {
+          result: {
+            result: 1,
+            totalScore: 4,
+            sectionResults: [
+              {
+                section: 'Grammer',
+                result: 50,
+                totalScore: 2
+              },
+              {
+                section: 'Listening',
+                result: 0,
+                totalScore: 2
+              }
+            ]
+          },
+          examId: undefined,
+          levelId: undefined,
+          userId: undefined,
+      +   exam: {
+      +     create?: ExamCreateWithoutExamResultInput | ExamUncheckedCreateWithoutExamResultInput,
+      +     connectOrCreate?: ExamCreateOrConnectWithoutExamResultInput,
+      +     connect?: ExamWhereUniqueInput
+      +   },
+      +   level: {
+      +     create?: LevelsCreateWithoutExamResultInput | LevelsUncheckedCreateWithoutExamResultInput,
+      +     connectOrCreate?: LevelsCreateOrConnectWithoutExamResultInput,
+      +     connect?: LevelsWhereUniqueInput
+      +   },
+      +   user: {
+      +     create?: UsersCreateWithoutExamResultInput | UsersUncheckedCreateWithoutExamResultInput,
+      +     connectOrCreate?: UsersCreateOrConnectWithoutExamResultInput,
+      +     connect?: UsersWhereUniqueInput
+      +   },
+      ?   id?: String,
+      ?   createdAt?: DateTime,
+      ?   updatedAt?: DateTime
+        }
+      })
+
+Argument exam for data.exam is missing.
+Argument level for data.level is missing.
+Argument user for data.user is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+ 

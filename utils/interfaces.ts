@@ -145,3 +145,31 @@ export interface SuggestionResInterface {
   createdAt: Date;
   updatedAt: Date;
 }
+
+export interface ExamAnswerResInterface {
+  id: string;
+  answer: string;
+  isCorrect: boolean;
+  questionId: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface ExamQuestionResInterface {
+  id: string;
+  question: string;
+  sectionId: string;
+  answers: ExamAnswerResInterface[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+export interface ExamSectionResInterface {
+  id: string;
+  name: string;
+  examId: string;
+  levelId: string;
+  questions: ExamQuestionResInterface[];
+  createdAt: Date;
+  updatedAt: Date;
+}

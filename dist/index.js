@@ -41,6 +41,7 @@ const courses_2 = __importDefault(require("./routes/admin/courses"));
 const payment_1 = __importDefault(require("./routes/payment/payment"));
 const questioniar_1 = __importDefault(require("./routes/questioniar"));
 const suggestoin_1 = __importDefault(require("./routes/suggestoin"));
+const exam_1 = __importDefault(require("./routes/exam"));
 dotenv.config({ path: __dirname + "/.env" });
 dotenv.config();
 const app = (0, express_1.default)();
@@ -61,6 +62,7 @@ app.use(`${process.env.API_PREFIX}`, user_1.default);
 app.use(`${process.env.API_PREFIX}`, payment_1.default);
 app.use(`${process.env.API_PREFIX}`, questioniar_1.default);
 app.use(`${process.env.API_PREFIX}`, suggestoin_1.default);
+app.use(`${process.env.API_PREFIX}`, exam_1.default);
 app.listen(4000, () => {
     console.log("now listening to 4000");
 });

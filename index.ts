@@ -15,6 +15,7 @@ import adminCourseRoute from "./routes/admin/courses";
 import paymentRouter from "./routes/payment/payment";
 import questioniarRouter from "./routes/questioniar";
 import suggestionRouter from "./routes/suggestoin";
+import examRouter from "./routes/exam";
 
 dotenv.config({ path: __dirname + "/.env" });
 dotenv.config();
@@ -39,6 +40,7 @@ app.use(`${process.env.API_PREFIX}`, userRouter);
 app.use(`${process.env.API_PREFIX}`, paymentRouter);
 app.use(`${process.env.API_PREFIX}`, questioniarRouter);
 app.use(`${process.env.API_PREFIX}`, suggestionRouter);
+app.use(`${process.env.API_PREFIX}`, examRouter);
 
 app.listen(4000, () => {
   console.log("now listening to 4000");
