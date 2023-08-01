@@ -8,12 +8,13 @@ import {
   getExam,
   submitExam,
 } from "../controllers/examController";
+import { apiKeyMiddleware } from "../middlewares/apiKeyMiddleware";
 
 const examRouter = express.Router();
 
-examRouter.post("/exam-submit", submitExam);
+examRouter.post("/exam-submit", apiKeyMiddleware, submitExam);
 
-examRouter.get("/exam", examQueryValidation, getExam);
+examRouter.get("/exam", apiKeyMiddleware, examQueryValidation, getExam);
 
 // for development, remove later
 examRouter.post("/exam", createExam);

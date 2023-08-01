@@ -10,18 +10,25 @@ import {
 import { verifyUserJwt } from "../middlewares/userJwtMiddleware";
 import { courseQueryValidation } from "../utils/queryValidators";
 import { validateCourseQuery } from "../middlewares/courseMiddleware";
+import { apiKeyMiddleware } from "../middlewares/apiKeyMiddleware";
 
 const courseRouter = express.Router();
 
 courseRouter.get(
   "/courses",
+  apiKeyMiddleware,
   verifyUserJwt,
   courseQueryValidation,
   validateCourseQuery,
   getCourses
 );
 
-courseRouter.get("/courses/:id", verifyUserJwt, getCourseByID);
+courseRouter.get(
+  "/courses/:id",
+  apiKeyMiddleware,
+  verifyUserJwt,
+  getCourseByID
+);
 
 // just for development, remove later
 // courseRouter.post('/create-course-instructor', createCourseInstructor);

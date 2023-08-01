@@ -4,13 +4,19 @@ import {
   getQuizz,
   submitQuestioniar,
 } from "../controllers/questioniar";
+import { apiKeyMiddleware } from "../middlewares/apiKeyMiddleware";
 
 const questioniarRouter = express.Router();
 
-questioniarRouter.get("/questioniars", getQuizz);
+questioniarRouter.get("/questioniars", apiKeyMiddleware, getQuizz);
 
-questioniarRouter.post("/questioniar-submit", submitQuestioniar);
+questioniarRouter.post(
+  "/questioniar-submit",
+  apiKeyMiddleware,
+  submitQuestioniar
+);
 
+// just for development, remove later
 questioniarRouter.post("/questioniar", createQuizz);
 
 export default questioniarRouter;
