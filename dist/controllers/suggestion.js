@@ -21,11 +21,11 @@ const submitSuggestion = (req, res) => __awaiter(void 0, void 0, void 0, functio
                 suggestion: req.body.suggestion,
             },
         });
-        return (0, functions_1.writeJsonRes)(res, 201, suggestion, "Successfully submitted!");
+        return (0, functions_1.writeJsonRes)(res, 201, suggestion, 'Successfully submitted!');
     }
     catch (error) {
-        (0, functions_1.logError)(error, "Post Suggestion Controller");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'Post Suggestion Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.submitSuggestion = submitSuggestion;

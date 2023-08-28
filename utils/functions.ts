@@ -1,195 +1,198 @@
-import * as express from "express";
-import fs from "fs";
-import zlib from "zlib";
+import type * as express from 'express'
+import fs from 'fs'
+import zlib from 'zlib'
 
-import { PrismaClient } from "@prisma/client";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import dayjs from "dayjs";
-import { RedisClientType, createClient } from "redis";
-import multer from "multer";
-import NodeRSA from "node-rsa";
+import { PrismaClient } from '@prisma/client'
+import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
+import dayjs from 'dayjs'
+import { type RedisClientType, createClient } from 'redis'
+import multer from 'multer'
+import NodeRSA from 'node-rsa'
 
-import { AdminObjInterface, PaymentTokenInterface } from "./interfaces";
+import { type AdminObjInterface } from './interfaces'
 
-const prisma: PrismaClient = new PrismaClient();
+const prisma: PrismaClient = new PrismaClient()
 
 export const zipFile = (filePath: string) => {
-  const splitedFilePath: string[] = filePath.split("/");
-  let parentFolder: string = "";
+  const splitedFilePath: string[] = filePath.split('/')
+  let parentFolder: string = ''
   splitedFilePath.forEach((folder: string) => {
     if (folder !== splitedFilePath[splitedFilePath.length - 1]) {
-      parentFolder = parentFolder + folder + "/";
+      parentFolder = parentFolder + folder + '/'
     }
-  });
+  })
 
   const zipFilename = `${parentFolder}${dayjs(new Date()).format(
-    "DD-MM-YYYY-h-m-s"
-  )}.zip`;
-  const readStream = fs.createReadStream(filePath);
-  const writeStream = fs.createWriteStream(zipFilename);
-  const zip = zlib.createGzip();
-  return readStream.pipe(zip).pipe(writeStream);
-};
+    'DD-MM-YYYY-h-m-s',
+  )}.zip`
+  const readStream = fs.createReadStream(filePath)
+  const writeStream = fs.createWriteStream(zipFilename)
+  const zip = zlib.createGzip()
+  return readStream.pipe(zip).pipe(writeStream)
+}
 
 export const getFileSize = async (
   filePath: string,
-  unit: "byte" | "kb" | "mb" | "gb"
+  unit: 'byte' | 'kb' | 'mb' | 'gb',
 ): Promise<number> => {
-  const stats = await fs.promises.stat(filePath);
+  const stats = await fs.promises.stat(filePath)
 
-  if (unit === "kb") {
-    return stats.size / 1024;
+  if (unit === 'kb') {
+    return stats.size / 1024
   }
-  if (unit === "mb") {
-    return stats.size / (1024 * 1024);
+  if (unit === 'mb') {
+    return stats.size / (1024 * 1024)
   }
-  if (unit === "gb") {
-    return stats.size / (1024 * 1024 * 1024);
+  if (unit === 'gb') {
+    return stats.size / (1024 * 1024 * 1024)
   }
 
-  return stats.size;
-};
+  return stats.size
+}
 
 export const zipAndDelFile = (filePath: string) => {
-  getFileSize(filePath, "kb").then((result) => {
+  getFileSize(filePath, 'kb').then(result => {
     if (result > 500) {
-      zipFile(filePath).on("finish", () => {
-        fs.unlink(filePath, (err) => {
+      zipFile(filePath).on('finish', () => {
+        fs.unlink(filePath, err => {
           if (err) {
-            console.log("delete error file", err);
+            console.log('delete error file', err)
           }
-        });
-      });
+        })
+      })
     }
-  });
-};
+  })
+}
 
 export const logError = (err: any, label: string): void => {
-  console.log(label, err);
+  console.log(label, err)
 
-  let format = new Date() + "[ " + label + " ]" + "\n" + err.stack + "\n \n";
+  const format = `${new Date()}[ ${label} ]\n${err.stack}\n\n`
+  // const format = new Date() + '[ ' + label + ' ]' + '\n' + err.stack + '\n \n'
 
-  // @ts-ignore
+  // @ts-expect-error
   if (!fs.existsSync(process.env.LOGGER_FILE)) {
     if (err instanceof Error) {
-      // @ts-ignore
-      fs.writeFile(process.env.LOGGER_FILE, format, (error) => {
+      // @ts-expect-error
+      fs.writeFile(process.env.LOGGER_FILE, format, error => {
         if (error) {
-          console.log("create error file", error);
+          console.log('create error file', error)
         }
-        // @ts-ignore
-        zipAndDelFile(process.env.LOGGER_FILE);
-      });
+        // @ts-expect-error
+        zipAndDelFile(process.env.LOGGER_FILE)
+      })
     }
   } else {
     if (err instanceof Error) {
-      // @ts-ignore
-      fs.appendFile(process.env.LOGGER_FILE, format, (error) => {
+      // @ts-expect-error
+      fs.appendFile(process.env.LOGGER_FILE, format, error => {
         if (error) {
-          console.log("append error", error);
+          console.log('append error', error)
         }
-        // @ts-ignore
-        zipAndDelFile(process.env.LOGGER_FILE);
-      });
+        // @ts-expect-error
+        zipAndDelFile(process.env.LOGGER_FILE)
+      })
     }
   }
-};
+}
 
 export const writeJsonRes = <ResDataType>(
   res: express.Response,
   status: number,
   data: ResDataType,
-  message: string
+  message: string,
 ) => {
   return res
     .status(status)
     .json({
-      status: status,
-      message: message,
-      data: data,
+      status,
+      message,
+      data,
     })
-    .end();
-};
+    .end()
+}
 
 export const generateOTPCode = (): string => {
-  let result = "";
+  let result = ''
   const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
 
   for (let i = 0; i < 6; i++) {
-    result += characters.charAt(Math.floor(Math.random() * characters.length));
+    result += characters.charAt(Math.floor(Math.random() * characters.length))
   }
 
-  return result.toUpperCase();
-};
+  return result.toUpperCase()
+}
 
 export const refreshVerificationCode = async (email: string) => {
   try {
-    const newCode = generateOTPCode();
+    const newCode = generateOTPCode()
     const updateCode = await prisma.users.update({
       where: {
-        email: email,
+        email,
       },
       data: {
         verificationCode: newCode,
       },
-    });
+    })
 
     if (updateCode) {
-      return true;
+      return true
     }
   } catch (error) {
-    return false;
+    return false
   }
-};
+}
 
 export const hashPassword = async (password: string): Promise<string> => {
-  return await bcrypt.hash(password, 10);
-};
+  return await bcrypt.hash(password, 10)
+}
 
 export const verifyPassword = async (
   userPassword: string,
-  dbPassword: string
+  dbPassword: string,
 ): Promise<boolean> => {
   return await bcrypt
     .compare(userPassword, dbPassword)
-    .then((res) => {
-      return res;
+    .then(res => {
+      return res
     })
-    .catch((err) => {
-      return false;
-    });
-};
+    .catch(() => {
+      return false
+    })
+}
 
 export const getJwtToken = (data: any, secret: string): string => {
-  let token = jwt.sign(data, secret);
+  const token = jwt.sign(data, secret)
 
-  return token;
-};
+  return token
+}
 
 export const getJwtTokenFromReq = (
-  authHeader: string | undefined
+  authHeader: string | undefined,
 ): string | false => {
   if (!authHeader) {
-    return false;
+    return false
   }
-  return authHeader && authHeader.split(" ")[1];
-};
+  return authHeader?.split(' ')[1]
+}
 
 export const getConnectedRedisClient = async (): Promise<RedisClientType> => {
-  const redisClient: RedisClientType = createClient();
-  redisClient.on("error", (err) => console.log("Redis Client Error", err));
-  await redisClient.connect();
+  const redisClient: RedisClientType = createClient()
+  redisClient.on('error', err => {
+    console.log('Redis Client Error', err)
+  })
+  await redisClient.connect()
 
-  return redisClient;
-};
+  return redisClient
+}
 
 export const updateAdminLoginCount = async (
-  admin: AdminObjInterface
+  admin: AdminObjInterface,
 ): Promise<boolean> => {
   try {
-    // @ts-ignore
+    // @ts-expect-error
     if (admin.loginTryCount < +process.env.ALLOWED_LOGIN_COUNT) {
       await prisma.admins.update({
         where: {
@@ -198,7 +201,7 @@ export const updateAdminLoginCount = async (
         data: {
           loginTryCount: admin.loginTryCount + 1,
         },
-      });
+      })
     } else {
       await prisma.admins.update({
         where: {
@@ -208,48 +211,48 @@ export const updateAdminLoginCount = async (
           loginTryCount: 0,
           latestLogin: new Date(),
         },
-      });
+      })
     }
-    return true;
+    return true
   } catch (error) {
-    logError(error, "Admin Update Count");
-    return false;
+    logError(error, 'Admin Update Count')
+    return false
   }
-};
+}
 
 export const uploadFile = () => {
   const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      console.log("lee", file);
-      cb(null, "uploads/");
+      console.log('lee', file)
+      cb(null, 'uploads/')
     },
     filename: (req, file, cb) => {
-      cb(null, Date.now() + "-" + file.originalname);
+      cb(null, Date.now() + '-' + file.originalname)
     },
-  });
+  })
 
-  const upload = multer({ storage: storage });
+  const upload = multer({ storage })
 
-  return upload;
-};
+  return upload
+}
 
 export const encryptPaymentPayload = (paymentPayload: any): string | null => {
   // Encrypt payload
-  const publicKey = new NodeRSA();
-  // @ts-ignore
-  publicKey.importKey(process.env.PAYMENT_PUBLIC_KEY, "pkcs8-public");
-  publicKey.setOptions({ encryptionScheme: "pkcs1" });
-  const encrytpStr = publicKey.encrypt(paymentPayload, "base64");
-  const param = { payload: encrytpStr };
-  const payloadData = new URLSearchParams(param);
-  const data = payloadData.get("payload");
+  const publicKey = new NodeRSA()
+  // @ts-expect-error
+  publicKey.importKey(process.env.PAYMENT_PUBLIC_KEY, 'pkcs8-public')
+  publicKey.setOptions({ encryptionScheme: 'pkcs1' })
+  const encrytpStr = publicKey.encrypt(paymentPayload, 'base64')
+  const param = { payload: encrytpStr }
+  const payloadData = new URLSearchParams(param)
+  const data = payloadData.get('payload')
 
-  return data;
-};
+  return data
+}
 
 export const calculatePercentage = (
   targetedValue: number,
-  totalBaseValue: number
+  totalBaseValue: number,
 ): number => {
-  return (targetedValue / totalBaseValue) * 100;
-};
+  return (targetedValue / totalBaseValue) * 100
+}

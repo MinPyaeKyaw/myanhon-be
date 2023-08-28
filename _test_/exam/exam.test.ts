@@ -1,15 +1,15 @@
-import Request from "supertest";
-import app from "../..";
+import Request from 'supertest'
+import app from '../..'
 
-describe("Exam", () => {
-  it("GET / get exam", async () => {
-    return Request(app)
-      .get(process.env.API_PREFIX + "/exam?type=typeId&level=levelId")
+describe('Exam', () => {
+  it('GET / get exam', async () => {
+    await Request(app)
+      .get(process.env.API_PREFIX + '/exam?type=typeId&level=levelId')
       .expect(200)
-      .then((response) => {
+      .then(response => {
         expect(response.body).toEqual({
           status: 200,
-          message: "Successfully retrived!",
+          message: 'Successfully retrived!',
           data: expect.arrayContaining([
             {
               id: expect.any(String),
@@ -39,9 +39,9 @@ describe("Exam", () => {
               ]),
             },
           ]),
-        });
-      });
-  });
+        })
+      })
+  })
 
   // it("POST / submit exam", async () => {
   //   return Request(app)
@@ -65,4 +65,4 @@ describe("Exam", () => {
   //       });
   //     });
   // });
-});
+})

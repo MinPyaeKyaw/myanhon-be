@@ -29,17 +29,17 @@ const getCourses = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             take: req.query.size && req.query.size !== '' ? +req.query.size : 5,
             include: {
                 courseType: true,
-                courseLevel: true
-            }
+                courseLevel: true,
+            },
         });
         if (courses.length < 1) {
-            return (0, functions_1.writeJsonRes)(res, 404, null, "No record found!");
+            return (0, functions_1.writeJsonRes)(res, 404, null, 'No record found!');
         }
-        return (0, functions_1.writeJsonRes)(res, 200, courses, "Successfully retrived!");
+        return (0, functions_1.writeJsonRes)(res, 200, courses, 'Successfully retrived!');
     }
     catch (error) {
-        (0, functions_1.logError)(error, "Get Courses Controller");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'Get Courses Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.getCourses = getCourses;
@@ -47,38 +47,39 @@ const getCourseByID = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     try {
         const course = yield prisma.courses.findUnique({
             where: {
-                id: req.params.id
+                id: req.params.id,
             },
             include: {
                 courseType: true,
                 courseLevel: true,
                 contents: true,
-                instructors: true
-            }
+                instructors: true,
+            },
         });
         if (!course) {
-            return (0, functions_1.writeJsonRes)(res, 404, null, "No data found!");
+            return (0, functions_1.writeJsonRes)(res, 404, null, 'No data found!');
         }
         const userTracking = yield prisma.userTracking.findMany({
             where: {
-                userId: req.body.userId
-            }
+                userId: req.body.userId,
+            },
         });
-        for (let content of course.contents) {
-            // @ts-ignore
+        for (const content of course.contents) {
+            // @ts-expect-error
             content.completedPercent = 0;
-            for (let trackedUser of userTracking) {
-                if (req.body.userId === trackedUser.userId && content.id === trackedUser.contentId) {
-                    // @ts-ignore
+            for (const trackedUser of userTracking) {
+                if (req.body.userId === trackedUser.userId &&
+                    content.id === trackedUser.contentId) {
+                    // @ts-expect-error
                     content.completedPercent = trackedUser.completedPercent;
                 }
             }
         }
-        return (0, functions_1.writeJsonRes)(res, 200, course, "Successfully retrived!");
+        return (0, functions_1.writeJsonRes)(res, 200, course, 'Successfully retrived!');
     }
     catch (error) {
-        (0, functions_1.logError)(error, "Get Course By ID Controller");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'Get Course By ID Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.getCourseByID = getCourseByID;
@@ -87,19 +88,19 @@ const createInstructor = (req, res) => __awaiter(void 0, void 0, void 0, functio
     try {
         const createdInstructor = yield prisma.instructors.create({
             data: {
-                name: "test instructor",
-                email: "testinstructor@gmail.com",
-                phone: "09450324985",
-                description: "this is description",
-                photo: "this is photo",
-                address: "instructor address",
-                password: "instructor password"
-            }
+                name: 'test instructor',
+                email: 'testinstructor@gmail.com',
+                phone: '09450324985',
+                description: 'this is description',
+                photo: 'this is photo',
+                address: 'instructor address',
+                password: 'instructor password',
+            },
         });
-        return (0, functions_1.writeJsonRes)(res, 201, createdInstructor, "Successfully created an instructor!");
+        return (0, functions_1.writeJsonRes)(res, 201, createdInstructor, 'Successfully created an instructor!');
     }
     catch (error) {
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.createInstructor = createInstructor;
@@ -125,15 +126,15 @@ const createCourse = (req, res) => __awaiter(void 0, void 0, void 0, function* (
                 name: req.body.name,
                 duration: req.body.duration,
                 type: req.body.type,
-                level: req.body.level
-            }
+                level: req.body.level,
+            },
         });
         if (createdCourse) {
-            return (0, functions_1.writeJsonRes)(res, 201, createdCourse, "Successfully created!");
+            return (0, functions_1.writeJsonRes)(res, 201, createdCourse, 'Successfully created!');
         }
     }
     catch (error) {
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.createCourse = createCourse;
@@ -146,15 +147,15 @@ const createContent = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 url: req.body.url,
                 thumbnail: req.body.thumbnail,
                 isPublic: req.body.isPublic,
-                courseId: req.body.courseId
-            }
+                courseId: req.body.courseId,
+            },
         });
         if (createdContent) {
-            return (0, functions_1.writeJsonRes)(res, 201, createdContent, "Successfully created!");
+            return (0, functions_1.writeJsonRes)(res, 201, createdContent, 'Successfully created!');
         }
     }
     catch (error) {
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.createContent = createContent;
@@ -165,14 +166,14 @@ const createUserTracking = (req, res) => __awaiter(void 0, void 0, void 0, funct
             data: {
                 userId: req.body.userId,
                 contentId: req.body.contentId,
-                completedPercent: req.body.completedPercent
-            }
+                completedPercent: req.body.completedPercent,
+            },
         });
-        return (0, functions_1.writeJsonRes)(res, 200, userTracking, "hee hee!");
+        return (0, functions_1.writeJsonRes)(res, 200, userTracking, 'hee hee!');
     }
     catch (error) {
         console.log('CREATE USER TRACKING ERROR', error);
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.createUserTracking = createUserTracking;

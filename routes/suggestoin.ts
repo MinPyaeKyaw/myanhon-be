@@ -1,16 +1,14 @@
-import express from "express";
+import express from 'express'
 
-import { submitSuggestion } from "../controllers/suggestion";
-import { verifyUserJwt } from "../middlewares/userJwtMiddleware";
-import { apiKeyMiddleware } from "../middlewares/apiKeyMiddleware";
+import { submitSuggestion } from '../controllers/suggestion'
+import { verifyUserJwt } from '../middlewares/userJwtMiddleware'
 
-const suggestionRouter = express.Router();
+const suggestionRouter = express.Router()
 
 suggestionRouter.post(
-  "/suggestion",
-  apiKeyMiddleware,
+  '/suggestion',
   verifyUserJwt,
-  submitSuggestion
-);
+  submitSuggestion,
+)
 
-export default suggestionRouter;
+export default suggestionRouter

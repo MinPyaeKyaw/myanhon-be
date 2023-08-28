@@ -1,4 +1,4 @@
-import express from "express";
+import express from 'express'
 import {
   checkEmail,
   login,
@@ -7,29 +7,27 @@ import {
   verifyEmail,
   verifyCode,
   test,
-} from "../controllers/authController";
-import { verifyResetPasswordJwt } from "../middlewares/resetPasswordJwtMiddleware";
-import { apiKeyMiddleware } from "../middlewares/apiKeyMiddleware";
+} from '../controllers/authController'
+import { verifyResetPasswordJwt } from '../middlewares/resetPasswordJwtMiddleware'
 
-const authRouter = express.Router();
+const authRouter = express.Router()
 
-authRouter.post("/login", apiKeyMiddleware, login);
+authRouter.post('/login', login)
 
-authRouter.post("/signup", apiKeyMiddleware, signup);
+authRouter.post('/signup', signup)
 
-authRouter.post("/verify-email", apiKeyMiddleware, verifyEmail);
+authRouter.post('/verify-email', verifyEmail)
 
-authRouter.post("/check-email", apiKeyMiddleware, checkEmail);
+authRouter.post('/check-email', checkEmail)
 
-authRouter.post("/verify-code", apiKeyMiddleware, verifyCode);
+authRouter.post('/verify-code', verifyCode)
 
 authRouter.patch(
-  "/reset-password",
-  apiKeyMiddleware,
+  '/reset-password',
   verifyResetPasswordJwt,
-  resetPassword
-);
+  resetPassword,
+)
 
-authRouter.post("/test", verifyResetPasswordJwt, test);
+authRouter.post('/test', verifyResetPasswordJwt, test)
 
-export default authRouter;
+export default authRouter

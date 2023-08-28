@@ -20,27 +20,27 @@ const enums_1 = require("../../utils/enums");
 const prisma = new client_1.PrismaClient();
 const superAdminMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const token = (0, functions_1.getJwtTokenFromReq)(req.headers['authorization']);
+        const token = (0, functions_1.getJwtTokenFromReq)(req.headers.authorization);
         if (!token) {
-            return (0, functions_1.writeJsonRes)(res, 401, null, "Unthorizied access!");
+            return (0, functions_1.writeJsonRes)(res, 401, null, 'Unthorizied access!');
         }
         const decodedToken = (0, jwt_decode_1.default)(token);
         const superAdmin = yield prisma.roles.findFirst({
             where: {
-                name: enums_1.ROLES.SUPER_ADMIN
-            }
+                name: enums_1.ROLES.SUPER_ADMIN,
+            },
         });
         if (!superAdmin) {
-            return (0, functions_1.writeJsonRes)(res, 401, null, "Unthorizied access!");
+            return (0, functions_1.writeJsonRes)(res, 401, null, 'Unthorizied access!');
         }
         if (!decodedToken.roleId && decodedToken.roleId !== superAdmin.id) {
-            return (0, functions_1.writeJsonRes)(res, 401, null, "Invalid token!");
+            return (0, functions_1.writeJsonRes)(res, 401, null, 'Invalid token!');
         }
         next();
     }
     catch (error) {
-        (0, functions_1.logError)(error, "RBAC Middleware");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'RBAC Middleware');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.superAdminMiddleware = superAdminMiddleware;

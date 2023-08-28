@@ -1,15 +1,15 @@
-import Request from "supertest";
-import app from "../..";
+import Request from 'supertest'
+import app from '../..'
 
-describe("Fetching questioniar", () => {
-  it("GET / fetch questions", async () => {
-    return Request(app)
-      .get(process.env.API_PREFIX + "/questioniars")
+describe('Fetching questioniar', () => {
+  it('GET / fetch questions', async () => {
+    await Request(app)
+      .get(process.env.API_PREFIX + '/questioniars')
       .expect(200)
-      .then((response) => {
+      .then(response => {
         expect(response.body).toEqual({
           status: 200,
-          message: "Successfully retrived!",
+          message: 'Successfully retrived!',
           data: expect.arrayContaining([
             {
               id: expect.any(String),
@@ -28,26 +28,26 @@ describe("Fetching questioniar", () => {
               updatedAt: expect.any(String),
             },
           ]),
-        });
-      });
-  });
+        })
+      })
+  })
 
-  it("POST / submit questioniar", async () => {
-    return Request(app)
-      .post(process.env.API_PREFIX + "/questioniar-submit")
+  it('POST / submit questioniar', async () => {
+    await Request(app)
+      .post(process.env.API_PREFIX + '/questioniar-submit')
       .send({
         payload: [
-          "c296f6b5-7114-43d4-a895-3f6daabd99fb",
-          "bf7d79ed-61b4-4377-88d4-79a965bc7d0e",
+          'c296f6b5-7114-43d4-a895-3f6daabd99fb',
+          'bf7d79ed-61b4-4377-88d4-79a965bc7d0e',
         ],
       })
       .expect(200)
-      .then((response) => {
+      .then(response => {
         expect(response.body).toEqual({
           status: 200,
-          message: "Successfully submitted!",
+          message: 'Successfully submitted!',
           data: null,
-        });
-      });
-  });
-});
+        })
+      })
+  })
+})

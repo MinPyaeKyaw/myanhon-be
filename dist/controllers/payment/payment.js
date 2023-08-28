@@ -29,21 +29,21 @@ const pay = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             items: JSON.stringify(req.body.items),
         };
         const data = (0, functions_1.encryptPaymentPayload)(paymentPayload);
-        const token = yield axios_1.default.get("https://staging.dinger.asia/payment-gateway-uat/api/token?projectName=sannkyi staging&apiKey=m7v9vlk.eaOE1x3k9FnSH-Wm6QtdM1xxcEs&merchantName=mtktest");
+        const token = yield axios_1.default.get('https://staging.dinger.asia/payment-gateway-uat/api/token?projectName=sannkyi staging&apiKey=m7v9vlk.eaOE1x3k9FnSH-Wm6QtdM1xxcEs&merchantName=mtktest');
         const payload = new FormData();
         if (data) {
-            payload.append("payload", data);
+            payload.append('payload', data);
         }
-        const status = yield axios_1.default.post("https://staging.dinger.asia/payment-gateway-uat/api/pay", payload, {
+        const status = yield axios_1.default.post('https://staging.dinger.asia/payment-gateway-uat/api/pay', payload, {
             headers: {
                 Authorization: `Bearer ${token.data.response.paymentToken}`,
             },
         });
-        return (0, functions_1.writeJsonRes)(res, 200, status.data, "test payment!");
+        return (0, functions_1.writeJsonRes)(res, 200, status.data, 'test payment!');
     }
     catch (error) {
-        (0, functions_1.logError)(error, "Payment Controller");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'Payment Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.pay = pay;

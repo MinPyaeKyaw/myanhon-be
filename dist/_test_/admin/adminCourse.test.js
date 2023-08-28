@@ -62,53 +62,54 @@ describe('admin course', () => {
     //     })
     // })
     it('POST / admin / create course / course already exist', () => __awaiter(void 0, void 0, void 0, function* () {
-        return (0, supertest_1.default)(__1.default)
+        yield (0, supertest_1.default)(__1.default)
             .post(process.env.API_PREFIX + '/admin/create-course')
             .send({
-            name: "Test Course",
+            name: 'Test Course',
             duration: 200,
             isPublic: false,
-            type: "0c2a5b46-51a6-4c73-b427-126f1bd76299",
-            level: "22752b5f-c16a-4ff5-88f7-0ef2366b16a5",
+            type: '0c2a5b46-51a6-4c73-b427-126f1bd76299',
+            level: '22752b5f-c16a-4ff5-88f7-0ef2366b16a5',
             contents: [
                 {
-                    name: "Test Content One",
-                    url: "Test Content One URL",
-                    thumbnail: "Test Content One Thumbnail",
-                    isPublic: true
+                    name: 'Test Content One',
+                    url: 'Test Content One URL',
+                    thumbnail: 'Test Content One Thumbnail',
+                    isPublic: true,
                 },
                 {
-                    name: "Test Content Two",
-                    url: "Test Content Two URL",
-                    thumbnail: "Test Content Two Thumbnail",
-                    isPublic: false
-                }
-            ]
+                    name: 'Test Content Two',
+                    url: 'Test Content Two URL',
+                    thumbnail: 'Test Content Two Thumbnail',
+                    isPublic: false,
+                },
+            ],
         })
             .expect(400)
-            .then((response) => {
+            .then(response => {
             expect(response.body).toEqual({
                 status: 400,
-                message: "This course is already existed!",
-                data: null
+                message: 'This course is already existed!',
+                data: null,
             });
         });
     }));
     it('POST / admin / add content to course', () => __awaiter(void 0, void 0, void 0, function* () {
         const otp = (0, functions_1.generateOTPCode)();
-        return (0, supertest_1.default)(__1.default)
-            .post(process.env.API_PREFIX + '/admin/courses/a24f5b9c-7c84-461c-8419-e457790d461d/add-content')
+        yield (0, supertest_1.default)(__1.default)
+            .post(process.env.API_PREFIX +
+            '/admin/courses/a24f5b9c-7c84-461c-8419-e457790d461d/add-content')
             .send({
-            name: "Test Content One" + otp,
-            url: "Test Content One URL",
-            thumbnail: "Test Content One Thumbnail",
-            isPublic: true
+            name: 'Test Content One' + otp,
+            url: 'Test Content One URL',
+            thumbnail: 'Test Content One Thumbnail',
+            isPublic: true,
         })
             .expect(201)
-            .then((response) => {
+            .then(response => {
             expect(response.body).toEqual({
                 status: 201,
-                message: "Successfully created!",
+                message: 'Successfully created!',
                 data: {
                     id: expect.any(String),
                     name: expect.any(String),
@@ -117,26 +118,27 @@ describe('admin course', () => {
                     isPublic: expect.any(Boolean),
                     createdAt: expect.any(String),
                     updatedAt: expect.any(String),
-                    courseId: expect.any(String)
-                }
+                    courseId: expect.any(String),
+                },
             });
         });
     }));
     it('POST / admin / add content to course / content already exist', () => __awaiter(void 0, void 0, void 0, function* () {
-        return (0, supertest_1.default)(__1.default)
-            .post(process.env.API_PREFIX + '/admin/courses/a24f5b9c-7c84-461c-8419-e457790d461d/add-content')
+        yield (0, supertest_1.default)(__1.default)
+            .post(process.env.API_PREFIX +
+            '/admin/courses/a24f5b9c-7c84-461c-8419-e457790d461d/add-content')
             .send({
-            name: "Test Content One",
-            url: "Test Content One URL",
-            thumbnail: "Test Content One Thumbnail",
-            isPublic: true
+            name: 'Test Content One',
+            url: 'Test Content One URL',
+            thumbnail: 'Test Content One Thumbnail',
+            isPublic: true,
         })
             .expect(400)
-            .then((response) => {
+            .then(response => {
             expect(response.body).toEqual({
                 status: 400,
-                message: "This content name is already used!",
-                data: null
+                message: 'This content name is already used!',
+                data: null,
             });
         });
     }));
@@ -159,32 +161,34 @@ describe('admin course', () => {
     // })
     it('POST / admin / add instructor to course', () => __awaiter(void 0, void 0, void 0, function* () {
         // otp = generateOTPCode();
-        return (0, supertest_1.default)(__1.default)
-            .post(process.env.API_PREFIX + '/admin/courses/a24f5b9c-7c84-461c-8419-e457790d461d/add-instructor')
+        yield (0, supertest_1.default)(__1.default)
+            .post(process.env.API_PREFIX +
+            '/admin/courses/a24f5b9c-7c84-461c-8419-e457790d461d/add-instructor')
             .send({
-            instructorId: '2c92f7ab-e38a-48cd-8611-70f22f9f2387'
+            instructorId: '2c92f7ab-e38a-48cd-8611-70f22f9f2387',
         })
             .expect(201)
-            .then((response) => {
+            .then(response => {
             expect(response.body).toEqual({
                 status: 201,
-                message: "Successfully added!",
-                data: null
+                message: 'Successfully added!',
+                data: null,
             });
         });
     }));
     it('POST / admin / add instructor to course / instructor already exist', () => __awaiter(void 0, void 0, void 0, function* () {
-        return (0, supertest_1.default)(__1.default)
-            .post(process.env.API_PREFIX + '/admin/courses/a24f5b9c-7c84-461c-8419-e457790d461d/add-instructor')
+        yield (0, supertest_1.default)(__1.default)
+            .post(process.env.API_PREFIX +
+            '/admin/courses/a24f5b9c-7c84-461c-8419-e457790d461d/add-instructor')
             .send({
-            instructorId: '2c92f7ab-e38a-48cd-8611-70f22f9f2387'
+            instructorId: '2c92f7ab-e38a-48cd-8611-70f22f9f2387',
         })
             .expect(400)
-            .then((response) => {
+            .then(response => {
             expect(response.body).toEqual({
                 status: 400,
-                message: "This instructor is already exist!",
-                data: null
+                message: 'This instructor is already exist!',
+                data: null,
             });
         });
     }));

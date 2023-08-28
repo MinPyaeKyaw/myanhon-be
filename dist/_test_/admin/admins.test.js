@@ -16,13 +16,13 @@ const supertest_1 = __importDefault(require("supertest"));
 const __1 = __importDefault(require("../.."));
 describe('admin list', () => {
     it('GET / admin / get admin list', () => __awaiter(void 0, void 0, void 0, function* () {
-        return (0, supertest_1.default)(__1.default)
+        yield (0, supertest_1.default)(__1.default)
             .get(process.env.API_PREFIX + '/admin/admins')
             .expect(200)
-            .then((response) => {
+            .then(response => {
             expect(response.body).toEqual({
                 status: 200,
-                message: "Successfully retrived!",
+                message: 'Successfully retrived!',
                 data: expect.arrayContaining([
                     {
                         id: expect.any(String),
@@ -32,20 +32,21 @@ describe('admin list', () => {
                         latestLogin: expect.any(String),
                         roleId: expect.any(String),
                         createdAt: expect.any(String),
-                        updatedAt: expect.any(String)
-                    }
-                ])
+                        updatedAt: expect.any(String),
+                    },
+                ]),
             });
         });
     }));
     it('GET / admin / get admin by ID', () => __awaiter(void 0, void 0, void 0, function* () {
-        return (0, supertest_1.default)(__1.default)
-            .get(process.env.API_PREFIX + '/admin/admins/f1960f34-4810-4753-9b9d-e5e38b4829d2')
+        yield (0, supertest_1.default)(__1.default)
+            .get(process.env.API_PREFIX +
+            '/admin/admins/f1960f34-4810-4753-9b9d-e5e38b4829d2')
             .expect(200)
-            .then((response) => {
+            .then(response => {
             expect(response.body).toEqual({
                 status: 200,
-                message: "Successfully retrived!",
+                message: 'Successfully retrived!',
                 data: {
                     id: expect.any(String),
                     name: expect.any(String),
@@ -54,34 +55,36 @@ describe('admin list', () => {
                     latestLogin: expect.any(String),
                     roleId: expect.any(String),
                     createdAt: expect.any(String),
-                    updatedAt: expect.any(String)
-                }
+                    updatedAt: expect.any(String),
+                },
             });
         });
     }));
     it('GET / admin / get admin by ID / no data found', () => __awaiter(void 0, void 0, void 0, function* () {
-        return (0, supertest_1.default)(__1.default)
-            .get(process.env.API_PREFIX + '/admin/admins/f1960f34-4810-4753-9b9d-e5e38b4829d')
+        yield (0, supertest_1.default)(__1.default)
+            .get(process.env.API_PREFIX +
+            '/admin/admins/f1960f34-4810-4753-9b9d-e5e38b4829d')
             .expect(404)
-            .then((response) => {
+            .then(response => {
             expect(response.body).toEqual({
                 status: 404,
-                message: "No data found!",
-                data: null
+                message: 'No data found!',
+                data: null,
             });
         });
     }));
     it('GET / admin / change role', () => __awaiter(void 0, void 0, void 0, function* () {
-        return (0, supertest_1.default)(__1.default)
-            .patch(process.env.API_PREFIX + '/admin/admins/f1960f34-4810-4753-9b9d-e5e38b4829d2/change-role')
+        yield (0, supertest_1.default)(__1.default)
+            .patch(process.env.API_PREFIX +
+            '/admin/admins/f1960f34-4810-4753-9b9d-e5e38b4829d2/change-role')
             .send({
-            roleId: 'baf77acc-69a5-4b0b-b89a-2c897c39ffa1'
+            roleId: 'baf77acc-69a5-4b0b-b89a-2c897c39ffa1',
         })
             .expect(200)
-            .then((response) => {
+            .then(response => {
             expect(response.body).toEqual({
                 status: 200,
-                message: "Successfully changed!",
+                message: 'Successfully changed!',
                 data: {
                     id: expect.any(String),
                     name: expect.any(String),
@@ -90,8 +93,8 @@ describe('admin list', () => {
                     latestLogin: expect.any(String),
                     roleId: expect.any(String),
                     createdAt: expect.any(String),
-                    updatedAt: expect.any(String)
-                }
+                    updatedAt: expect.any(String),
+                },
             });
         });
     }));

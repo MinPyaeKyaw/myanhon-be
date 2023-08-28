@@ -18,8 +18,8 @@ const testUpload = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         return (0, functions_1.writeJsonRes)(res, 201, null, 'Successfully uploaded!');
     }
     catch (error) {
-        (0, functions_1.logError)(error, "Admin Create Course Controller");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'Admin Create Course Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.testUpload = testUpload;
@@ -27,11 +27,11 @@ const createCourse = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     try {
         const existedCourse = yield prisma.courses.findFirst({
             where: {
-                name: req.body.name
-            }
+                name: req.body.name,
+            },
         });
         if (existedCourse) {
-            return (0, functions_1.writeJsonRes)(res, 400, null, "This course is already existed!");
+            return (0, functions_1.writeJsonRes)(res, 400, null, 'This course is already existed!');
         }
         const createdCourse = yield prisma.$transaction((prisma) => __awaiter(void 0, void 0, void 0, function* () {
             const course = yield prisma.courses.create({
@@ -40,16 +40,18 @@ const createCourse = (req, res) => __awaiter(void 0, void 0, void 0, function* (
                     duration: req.body.duration,
                     isPublic: req.body.isPublic,
                     type: req.body.type,
-                    level: req.body.level
+                    level: req.body.level,
                 },
             });
             yield prisma.courses.update({
                 where: {
-                    id: course.id
+                    id: course.id,
                 },
                 data: {
-                    instructors: { connect: req.body.instructors.map((inst) => ({ id: inst })) }
-                }
+                    instructors: {
+                        connect: req.body.instructors.map((inst) => ({ id: inst })),
+                    },
+                },
             });
             const contentReqData = [];
             req.body.contents.forEach((c) => {
@@ -57,15 +59,15 @@ const createCourse = (req, res) => __awaiter(void 0, void 0, void 0, function* (
                 contentReqData.push(c);
             });
             yield prisma.contents.createMany({
-                data: contentReqData
+                data: contentReqData,
             });
             return course;
         }));
         return (0, functions_1.writeJsonRes)(res, 201, createdCourse, 'Successfully created!');
     }
     catch (error) {
-        (0, functions_1.logError)(error, "Admin Create Course Controller");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'Admin Create Course Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.createCourse = createCourse;
@@ -74,11 +76,11 @@ const addContent = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const existedContent = yield prisma.contents.findFirst({
             where: {
                 name: req.body.name,
-                courseId: req.params.courseId
-            }
+                courseId: req.params.courseId,
+            },
         });
         if (existedContent) {
-            return (0, functions_1.writeJsonRes)(res, 400, null, "This content name is already used!");
+            return (0, functions_1.writeJsonRes)(res, 400, null, 'This content name is already used!');
         }
         const content = yield prisma.contents.create({
             data: {
@@ -86,14 +88,14 @@ const addContent = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 thumbnail: req.body.thumbnail,
                 url: req.body.url,
                 isPublic: req.body.isPublic,
-                courseId: req.params.courseId
-            }
+                courseId: req.params.courseId,
+            },
         });
-        return (0, functions_1.writeJsonRes)(res, 201, content, "Successfully created!");
+        return (0, functions_1.writeJsonRes)(res, 201, content, 'Successfully created!');
     }
     catch (error) {
-        (0, functions_1.logError)(error, "Admin Add Content Controller");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'Admin Add Content Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.addContent = addContent;
@@ -101,14 +103,14 @@ const removeContent = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     try {
         yield prisma.contents.delete({
             where: {
-                id: req.body.contentId
-            }
+                id: req.body.contentId,
+            },
         });
-        return (0, functions_1.writeJsonRes)(res, 200, null, "Successfully removed!");
+        return (0, functions_1.writeJsonRes)(res, 200, null, 'Successfully removed!');
     }
     catch (error) {
-        (0, functions_1.logError)(error, "Admin Remove Content Controller");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'Admin Remove Content Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.removeContent = removeContent;
@@ -119,31 +121,31 @@ const addInstructor = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 id: req.body.instructorId,
                 courses: {
                     some: {
-                        id: req.params.coruseId
-                    }
-                }
-            }
+                        id: req.params.coruseId,
+                    },
+                },
+            },
         });
         if (existedInstructor) {
-            return (0, functions_1.writeJsonRes)(res, 400, null, "This instructor is already exist!");
+            return (0, functions_1.writeJsonRes)(res, 400, null, 'This instructor is already exist!');
         }
         yield prisma.instructors.update({
             where: {
-                id: req.body.instructorId
+                id: req.body.instructorId,
             },
             data: {
                 courses: {
                     connect: {
-                        id: req.params.courseId
-                    }
-                }
-            }
+                        id: req.params.courseId,
+                    },
+                },
+            },
         });
-        return (0, functions_1.writeJsonRes)(res, 201, null, "Successfully added!");
+        return (0, functions_1.writeJsonRes)(res, 201, null, 'Successfully added!');
     }
     catch (error) {
-        (0, functions_1.logError)(error, "Admin Remove Content Controller");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'Admin Remove Content Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.addInstructor = addInstructor;
@@ -153,15 +155,15 @@ const removeInstructor = (req, res) => __awaiter(void 0, void 0, void 0, functio
             where: { id: req.body.instructorId },
             data: {
                 courses: {
-                    disconnect: { id: req.params.coruseId }
-                }
-            }
+                    disconnect: { id: req.params.coruseId },
+                },
+            },
         });
-        return (0, functions_1.writeJsonRes)(res, 200, null, "Successfully removed!");
+        return (0, functions_1.writeJsonRes)(res, 200, null, 'Successfully removed!');
     }
     catch (error) {
-        (0, functions_1.logError)(error, "Admin Remove Content Controller");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'Admin Remove Content Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.removeInstructor = removeInstructor;

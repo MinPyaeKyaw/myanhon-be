@@ -1,12 +1,11 @@
-import express from "express";
-import { verifyUserJwt } from "../middlewares/userJwtMiddleware";
-import { editUserById, setUserTrack } from "../controllers/userController";
-import { apiKeyMiddleware } from "../middlewares/apiKeyMiddleware";
+import express from 'express'
+import { verifyUserJwt } from '../middlewares/userJwtMiddleware'
+import { editUserById, setUserTrack } from '../controllers/userController'
 
-const userRouter = express.Router();
+const userRouter = express.Router()
 
-userRouter.patch("/user/:id", apiKeyMiddleware, verifyUserJwt, editUserById);
+userRouter.patch('/user/:id', verifyUserJwt, editUserById)
 
-userRouter.post("/user/:userId", apiKeyMiddleware, verifyUserJwt, setUserTrack);
+userRouter.post('/user/:userId', verifyUserJwt, setUserTrack)
 
-export default userRouter;
+export default userRouter

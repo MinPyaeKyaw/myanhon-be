@@ -14,19 +14,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const __1 = __importDefault(require("../.."));
-describe("Suggestion", () => {
-    it("POST / submit suggestion", () => __awaiter(void 0, void 0, void 0, function* () {
-        return (0, supertest_1.default)(__1.default)
-            .post(process.env.API_PREFIX + "/suggestion")
+describe('Suggestion', () => {
+    it('POST / submit suggestion', () => __awaiter(void 0, void 0, void 0, function* () {
+        yield (0, supertest_1.default)(__1.default)
+            .post(process.env.API_PREFIX + '/suggestion')
             .send({
-            title: "Title string",
-            suggestion: "Suggestion string",
+            title: 'Title string',
+            suggestion: 'Suggestion string',
         })
             .expect(201)
-            .then((response) => {
+            .then(response => {
             expect(response.body).toEqual({
                 status: 201,
-                message: "Successfully submitted!",
+                message: 'Successfully submitted!',
                 data: {
                     id: expect.any(String),
                     title: expect.any(String),

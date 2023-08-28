@@ -16,21 +16,23 @@ const functions_1 = require("../utils/functions");
 const enums_1 = require("../utils/enums");
 const prisma = new client_1.PrismaClient();
 const redisClient = (0, redis_1.createClient)();
-redisClient.on('error', (err) => console.log('Redis Client Error', err));
+redisClient.on('error', err => {
+    console.log('Redis Client Error', err);
+});
 redisClient.connect();
 const getTypes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const typesFromCache = yield redisClient.get(enums_1.CACHE_KEYS.TYPES);
         if (typesFromCache) {
-            return (0, functions_1.writeJsonRes)(res, 200, JSON.parse(typesFromCache), "Successfully retrived!");
+            return (0, functions_1.writeJsonRes)(res, 200, JSON.parse(typesFromCache), 'Successfully retrived!');
         }
         const types = yield prisma.types.findMany();
         yield redisClient.set(enums_1.CACHE_KEYS.TYPES, JSON.stringify(types));
-        return (0, functions_1.writeJsonRes)(res, 200, types, "Successfully retrived!");
+        return (0, functions_1.writeJsonRes)(res, 200, types, 'Successfully retrived!');
     }
     catch (error) {
-        (0, functions_1.logError)(error, "Get Types Controller");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'Get Types Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.getTypes = getTypes;
@@ -39,14 +41,14 @@ const createType = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         const createdType = yield prisma.types.create({
             data: {
-                name: req.body.name
-            }
+                name: req.body.name,
+            },
         });
-        return (0, functions_1.writeJsonRes)(res, 201, createdType, "Successfully created!");
+        return (0, functions_1.writeJsonRes)(res, 201, createdType, 'Successfully created!');
     }
     catch (error) {
-        console.log("CREATE TYPE ERROR", error);
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        console.log('CREATE TYPE ERROR', error);
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.createType = createType;

@@ -14,15 +14,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const __1 = __importDefault(require("../.."));
-describe("Fetching questioniar", () => {
-    it("GET / fetch questions", () => __awaiter(void 0, void 0, void 0, function* () {
-        return (0, supertest_1.default)(__1.default)
-            .get(process.env.API_PREFIX + "/questioniars")
+describe('Fetching questioniar', () => {
+    it('GET / fetch questions', () => __awaiter(void 0, void 0, void 0, function* () {
+        yield (0, supertest_1.default)(__1.default)
+            .get(process.env.API_PREFIX + '/questioniars')
             .expect(200)
-            .then((response) => {
+            .then(response => {
             expect(response.body).toEqual({
                 status: 200,
-                message: "Successfully retrived!",
+                message: 'Successfully retrived!',
                 data: expect.arrayContaining([
                     {
                         id: expect.any(String),
@@ -44,20 +44,20 @@ describe("Fetching questioniar", () => {
             });
         });
     }));
-    it("POST / submit questioniar", () => __awaiter(void 0, void 0, void 0, function* () {
-        return (0, supertest_1.default)(__1.default)
-            .post(process.env.API_PREFIX + "/questioniar-submit")
+    it('POST / submit questioniar', () => __awaiter(void 0, void 0, void 0, function* () {
+        yield (0, supertest_1.default)(__1.default)
+            .post(process.env.API_PREFIX + '/questioniar-submit')
             .send({
             payload: [
-                "c296f6b5-7114-43d4-a895-3f6daabd99fb",
-                "bf7d79ed-61b4-4377-88d4-79a965bc7d0e",
+                'c296f6b5-7114-43d4-a895-3f6daabd99fb',
+                'bf7d79ed-61b4-4377-88d4-79a965bc7d0e',
             ],
         })
             .expect(200)
-            .then((response) => {
+            .then(response => {
             expect(response.body).toEqual({
                 status: 200,
-                message: "Successfully submitted!",
+                message: 'Successfully submitted!',
                 data: null,
             });
         });

@@ -15,16 +15,18 @@ const redis_1 = require("redis");
 const functions_1 = require("../../utils/functions");
 const prisma = new client_1.PrismaClient();
 const redisClient = (0, redis_1.createClient)();
-redisClient.on('error', (err) => console.log('Redis Client Error', err));
+redisClient.on('error', err => {
+    console.log('Redis Client Error', err);
+});
 redisClient.connect();
 const getPermissions = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const permissions = yield prisma.permissions.findMany();
-        return (0, functions_1.writeJsonRes)(res, 200, permissions, "Successfully retrived!");
+        return (0, functions_1.writeJsonRes)(res, 200, permissions, 'Successfully retrived!');
     }
     catch (error) {
-        (0, functions_1.logError)(error, "Get Permission Controller");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'Get Permission Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.getPermissions = getPermissions;
@@ -33,14 +35,14 @@ const createPermission = (req, res) => __awaiter(void 0, void 0, void 0, functio
     try {
         const createdPermission = yield prisma.permissions.create({
             data: {
-                name: req.body.name
-            }
+                name: req.body.name,
+            },
         });
-        return (0, functions_1.writeJsonRes)(res, 201, createdPermission, "Successfully created!");
+        return (0, functions_1.writeJsonRes)(res, 201, createdPermission, 'Successfully created!');
     }
     catch (error) {
-        console.log("CREATE PERMISSION ERROR", error);
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        console.log('CREATE PERMISSION ERROR', error);
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.createPermission = createPermission;

@@ -19,27 +19,27 @@ const functions_1 = require("../utils/functions");
 const prisma = new client_1.PrismaClient();
 const verifyUserJwt = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const token = (0, functions_1.getJwtTokenFromReq)(req.headers['authorization']);
+        const token = (0, functions_1.getJwtTokenFromReq)(req.headers.authorization);
         if (!token) {
-            return (0, functions_1.writeJsonRes)(res, 401, null, "Unthorizied access!");
+            return (0, functions_1.writeJsonRes)(res, 401, null, 'Unthorizied access!');
         }
         const decodedToken = (0, jwt_decode_1.default)(token);
         if (!decodedToken.id) {
-            return (0, functions_1.writeJsonRes)(res, 401, null, "Invalid token!");
+            return (0, functions_1.writeJsonRes)(res, 401, null, 'Invalid token!');
         }
         const user = yield prisma.users.findFirst({
             where: {
-                id: decodedToken.id
-            }
+                id: decodedToken.id,
+            },
         });
         if (!user) {
-            return (0, functions_1.writeJsonRes)(res, 401, null, "Invalid token!");
+            return (0, functions_1.writeJsonRes)(res, 401, null, 'Invalid token!');
         }
         next();
     }
     catch (error) {
-        (0, functions_1.logError)(error, "Verify User JWT Middleware");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'Verify User JWT Middleware');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.verifyUserJwt = verifyUserJwt;

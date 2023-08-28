@@ -1,9 +1,8 @@
-import express from "express";
-import { pay } from "../../controllers/payment/payment";
-import { apiKeyMiddleware } from "../../middlewares/apiKeyMiddleware";
+import express from 'express'
+import { pay } from '../../controllers/payment/payment'
 
-const paymentRouter = express.Router();
+const paymentRouter = express.Router()
 
-paymentRouter.post("/pay", apiKeyMiddleware, pay);
+paymentRouter.post('/pay', pay)
 
-export default paymentRouter;
+export default paymentRouter

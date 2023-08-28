@@ -42,19 +42,22 @@ const payment_1 = __importDefault(require("./routes/payment/payment"));
 const questioniar_1 = __importDefault(require("./routes/questioniar"));
 const suggestoin_1 = __importDefault(require("./routes/suggestoin"));
 const exam_1 = __importDefault(require("./routes/exam"));
-dotenv.config({ path: __dirname + "/.env" });
+const path_1 = __importDefault(require("path"));
+const apiKeyMiddleware_1 = require("./middlewares/apiKeyMiddleware");
+dotenv.config({ path: path_1.default.join(__dirname, "/.env'") });
 dotenv.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.use(apiKeyMiddleware_1.apiKeyMiddleware);
 // Admin routes
-let adminAPIPrefix = process.env.API_PREFIX + "/admin";
-app.use(adminAPIPrefix + "/auth", auth_2.default);
+const adminAPIPrefix = process.env.API_PREFIX + '/admin';
+app.use(adminAPIPrefix + '/auth', auth_2.default);
 app.use(adminAPIPrefix, roles_1.default);
 app.use(adminAPIPrefix, permissions_1.default);
 app.use(adminAPIPrefix, admins_1.default);
 app.use(adminAPIPrefix, courses_2.default);
 // User routes
-app.use(process.env.API_PREFIX + "/auth", auth_1.default);
+app.use(process.env.API_PREFIX + '/auth', auth_1.default);
 app.use(`${process.env.API_PREFIX}`, courses_1.default);
 app.use(`${process.env.API_PREFIX}`, courseTypes_1.default);
 app.use(`${process.env.API_PREFIX}`, courseLevels_1.default);
@@ -64,6 +67,6 @@ app.use(`${process.env.API_PREFIX}`, questioniar_1.default);
 app.use(`${process.env.API_PREFIX}`, suggestoin_1.default);
 app.use(`${process.env.API_PREFIX}`, exam_1.default);
 app.listen(4000, () => {
-    console.log("now listening to 4000");
+    console.log('now listening to 4000');
 });
 exports.default = app;

@@ -13,13 +13,13 @@ const functions_1 = require("../../utils/functions");
 describe('payment', () => {
     it('GET / payment / get payment token', () => __awaiter(void 0, void 0, void 0, function* () {
         expect(yield (0, functions_1.getPaymentToken)()).toEqual({
-            code: "000",
-            message: "Authentication Success",
+            code: '000',
+            message: 'Authentication Success',
             time: expect.any(String),
             response: {
                 paymentToken: expect.any(String),
-                expireIn: expect.any(String)
-            }
+                expireIn: expect.any(String),
+            },
         });
     }));
 });

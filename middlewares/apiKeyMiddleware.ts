@@ -1,17 +1,17 @@
-import { NextFunction, Request, Response } from "express";
+import { type NextFunction, type Request, type Response } from 'express'
 
-import { writeJsonRes } from "../utils/functions";
+import { writeJsonRes } from '../utils/functions'
 
 export function apiKeyMiddleware(
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) {
-  const apiKey = req.headers["x-api-key"];
+  const apiKey = req.headers['x-api-key']
 
   if (!apiKey || apiKey !== process.env.API_KEY) {
-    return writeJsonRes<null>(res, 404, null, "404 Not Found");
+    return writeJsonRes<null>(res, 404, null, '404 Not Found')
   }
 
-  next();
+  next()
 }

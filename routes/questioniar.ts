@@ -1,22 +1,20 @@
-import express from "express";
+import express from 'express'
 import {
   createQuizz,
   getQuizz,
   submitQuestioniar,
-} from "../controllers/questioniar";
-import { apiKeyMiddleware } from "../middlewares/apiKeyMiddleware";
+} from '../controllers/questioniar'
 
-const questioniarRouter = express.Router();
+const questioniarRouter = express.Router()
 
-questioniarRouter.get("/questioniars", apiKeyMiddleware, getQuizz);
+questioniarRouter.get('/questioniars', getQuizz)
 
 questioniarRouter.post(
-  "/questioniar-submit",
-  apiKeyMiddleware,
-  submitQuestioniar
-);
+  '/questioniar-submit',
+  submitQuestioniar,
+)
 
 // just for development, remove later
-questioniarRouter.post("/questioniar", createQuizz);
+questioniarRouter.post('/questioniar', createQuizz)
 
-export default questioniarRouter;
+export default questioniarRouter

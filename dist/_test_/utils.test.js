@@ -23,16 +23,16 @@ describe('Utils', () => {
         expect(yield (0, functions_1.refreshVerificationCode)('useremailfailemail@example.com')).toBe(false);
     }));
     it('Utils / functions / hash password', () => __awaiter(void 0, void 0, void 0, function* () {
-        let password = 'examplePassword';
+        const password = 'examplePassword';
         expect((0, functions_1.hashPassword)(password)).not.toBe(password);
     }));
     it('Utils / function / verify password', () => __awaiter(void 0, void 0, void 0, function* () {
         expect(typeof (yield (0, functions_1.verifyPassword)('userpassword', 'dbpassword'))).toBe('boolean');
     }));
     it('Utils / function / getUserJwtToken', () => __awaiter(void 0, void 0, void 0, function* () {
-        let data = {
+        const data = {
             name: testEnums_1.testUser.name,
-            password: testEnums_1.testUser.password
+            password: testEnums_1.testUser.password,
         };
         expect(typeof (0, functions_1.getJwtToken)(data, testEnums_1.tokenSecrets)).toBe('string');
     }));

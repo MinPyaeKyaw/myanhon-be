@@ -21,8 +21,8 @@ const validateCourseQuery = (req, res, next) => __awaiter(void 0, void 0, void 0
         next();
     }
     catch (error) {
-        (0, functions_1.logError)(error, "Validate Course Query Middleware");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'Validate Course Query Middleware');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.validateCourseQuery = validateCourseQuery;

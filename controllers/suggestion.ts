@@ -1,11 +1,11 @@
-import { Request, Response } from "express";
+import { type Request, type Response } from 'express'
 
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client'
 
-import { logError, writeJsonRes } from "../utils/functions";
-import { SuggestionResInterface } from "../utils/interfaces";
+import { logError, writeJsonRes } from '../utils/functions'
+import { type SuggestionResInterface } from '../utils/interfaces'
 
-const prisma: PrismaClient = new PrismaClient();
+const prisma: PrismaClient = new PrismaClient()
 
 export const submitSuggestion = async (req: Request, res: Response) => {
   try {
@@ -14,16 +14,16 @@ export const submitSuggestion = async (req: Request, res: Response) => {
         title: req.body.title,
         suggestion: req.body.suggestion,
       },
-    });
+    })
 
     return writeJsonRes<SuggestionResInterface>(
       res,
       201,
       suggestion,
-      "Successfully submitted!"
-    );
+      'Successfully submitted!',
+    )
   } catch (error) {
-    logError(error, "Post Suggestion Controller");
-    return writeJsonRes<null>(res, 500, null, "Internal Server Error!");
+    logError(error, 'Post Suggestion Controller')
+    return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
   }
-};
+}

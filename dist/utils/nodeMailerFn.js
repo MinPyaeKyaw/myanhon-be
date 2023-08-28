@@ -15,25 +15,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const nodemailer_1 = __importDefault(require("nodemailer"));
 function mailer({ to, subject, html }) {
     return __awaiter(this, void 0, void 0, function* () {
-        let transporter = nodemailer_1.default.createTransport({
-            host: "smtp.ethereal.email",
+        const transporter = nodemailer_1.default.createTransport({
+            host: 'smtp.ethereal.email',
             port: 587,
             secure: false,
             auth: {
-                user: "darren.luettgen59@ethereal.email",
-                pass: "RMXr76KJGwX8617aqd",
+                user: 'darren.luettgen59@ethereal.email',
+                pass: 'RMXr76KJGwX8617aqd',
             },
         });
         const msg = yield transporter.sendMail({
             from: 'Myanhon (Japanese Language Learning App)',
             to,
             subject,
-            html
+            html,
         });
-        console.log("Message sent: %s", msg.messageId);
+        console.log('Message sent: %s', msg.messageId);
         // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
         // Preview only available when sending through an Ethereal account
-        console.log("Preview URL: %s", nodemailer_1.default.getTestMessageUrl(msg));
+        console.log('Preview URL: %s', nodemailer_1.default.getTestMessageUrl(msg));
     });
 }
 exports.default = mailer;

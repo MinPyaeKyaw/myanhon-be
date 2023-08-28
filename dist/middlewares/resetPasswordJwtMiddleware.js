@@ -8,19 +8,19 @@ const jwt_decode_1 = __importDefault(require("jwt-decode"));
 const functions_1 = require("../utils/functions");
 const verifyResetPasswordJwt = (req, res, next) => {
     try {
-        const token = (0, functions_1.getJwtTokenFromReq)(req.headers['authorization']);
+        const token = (0, functions_1.getJwtTokenFromReq)(req.headers.authorization);
         if (!token) {
-            return (0, functions_1.writeJsonRes)(res, 401, null, "Unthorizied access!");
+            return (0, functions_1.writeJsonRes)(res, 401, null, 'Unthorizied access!');
         }
         const decodedToken = (0, jwt_decode_1.default)(token);
         if (!decodedToken.resetPasswordToken) {
-            return (0, functions_1.writeJsonRes)(res, 401, null, "Invalid token!");
+            return (0, functions_1.writeJsonRes)(res, 401, null, 'Invalid token!');
         }
         next();
     }
     catch (error) {
-        (0, functions_1.logError)(error, "Verify Reset Password JWT Middleware");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'Verify Reset Password JWT Middleware');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 };
 exports.verifyResetPasswordJwt = verifyResetPasswordJwt;

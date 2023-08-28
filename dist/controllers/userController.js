@@ -17,21 +17,21 @@ const editUserById = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     try {
         const user = yield prisma.users.findUnique({
             where: {
-                id: req.params.id
-            }
+                id: req.params.id,
+            },
         });
         if (!user) {
-            return (0, functions_1.writeJsonRes)(res, 404, null, "User not found!");
+            return (0, functions_1.writeJsonRes)(res, 404, null, 'User not found!');
         }
         const editedUser = yield prisma.users.update({
             where: {
-                id: req.params.id
+                id: req.params.id,
             },
             data: {
                 name: req.body.name,
                 email: req.body.email,
-                phone: req.body.phone
-            }
+                phone: req.body.phone,
+            },
         });
         const tokenData = {
             id: editedUser.id,
@@ -40,16 +40,16 @@ const editUserById = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             phone: editedUser.phone,
             isPaid: editedUser.isPaid,
             startDate: editedUser.startDate,
-            expiredDate: editedUser.expiredDate
+            expiredDate: editedUser.expiredDate,
         };
         return (0, functions_1.writeJsonRes)(res, 200, {
-            // @ts-ignore
-            token: (0, functions_1.getJwtToken)(tokenData, process.env.JWT_USER_SECRET)
-        }, "Successfully edited your info!");
+            // @ts-expect-error
+            token: (0, functions_1.getJwtToken)(tokenData, process.env.JWT_USER_SECRET),
+        }, 'Successfully edited your info!');
     }
     catch (error) {
-        (0, functions_1.logError)(error, "Edit User Controller");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'Edit User Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.editUserById = editUserById;
@@ -58,18 +58,18 @@ const setUserTrack = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         const trackedUser = yield prisma.userTracking.findFirst({
             where: {
                 userId: req.params.userId,
-                contentId: req.body.contentId
-            }
+                contentId: req.body.contentId,
+            },
         });
         if (trackedUser) {
             yield prisma.userTracking.updateMany({
                 where: {
                     userId: req.params.userId,
-                    contentId: req.body.contentId
+                    contentId: req.body.contentId,
                 },
                 data: {
-                    completedPercent: req.body.completedPercent
-                }
+                    completedPercent: req.body.completedPercent,
+                },
             });
         }
         else {
@@ -77,15 +77,15 @@ const setUserTrack = (req, res) => __awaiter(void 0, void 0, void 0, function* (
                 data: {
                     userId: req.params.userId,
                     contentId: req.body.contentId,
-                    completedPercent: req.body.completedPercent
-                }
+                    completedPercent: req.body.completedPercent,
+                },
             });
         }
-        return (0, functions_1.writeJsonRes)(res, 200, null, "Successfully set user tracking!");
+        return (0, functions_1.writeJsonRes)(res, 200, null, 'Successfully set user tracking!');
     }
     catch (error) {
-        (0, functions_1.logError)(error, "Set User Track Controller");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'Set User Track Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.setUserTrack = setUserTrack;

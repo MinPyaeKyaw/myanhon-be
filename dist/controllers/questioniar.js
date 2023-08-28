@@ -20,17 +20,17 @@ const getQuizz = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 answers: true,
             },
         });
-        return (0, functions_1.writeJsonRes)(res, 200, quizz, "Successfully retrived!");
+        return (0, functions_1.writeJsonRes)(res, 200, quizz, 'Successfully retrived!');
     }
     catch (error) {
-        (0, functions_1.logError)(error, "Get Questioniar Controller");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'Get Questioniar Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.getQuizz = getQuizz;
 const submitQuestioniar = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        let promises = [];
+        const promises = [];
         req.body.payload.forEach((answer) => __awaiter(void 0, void 0, void 0, function* () {
             const oldCount = yield prisma.questioniarAnswer.findFirst({
                 where: { id: answer },
@@ -45,13 +45,13 @@ const submitQuestioniar = (req, res) => __awaiter(void 0, void 0, void 0, functi
                 promises.push(updateCount);
             }
         }));
-        Promise.all(promises).then((result) => {
-            return (0, functions_1.writeJsonRes)(res, 200, null, "Successfully submitted!");
+        Promise.all(promises).then(result => {
+            return (0, functions_1.writeJsonRes)(res, 200, null, 'Successfully submitted!');
         });
     }
     catch (error) {
-        (0, functions_1.logError)(error, "Submit Questioniar Controller");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'Submit Questioniar Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.submitQuestioniar = submitQuestioniar;
@@ -68,11 +68,11 @@ const createQuizz = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
                 },
             },
         });
-        return (0, functions_1.writeJsonRes)(res, 200, quizz, "Good Good!");
+        return (0, functions_1.writeJsonRes)(res, 200, quizz, 'Good Good!');
     }
     catch (error) {
-        (0, functions_1.logError)(error, "Get Questioniar Controller");
-        return (0, functions_1.writeJsonRes)(res, 500, null, "Internal Server Error!");
+        (0, functions_1.logError)(error, 'Get Questioniar Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.createQuizz = createQuizz;

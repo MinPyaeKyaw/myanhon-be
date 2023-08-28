@@ -1,46 +1,39 @@
-import {Request, Response} from "express";
+import { type Request, type Response } from 'express'
 
-import { PrismaClient } from '@prisma/client';
-import { createClient } from 'redis';
+import { PrismaClient } from '@prisma/client'
 
-import { logError, writeJsonRes } from "../utils/functions";
-import { LevelResInterface } from "../utils/interfaces";
-import { CACHE_KEYS } from "../utils/enums";
+import { logError, writeJsonRes } from '../utils/functions'
+import { type LevelResInterface } from '../utils/interfaces'
 
-const prisma: PrismaClient = new PrismaClient();
-const redisClient = createClient();
-redisClient.on('error', (err) => console.log('Redis Client Error', err));
-redisClient.connect();
+const prisma: PrismaClient = new PrismaClient()
 
 export const getLevels = async (req: Request, res: Response) => {
-    try {
-        const levelsFromCache = await redisClient.get(CACHE_KEYS.LEVELS);
-
-        if(levelsFromCache) {
-            return writeJsonRes<LevelResInterface[]>(res, 200, JSON.parse(levelsFromCache), "Successfully retrived!");
-        }
-
-        const levels = await prisma.levels.findMany();
-        await redisClient.set(CACHE_KEYS.LEVELS, JSON.stringify(levels));
-        return writeJsonRes<LevelResInterface[]>(res, 200, levels, "Successfully retrived!");
-    } catch (error) {
-        logError(error, "Get Levels Controller");
-        return writeJsonRes<null>(res, 500, null, "Internal Server Error!");
-    }
+  try {
+    const levels = await prisma.levels.findMany()
+    return writeJsonRes<LevelResInterface[]>(
+      res,
+      200,
+      levels,
+      'Successfully retrived!',
+    )
+  } catch (error) {
+    logError(error, 'Get Levels Controller')
+    return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
+  }
 }
 
 // just for development, remove later
 export const createLevel = async (req: Request, res: Response) => {
-    try {
-        const createdLevel = await prisma.levels.create({
-            data: {
-                name: req.body.name
-            }
-        })
+  try {
+    const createdLevel = await prisma.levels.create({
+      data: {
+        name: req.body.name,
+      },
+    })
 
-        return writeJsonRes(res, 201, createdLevel, "Successfully created!");
-    } catch (error) {
-        console.log("CREATE LEVEL ERROR", error);
-        return writeJsonRes<null>(res, 500, null, "Internal Server Error!");
-    }
+    return writeJsonRes(res, 201, createdLevel, 'Successfully created!')
+  } catch (error) {
+    console.log('CREATE LEVEL ERROR', error)
+    return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
+  }
 }

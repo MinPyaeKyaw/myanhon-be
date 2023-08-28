@@ -14,15 +14,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const supertest_1 = __importDefault(require("supertest"));
 const __1 = __importDefault(require("../.."));
-describe("Exam", () => {
-    it("GET / get exam", () => __awaiter(void 0, void 0, void 0, function* () {
-        return (0, supertest_1.default)(__1.default)
-            .get(process.env.API_PREFIX + "/exam?type=typeId&level=levelId")
+describe('Exam', () => {
+    it('GET / get exam', () => __awaiter(void 0, void 0, void 0, function* () {
+        yield (0, supertest_1.default)(__1.default)
+            .get(process.env.API_PREFIX + '/exam?type=typeId&level=levelId')
             .expect(200)
-            .then((response) => {
+            .then(response => {
             expect(response.body).toEqual({
                 status: 200,
-                message: "Successfully retrived!",
+                message: 'Successfully retrived!',
                 data: expect.arrayContaining([
                     {
                         id: expect.any(String),
