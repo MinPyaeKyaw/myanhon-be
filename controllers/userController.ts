@@ -4,6 +4,7 @@ import { PrismaClient } from '@prisma/client'
 
 import { getJwtToken, logError, writeJsonRes } from '../utils/functions'
 import { type TokenResInterface } from '../utils/interfaces'
+import { JWT_TYPES } from '../utils/enums'
 
 const prisma: PrismaClient = new PrismaClient()
 
@@ -39,12 +40,22 @@ export const editUserById = async (req: Request, res: Response) => {
       startDate: editedUser.startDate,
       expiredDate: editedUser.expiredDate,
     }
+
+    const refreshTokenData = {
+      id: 'leepl',
+      name: 'leepl',
+      email: 'leepl',
+      phone: 'leepl',
+      isPaid: 'leepl',
+      startDate: 'leepl',
+      expiredDate: 'leepl',
+    }
     return writeJsonRes<TokenResInterface>(
       res,
       200,
       {
-        // @ts-expect-error
-        token: getJwtToken(tokenData, process.env.JWT_USER_SECRET),
+        accessToken: getJwtToken(tokenData, JWT_TYPES.ACCESS),
+        refreshToken: getJwtToken(refreshTokenData, JWT_TYPES.ACCESS),
       },
       'Successfully edited your info!',
     )

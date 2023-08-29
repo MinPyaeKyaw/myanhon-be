@@ -13,6 +13,7 @@ import {
 } from '../utils/functions'
 import mailer from '../utils/nodeMailerFn'
 import { type TokenResInterface } from '../utils/interfaces'
+import { JWT_TYPES } from '../utils/enums'
 
 const prisma: PrismaClient = new PrismaClient()
 
@@ -35,6 +36,42 @@ export const test = async (req: Request, res: Response) => {
   //     return writeJsonRes<null>(res, 500, null, "Internal Server Error!")
   // }
   // logger();
+}
+
+export const refreshToken = (req: Request, res: Response) => {
+  try {
+    const accessTokenData = {
+      id: 'leepl',
+      name: 'leepl',
+      email: 'leepl',
+      phone: 'leepl',
+      isPaid: 'leepl',
+      startDate: 'leepl',
+      expiredDate: 'leepl',
+    }
+
+    const refreshTokenData = {
+      id: 'leepl',
+      name: 'leepl',
+      email: 'leepl',
+      phone: 'leepl',
+      isPaid: 'leepl',
+      startDate: 'leepl',
+      expiredDate: 'leepl',
+    }
+    return writeJsonRes<TokenResInterface>(
+      res,
+      200,
+      {
+        accessToken: getJwtToken(accessTokenData, JWT_TYPES.ACCESS),
+        refreshToken: getJwtToken(refreshTokenData, JWT_TYPES.REFRESH),
+      },
+      'Successfully logged in!',
+    )
+  } catch (error) {
+    logError(error, 'Refresh token Controller')
+    return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
+  }
 }
 
 export const login = async (req: Request, res: Response) => {
@@ -81,12 +118,22 @@ export const login = async (req: Request, res: Response) => {
       startDate: user.startDate,
       expiredDate: user.expiredDate,
     }
+
+    const refreshTokenData = {
+      id: 'leepl',
+      name: 'leepl',
+      email: 'leepl',
+      phone: 'leepl',
+      isPaid: 'leepl',
+      startDate: 'leepl',
+      expiredDate: 'leepl',
+    }
     return writeJsonRes<TokenResInterface>(
       res,
       200,
       {
-        // @ts-expect-error
-        token: getJwtToken(tokenData, process.env.JWT_USER_SECRET),
+        accessToken: getJwtToken(tokenData, JWT_TYPES.ACCESS),
+        refreshToken: getJwtToken(refreshTokenData, JWT_TYPES.REFRESH),
       },
       'Successfully logged in!',
     )
@@ -180,12 +227,22 @@ export const verifyEmail = async (req: Request, res: Response) => {
       expiredDate: user.expiredDate,
     }
 
+    const refreshTokenData = {
+      id: 'leepl',
+      name: 'leepl',
+      email: 'leepl',
+      phone: 'leepl',
+      isPaid: 'leepl',
+      startDate: 'leepl',
+      expiredDate: 'leepl',
+    }
+
     return writeJsonRes<TokenResInterface>(
       res,
       200,
       {
-        // @ts-expect-error
-        token: getJwtToken(tokenData, process.env.JWT_USER_SECRET),
+        accessToken: getJwtToken(tokenData, JWT_TYPES.ACCESS),
+        refreshToken: getJwtToken(refreshTokenData, JWT_TYPES.REFRESH),
       },
       'Successfully verified your email!',
     )
@@ -239,11 +296,23 @@ export const verifyCode = async (req: Request, res: Response) => {
       resetPasswordToken: true,
     }
 
+    const refreshTokenData = {
+      id: 'leepl',
+      name: 'leepl',
+      email: 'leepl',
+      phone: 'leepl',
+      isPaid: 'leepl',
+      startDate: 'leepl',
+      expiredDate: 'leepl',
+    }
+
     return writeJsonRes<TokenResInterface>(
       res,
       200,
-      // @ts-expect-error
-      { token: getJwtToken(tokenData, process.env.JWT_RESET_PASSWORD_SECRET) },
+      {
+        accessToken: getJwtToken(tokenData, JWT_TYPES.RESET_PASSWORD),
+        refreshToken: getJwtToken(refreshTokenData, JWT_TYPES.REFRESH),
+      },
       'Successfully verified!',
     )
   } catch (error) {

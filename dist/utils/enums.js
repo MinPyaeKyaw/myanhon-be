@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ROLES = exports.CACHE_KEYS = exports.COURSE_TYPES = exports.COURSE_LEVELS = void 0;
+exports.JWT_TYPES = exports.ROLES = exports.CACHE_KEYS = exports.COURSE_TYPES = exports.COURSE_LEVELS = void 0;
 var COURSE_LEVELS;
 (function (COURSE_LEVELS) {
     COURSE_LEVELS["N5"] = "N5";
@@ -31,3 +31,9 @@ var ROLES;
     ROLES["EDITOR"] = "editor";
     ROLES["VIEWER"] = "viewer";
 })(ROLES || (exports.ROLES = ROLES = {}));
+var JWT_TYPES;
+(function (JWT_TYPES) {
+    JWT_TYPES["REFRESH"] = "refreshToken";
+    JWT_TYPES["ACCESS"] = "accessToken";
+    JWT_TYPES["RESET_PASSWORD"] = "resetPasswordToken";
+})(JWT_TYPES || (exports.JWT_TYPES = JWT_TYPES = {}));

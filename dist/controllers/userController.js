@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.setUserTrack = exports.editUserById = void 0;
 const client_1 = require("@prisma/client");
 const functions_1 = require("../utils/functions");
+const enums_1 = require("../utils/enums");
 const prisma = new client_1.PrismaClient();
 const editUserById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -42,9 +43,18 @@ const editUserById = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             startDate: editedUser.startDate,
             expiredDate: editedUser.expiredDate,
         };
+        const refreshTokenData = {
+            id: 'leepl',
+            name: 'leepl',
+            email: 'leepl',
+            phone: 'leepl',
+            isPaid: 'leepl',
+            startDate: 'leepl',
+            expiredDate: 'leepl',
+        };
         return (0, functions_1.writeJsonRes)(res, 200, {
-            // @ts-expect-error
-            token: (0, functions_1.getJwtToken)(tokenData, process.env.JWT_USER_SECRET),
+            accessToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.ACCESS),
+            refreshToken: (0, functions_1.getJwtToken)(refreshTokenData, enums_1.JWT_TYPES.ACCESS),
         }, 'Successfully edited your info!');
     }
     catch (error) {

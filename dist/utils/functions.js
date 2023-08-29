@@ -22,6 +22,7 @@ const dayjs_1 = __importDefault(require("dayjs"));
 const redis_1 = require("redis");
 const multer_1 = __importDefault(require("multer"));
 const node_rsa_1 = __importDefault(require("node-rsa"));
+const enums_1 = require("./enums");
 const prisma = new client_1.PrismaClient();
 const zipFile = (filePath) => {
     const splitedFilePath = filePath.split('/');
@@ -152,8 +153,24 @@ const verifyPassword = (userPassword, dbPassword) => __awaiter(void 0, void 0, v
     });
 });
 exports.verifyPassword = verifyPassword;
-const getJwtToken = (data, secret) => {
-    const token = jsonwebtoken_1.default.sign(data, secret);
+const getJwtToken = (data, type) => {
+    let exp, hehe;
+    if (type === enums_1.JWT_TYPES.ACCESS) {
+        exp = process.env.JWT_USER_EXP;
+        hehe = process.env.JWT_USER_SECRET;
+    }
+    else if (type === enums_1.JWT_TYPES.REFRESH) {
+        exp = process.env.JWT_USER_EXP;
+        hehe = process.env.JWT_REFRESH_SECRET;
+    }
+    else {
+        exp = process.env.JWT_USER_EXP;
+        hehe = process.env.JWT_RESET_PASSWORD_SECRET;
+    }
+    // @ts-expect-error
+    const token = jsonwebtoken_1.default.sign(data, hehe, {
+        expiresIn: exp,
+    });
     return token;
 };
 exports.getJwtToken = getJwtToken;

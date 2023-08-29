@@ -1,3 +1,5 @@
+import { type JWT_TYPES } from './enums'
+
 export interface CreatedAdminResDataInterface {
   id: string
   name: string
@@ -61,7 +63,8 @@ export interface Pagination<T> {
 }
 
 export interface TokenResInterface {
-  token: string
+  accessToken: string
+  refreshToken: string
 }
 
 export interface TypesResInterface {
@@ -173,3 +176,8 @@ export interface ExamSectionResInterface {
   createdAt: Date
   updatedAt: Date
 }
+
+export type jwtType =
+  | JWT_TYPES.ACCESS
+  | JWT_TYPES.REFRESH
+  | JWT_TYPES.RESET_PASSWORD

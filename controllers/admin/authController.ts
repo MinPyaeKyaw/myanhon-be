@@ -16,6 +16,7 @@ import {
   type TokenResInterface,
 } from '../../utils/interfaces'
 import dayjs from 'dayjs'
+import { JWT_TYPES } from '../../utils/enums'
 
 const prisma: PrismaClient = new PrismaClient()
 
@@ -42,9 +43,9 @@ export const login = async (req: Request, res: Response) => {
       )
     }
 
-    // @ts-expect-error
     if (
       dayjs(new Date()).diff(dayjs(admin.latestLogin), 'minute') < 30 &&
+      // @ts-expect-error
       admin.loginTryCount > +process.env.ALLOWED_LOGIN_COUNT
     ) {
       return writeJsonRes<null>(
@@ -73,12 +74,22 @@ export const login = async (req: Request, res: Response) => {
       roleId: admin.roleId,
     }
 
+    const refreshTokenData = {
+      id: 'leepl',
+      name: 'leepl',
+      email: 'leepl',
+      phone: 'leepl',
+      isPaid: 'leepl',
+      startDate: 'leepl',
+      expiredDate: 'leepl',
+    }
+
     return writeJsonRes<TokenResInterface>(
       res,
       200,
       {
-        // @ts-expect-error
-        token: getJwtToken(tokenData, process.env.JWT_USER_SECRET),
+        accessToken: getJwtToken(tokenData, JWT_TYPES.ACCESS),
+        refreshToken: getJwtToken(refreshTokenData, JWT_TYPES.REFRESH),
       },
       'Successfully logged in!',
     )
@@ -203,12 +214,22 @@ export const verfiyCode = async (req: Request, res: Response) => {
       adminResetPasswordToken: true,
     }
 
+    const refreshTokenData = {
+      id: 'leepl',
+      name: 'leepl',
+      email: 'leepl',
+      phone: 'leepl',
+      isPaid: 'leepl',
+      startDate: 'leepl',
+      expiredDate: 'leepl',
+    }
+
     return writeJsonRes<TokenResInterface>(
       res,
       200,
       {
-        // @ts-expect-error
-        token: getJwtToken(tokenData, process.env.JWT_USER_SECRET),
+        accessToken: getJwtToken(tokenData, JWT_TYPES.ACCESS),
+        refreshToken: getJwtToken(refreshTokenData, JWT_TYPES.REFRESH),
       },
       'Successfully verified!',
     )

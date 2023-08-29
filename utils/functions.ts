@@ -10,7 +10,8 @@ import { type RedisClientType, createClient } from 'redis'
 import multer from 'multer'
 import NodeRSA from 'node-rsa'
 
-import { type AdminObjInterface } from './interfaces'
+import { type jwtType, type AdminObjInterface } from './interfaces'
+import { JWT_TYPES } from './enums'
 
 const prisma: PrismaClient = new PrismaClient()
 
@@ -163,8 +164,24 @@ export const verifyPassword = async (
     })
 }
 
-export const getJwtToken = (data: any, secret: string): string => {
-  const token = jwt.sign(data, secret)
+export const getJwtToken = (data: any, type: jwtType): string => {
+  let exp, hehe
+
+  if (type === JWT_TYPES.ACCESS) {
+    exp = process.env.JWT_USER_EXP
+    hehe = process.env.JWT_USER_SECRET
+  } else if (type === JWT_TYPES.REFRESH) {
+    exp = process.env.JWT_USER_EXP
+    hehe = process.env.JWT_REFRESH_SECRET
+  } else {
+    exp = process.env.JWT_USER_EXP
+    hehe = process.env.JWT_RESET_PASSWORD_SECRET
+  }
+
+  // @ts-expect-error
+  const token = jwt.sign(data, hehe, {
+    expiresIn: exp,
+  })
 
   return token
 }

@@ -17,6 +17,7 @@ const client_1 = require("@prisma/client");
 const functions_1 = require("../../utils/functions");
 const nodeMailerFn_1 = __importDefault(require("../../utils/nodeMailerFn"));
 const dayjs_1 = __importDefault(require("dayjs"));
+const enums_1 = require("../../utils/enums");
 const prisma = new client_1.PrismaClient();
 const test = (req, res) => {
     res.json({
@@ -34,8 +35,8 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         if (!admin) {
             return (0, functions_1.writeJsonRes)(res, 404, null, "This email hasn't been registered yet!");
         }
-        // @ts-expect-error
         if ((0, dayjs_1.default)(new Date()).diff((0, dayjs_1.default)(admin.latestLogin), 'minute') < 30 &&
+            // @ts-expect-error
             admin.loginTryCount > +process.env.ALLOWED_LOGIN_COUNT) {
             return (0, functions_1.writeJsonRes)(res, 400, null, `Try again after ${(0, dayjs_1.default)(admin.latestLogin).diff((0, dayjs_1.default)(new Date()))} minutes!`);
         }
@@ -50,9 +51,18 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             email: admin.email,
             roleId: admin.roleId,
         };
+        const refreshTokenData = {
+            id: 'leepl',
+            name: 'leepl',
+            email: 'leepl',
+            phone: 'leepl',
+            isPaid: 'leepl',
+            startDate: 'leepl',
+            expiredDate: 'leepl',
+        };
         return (0, functions_1.writeJsonRes)(res, 200, {
-            // @ts-expect-error
-            token: (0, functions_1.getJwtToken)(tokenData, process.env.JWT_USER_SECRET),
+            accessToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.ACCESS),
+            refreshToken: (0, functions_1.getJwtToken)(refreshTokenData, enums_1.JWT_TYPES.REFRESH),
         }, 'Successfully logged in!');
     }
     catch (error) {
@@ -153,9 +163,18 @@ const verfiyCode = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             email: admin === null || admin === void 0 ? void 0 : admin.email,
             adminResetPasswordToken: true,
         };
+        const refreshTokenData = {
+            id: 'leepl',
+            name: 'leepl',
+            email: 'leepl',
+            phone: 'leepl',
+            isPaid: 'leepl',
+            startDate: 'leepl',
+            expiredDate: 'leepl',
+        };
         return (0, functions_1.writeJsonRes)(res, 200, {
-            // @ts-expect-error
-            token: (0, functions_1.getJwtToken)(tokenData, process.env.JWT_USER_SECRET),
+            accessToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.ACCESS),
+            refreshToken: (0, functions_1.getJwtToken)(refreshTokenData, enums_1.JWT_TYPES.REFRESH),
         }, 'Successfully verified!');
     }
     catch (error) {

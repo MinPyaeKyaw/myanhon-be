@@ -9,9 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.resetPassword = exports.verifyCode = exports.checkEmail = exports.verifyEmail = exports.signup = exports.login = exports.test = void 0;
+exports.resetPassword = exports.verifyCode = exports.checkEmail = exports.verifyEmail = exports.signup = exports.login = exports.refreshToken = exports.test = void 0;
 const client_1 = require("@prisma/client");
 const functions_1 = require("../utils/functions");
+const enums_1 = require("../utils/enums");
 const prisma = new client_1.PrismaClient();
 const test = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // try {
@@ -34,6 +35,37 @@ const test = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // logger();
 });
 exports.test = test;
+const refreshToken = (req, res) => {
+    try {
+        const accessTokenData = {
+            id: 'leepl',
+            name: 'leepl',
+            email: 'leepl',
+            phone: 'leepl',
+            isPaid: 'leepl',
+            startDate: 'leepl',
+            expiredDate: 'leepl',
+        };
+        const refreshTokenData = {
+            id: 'leepl',
+            name: 'leepl',
+            email: 'leepl',
+            phone: 'leepl',
+            isPaid: 'leepl',
+            startDate: 'leepl',
+            expiredDate: 'leepl',
+        };
+        return (0, functions_1.writeJsonRes)(res, 200, {
+            accessToken: (0, functions_1.getJwtToken)(accessTokenData, enums_1.JWT_TYPES.ACCESS),
+            refreshToken: (0, functions_1.getJwtToken)(refreshTokenData, enums_1.JWT_TYPES.REFRESH),
+        }, 'Successfully logged in!');
+    }
+    catch (error) {
+        (0, functions_1.logError)(error, 'Refresh token Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
+    }
+};
+exports.refreshToken = refreshToken;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = yield prisma.users.findFirst({
@@ -66,9 +98,18 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             startDate: user.startDate,
             expiredDate: user.expiredDate,
         };
+        const refreshTokenData = {
+            id: 'leepl',
+            name: 'leepl',
+            email: 'leepl',
+            phone: 'leepl',
+            isPaid: 'leepl',
+            startDate: 'leepl',
+            expiredDate: 'leepl',
+        };
         return (0, functions_1.writeJsonRes)(res, 200, {
-            // @ts-expect-error
-            token: (0, functions_1.getJwtToken)(tokenData, process.env.JWT_USER_SECRET),
+            accessToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.ACCESS),
+            refreshToken: (0, functions_1.getJwtToken)(refreshTokenData, enums_1.JWT_TYPES.REFRESH),
         }, 'Successfully logged in!');
     }
     catch (error) {
@@ -145,9 +186,18 @@ const verifyEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             startDate: user.startDate,
             expiredDate: user.expiredDate,
         };
+        const refreshTokenData = {
+            id: 'leepl',
+            name: 'leepl',
+            email: 'leepl',
+            phone: 'leepl',
+            isPaid: 'leepl',
+            startDate: 'leepl',
+            expiredDate: 'leepl',
+        };
         return (0, functions_1.writeJsonRes)(res, 200, {
-            // @ts-expect-error
-            token: (0, functions_1.getJwtToken)(tokenData, process.env.JWT_USER_SECRET),
+            accessToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.ACCESS),
+            refreshToken: (0, functions_1.getJwtToken)(refreshTokenData, enums_1.JWT_TYPES.REFRESH),
         }, 'Successfully verified your email!');
     }
     catch (error) {
@@ -190,9 +240,19 @@ const verifyCode = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
             code: req.body.verificationCode,
             resetPasswordToken: true,
         };
-        return (0, functions_1.writeJsonRes)(res, 200, 
-        // @ts-expect-error
-        { token: (0, functions_1.getJwtToken)(tokenData, process.env.JWT_RESET_PASSWORD_SECRET) }, 'Successfully verified!');
+        const refreshTokenData = {
+            id: 'leepl',
+            name: 'leepl',
+            email: 'leepl',
+            phone: 'leepl',
+            isPaid: 'leepl',
+            startDate: 'leepl',
+            expiredDate: 'leepl',
+        };
+        return (0, functions_1.writeJsonRes)(res, 200, {
+            accessToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.RESET_PASSWORD),
+            refreshToken: (0, functions_1.getJwtToken)(refreshTokenData, enums_1.JWT_TYPES.REFRESH),
+        }, 'Successfully verified!');
     }
     catch (error) {
         (0, functions_1.logError)(error, 'Verfiy Code Controller');

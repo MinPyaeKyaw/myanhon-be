@@ -22,11 +22,7 @@ authRouter.post('/check-email', checkEmail)
 
 authRouter.post('/verify-code', verifyCode)
 
-authRouter.patch(
-  '/reset-password',
-  verifyResetPasswordJwt,
-  resetPassword,
-)
+authRouter.patch('/reset-password', verifyResetPasswordJwt, resetPassword)
 
 authRouter.post('/test', verifyResetPasswordJwt, test)
 
