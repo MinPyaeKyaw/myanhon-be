@@ -36,14 +36,14 @@ app.use(adminAPIPrefix, adminCourseRoute)
 
 // User routes
 app.use(process.env.API_PREFIX + '/auth', authRouter)
-app.use(`${process.env.API_PREFIX}`, courseRouter)
-app.use(`${process.env.API_PREFIX}`, typeRouter)
-app.use(`${process.env.API_PREFIX}`, levelRouter)
-app.use(`${process.env.API_PREFIX}`, userRouter)
-app.use(`${process.env.API_PREFIX}`, paymentRouter)
-app.use(`${process.env.API_PREFIX}`, questioniarRouter)
-app.use(`${process.env.API_PREFIX}`, suggestionRouter)
-app.use(`${process.env.API_PREFIX}`, examRouter)
+app.use(process.env.API_PREFIX as string, courseRouter)
+app.use(process.env.API_PREFIX as string, typeRouter)
+app.use(process.env.API_PREFIX as string, levelRouter)
+app.use(process.env.API_PREFIX as string, userRouter)
+app.use(process.env.API_PREFIX as string, paymentRouter)
+app.use(process.env.API_PREFIX as string, questioniarRouter)
+app.use(process.env.API_PREFIX as string, suggestionRouter)
+app.use(process.env.API_PREFIX as string, examRouter)
 
 app.listen(4000, () => {
   console.log('now listening to 4000')

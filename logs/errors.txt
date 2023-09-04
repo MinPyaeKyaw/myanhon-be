@@ -3679,3 +3679,31 @@ Note: Lines with + are required, lines with ? are optional.
     at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
     at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
  
+Sat Sep 02 2023 06:22:32 GMT+0630 (Myanmar Time)[ Verify User JWT Middleware ]
+TokenExpiredError: jwt expired
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/jsonwebtoken/verify.js:97:14)
+    at module.exports [as verify] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/jsonwebtoken/verify.js:101:10)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/middlewares/userJwtMiddleware.js:29:44
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/middlewares/userJwtMiddleware.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/middlewares/userJwtMiddleware.js:4:12)
+    at verifyUserJwt (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/middlewares/userJwtMiddleware.js:21:43)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+
+Mon Sep 04 2023 20:51:43 GMT+0630 (Myanmar Time)[ Sign Up Controller ]
+Error: 
+Invalid `prisma.users.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/authController.js:102:48
+
+   99 }
+  100 const otpCode = (0, functions_1.generateOTPCode)();
+  101 const hashedPassword = yield (0, functions_1.hashPassword)(req.body.password);
+→ 102 const createdUser = yield prisma.users.create(
+Unique constraint failed on the fields: (`email`)
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+

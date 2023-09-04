@@ -58,14 +58,14 @@ app.use(adminAPIPrefix, admins_1.default);
 app.use(adminAPIPrefix, courses_2.default);
 // User routes
 app.use(process.env.API_PREFIX + '/auth', auth_1.default);
-app.use(`${process.env.API_PREFIX}`, courses_1.default);
-app.use(`${process.env.API_PREFIX}`, courseTypes_1.default);
-app.use(`${process.env.API_PREFIX}`, courseLevels_1.default);
-app.use(`${process.env.API_PREFIX}`, user_1.default);
-app.use(`${process.env.API_PREFIX}`, payment_1.default);
-app.use(`${process.env.API_PREFIX}`, questioniar_1.default);
-app.use(`${process.env.API_PREFIX}`, suggestoin_1.default);
-app.use(`${process.env.API_PREFIX}`, exam_1.default);
+app.use(process.env.API_PREFIX, courses_1.default);
+app.use(process.env.API_PREFIX, courseTypes_1.default);
+app.use(process.env.API_PREFIX, courseLevels_1.default);
+app.use(process.env.API_PREFIX, user_1.default);
+app.use(process.env.API_PREFIX, payment_1.default);
+app.use(process.env.API_PREFIX, questioniar_1.default);
+app.use(process.env.API_PREFIX, suggestoin_1.default);
+app.use(process.env.API_PREFIX, exam_1.default);
 app.listen(4000, () => {
     console.log('now listening to 4000');
 });

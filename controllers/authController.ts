@@ -5,13 +5,13 @@ import { PrismaClient } from '@prisma/client'
 import {
   generateOTPCode,
   getJwtToken,
-  hashPassword,
+  getUsernameFromEmail,
+  hashString,
   logError,
   refreshVerificationCode,
-  verifyPassword,
+  verifyString,
   writeJsonRes,
 } from '../utils/functions'
-import mailer from '../utils/nodeMailerFn'
 import { type TokenResInterface } from '../utils/interfaces'
 import { JWT_TYPES } from '../utils/enums'
 
@@ -38,35 +38,29 @@ export const test = async (req: Request, res: Response) => {
   // logger();
 }
 
-export const refreshToken = (req: Request, res: Response) => {
+export const refreshToken = async (req: Request, res: Response) => {
   try {
+    const user = await prisma.users.findFirst({
+      where: { id: req.body.id },
+    })
+
     const accessTokenData = {
-      id: 'leepl',
-      name: 'leepl',
-      email: 'leepl',
-      phone: 'leepl',
-      isPaid: 'leepl',
-      startDate: 'leepl',
-      expiredDate: 'leepl',
+      id: user?.id,
+      name: user?.name,
+      email: user?.email,
+      phone: user?.phone,
+      isPaid: user?.isPaid,
+      startDate: user?.startDate,
+      expiredDate: user?.expiredDate,
     }
 
-    const refreshTokenData = {
-      id: 'leepl',
-      name: 'leepl',
-      email: 'leepl',
-      phone: 'leepl',
-      isPaid: 'leepl',
-      startDate: 'leepl',
-      expiredDate: 'leepl',
-    }
-    return writeJsonRes<TokenResInterface>(
+    return writeJsonRes<any>(
       res,
       200,
       {
         accessToken: getJwtToken(accessTokenData, JWT_TYPES.ACCESS),
-        refreshToken: getJwtToken(refreshTokenData, JWT_TYPES.REFRESH),
       },
-      'Successfully logged in!',
+      'Successfully refreshed the token!',
     )
   } catch (error) {
     logError(error, 'Refresh token Controller')
@@ -74,11 +68,11 @@ export const refreshToken = (req: Request, res: Response) => {
   }
 }
 
-export const login = async (req: Request, res: Response) => {
+export const resendOTP = async (req: Request, res: Response) => {
   try {
     const user = await prisma.users.findFirst({
       where: {
-        email: req.body.email,
+        phone: req.body.phone,
       },
     })
 
@@ -87,11 +81,51 @@ export const login = async (req: Request, res: Response) => {
         res,
         404,
         null,
-        "This email hasn't been registered yet!",
+        "This phone number hasn't been registered yet!",
       )
     }
 
-    const isVerifiedPassword = await verifyPassword(
+    // send otp to user via SMS message
+    const otpCode = generateOTPCode()
+    const hashedOtp = await hashString(otpCode)
+    await refreshVerificationCode(req.body.phone, hashedOtp)
+    console.log('RESEND send otp to user via SMS message' + otpCode)
+
+    const tokenData = {
+      id: user.id,
+    }
+    return writeJsonRes<any>(
+      res,
+      200,
+      {
+        otpToken: getJwtToken(tokenData, JWT_TYPES.OTP),
+      },
+      'Successfully logged in!',
+    )
+  } catch (error) {
+    logError(error, 'Resend OTP Controller')
+    return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
+  }
+}
+
+export const login = async (req: Request, res: Response) => {
+  try {
+    const user = await prisma.users.findFirst({
+      where: {
+        phone: req.body.phone,
+      },
+    })
+
+    if (!user) {
+      return writeJsonRes<null>(
+        res,
+        404,
+        null,
+        "This phone number hasn't been registered yet!",
+      )
+    }
+
+    const isVerifiedPassword = await verifyString(
       req.body.password,
       user.password,
     )
@@ -99,41 +133,20 @@ export const login = async (req: Request, res: Response) => {
       return writeJsonRes<null>(res, 400, null, 'Invalid password!')
     }
 
-    if (!user.isEmailVerified) {
-      const otpCode = generateOTPCode()
-      //   mailer({
-      //     to: req.body.email,
-      //     subject: 'Verify your email!',
-      //     html: otpCode
-      //   })
-      return writeJsonRes<null>(res, 400, null, 'Verify your email!')
-    }
+    // send otp to user via SMS message
+    const otpCode = generateOTPCode()
+    const hashedOtp = await hashString(otpCode)
+    await refreshVerificationCode(req.body.phone, hashedOtp)
+    console.log('send otp to user via SMS message' + otpCode)
 
     const tokenData = {
       id: user.id,
-      name: user.name,
-      email: user.email,
-      phone: user.phone,
-      isPaid: user.isPaid,
-      startDate: user.startDate,
-      expiredDate: user.expiredDate,
     }
-
-    const refreshTokenData = {
-      id: 'leepl',
-      name: 'leepl',
-      email: 'leepl',
-      phone: 'leepl',
-      isPaid: 'leepl',
-      startDate: 'leepl',
-      expiredDate: 'leepl',
-    }
-    return writeJsonRes<TokenResInterface>(
+    return writeJsonRes<any>(
       res,
       200,
       {
-        accessToken: getJwtToken(tokenData, JWT_TYPES.ACCESS),
-        refreshToken: getJwtToken(refreshTokenData, JWT_TYPES.REFRESH),
+        otpToken: getJwtToken(tokenData, JWT_TYPES.OTP),
       },
       'Successfully logged in!',
     )
@@ -145,39 +158,45 @@ export const login = async (req: Request, res: Response) => {
 
 export const signup = async (req: Request, res: Response) => {
   try {
-    const duplicatedEmail = await prisma.users.findFirst({
+    const duplicatedPhone = await prisma.users.findFirst({
       where: {
-        email: req.body.email,
+        phone: req.body.phone,
       },
     })
-    if (duplicatedEmail) {
-      return writeJsonRes<null>(res, 409, null, 'This email is already used!')
+    if (duplicatedPhone) {
+      return writeJsonRes<null>(
+        res,
+        409,
+        null,
+        'This phone number is already used!',
+      )
     }
 
     const otpCode = generateOTPCode()
-    const hashedPassword = await hashPassword(req.body.password)
+    const hashedOtp = await hashString(otpCode)
+    const hashedPassword = await hashString(req.body.password)
     const createdUser = await prisma.users.create({
       data: {
-        name: req.body.name,
+        name: getUsernameFromEmail(req.body.email),
         email: req.body.email,
         phone: req.body.phone,
         password: hashedPassword,
-        verificationCode: otpCode,
+        otpCode: hashedOtp,
       },
     })
 
-    if (createdUser) {
-      //   mailer({
-      //     to: req.body.email,
-      //     subject: 'Verify your email!',
-      //     html: otpCode
-      //   })
-    }
+    // send otp to user via SMS message
+    console.log('SIGN UP send otp to user via SMS message' + otpCode)
 
-    return writeJsonRes<null>(
+    const tokenData = {
+      id: createdUser.id,
+    }
+    return writeJsonRes<any>(
       res,
       201,
-      null,
+      {
+        otpToken: getJwtToken(tokenData, JWT_TYPES.OTP),
+      },
       'Successfully created your account!',
     )
   } catch (error) {
@@ -186,36 +205,25 @@ export const signup = async (req: Request, res: Response) => {
   }
 }
 
-export const verifyEmail = async (req: Request, res: Response) => {
+export const verifyOTPCode = async (req: Request, res: Response) => {
   try {
     const user = await prisma.users.findFirst({
       where: {
-        email: req.body.email,
+        phone: req.body.phone,
       },
     })
     if (!user) {
-      return writeJsonRes<null>(
-        res,
-        400,
-        null,
-        "This email hasn't been registered yet!",
-      )
+      return writeJsonRes<null>(res, 400, null, 'Invalid OTP code!')
     }
 
-    if (req.body?.verificationCode !== user?.verificationCode) {
-      return writeJsonRes<null>(res, 400, null, 'Invalid verification code')
+    const isVerifiedOTP = await verifyString(req.body?.otpCode, user?.otpCode)
+    if (!isVerifiedOTP) {
+      return writeJsonRes<null>(res, 400, null, 'Invalid OTP code!')
     }
 
-    await prisma.users.update({
-      where: {
-        email: req.body.email,
-      },
-      data: {
-        isEmailVerified: true,
-      },
-    })
-
-    await refreshVerificationCode(req.body.email)
+    const otpCode = generateOTPCode()
+    const hashedOtp = await hashString(otpCode)
+    await refreshVerificationCode(req.body.phone, hashedOtp)
 
     const tokenData = {
       id: user.id,
@@ -226,15 +234,8 @@ export const verifyEmail = async (req: Request, res: Response) => {
       startDate: user.startDate,
       expiredDate: user.expiredDate,
     }
-
     const refreshTokenData = {
-      id: 'leepl',
-      name: 'leepl',
-      email: 'leepl',
-      phone: 'leepl',
-      isPaid: 'leepl',
-      startDate: 'leepl',
-      expiredDate: 'leepl',
+      id: user.id,
     }
 
     return writeJsonRes<TokenResInterface>(
@@ -244,89 +245,20 @@ export const verifyEmail = async (req: Request, res: Response) => {
         accessToken: getJwtToken(tokenData, JWT_TYPES.ACCESS),
         refreshToken: getJwtToken(refreshTokenData, JWT_TYPES.REFRESH),
       },
-      'Successfully verified your email!',
+      'Successfully verified the OTP code!',
     )
   } catch (error) {
-    logError(error, 'Email Verify Controller')
-    return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
-  }
-}
-
-export const checkEmail = async (req: Request, res: Response) => {
-  try {
-    const user = await prisma.users.findFirst({
-      where: {
-        email: req.body.email,
-      },
-    })
-
-    if (!user) {
-      return writeJsonRes<null>(
-        res,
-        404,
-        null,
-        "This email hasn't been registered yet!",
-      )
-    }
-
-    return writeJsonRes<null>(res, 200, null, 'Verify your email!')
-  } catch (error) {
-    logError(error, 'Check Email Controller')
-    return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
-  }
-}
-
-export const verifyCode = async (req: Request, res: Response) => {
-  try {
-    const user = await prisma.users.findFirst({
-      where: {
-        email: req.body.email,
-      },
-    })
-
-    if (user?.verificationCode !== req.body.verificationCode) {
-      return writeJsonRes<null>(res, 400, null, 'Invalid verification code')
-    }
-
-    await refreshVerificationCode(req.body.email)
-
-    const tokenData = {
-      email: req.body.email,
-      code: req.body.verificationCode,
-      resetPasswordToken: true,
-    }
-
-    const refreshTokenData = {
-      id: 'leepl',
-      name: 'leepl',
-      email: 'leepl',
-      phone: 'leepl',
-      isPaid: 'leepl',
-      startDate: 'leepl',
-      expiredDate: 'leepl',
-    }
-
-    return writeJsonRes<TokenResInterface>(
-      res,
-      200,
-      {
-        accessToken: getJwtToken(tokenData, JWT_TYPES.RESET_PASSWORD),
-        refreshToken: getJwtToken(refreshTokenData, JWT_TYPES.REFRESH),
-      },
-      'Successfully verified!',
-    )
-  } catch (error) {
-    logError(error, 'Verfiy Code Controller')
+    logError(error, 'Verify OTP Controller')
     return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
   }
 }
 
 export const resetPassword = async (req: Request, res: Response) => {
   try {
-    const hashedPassword = await hashPassword(req.body.newPassword)
+    const hashedPassword = await hashString(req.body.newPassword)
     await prisma.users.update({
       where: {
-        email: req.body.email,
+        phone: req.body.phone,
       },
       data: {
         password: hashedPassword,

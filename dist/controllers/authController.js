@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.resetPassword = exports.verifyCode = exports.checkEmail = exports.verifyEmail = exports.signup = exports.login = exports.refreshToken = exports.test = void 0;
+exports.resetPassword = exports.verifyOTPCode = exports.signup = exports.login = exports.resendOTP = exports.refreshToken = exports.test = void 0;
 const client_1 = require("@prisma/client");
 const functions_1 = require("../utils/functions");
 const enums_1 = require("../utils/enums");
@@ -35,81 +35,82 @@ const test = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // logger();
 });
 exports.test = test;
-const refreshToken = (req, res) => {
+const refreshToken = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const user = yield prisma.users.findFirst({
+            where: { id: req.body.id },
+        });
         const accessTokenData = {
-            id: 'leepl',
-            name: 'leepl',
-            email: 'leepl',
-            phone: 'leepl',
-            isPaid: 'leepl',
-            startDate: 'leepl',
-            expiredDate: 'leepl',
-        };
-        const refreshTokenData = {
-            id: 'leepl',
-            name: 'leepl',
-            email: 'leepl',
-            phone: 'leepl',
-            isPaid: 'leepl',
-            startDate: 'leepl',
-            expiredDate: 'leepl',
+            id: user === null || user === void 0 ? void 0 : user.id,
+            name: user === null || user === void 0 ? void 0 : user.name,
+            email: user === null || user === void 0 ? void 0 : user.email,
+            phone: user === null || user === void 0 ? void 0 : user.phone,
+            isPaid: user === null || user === void 0 ? void 0 : user.isPaid,
+            startDate: user === null || user === void 0 ? void 0 : user.startDate,
+            expiredDate: user === null || user === void 0 ? void 0 : user.expiredDate,
         };
         return (0, functions_1.writeJsonRes)(res, 200, {
             accessToken: (0, functions_1.getJwtToken)(accessTokenData, enums_1.JWT_TYPES.ACCESS),
-            refreshToken: (0, functions_1.getJwtToken)(refreshTokenData, enums_1.JWT_TYPES.REFRESH),
-        }, 'Successfully logged in!');
+        }, 'Successfully refreshed the token!');
     }
     catch (error) {
         (0, functions_1.logError)(error, 'Refresh token Controller');
         return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
-};
+});
 exports.refreshToken = refreshToken;
+const resendOTP = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const user = yield prisma.users.findFirst({
+            where: {
+                phone: req.body.phone,
+            },
+        });
+        if (!user) {
+            return (0, functions_1.writeJsonRes)(res, 404, null, "This phone number hasn't been registered yet!");
+        }
+        // send otp to user via SMS message
+        const otpCode = (0, functions_1.generateOTPCode)();
+        const hashedOtp = yield (0, functions_1.hashString)(otpCode);
+        yield (0, functions_1.refreshVerificationCode)(req.body.phone, hashedOtp);
+        console.log('RESEND send otp to user via SMS message' + otpCode);
+        const tokenData = {
+            id: user.id,
+        };
+        return (0, functions_1.writeJsonRes)(res, 200, {
+            otpToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.OTP),
+        }, 'Successfully logged in!');
+    }
+    catch (error) {
+        (0, functions_1.logError)(error, 'Resend OTP Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
+    }
+});
+exports.resendOTP = resendOTP;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = yield prisma.users.findFirst({
             where: {
-                email: req.body.email,
+                phone: req.body.phone,
             },
         });
         if (!user) {
-            return (0, functions_1.writeJsonRes)(res, 404, null, "This email hasn't been registered yet!");
+            return (0, functions_1.writeJsonRes)(res, 404, null, "This phone number hasn't been registered yet!");
         }
-        const isVerifiedPassword = yield (0, functions_1.verifyPassword)(req.body.password, user.password);
+        const isVerifiedPassword = yield (0, functions_1.verifyString)(req.body.password, user.password);
         if (!isVerifiedPassword) {
             return (0, functions_1.writeJsonRes)(res, 400, null, 'Invalid password!');
         }
-        if (!user.isEmailVerified) {
-            const otpCode = (0, functions_1.generateOTPCode)();
-            //   mailer({
-            //     to: req.body.email,
-            //     subject: 'Verify your email!',
-            //     html: otpCode
-            //   })
-            return (0, functions_1.writeJsonRes)(res, 400, null, 'Verify your email!');
-        }
+        // send otp to user via SMS message
+        const otpCode = (0, functions_1.generateOTPCode)();
+        const hashedOtp = yield (0, functions_1.hashString)(otpCode);
+        yield (0, functions_1.refreshVerificationCode)(req.body.phone, hashedOtp);
+        console.log('send otp to user via SMS message' + otpCode);
         const tokenData = {
             id: user.id,
-            name: user.name,
-            email: user.email,
-            phone: user.phone,
-            isPaid: user.isPaid,
-            startDate: user.startDate,
-            expiredDate: user.expiredDate,
-        };
-        const refreshTokenData = {
-            id: 'leepl',
-            name: 'leepl',
-            email: 'leepl',
-            phone: 'leepl',
-            isPaid: 'leepl',
-            startDate: 'leepl',
-            expiredDate: 'leepl',
         };
         return (0, functions_1.writeJsonRes)(res, 200, {
-            accessToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.ACCESS),
-            refreshToken: (0, functions_1.getJwtToken)(refreshTokenData, enums_1.JWT_TYPES.REFRESH),
+            otpToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.OTP),
         }, 'Successfully logged in!');
     }
     catch (error) {
@@ -120,33 +121,34 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.login = login;
 const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const duplicatedEmail = yield prisma.users.findFirst({
+        const duplicatedPhone = yield prisma.users.findFirst({
             where: {
-                email: req.body.email,
+                phone: req.body.phone,
             },
         });
-        if (duplicatedEmail) {
-            return (0, functions_1.writeJsonRes)(res, 409, null, 'This email is already used!');
+        if (duplicatedPhone) {
+            return (0, functions_1.writeJsonRes)(res, 409, null, 'This phone number is already used!');
         }
         const otpCode = (0, functions_1.generateOTPCode)();
-        const hashedPassword = yield (0, functions_1.hashPassword)(req.body.password);
+        const hashedOtp = yield (0, functions_1.hashString)(otpCode);
+        const hashedPassword = yield (0, functions_1.hashString)(req.body.password);
         const createdUser = yield prisma.users.create({
             data: {
-                name: req.body.name,
+                name: (0, functions_1.getUsernameFromEmail)(req.body.email),
                 email: req.body.email,
                 phone: req.body.phone,
                 password: hashedPassword,
-                verificationCode: otpCode,
+                otpCode: hashedOtp,
             },
         });
-        if (createdUser) {
-            //   mailer({
-            //     to: req.body.email,
-            //     subject: 'Verify your email!',
-            //     html: otpCode
-            //   })
-        }
-        return (0, functions_1.writeJsonRes)(res, 201, null, 'Successfully created your account!');
+        // send otp to user via SMS message
+        console.log('SIGN UP send otp to user via SMS message' + otpCode);
+        const tokenData = {
+            id: createdUser.id,
+        };
+        return (0, functions_1.writeJsonRes)(res, 201, {
+            otpToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.OTP),
+        }, 'Successfully created your account!');
     }
     catch (error) {
         (0, functions_1.logError)(error, 'Sign Up Controller');
@@ -154,29 +156,24 @@ const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.signup = signup;
-const verifyEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const verifyOTPCode = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     try {
         const user = yield prisma.users.findFirst({
             where: {
-                email: req.body.email,
+                phone: req.body.phone,
             },
         });
         if (!user) {
-            return (0, functions_1.writeJsonRes)(res, 400, null, "This email hasn't been registered yet!");
+            return (0, functions_1.writeJsonRes)(res, 400, null, 'Invalid OTP code!');
         }
-        if (((_a = req.body) === null || _a === void 0 ? void 0 : _a.verificationCode) !== (user === null || user === void 0 ? void 0 : user.verificationCode)) {
-            return (0, functions_1.writeJsonRes)(res, 400, null, 'Invalid verification code');
+        const isVerifiedOTP = yield (0, functions_1.verifyString)((_a = req.body) === null || _a === void 0 ? void 0 : _a.otpCode, user === null || user === void 0 ? void 0 : user.otpCode);
+        if (!isVerifiedOTP) {
+            return (0, functions_1.writeJsonRes)(res, 400, null, 'Invalid OTP code!');
         }
-        yield prisma.users.update({
-            where: {
-                email: req.body.email,
-            },
-            data: {
-                isEmailVerified: true,
-            },
-        });
-        yield (0, functions_1.refreshVerificationCode)(req.body.email);
+        const otpCode = (0, functions_1.generateOTPCode)();
+        const hashedOtp = yield (0, functions_1.hashString)(otpCode);
+        yield (0, functions_1.refreshVerificationCode)(req.body.phone, hashedOtp);
         const tokenData = {
             id: user.id,
             name: user.name,
@@ -187,85 +184,25 @@ const verifyEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             expiredDate: user.expiredDate,
         };
         const refreshTokenData = {
-            id: 'leepl',
-            name: 'leepl',
-            email: 'leepl',
-            phone: 'leepl',
-            isPaid: 'leepl',
-            startDate: 'leepl',
-            expiredDate: 'leepl',
+            id: user.id,
         };
         return (0, functions_1.writeJsonRes)(res, 200, {
             accessToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.ACCESS),
             refreshToken: (0, functions_1.getJwtToken)(refreshTokenData, enums_1.JWT_TYPES.REFRESH),
-        }, 'Successfully verified your email!');
+        }, 'Successfully verified the OTP code!');
     }
     catch (error) {
-        (0, functions_1.logError)(error, 'Email Verify Controller');
+        (0, functions_1.logError)(error, 'Verify OTP Controller');
         return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
-exports.verifyEmail = verifyEmail;
-const checkEmail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const user = yield prisma.users.findFirst({
-            where: {
-                email: req.body.email,
-            },
-        });
-        if (!user) {
-            return (0, functions_1.writeJsonRes)(res, 404, null, "This email hasn't been registered yet!");
-        }
-        return (0, functions_1.writeJsonRes)(res, 200, null, 'Verify your email!');
-    }
-    catch (error) {
-        (0, functions_1.logError)(error, 'Check Email Controller');
-        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
-    }
-});
-exports.checkEmail = checkEmail;
-const verifyCode = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const user = yield prisma.users.findFirst({
-            where: {
-                email: req.body.email,
-            },
-        });
-        if ((user === null || user === void 0 ? void 0 : user.verificationCode) !== req.body.verificationCode) {
-            return (0, functions_1.writeJsonRes)(res, 400, null, 'Invalid verification code');
-        }
-        yield (0, functions_1.refreshVerificationCode)(req.body.email);
-        const tokenData = {
-            email: req.body.email,
-            code: req.body.verificationCode,
-            resetPasswordToken: true,
-        };
-        const refreshTokenData = {
-            id: 'leepl',
-            name: 'leepl',
-            email: 'leepl',
-            phone: 'leepl',
-            isPaid: 'leepl',
-            startDate: 'leepl',
-            expiredDate: 'leepl',
-        };
-        return (0, functions_1.writeJsonRes)(res, 200, {
-            accessToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.RESET_PASSWORD),
-            refreshToken: (0, functions_1.getJwtToken)(refreshTokenData, enums_1.JWT_TYPES.REFRESH),
-        }, 'Successfully verified!');
-    }
-    catch (error) {
-        (0, functions_1.logError)(error, 'Verfiy Code Controller');
-        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
-    }
-});
-exports.verifyCode = verifyCode;
+exports.verifyOTPCode = verifyOTPCode;
 const resetPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const hashedPassword = yield (0, functions_1.hashPassword)(req.body.newPassword);
+        const hashedPassword = yield (0, functions_1.hashString)(req.body.newPassword);
         yield prisma.users.update({
             where: {
-                email: req.body.email,
+                phone: req.body.phone,
             },
             data: {
                 password: hashedPassword,

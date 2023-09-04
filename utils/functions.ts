@@ -72,27 +72,22 @@ export const logError = (err: any, label: string): void => {
   const format = `${new Date()}[ ${label} ]\n${err.stack}\n\n`
   // const format = new Date() + '[ ' + label + ' ]' + '\n' + err.stack + '\n \n'
 
-  // @ts-expect-error
-  if (!fs.existsSync(process.env.LOGGER_FILE)) {
+  if (!fs.existsSync(process.env.LOGGER_FILE as string)) {
     if (err instanceof Error) {
-      // @ts-expect-error
-      fs.writeFile(process.env.LOGGER_FILE, format, error => {
+      fs.writeFile(process.env.LOGGER_FILE as string, format, error => {
         if (error) {
           console.log('create error file', error)
         }
-        // @ts-expect-error
-        zipAndDelFile(process.env.LOGGER_FILE)
+        zipAndDelFile(process.env.LOGGER_FILE as string)
       })
     }
   } else {
     if (err instanceof Error) {
-      // @ts-expect-error
-      fs.appendFile(process.env.LOGGER_FILE, format, error => {
+      fs.appendFile(process.env.LOGGER_FILE as string, format, error => {
         if (error) {
           console.log('append error', error)
         }
-        // @ts-expect-error
-        zipAndDelFile(process.env.LOGGER_FILE)
+        zipAndDelFile(process.env.LOGGER_FILE as string)
       })
     }
   }
@@ -116,8 +111,7 @@ export const writeJsonRes = <ResDataType>(
 
 export const generateOTPCode = (): string => {
   let result = ''
-  const characters =
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 
   for (let i = 0; i < 6; i++) {
     result += characters.charAt(Math.floor(Math.random() * characters.length))
@@ -126,36 +120,38 @@ export const generateOTPCode = (): string => {
   return result.toUpperCase()
 }
 
-export const refreshVerificationCode = async (email: string) => {
+export const getUsernameFromEmail = (email: string): string => {
+  return email.split('@')[0]
+}
+
+export const refreshVerificationCode = async (
+  phone: string,
+  hashedCode: string,
+): Promise<void> => {
   try {
-    const newCode = generateOTPCode()
-    const updateCode = await prisma.users.update({
+    await prisma.users.update({
       where: {
-        email,
+        phone,
       },
       data: {
-        verificationCode: newCode,
+        otpCode: hashedCode,
       },
     })
-
-    if (updateCode) {
-      return true
-    }
   } catch (error) {
-    return false
+    console.log(error)
   }
 }
 
-export const hashPassword = async (password: string): Promise<string> => {
-  return await bcrypt.hash(password, 10)
+export const hashString = async (string: string): Promise<string> => {
+  return await bcrypt.hash(string, 10)
 }
 
-export const verifyPassword = async (
-  userPassword: string,
-  dbPassword: string,
+export const verifyString = async (
+  userString: string,
+  dbString: string,
 ): Promise<boolean> => {
   return await bcrypt
-    .compare(userPassword, dbPassword)
+    .compare(userString, dbString)
     .then(res => {
       return res
     })
@@ -165,21 +161,23 @@ export const verifyPassword = async (
 }
 
 export const getJwtToken = (data: any, type: jwtType): string => {
-  let exp, hehe
+  let exp, key
 
   if (type === JWT_TYPES.ACCESS) {
     exp = process.env.JWT_USER_EXP
-    hehe = process.env.JWT_USER_SECRET
+    key = process.env.JWT_USER_SECRET
   } else if (type === JWT_TYPES.REFRESH) {
     exp = process.env.JWT_USER_EXP
-    hehe = process.env.JWT_REFRESH_SECRET
+    key = process.env.JWT_REFRESH_SECRET
+  } else if (type === JWT_TYPES.OTP) {
+    exp = process.env.JWT_VERIFY_EXP
+    key = process.env.JWT_VERIFY_SECRET
   } else {
     exp = process.env.JWT_USER_EXP
-    hehe = process.env.JWT_RESET_PASSWORD_SECRET
+    key = process.env.JWT_RESET_PASSWORD_SECRET
   }
 
-  // @ts-expect-error
-  const token = jwt.sign(data, hehe, {
+  const token = jwt.sign(data, key as string, {
     expiresIn: exp,
   })
 
@@ -193,6 +191,12 @@ export const getJwtTokenFromReq = (
     return false
   }
   return authHeader?.split(' ')[1]
+}
+
+export const isJwtExpired = (decodedToken: any): boolean => {
+  if (decodedToken.exp < Math.floor(Date.now() / 1000)) return true
+
+  return false
 }
 
 export const getConnectedRedisClient = async (): Promise<RedisClientType> => {
@@ -256,8 +260,7 @@ export const uploadFile = () => {
 export const encryptPaymentPayload = (paymentPayload: any): string | null => {
   // Encrypt payload
   const publicKey = new NodeRSA()
-  // @ts-expect-error
-  publicKey.importKey(process.env.PAYMENT_PUBLIC_KEY, 'pkcs8-public')
+  publicKey.importKey(process.env.PAYMENT_PUBLIC_KEY as string, 'pkcs8-public')
   publicKey.setOptions({ encryptionScheme: 'pkcs1' })
   const encrytpStr = publicKey.encrypt(paymentPayload, 'base64')
   const param = { payload: encrytpStr }

@@ -8,12 +8,13 @@ import {
   getExam,
   submitExam,
 } from '../controllers/examController'
+import { verifyUserJwt } from '../middlewares/userJwtMiddleware'
 
 const examRouter = express.Router()
 
 examRouter.post('/exam-submit', submitExam)
 
-examRouter.get('/exam', examQueryValidation, getExam)
+examRouter.get('/exam', examQueryValidation, verifyUserJwt, getExam)
 
 // for development, remove later
 examRouter.post('/exam', createExam)

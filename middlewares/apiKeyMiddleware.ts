@@ -9,7 +9,7 @@ export function apiKeyMiddleware(
 ) {
   const apiKey = req.headers['x-api-key']
 
-  if (!apiKey || apiKey !== process.env.API_KEY) {
+  if (apiKey !== process.env.API_KEY) {
     return writeJsonRes<null>(res, 404, null, '404 Not Found')
   }
 

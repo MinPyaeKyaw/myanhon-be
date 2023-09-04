@@ -1,26 +1,28 @@
 import express from 'express'
 import {
-  checkEmail,
   login,
   resetPassword,
   signup,
-  verifyEmail,
-  verifyCode,
   test,
+  refreshToken,
+  verifyOTPCode,
+  resendOTP,
 } from '../controllers/authController'
 import { verifyResetPasswordJwt } from '../middlewares/resetPasswordJwtMiddleware'
+import { refreshJwtMiddleware } from '../middlewares/refreshJwtMiddleware'
+import { verifyOtpJwt } from '../middlewares/otpJwtMiddleware'
 
 const authRouter = express.Router()
+
+authRouter.post('/refresh-token', refreshJwtMiddleware, refreshToken)
 
 authRouter.post('/login', login)
 
 authRouter.post('/signup', signup)
 
-authRouter.post('/verify-email', verifyEmail)
+authRouter.post('/verify-otp', verifyOtpJwt, verifyOTPCode)
 
-authRouter.post('/check-email', checkEmail)
-
-authRouter.post('/verify-code', verifyCode)
+authRouter.post('/resend-otp', resendOTP)
 
 authRouter.patch('/reset-password', verifyResetPasswordJwt, resetPassword)
 

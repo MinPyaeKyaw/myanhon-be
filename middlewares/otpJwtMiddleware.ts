@@ -7,7 +7,7 @@ import { getJwtTokenFromReq, logError, writeJsonRes } from '../utils/functions'
 
 const prisma: PrismaClient = new PrismaClient()
 
-export const verifyUserJwt = async (
+export const verifyOtpJwt = async (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -20,7 +20,7 @@ export const verifyUserJwt = async (
 
     jwt.verify(
       token,
-      process.env.JWT_USER_SECRET as string,
+      process.env.JWT_VERIFY_SECRET as string,
       async (err, decodedToken: any) => {
         if (err) {
           console.log(err)

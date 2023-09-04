@@ -12,20 +12,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.verifyUserJwt = void 0;
+exports.refreshJwtMiddleware = void 0;
 const client_1 = require("@prisma/client");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const functions_1 = require("../utils/functions");
 const prisma = new client_1.PrismaClient();
-const verifyUserJwt = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const refreshJwtMiddleware = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const token = (0, functions_1.getJwtTokenFromReq)(req.headers.authorization);
         if (!token) {
             return (0, functions_1.writeJsonRes)(res, 401, null, 'Unthorizied access!');
         }
-        jsonwebtoken_1.default.verify(token, process.env.JWT_USER_SECRET, (err, decodedToken) => __awaiter(void 0, void 0, void 0, function* () {
+        jsonwebtoken_1.default.verify(token, process.env.JWT_REFRESH_SECRET, (err, decodedToken) => __awaiter(void 0, void 0, void 0, function* () {
             if (err) {
-                console.log(err);
                 return (0, functions_1.writeJsonRes)(res, 401, null, 'Unthorizied access!');
             }
             if (!decodedToken.id) {
@@ -47,4 +46,4 @@ const verifyUserJwt = (req, res, next) => __awaiter(void 0, void 0, void 0, func
         return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
-exports.verifyUserJwt = verifyUserJwt;
+exports.refreshJwtMiddleware = refreshJwtMiddleware;

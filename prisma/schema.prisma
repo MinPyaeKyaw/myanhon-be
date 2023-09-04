@@ -63,19 +63,18 @@ model Types {
 }
 
 model Users {
-  id               String         @id @default(uuid())
-  name             String
-  email            String         @unique
-  phone            String
-  password         String
-  isEmailVerified  Boolean        @default(false)
-  isPaid           Boolean        @default(false)
-  startDate        DateTime?
-  expiredDate      DateTime?
-  verificationCode String         @default("000000") @db.VarChar(6)
-  questions        Questions[]
-  userTracking     UserTracking[]
-  examResult       ExamResult[]
+  id           String         @id @default(uuid())
+  name         String
+  email        String
+  phone        String         @unique
+  password     String
+  isPaid       Boolean        @default(false)
+  startDate    DateTime?
+  expiredDate  DateTime?
+  otpCode      String
+  questions    Questions[]
+  userTracking UserTracking[]
+  examResult   ExamResult[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
