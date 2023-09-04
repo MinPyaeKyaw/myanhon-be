@@ -124,7 +124,7 @@ export const getUsernameFromEmail = (email: string): string => {
   return email.split('@')[0]
 }
 
-export const refreshVerificationCode = async (
+export const refreshOTPCode = async (
   phone: string,
   hashedCode: string,
 ): Promise<void> => {

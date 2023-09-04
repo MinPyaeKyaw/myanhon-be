@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.resetPassword = exports.verifyOTPCode = exports.signup = exports.login = exports.resendOTP = exports.refreshToken = exports.test = void 0;
+exports.resetPassword = exports.verifyResetOTPCode = exports.verifyOTPCode = exports.signup = exports.login = exports.sendOTP = exports.refreshToken = exports.test = void 0;
 const client_1 = require("@prisma/client");
 const functions_1 = require("../utils/functions");
 const enums_1 = require("../utils/enums");
@@ -59,7 +59,7 @@ const refreshToken = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.refreshToken = refreshToken;
-const resendOTP = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const sendOTP = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = yield prisma.users.findFirst({
             where: {
@@ -72,21 +72,21 @@ const resendOTP = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         // send otp to user via SMS message
         const otpCode = (0, functions_1.generateOTPCode)();
         const hashedOtp = yield (0, functions_1.hashString)(otpCode);
-        yield (0, functions_1.refreshVerificationCode)(req.body.phone, hashedOtp);
+        yield (0, functions_1.refreshOTPCode)(req.body.phone, hashedOtp);
         console.log('RESEND send otp to user via SMS message' + otpCode);
         const tokenData = {
             id: user.id,
         };
         return (0, functions_1.writeJsonRes)(res, 200, {
             otpToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.OTP),
-        }, 'Successfully logged in!');
+        }, 'Successfully sent the OTP code!');
     }
     catch (error) {
         (0, functions_1.logError)(error, 'Resend OTP Controller');
         return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
-exports.resendOTP = resendOTP;
+exports.sendOTP = sendOTP;
 const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = yield prisma.users.findFirst({
@@ -104,7 +104,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         // send otp to user via SMS message
         const otpCode = (0, functions_1.generateOTPCode)();
         const hashedOtp = yield (0, functions_1.hashString)(otpCode);
-        yield (0, functions_1.refreshVerificationCode)(req.body.phone, hashedOtp);
+        yield (0, functions_1.refreshOTPCode)(req.body.phone, hashedOtp);
         console.log('send otp to user via SMS message' + otpCode);
         const tokenData = {
             id: user.id,
@@ -173,7 +173,7 @@ const verifyOTPCode = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         }
         const otpCode = (0, functions_1.generateOTPCode)();
         const hashedOtp = yield (0, functions_1.hashString)(otpCode);
-        yield (0, functions_1.refreshVerificationCode)(req.body.phone, hashedOtp);
+        yield (0, functions_1.refreshOTPCode)(req.body.phone, hashedOtp);
         const tokenData = {
             id: user.id,
             name: user.name,
@@ -197,6 +197,37 @@ const verifyOTPCode = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.verifyOTPCode = verifyOTPCode;
+const verifyResetOTPCode = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _b;
+    try {
+        const user = yield prisma.users.findFirst({
+            where: {
+                phone: req.body.phone,
+            },
+        });
+        if (!user) {
+            return (0, functions_1.writeJsonRes)(res, 400, null, 'Invalid OTP code!');
+        }
+        const isVerifiedOTP = yield (0, functions_1.verifyString)((_b = req.body) === null || _b === void 0 ? void 0 : _b.otpCode, user === null || user === void 0 ? void 0 : user.otpCode);
+        if (!isVerifiedOTP) {
+            return (0, functions_1.writeJsonRes)(res, 400, null, 'Invalid OTP code!');
+        }
+        const otpCode = (0, functions_1.generateOTPCode)();
+        const hashedOtp = yield (0, functions_1.hashString)(otpCode);
+        yield (0, functions_1.refreshOTPCode)(req.body.phone, hashedOtp);
+        const tokenData = {
+            id: user.id,
+        };
+        return (0, functions_1.writeJsonRes)(res, 200, {
+            resetToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.RESET_PASSWORD),
+        }, 'Successfully verified the OTP code!');
+    }
+    catch (error) {
+        (0, functions_1.logError)(error, 'Verify Reset OTP Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
+    }
+});
+exports.verifyResetOTPCode = verifyResetOTPCode;
 const resetPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const hashedPassword = yield (0, functions_1.hashString)(req.body.newPassword);

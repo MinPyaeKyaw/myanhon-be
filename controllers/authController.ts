@@ -8,7 +8,7 @@ import {
   getUsernameFromEmail,
   hashString,
   logError,
-  refreshVerificationCode,
+  refreshOTPCode,
   verifyString,
   writeJsonRes,
 } from '../utils/functions'
@@ -68,7 +68,7 @@ export const refreshToken = async (req: Request, res: Response) => {
   }
 }
 
-export const resendOTP = async (req: Request, res: Response) => {
+export const sendOTP = async (req: Request, res: Response) => {
   try {
     const user = await prisma.users.findFirst({
       where: {
@@ -88,7 +88,7 @@ export const resendOTP = async (req: Request, res: Response) => {
     // send otp to user via SMS message
     const otpCode = generateOTPCode()
     const hashedOtp = await hashString(otpCode)
-    await refreshVerificationCode(req.body.phone, hashedOtp)
+    await refreshOTPCode(req.body.phone, hashedOtp)
     console.log('RESEND send otp to user via SMS message' + otpCode)
 
     const tokenData = {
@@ -100,7 +100,7 @@ export const resendOTP = async (req: Request, res: Response) => {
       {
         otpToken: getJwtToken(tokenData, JWT_TYPES.OTP),
       },
-      'Successfully logged in!',
+      'Successfully sent the OTP code!',
     )
   } catch (error) {
     logError(error, 'Resend OTP Controller')
@@ -136,7 +136,7 @@ export const login = async (req: Request, res: Response) => {
     // send otp to user via SMS message
     const otpCode = generateOTPCode()
     const hashedOtp = await hashString(otpCode)
-    await refreshVerificationCode(req.body.phone, hashedOtp)
+    await refreshOTPCode(req.body.phone, hashedOtp)
     console.log('send otp to user via SMS message' + otpCode)
 
     const tokenData = {
@@ -223,7 +223,7 @@ export const verifyOTPCode = async (req: Request, res: Response) => {
 
     const otpCode = generateOTPCode()
     const hashedOtp = await hashString(otpCode)
-    await refreshVerificationCode(req.body.phone, hashedOtp)
+    await refreshOTPCode(req.body.phone, hashedOtp)
 
     const tokenData = {
       id: user.id,
@@ -249,6 +249,44 @@ export const verifyOTPCode = async (req: Request, res: Response) => {
     )
   } catch (error) {
     logError(error, 'Verify OTP Controller')
+    return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
+  }
+}
+
+export const verifyResetOTPCode = async (req: Request, res: Response) => {
+  try {
+    const user = await prisma.users.findFirst({
+      where: {
+        phone: req.body.phone,
+      },
+    })
+    if (!user) {
+      return writeJsonRes<null>(res, 400, null, 'Invalid OTP code!')
+    }
+
+    const isVerifiedOTP = await verifyString(req.body?.otpCode, user?.otpCode)
+    if (!isVerifiedOTP) {
+      return writeJsonRes<null>(res, 400, null, 'Invalid OTP code!')
+    }
+
+    const otpCode = generateOTPCode()
+    const hashedOtp = await hashString(otpCode)
+    await refreshOTPCode(req.body.phone, hashedOtp)
+
+    const tokenData = {
+      id: user.id,
+    }
+
+    return writeJsonRes<any>(
+      res,
+      200,
+      {
+        resetToken: getJwtToken(tokenData, JWT_TYPES.RESET_PASSWORD),
+      },
+      'Successfully verified the OTP code!',
+    )
+  } catch (error) {
+    logError(error, 'Verify Reset OTP Controller')
     return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
   }
 }

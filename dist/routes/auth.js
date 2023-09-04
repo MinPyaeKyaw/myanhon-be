@@ -13,7 +13,8 @@ authRouter.post('/refresh-token', refreshJwtMiddleware_1.refreshJwtMiddleware, a
 authRouter.post('/login', authController_1.login);
 authRouter.post('/signup', authController_1.signup);
 authRouter.post('/verify-otp', otpJwtMiddleware_1.verifyOtpJwt, authController_1.verifyOTPCode);
-authRouter.post('/resend-otp', authController_1.resendOTP);
+authRouter.post('/verify-reset-otp', authController_1.verifyResetOTPCode);
+authRouter.post('/send-otp', authController_1.sendOTP);
 authRouter.patch('/reset-password', resetPasswordJwtMiddleware_1.verifyResetPasswordJwt, authController_1.resetPassword);
 authRouter.post('/test', resetPasswordJwtMiddleware_1.verifyResetPasswordJwt, authController_1.test);
 exports.default = authRouter;

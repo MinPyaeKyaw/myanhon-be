@@ -6,7 +6,8 @@ import {
   test,
   refreshToken,
   verifyOTPCode,
-  resendOTP,
+  sendOTP,
+  verifyResetOTPCode,
 } from '../controllers/authController'
 import { verifyResetPasswordJwt } from '../middlewares/resetPasswordJwtMiddleware'
 import { refreshJwtMiddleware } from '../middlewares/refreshJwtMiddleware'
@@ -22,7 +23,9 @@ authRouter.post('/signup', signup)
 
 authRouter.post('/verify-otp', verifyOtpJwt, verifyOTPCode)
 
-authRouter.post('/resend-otp', resendOTP)
+authRouter.post('/verify-reset-otp', verifyResetOTPCode)
+
+authRouter.post('/send-otp', sendOTP)
 
 authRouter.patch('/reset-password', verifyResetPasswordJwt, resetPassword)
 

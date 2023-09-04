@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.calculatePercentage = exports.encryptPaymentPayload = exports.uploadFile = exports.updateAdminLoginCount = exports.getConnectedRedisClient = exports.isJwtExpired = exports.getJwtTokenFromReq = exports.getJwtToken = exports.verifyString = exports.hashString = exports.refreshVerificationCode = exports.getUsernameFromEmail = exports.generateOTPCode = exports.writeJsonRes = exports.logError = exports.zipAndDelFile = exports.getFileSize = exports.zipFile = void 0;
+exports.calculatePercentage = exports.encryptPaymentPayload = exports.uploadFile = exports.updateAdminLoginCount = exports.getConnectedRedisClient = exports.isJwtExpired = exports.getJwtTokenFromReq = exports.getJwtToken = exports.verifyString = exports.hashString = exports.refreshOTPCode = exports.getUsernameFromEmail = exports.generateOTPCode = exports.writeJsonRes = exports.logError = exports.zipAndDelFile = exports.getFileSize = exports.zipFile = void 0;
 const fs_1 = __importDefault(require("fs"));
 const zlib_1 = __importDefault(require("zlib"));
 const client_1 = require("@prisma/client");
@@ -117,7 +117,7 @@ const getUsernameFromEmail = (email) => {
     return email.split('@')[0];
 };
 exports.getUsernameFromEmail = getUsernameFromEmail;
-const refreshVerificationCode = (phone, hashedCode) => __awaiter(void 0, void 0, void 0, function* () {
+const refreshOTPCode = (phone, hashedCode) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         yield prisma.users.update({
             where: {
@@ -132,7 +132,7 @@ const refreshVerificationCode = (phone, hashedCode) => __awaiter(void 0, void 0,
         console.log(error);
     }
 });
-exports.refreshVerificationCode = refreshVerificationCode;
+exports.refreshOTPCode = refreshOTPCode;
 const hashString = (string) => __awaiter(void 0, void 0, void 0, function* () {
     return yield bcrypt_1.default.hash(string, 10);
 });

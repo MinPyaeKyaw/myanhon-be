@@ -1,8 +1,11 @@
 import { type NextFunction, type Request, type Response } from 'express'
 
 import jwt from 'jsonwebtoken'
+import { PrismaClient } from '@prisma/client'
 
 import { getJwtTokenFromReq, logError, writeJsonRes } from '../utils/functions'
+
+const prisma: PrismaClient = new PrismaClient()
 
 export const verifyResetPasswordJwt = (
   req: Request,
@@ -17,7 +20,7 @@ export const verifyResetPasswordJwt = (
 
     jwt.verify(
       token,
-      process.env.JWT_REFRESH_SECRET as string,
+      process.env.JWT_RESET_PASSWORD_SECRET as string,
       async (err, decodedToken: any) => {
         if (err) {
           return writeJsonRes<null>(res, 401, null, 'Unthorizied access!')
@@ -25,6 +28,15 @@ export const verifyResetPasswordJwt = (
 
         if (!decodedToken.id) {
           return writeJsonRes<null>(res, 401, null, 'Unthorizied access!')
+        }
+
+        const user = await prisma.users.findFirst({
+          where: {
+            id: decodedToken.id,
+          },
+        })
+        if (!user) {
+          return writeJsonRes<null>(res, 401, null, 'Invalid token!')
         }
 
         next()
