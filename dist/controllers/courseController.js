@@ -9,24 +9,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createUserTracking = exports.createContent = exports.createCourse = exports.createInstructor = exports.getCourseByID = exports.getCourses = void 0;
+exports.createTest = exports.createUserTracking = exports.createContent = exports.createCourse = exports.createCourseInstructor = exports.createInstructor = exports.getCourseByID = exports.getCourses = void 0;
 const client_1 = require("@prisma/client");
 const functions_1 = require("../utils/functions");
 const prisma = new client_1.PrismaClient();
 const getCourses = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { type, level } = req.query;
-        const where = { isPublic: true };
-        if (type) {
-            Object.assign(where, { type: { contains: type } });
-        }
-        if (level) {
-            Object.assign(where, { level: { contains: level } });
-        }
+        // const { type, level } = req.query
+        // const where = { isPublic: true }
+        // if (type) {
+        //   Object.assign(where, { type: { contains: type } })
+        // }
+        // if (level) {
+        //   Object.assign(where, { level: { contains: level } })
+        // }
         const courses = yield prisma.courses.findMany({
-            where,
-            skip: req.query.offset && req.query.offset !== '' ? +req.query.offset : 0,
-            take: req.query.size && req.query.size !== '' ? +req.query.size : 5,
+            // where,
+            // skip: req.query.offset && req.query.offset !== '' ? +req.query.offset : 0,
+            // take: req.query.size && req.query.size !== '' ? +req.query.size : 5,
             include: {
                 courseType: true,
                 courseLevel: true,
@@ -52,8 +52,16 @@ const getCourseByID = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             include: {
                 courseType: true,
                 courseLevel: true,
-                contents: true,
                 instructors: true,
+                contents: {
+                    include: {
+                        tests: {
+                            include: {
+                                answers: true,
+                            },
+                        },
+                    },
+                },
             },
         });
         if (!course) {
@@ -105,19 +113,23 @@ const createInstructor = (req, res) => __awaiter(void 0, void 0, void 0, functio
 });
 exports.createInstructor = createInstructor;
 // just for development, remove later
-// export const createCourseInstructor = async (req: Request, res: Response) => {
-//     try {
-//         const createdCourseInstructor = await prisma.courseInstructor.create({
-//             data: {
-//                 instructorId: '2c92f7ab-e38a-48cd-8611-70f22f9f2387',
-//                 courseId: '06cf43e2-d92d-451d-857f-faeef3458e21'
-//             }
-//         })
-//         return writeJsonRes<any>(res, 201, createdCourseInstructor, "Successfully created course instructor!");
-//     } catch (error) {
-//         return writeJsonRes<null>(res, 500, null, "Internal Server Error!");
-//     }
-// }
+const createCourseInstructor = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const createdCourseInstructor = yield prisma.courses.update({
+            where: { id: '03772d3b-e9ed-45b8-a0ba-497977dc76f6' },
+            data: {
+                instructors: {
+                    connect: { id: '2d564ecd-bc67-4528-91b3-5c17189d3b5f' },
+                },
+            },
+        });
+        return (0, functions_1.writeJsonRes)(res, 201, createdCourseInstructor, 'Successfully created course instructor!');
+    }
+    catch (error) {
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
+    }
+});
+exports.createCourseInstructor = createCourseInstructor;
 // just for development, remove later
 const createCourse = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -134,6 +146,7 @@ const createCourse = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         }
     }
     catch (error) {
+        console.log(error);
         return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
@@ -177,3 +190,21 @@ const createUserTracking = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.createUserTracking = createUserTracking;
+// just for development, remove later
+const createTest = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const userTracking = yield prisma.userTracking.create({
+            data: {
+                userId: req.body.userId,
+                contentId: req.body.contentId,
+                completedPercent: req.body.completedPercent,
+            },
+        });
+        return (0, functions_1.writeJsonRes)(res, 200, userTracking, 'hee hee!');
+    }
+    catch (error) {
+        console.log('CREATE USER TRACKING ERROR', error);
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
+    }
+});
+exports.createTest = createTest;

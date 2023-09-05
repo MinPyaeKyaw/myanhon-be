@@ -40,7 +40,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             admin.loginTryCount > +process.env.ALLOWED_LOGIN_COUNT) {
             return (0, functions_1.writeJsonRes)(res, 400, null, `Try again after ${(0, dayjs_1.default)(admin.latestLogin).diff((0, dayjs_1.default)(new Date()))} minutes!`);
         }
-        const isVerifiedPassword = yield (0, functions_1.verifyPassword)(req.body.password, admin.password);
+        const isVerifiedPassword = yield (0, functions_1.verifyString)(req.body.password, admin.password);
         if (!isVerifiedPassword) {
             yield (0, functions_1.updateAdminLoginCount)(admin);
             return (0, functions_1.writeJsonRes)(res, 400, null, 'Invalid password!');
@@ -81,7 +81,7 @@ const createAdmin = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         if (duplicatedEmail) {
             return (0, functions_1.writeJsonRes)(res, 409, null, 'This email is already used!');
         }
-        const hashedPassword = yield (0, functions_1.hashPassword)(req.body.password);
+        const hashedPassword = yield (0, functions_1.hashString)(req.body.password);
         const createdAdmin = yield prisma.admins.create({
             data: {
                 name: req.body.name,
@@ -185,7 +185,7 @@ const verfiyCode = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.verfiyCode = verfiyCode;
 const resetPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const hashedPassword = yield (0, functions_1.hashPassword)(req.body.newPassword);
+        const hashedPassword = yield (0, functions_1.hashString)(req.body.newPassword);
         yield prisma.admins.update({
             where: {
                 email: req.body.email,

@@ -1,34 +1,15 @@
 import { type Request, type Response } from 'express'
 
 import { PrismaClient } from '@prisma/client'
-import { type RedisClientType, createClient } from 'redis'
 
 import { logError, writeJsonRes } from '../utils/functions'
 import { type TypesResInterface } from '../utils/interfaces'
-import { CACHE_KEYS } from '../utils/enums'
 
 const prisma: PrismaClient = new PrismaClient()
-const redisClient: RedisClientType = createClient()
-redisClient.on('error', err => {
-  console.log('Redis Client Error', err)
-})
-redisClient.connect()
 
 export const getTypes = async (req: Request, res: Response) => {
   try {
-    const typesFromCache = await redisClient.get(CACHE_KEYS.TYPES)
-
-    if (typesFromCache) {
-      return writeJsonRes<TypesResInterface[]>(
-        res,
-        200,
-        JSON.parse(typesFromCache),
-        'Successfully retrived!',
-      )
-    }
-
     const types = await prisma.types.findMany()
-    await redisClient.set(CACHE_KEYS.TYPES, JSON.stringify(types))
     return writeJsonRes<TypesResInterface[]>(
       res,
       200,

@@ -4,10 +4,10 @@ import { PrismaClient } from '@prisma/client'
 
 import {
   getJwtToken,
-  hashPassword,
+  hashString,
   logError,
   updateAdminLoginCount,
-  verifyPassword,
+  verifyString,
   writeJsonRes,
 } from '../../utils/functions'
 import mailer from '../../utils/nodeMailerFn'
@@ -58,7 +58,7 @@ export const login = async (req: Request, res: Response) => {
       )
     }
 
-    const isVerifiedPassword = await verifyPassword(
+    const isVerifiedPassword = await verifyString(
       req.body.password,
       admin.password,
     )
@@ -110,7 +110,7 @@ export const createAdmin = async (req: Request, res: Response) => {
       return writeJsonRes<null>(res, 409, null, 'This email is already used!')
     }
 
-    const hashedPassword = await hashPassword(req.body.password)
+    const hashedPassword = await hashString(req.body.password)
     const createdAdmin = await prisma.admins.create({
       data: {
         name: req.body.name,
@@ -241,7 +241,7 @@ export const verfiyCode = async (req: Request, res: Response) => {
 
 export const resetPassword = async (req: Request, res: Response) => {
   try {
-    const hashedPassword = await hashPassword(req.body.newPassword)
+    const hashedPassword = await hashString(req.body.newPassword)
     await prisma.admins.update({
       where: {
         email: req.body.email,
