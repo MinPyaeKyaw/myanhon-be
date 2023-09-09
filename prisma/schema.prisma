@@ -63,18 +63,19 @@ model Types {
 }
 
 model Users {
-  id           String         @id @default(uuid())
-  name         String
-  email        String
-  phone        String         @unique
-  password     String
-  isPaid       Boolean        @default(false)
-  startDate    DateTime?
-  expiredDate  DateTime?
-  otpCode      String
-  questions    Questions[]
-  userTracking UserTracking[]
-  examResult   ExamResult[]
+  id              String            @id @default(uuid())
+  name            String
+  email           String
+  phone           String            @unique
+  password        String
+  isPaid          Boolean           @default(false)
+  startDate       DateTime?
+  expiredDate     DateTime?
+  otpCode         String
+  questions       Questions[]
+  examResult      ExamResult[]
+  contentTracking ContentTracking[]
+  testTracking    TestTracking[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -116,26 +117,27 @@ model Courses {
 }
 
 model Contents {
-  id           String         @id @default(uuid())
-  name         String
-  thumbnail    String
-  url          String
-  isPublic     Boolean
-  course       Courses        @relation(fields: [courseId], references: [id])
-  courseId     String
-  tests        Tests[]
-  userTracking UserTracking[]
+  id        String            @id @default(uuid())
+  name      String
+  thumbnail String
+  url       String
+  isPublic  Boolean
+  course    Courses           @relation(fields: [courseId], references: [id])
+  courseId  String
+  tests     Tests[]
+  tracking  ContentTracking[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Tests {
-  id        String        @id @default(uuid())
+  id        String         @id @default(uuid())
   question  String
-  content   Contents      @relation(fields: [contentId], references: [id])
+  content   Contents       @relation(fields: [contentId], references: [id])
   contentId String
   answers   TestAnswers[]
+  tracking  TestTracking[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -175,13 +177,25 @@ model Answers {
   updatedAt DateTime @updatedAt
 }
 
-model UserTracking {
+model ContentTracking {
   id               String   @id @default(uuid())
-  content          Contents @relation(fields: [contentId], references: [id])
-  contentId        String
   user             Users    @relation(fields: [userId], references: [id])
   userId           String
+  content          Contents @relation(fields: [contentId], references: [id])
+  contentId        String
   completedPercent Int      @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model TestTracking {
+  id     String @id @default(uuid())
+  user   Users  @relation(fields: [userId], references: [id])
+  userId String
+  test   Tests  @relation(fields: [testId], references: [id])
+  testId String
+  score  Int    @default(0)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

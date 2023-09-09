@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createTest = exports.createUserTracking = exports.createContent = exports.createCourse = exports.createCourseInstructor = exports.createInstructor = exports.getCourseByID = exports.getCourses = void 0;
+exports.createTestAnswer = exports.createTest = exports.createContent = exports.createCourse = exports.createCourseInstructor = exports.createInstructor = exports.setTestTracking = exports.setContentTracking = exports.submitTest = exports.getCourseByID = exports.getCourses = void 0;
 const client_1 = require("@prisma/client");
 const functions_1 = require("../utils/functions");
 const prisma = new client_1.PrismaClient();
@@ -55,9 +55,24 @@ const getCourseByID = (req, res) => __awaiter(void 0, void 0, void 0, function* 
                 instructors: true,
                 contents: {
                     include: {
+                        tracking: {
+                            where: {
+                                userId: req.body.userId,
+                            },
+                        },
                         tests: {
                             include: {
-                                answers: true,
+                                tracking: {
+                                    where: {
+                                        userId: req.body.userId,
+                                    },
+                                },
+                                answers: {
+                                    select: {
+                                        answer: true,
+                                        id: true,
+                                    },
+                                },
                             },
                         },
                     },
@@ -67,22 +82,6 @@ const getCourseByID = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         if (!course) {
             return (0, functions_1.writeJsonRes)(res, 404, null, 'No data found!');
         }
-        const userTracking = yield prisma.userTracking.findMany({
-            where: {
-                userId: req.body.userId,
-            },
-        });
-        for (const content of course.contents) {
-            // @ts-expect-error
-            content.completedPercent = 0;
-            for (const trackedUser of userTracking) {
-                if (req.body.userId === trackedUser.userId &&
-                    content.id === trackedUser.contentId) {
-                    // @ts-expect-error
-                    content.completedPercent = trackedUser.completedPercent;
-                }
-            }
-        }
         return (0, functions_1.writeJsonRes)(res, 200, course, 'Successfully retrived!');
     }
     catch (error) {
@@ -91,6 +90,50 @@ const getCourseByID = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.getCourseByID = getCourseByID;
+const submitTest = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        console.log('lee pl');
+    }
+    catch (error) {
+        (0, functions_1.logError)(error, 'Submit Test Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
+    }
+});
+exports.submitTest = submitTest;
+const setContentTracking = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const createdContentTracking = yield prisma.contentTracking.create({
+            data: {
+                userId: req.body.userId,
+                contentId: req.body.contentId,
+                completedPercent: 15,
+            },
+        });
+        return (0, functions_1.writeJsonRes)(res, 200, createdContentTracking, 'Successfully created!');
+    }
+    catch (error) {
+        console.log('CREATE CONTENT TRACk ERROR', error);
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
+    }
+});
+exports.setContentTracking = setContentTracking;
+const setTestTracking = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const createdTestTracking = yield prisma.testTracking.create({
+            data: {
+                userId: req.body.userId,
+                testId: req.body.testId,
+                score: 15,
+            },
+        });
+        return (0, functions_1.writeJsonRes)(res, 200, createdTestTracking, 'hee hee!');
+    }
+    catch (error) {
+        console.log('CREATE TEST TRACk ERROR', error);
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
+    }
+});
+exports.setTestTracking = setTestTracking;
 // just for development, remove later
 const createInstructor = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -173,38 +216,37 @@ const createContent = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 });
 exports.createContent = createContent;
 // just for development, remove later
-const createUserTracking = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const userTracking = yield prisma.userTracking.create({
-            data: {
-                userId: req.body.userId,
-                contentId: req.body.contentId,
-                completedPercent: req.body.completedPercent,
-            },
-        });
-        return (0, functions_1.writeJsonRes)(res, 200, userTracking, 'hee hee!');
-    }
-    catch (error) {
-        console.log('CREATE USER TRACKING ERROR', error);
-        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
-    }
-});
-exports.createUserTracking = createUserTracking;
-// just for development, remove later
 const createTest = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const userTracking = yield prisma.userTracking.create({
+        const test = yield prisma.tests.create({
             data: {
-                userId: req.body.userId,
                 contentId: req.body.contentId,
-                completedPercent: req.body.completedPercent,
+                question: req.body.question,
             },
         });
-        return (0, functions_1.writeJsonRes)(res, 200, userTracking, 'hee hee!');
+        return (0, functions_1.writeJsonRes)(res, 200, test, 'hee hee!');
     }
     catch (error) {
-        console.log('CREATE USER TRACKING ERROR', error);
+        console.log('CREATE TEST ERROR', error);
         return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });
 exports.createTest = createTest;
+// just for development, remove later
+const createTestAnswer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const testAnswer = yield prisma.testAnswers.create({
+            data: {
+                answer: req.body.answer,
+                isCorrect: req.body.isCorrect,
+                testId: req.body.testId,
+            },
+        });
+        return (0, functions_1.writeJsonRes)(res, 200, testAnswer, 'hee hee!');
+    }
+    catch (error) {
+        console.log('CREATE TEST ANSWER ERROR', error);
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
+    }
+});
+exports.createTestAnswer = createTestAnswer;

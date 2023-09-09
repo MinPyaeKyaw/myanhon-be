@@ -1,14 +1,17 @@
 import express from 'express'
 import {
   createContent,
+  setContentTracking,
   createCourse,
   createCourseInstructor,
   createInstructor,
   createTest,
-  createUserTracking,
+  createTestAnswer,
+  setTestTracking,
   getCourseByID,
   getCourses,
 } from '../controllers/courseController'
+import { verifyUserJwt } from '../middlewares/userJwtMiddleware'
 
 const courseRouter = express.Router()
 
@@ -32,6 +35,6 @@ courseRouter.post('/content', createContent)
 courseRouter.post('/test', createTest)
 
 // just for development, remove later
-courseRouter.post('/track', createUserTracking)
+courseRouter.post('/test-answer', createTestAnswer)
 
 export default courseRouter

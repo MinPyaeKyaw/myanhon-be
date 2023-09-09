@@ -19,5 +19,5 @@ courseRouter.post('/content', courseController_1.createContent);
 // just for development, remove later
 courseRouter.post('/test', courseController_1.createTest);
 // just for development, remove later
-courseRouter.post('/track', courseController_1.createUserTracking);
+courseRouter.post('/test-answer', courseController_1.createTestAnswer);
 exports.default = courseRouter;

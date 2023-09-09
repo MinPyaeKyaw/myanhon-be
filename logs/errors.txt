@@ -3707,3 +3707,51 @@ Unique constraint failed on the fields: (`email`)
     at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
     at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
 
+Wed Sep 06 2023 21:25:40 GMT+0630 (Myanmar Time)[ Get Course By ID Controller ]
+Error: 
+Invalid `prisma.courses.findUnique()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/courseController.js:48:45
+
+  45 exports.getCourses = getCourses;
+  46 const getCourseByID = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  47     try {
+→ 48         const course = yield prisma.courses.findUnique({
+               where: {
+                 id: '03772d3b-e9ed-45b8-a0ba-497977dc76f6'
+               },
+               include: {
+                 courseType: true,
+                 courseLevel: true,
+                 instructors: true,
+                 contents: {
+                   include: {
+                     tests: {
+                       include: {
+                         answers: {
+                           include: {
+                             answer: true
+                           }
+                         },
+                         answer: {
+                           include: {
+             ?               test?: true
+                           }
+                         }
+                       }
+                     }
+                   }
+                 }
+               }
+             })
+
+
+Invalid scalar field `answer` for include statement on model TestAnswers. Available options are listed in green. Did you mean `test`?
+Note, that include statements only accept relation fields.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+

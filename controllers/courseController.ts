@@ -57,9 +57,24 @@ export const getCourseByID = async (req: Request, res: Response) => {
         instructors: true,
         contents: {
           include: {
+            tracking: {
+              where: {
+                userId: req.body.userId,
+              },
+            },
             tests: {
               include: {
-                answers: true,
+                tracking: {
+                  where: {
+                    userId: req.body.userId,
+                  },
+                },
+                answers: {
+                  select: {
+                    answer: true,
+                    id: true,
+                  },
+                },
               },
             },
           },
@@ -71,26 +86,6 @@ export const getCourseByID = async (req: Request, res: Response) => {
       return writeJsonRes<null>(res, 404, null, 'No data found!')
     }
 
-    const userTracking = await prisma.userTracking.findMany({
-      where: {
-        userId: req.body.userId,
-      },
-    })
-
-    for (const content of course.contents) {
-      // @ts-expect-error
-      content.completedPercent = 0
-      for (const trackedUser of userTracking) {
-        if (
-          req.body.userId === trackedUser.userId &&
-          content.id === trackedUser.contentId
-        ) {
-          // @ts-expect-error
-          content.completedPercent = trackedUser.completedPercent
-        }
-      }
-    }
-
     return writeJsonRes<CourseResInterface>(
       res,
       200,
@@ -99,6 +94,54 @@ export const getCourseByID = async (req: Request, res: Response) => {
     )
   } catch (error) {
     logError(error, 'Get Course By ID Controller')
+    return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
+  }
+}
+
+export const submitTest = async (req: Request, res: Response) => {
+  try {
+    console.log('lee pl')
+  } catch (error) {
+    logError(error, 'Submit Test Controller')
+    return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
+  }
+}
+
+export const setContentTracking = async (req: Request, res: Response) => {
+  try {
+    const createdContentTracking = await prisma.contentTracking.create({
+      data: {
+        userId: req.body.userId,
+        contentId: req.body.contentId,
+        completedPercent: 15,
+      },
+    })
+
+    return writeJsonRes<any>(
+      res,
+      200,
+      createdContentTracking,
+      'Successfully created!',
+    )
+  } catch (error) {
+    console.log('CREATE CONTENT TRACk ERROR', error)
+    return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
+  }
+}
+
+export const setTestTracking = async (req: Request, res: Response) => {
+  try {
+    const createdTestTracking = await prisma.testTracking.create({
+      data: {
+        userId: req.body.userId,
+        testId: req.body.testId,
+        score: 15,
+      },
+    })
+
+    return writeJsonRes<any>(res, 200, createdTestTracking, 'hee hee!')
+  } catch (error) {
+    console.log('CREATE TEST TRACk ERROR', error)
     return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
   }
 }
@@ -200,37 +243,36 @@ export const createContent = async (req: Request, res: Response) => {
 }
 
 // just for development, remove later
-export const createUserTracking = async (req: Request, res: Response) => {
+export const createTest = async (req: Request, res: Response) => {
   try {
-    const userTracking = await prisma.userTracking.create({
+    const test = await prisma.tests.create({
       data: {
-        userId: req.body.userId,
         contentId: req.body.contentId,
-        completedPercent: req.body.completedPercent,
+        question: req.body.question,
       },
     })
 
-    return writeJsonRes(res, 200, userTracking, 'hee hee!')
+    return writeJsonRes<any>(res, 200, test, 'hee hee!')
   } catch (error) {
-    console.log('CREATE USER TRACKING ERROR', error)
+    console.log('CREATE TEST ERROR', error)
     return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
   }
 }
 
 // just for development, remove later
-export const createTest = async (req: Request, res: Response) => {
+export const createTestAnswer = async (req: Request, res: Response) => {
   try {
-    const userTracking = await prisma.userTracking.create({
+    const testAnswer = await prisma.testAnswers.create({
       data: {
-        userId: req.body.userId,
-        contentId: req.body.contentId,
-        completedPercent: req.body.completedPercent,
+        answer: req.body.answer,
+        isCorrect: req.body.isCorrect,
+        testId: req.body.testId,
       },
     })
 
-    return writeJsonRes(res, 200, userTracking, 'hee hee!')
+    return writeJsonRes<any>(res, 200, testAnswer, 'hee hee!')
   } catch (error) {
-    console.log('CREATE USER TRACKING ERROR', error)
+    console.log('CREATE TEST ANSWER ERROR', error)
     return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
   }
 }
