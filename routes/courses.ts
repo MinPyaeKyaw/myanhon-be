@@ -1,17 +1,14 @@
 import express from 'express'
 import {
   createContent,
-  setContentTracking,
   createCourse,
   createCourseInstructor,
   createInstructor,
   createTest,
   createTestAnswer,
-  setTestTracking,
   getCourseByID,
   getCourses,
 } from '../controllers/courseController'
-import { verifyUserJwt } from '../middlewares/userJwtMiddleware'
 
 const courseRouter = express.Router()
 

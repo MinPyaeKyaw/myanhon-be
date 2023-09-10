@@ -107,45 +107,6 @@ export const submitTest = async (req: Request, res: Response) => {
   }
 }
 
-export const setContentTracking = async (req: Request, res: Response) => {
-  try {
-    const createdContentTracking = await prisma.contentTracking.create({
-      data: {
-        userId: req.body.userId,
-        contentId: req.body.contentId,
-        completedPercent: 15,
-      },
-    })
-
-    return writeJsonRes<any>(
-      res,
-      200,
-      createdContentTracking,
-      'Successfully created!',
-    )
-  } catch (error) {
-    console.log('CREATE CONTENT TRACk ERROR', error)
-    return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
-  }
-}
-
-export const setTestTracking = async (req: Request, res: Response) => {
-  try {
-    const createdTestTracking = await prisma.testTracking.create({
-      data: {
-        userId: req.body.userId,
-        testId: req.body.testId,
-        score: 15,
-      },
-    })
-
-    return writeJsonRes<any>(res, 200, createdTestTracking, 'hee hee!')
-  } catch (error) {
-    console.log('CREATE TEST TRACk ERROR', error)
-    return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
-  }
-}
-
 // just for development, remove later
 export const createInstructor = async (req: Request, res: Response) => {
   try {

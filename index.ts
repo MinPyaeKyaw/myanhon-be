@@ -18,6 +18,7 @@ import suggestionRouter from './routes/suggestoin'
 import examRouter from './routes/exam'
 import path from 'path'
 import { apiKeyMiddleware } from './middlewares/apiKeyMiddleware'
+import trackingRouter from './routes/tracking'
 
 dotenv.config({ path: path.join(__dirname, "/.env'") })
 dotenv.config()
@@ -44,6 +45,7 @@ app.use(process.env.API_PREFIX as string, paymentRouter)
 app.use(process.env.API_PREFIX as string, questioniarRouter)
 app.use(process.env.API_PREFIX as string, suggestionRouter)
 app.use(process.env.API_PREFIX as string, examRouter)
+app.use(process.env.API_PREFIX as string, trackingRouter)
 
 app.listen(4000, () => {
   console.log('now listening to 4000')

@@ -44,6 +44,7 @@ const suggestoin_1 = __importDefault(require("./routes/suggestoin"));
 const exam_1 = __importDefault(require("./routes/exam"));
 const path_1 = __importDefault(require("path"));
 const apiKeyMiddleware_1 = require("./middlewares/apiKeyMiddleware");
+const tracking_1 = __importDefault(require("./routes/tracking"));
 dotenv.config({ path: path_1.default.join(__dirname, "/.env'") });
 dotenv.config();
 const app = (0, express_1.default)();
@@ -66,6 +67,7 @@ app.use(process.env.API_PREFIX, payment_1.default);
 app.use(process.env.API_PREFIX, questioniar_1.default);
 app.use(process.env.API_PREFIX, suggestoin_1.default);
 app.use(process.env.API_PREFIX, exam_1.default);
+app.use(process.env.API_PREFIX, tracking_1.default);
 app.listen(4000, () => {
     console.log('now listening to 4000');
 });

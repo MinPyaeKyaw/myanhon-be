@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createTestAnswer = exports.createTest = exports.createContent = exports.createCourse = exports.createCourseInstructor = exports.createInstructor = exports.setTestTracking = exports.setContentTracking = exports.submitTest = exports.getCourseByID = exports.getCourses = void 0;
+exports.createTestAnswer = exports.createTest = exports.createContent = exports.createCourse = exports.createCourseInstructor = exports.createInstructor = exports.submitTest = exports.getCourseByID = exports.getCourses = void 0;
 const client_1 = require("@prisma/client");
 const functions_1 = require("../utils/functions");
 const prisma = new client_1.PrismaClient();
@@ -100,40 +100,6 @@ const submitTest = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.submitTest = submitTest;
-const setContentTracking = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const createdContentTracking = yield prisma.contentTracking.create({
-            data: {
-                userId: req.body.userId,
-                contentId: req.body.contentId,
-                completedPercent: 15,
-            },
-        });
-        return (0, functions_1.writeJsonRes)(res, 200, createdContentTracking, 'Successfully created!');
-    }
-    catch (error) {
-        console.log('CREATE CONTENT TRACk ERROR', error);
-        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
-    }
-});
-exports.setContentTracking = setContentTracking;
-const setTestTracking = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const createdTestTracking = yield prisma.testTracking.create({
-            data: {
-                userId: req.body.userId,
-                testId: req.body.testId,
-                score: 15,
-            },
-        });
-        return (0, functions_1.writeJsonRes)(res, 200, createdTestTracking, 'hee hee!');
-    }
-    catch (error) {
-        console.log('CREATE TEST TRACk ERROR', error);
-        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
-    }
-});
-exports.setTestTracking = setTestTracking;
 // just for development, remove later
 const createInstructor = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
