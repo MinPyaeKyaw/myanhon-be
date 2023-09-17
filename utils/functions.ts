@@ -193,6 +193,14 @@ export const getJwtTokenFromReq = (
   return authHeader?.split(' ')[1]
 }
 
+export const decodeJWT = (token: string) => {
+  const decodedToken = jwt.decode(token, {
+    complete: true,
+  })
+
+  return decodedToken?.payload
+}
+
 export const isJwtExpired = (decodedToken: any): boolean => {
   if (decodedToken.exp < Math.floor(Date.now() / 1000)) return true
 

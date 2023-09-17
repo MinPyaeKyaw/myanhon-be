@@ -16,5 +16,5 @@ authRouter.post('/verify-otp', otpJwtMiddleware_1.verifyOtpJwt, authController_1
 authRouter.post('/verify-reset-otp', authController_1.verifyResetOTPCode);
 authRouter.post('/send-otp', authController_1.sendOTP);
 authRouter.patch('/reset-password', resetPasswordJwtMiddleware_1.verifyResetPasswordJwt, authController_1.resetPassword);
-authRouter.post('/test', resetPasswordJwtMiddleware_1.verifyResetPasswordJwt, authController_1.test);
+authRouter.get('/tokens', authController_1.getTokens);
 exports.default = authRouter;

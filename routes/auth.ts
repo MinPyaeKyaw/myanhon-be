@@ -3,11 +3,11 @@ import {
   login,
   resetPassword,
   signup,
-  test,
   refreshToken,
   verifyOTPCode,
   sendOTP,
   verifyResetOTPCode,
+  getTokens,
 } from '../controllers/authController'
 import { verifyResetPasswordJwt } from '../middlewares/resetPasswordJwtMiddleware'
 import { refreshJwtMiddleware } from '../middlewares/refreshJwtMiddleware'
@@ -29,6 +29,6 @@ authRouter.post('/send-otp', sendOTP)
 
 authRouter.patch('/reset-password', verifyResetPasswordJwt, resetPassword)
 
-authRouter.post('/test', verifyResetPasswordJwt, test)
+authRouter.get('/tokens', getTokens)
 
 export default authRouter

@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.resetPassword = exports.verifyResetOTPCode = exports.verifyOTPCode = exports.signup = exports.login = exports.sendOTP = exports.refreshToken = exports.test = void 0;
+exports.getTokens = exports.resetPassword = exports.verifyResetOTPCode = exports.verifyOTPCode = exports.signup = exports.login = exports.sendOTP = exports.refreshToken = exports.test = void 0;
 const client_1 = require("@prisma/client");
 const functions_1 = require("../utils/functions");
 const enums_1 = require("../utils/enums");
@@ -247,3 +247,33 @@ const resetPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.resetPassword = resetPassword;
+const getTokens = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const user = yield prisma.users.findFirst({
+            where: {
+                id: req.body.userId,
+            },
+        });
+        const tokenData = {
+            id: user === null || user === void 0 ? void 0 : user.id,
+            name: user === null || user === void 0 ? void 0 : user.name,
+            email: user === null || user === void 0 ? void 0 : user.email,
+            phone: user === null || user === void 0 ? void 0 : user.phone,
+            isPaid: user === null || user === void 0 ? void 0 : user.isPaid,
+            startDate: user === null || user === void 0 ? void 0 : user.startDate,
+            expiredDate: user === null || user === void 0 ? void 0 : user.expiredDate,
+        };
+        const refreshTokenData = {
+            id: user === null || user === void 0 ? void 0 : user.id,
+        };
+        return (0, functions_1.writeJsonRes)(res, 200, {
+            accessToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.ACCESS),
+            refreshToken: (0, functions_1.getJwtToken)(refreshTokenData, enums_1.JWT_TYPES.REFRESH),
+        }, 'Successfully verified the OTP code!');
+    }
+    catch (error) {
+        (0, functions_1.logError)(error, 'Verify OTP Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
+    }
+});
+exports.getTokens = getTokens;

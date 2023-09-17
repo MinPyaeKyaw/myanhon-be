@@ -31,7 +31,7 @@ const editUserById = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             data: {
                 name: req.body.name,
                 email: req.body.email,
-                phone: req.body.phone,
+                // phone: req.body.phone,
             },
         });
         const tokenData = {
@@ -44,13 +44,7 @@ const editUserById = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             expiredDate: editedUser.expiredDate,
         };
         const refreshTokenData = {
-            id: 'leepl',
-            name: 'leepl',
-            email: 'leepl',
-            phone: 'leepl',
-            isPaid: 'leepl',
-            startDate: 'leepl',
-            expiredDate: 'leepl',
+            id: user === null || user === void 0 ? void 0 : user.id,
         };
         return (0, functions_1.writeJsonRes)(res, 200, {
             accessToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.ACCESS),

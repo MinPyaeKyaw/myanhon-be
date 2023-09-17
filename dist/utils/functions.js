@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.calculatePercentage = exports.encryptPaymentPayload = exports.uploadFile = exports.updateAdminLoginCount = exports.getConnectedRedisClient = exports.isJwtExpired = exports.getJwtTokenFromReq = exports.getJwtToken = exports.verifyString = exports.hashString = exports.refreshOTPCode = exports.getUsernameFromEmail = exports.generateOTPCode = exports.writeJsonRes = exports.logError = exports.zipAndDelFile = exports.getFileSize = exports.zipFile = void 0;
+exports.calculatePercentage = exports.encryptPaymentPayload = exports.uploadFile = exports.updateAdminLoginCount = exports.getConnectedRedisClient = exports.isJwtExpired = exports.decodeJWT = exports.getJwtTokenFromReq = exports.getJwtToken = exports.verifyString = exports.hashString = exports.refreshOTPCode = exports.getUsernameFromEmail = exports.generateOTPCode = exports.writeJsonRes = exports.logError = exports.zipAndDelFile = exports.getFileSize = exports.zipFile = void 0;
 const fs_1 = __importDefault(require("fs"));
 const zlib_1 = __importDefault(require("zlib"));
 const client_1 = require("@prisma/client");
@@ -179,6 +179,13 @@ const getJwtTokenFromReq = (authHeader) => {
     return authHeader === null || authHeader === void 0 ? void 0 : authHeader.split(' ')[1];
 };
 exports.getJwtTokenFromReq = getJwtTokenFromReq;
+const decodeJWT = (token) => {
+    const decodedToken = jsonwebtoken_1.default.decode(token, {
+        complete: true,
+    });
+    return decodedToken === null || decodedToken === void 0 ? void 0 : decodedToken.payload;
+};
+exports.decodeJWT = decodeJWT;
 const isJwtExpired = (decodedToken) => {
     if (decodedToken.exp < Math.floor(Date.now() / 1000))
         return true;

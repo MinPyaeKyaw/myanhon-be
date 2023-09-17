@@ -49,6 +49,7 @@ dotenv.config({ path: path_1.default.join(__dirname, "/.env'") });
 dotenv.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.use(express_1.default.urlencoded({ extended: true }));
 app.use(apiKeyMiddleware_1.apiKeyMiddleware);
 // Admin routes
 const adminAPIPrefix = process.env.API_PREFIX + '/admin';

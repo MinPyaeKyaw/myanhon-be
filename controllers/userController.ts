@@ -27,7 +27,7 @@ export const editUserById = async (req: Request, res: Response) => {
       data: {
         name: req.body.name,
         email: req.body.email,
-        phone: req.body.phone,
+        // phone: req.body.phone,
       },
     })
 
@@ -42,14 +42,9 @@ export const editUserById = async (req: Request, res: Response) => {
     }
 
     const refreshTokenData = {
-      id: 'leepl',
-      name: 'leepl',
-      email: 'leepl',
-      phone: 'leepl',
-      isPaid: 'leepl',
-      startDate: 'leepl',
-      expiredDate: 'leepl',
+      id: user?.id,
     }
+
     return writeJsonRes<TokenResInterface>(
       res,
       200,

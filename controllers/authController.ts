@@ -314,3 +314,39 @@ export const resetPassword = async (req: Request, res: Response) => {
     return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
   }
 }
+
+export const getTokens = async (req: Request, res: Response) => {
+  try {
+    const user = await prisma.users.findFirst({
+      where: {
+        id: req.body.userId,
+      },
+    })
+
+    const tokenData = {
+      id: user?.id,
+      name: user?.name,
+      email: user?.email,
+      phone: user?.phone,
+      isPaid: user?.isPaid,
+      startDate: user?.startDate,
+      expiredDate: user?.expiredDate,
+    }
+    const refreshTokenData = {
+      id: user?.id,
+    }
+
+    return writeJsonRes<TokenResInterface>(
+      res,
+      200,
+      {
+        accessToken: getJwtToken(tokenData, JWT_TYPES.ACCESS),
+        refreshToken: getJwtToken(refreshTokenData, JWT_TYPES.REFRESH),
+      },
+      'Successfully verified the OTP code!',
+    )
+  } catch (error) {
+    logError(error, 'Verify OTP Controller')
+    return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
+  }
+}
