@@ -315,6 +315,40 @@ export const resetPassword = async (req: Request, res: Response) => {
   }
 }
 
+export const confirmPassword = async (req: Request, res: Response) => {
+  try {
+    const user = await prisma.users.findFirst({
+      where: {
+        phone: req.body.phone,
+      },
+    })
+
+    if (!user) {
+      return writeJsonRes<null>(
+        res,
+        404,
+        null,
+        "This phone number hasn't been registered yet!",
+      )
+    }
+
+    const isVerifiedPassword = await verifyString(
+      req.body.password,
+      user.password,
+    )
+    if (!isVerifiedPassword) {
+      return writeJsonRes<null>(res, 400, null, 'Invalid password!')
+    }
+
+    // generate token and return
+    return writeJsonRes<null>(res, 200, null, 'Correct password!')
+  } catch (error) {
+    logError(error, 'Confirm Password Controller')
+    return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
+  }
+}
+
+// just for development, remove later
 export const getTokens = async (req: Request, res: Response) => {
   try {
     const user = await prisma.users.findFirst({

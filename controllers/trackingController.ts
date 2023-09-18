@@ -3,6 +3,10 @@ import { type Request, type Response } from 'express'
 import { PrismaClient } from '@prisma/client'
 
 import { writeJsonRes } from '../utils/functions'
+import {
+  type TestTrackingResInterface,
+  type ContentTrackingResInterface,
+} from '../utils/interfaces'
 
 const prisma: PrismaClient = new PrismaClient()
 
@@ -23,7 +27,7 @@ export const setContentTracking = async (req: Request, res: Response) => {
           completedPercent: req.body.completedPercent,
         },
       })
-      return writeJsonRes<any>(
+      return writeJsonRes<ContentTrackingResInterface>(
         res,
         200,
         updatedContentTracking,
@@ -68,7 +72,7 @@ export const setTestTracking = async (req: Request, res: Response) => {
           score: req.body.score,
         },
       })
-      return writeJsonRes<any>(
+      return writeJsonRes<TestTrackingResInterface>(
         res,
         200,
         updatedTestTracking,

@@ -177,6 +177,24 @@ export interface ExamSectionResInterface {
   updatedAt: Date
 }
 
+export interface ContentTrackingResInterface {
+  id: string
+  userId: string
+  contentId: string
+  completedPercent: number
+  createdAt: Date
+  updatedAt: Date
+}
+
+export interface TestTrackingResInterface {
+  id: string
+  userId: string
+  testId: string
+  score: number
+  createdAt: Date
+  updatedAt: Date
+}
+
 export type jwtType =
   | JWT_TYPES.ACCESS
   | JWT_TYPES.REFRESH

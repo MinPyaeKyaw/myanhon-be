@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTokens = exports.resetPassword = exports.verifyResetOTPCode = exports.verifyOTPCode = exports.signup = exports.login = exports.sendOTP = exports.refreshToken = exports.test = void 0;
+exports.getTokens = exports.confirmPassword = exports.resetPassword = exports.verifyResetOTPCode = exports.verifyOTPCode = exports.signup = exports.login = exports.sendOTP = exports.refreshToken = exports.test = void 0;
 const client_1 = require("@prisma/client");
 const functions_1 = require("../utils/functions");
 const enums_1 = require("../utils/enums");
@@ -247,6 +247,30 @@ const resetPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.resetPassword = resetPassword;
+const confirmPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const user = yield prisma.users.findFirst({
+            where: {
+                phone: req.body.phone,
+            },
+        });
+        if (!user) {
+            return (0, functions_1.writeJsonRes)(res, 404, null, "This phone number hasn't been registered yet!");
+        }
+        const isVerifiedPassword = yield (0, functions_1.verifyString)(req.body.password, user.password);
+        if (!isVerifiedPassword) {
+            return (0, functions_1.writeJsonRes)(res, 400, null, 'Invalid password!');
+        }
+        // generate token and return
+        return (0, functions_1.writeJsonRes)(res, 200, null, 'Correct password!');
+    }
+    catch (error) {
+        (0, functions_1.logError)(error, 'Confirm Password Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
+    }
+});
+exports.confirmPassword = confirmPassword;
+// just for development, remove later
 const getTokens = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = yield prisma.users.findFirst({

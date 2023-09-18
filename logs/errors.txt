@@ -3755,3 +3755,81 @@ Note, that include statements only accept relation fields.
     at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
     at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
 
+Tue Sep 19 2023 00:07:23 GMT+0630 (Myanmar Time)[ Post Suggestion Controller ]
+Error: 
+Invalid `prisma.suggestion.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/suggestion.js:18:52
+
+  15 const prisma = new client_1.PrismaClient();
+  16 const submitSuggestion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  17     try {
+→ 18         const suggestion = yield prisma.suggestion.create({
+               data: {
+                 title: 'Postman title',
+                 suggestion: 43
+                             ~~
+               }
+             })
+
+Argument suggestion: Got invalid value 43 on prisma.createOneSuggestion. Provided Int, expected String.
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+
+Tue Sep 19 2023 00:07:53 GMT+0630 (Myanmar Time)[ Post Suggestion Controller ]
+Error: 
+Invalid `prisma.suggestion.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/suggestion.js:18:52
+
+  15 const prisma = new client_1.PrismaClient();
+  16 const submitSuggestion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  17     try {
+→ 18         const suggestion = yield prisma.suggestion.create({
+               data: {
+                 title: 'Postman title',
+                 suggestion: 43
+                             ~~
+               }
+             })
+
+Argument suggestion: Got invalid value 43 on prisma.createOneSuggestion. Provided Int, expected String.
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+
+Tue Sep 19 2023 00:08:19 GMT+0630 (Myanmar Time)[ Post Suggestion Controller ]
+Error: 
+Invalid `prisma.suggestion.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/suggestion.js:18:52
+
+  15 const prisma = new client_1.PrismaClient();
+  16 const submitSuggestion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  17     try {
+→ 18         const suggestion = yield prisma.suggestion.create({
+               data: {
+                 title: 'Postman title',
+                 suggestion: 43
+                             ~~
+               }
+             })
+
+Argument suggestion: Got invalid value 43 on prisma.createOneSuggestion. Provided Int, expected String.
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+
