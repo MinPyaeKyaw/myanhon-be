@@ -10,9 +10,6 @@ import {
   getTokens,
   confirmPassword,
 } from '../controllers/authController'
-import { verifyResetPasswordJwt } from '../middlewares/resetPasswordJwtMiddleware'
-import { refreshJwtMiddleware } from '../middlewares/refreshJwtMiddleware'
-import { verifyOtpJwt } from '../middlewares/otpJwtMiddleware'
 import {
   confirmPasswordFormValidation,
   loginFormValidation,
@@ -22,6 +19,11 @@ import {
   signupFormValidation,
   verifyOTPFormValidation,
 } from '../middlewares/validators/formValidators'
+import { signupPolicy } from '../middlewares/policies/authPolicies'
+import { refreshJwtMiddleware } from '../middlewares/jwt/refreshJwtMiddleware'
+import { verifyOtpJwt } from '../middlewares/jwt/otpJwtMiddleware'
+import { verifyResetPasswordJwt } from '../middlewares/admin/resetPasswordJwtMiddleware'
+import { verifyUserJwt } from '../middlewares/jwt/userJwtMiddleware'
 
 const authRouter = express.Router()
 
@@ -34,7 +36,7 @@ authRouter.post(
 
 authRouter.post('/login', loginFormValidation, login)
 
-authRouter.post('/signup', signupFormValidation, signup)
+authRouter.post('/signup', signupFormValidation, signupPolicy, signup)
 
 authRouter.post(
   '/verify-otp',
@@ -60,6 +62,7 @@ authRouter.patch(
 
 authRouter.post(
   '/confirm-password',
+  verifyUserJwt,
   confirmPasswordFormValidation,
   confirmPassword,
 )

@@ -13,7 +13,6 @@ import {
   writeJsonRes,
 } from '../utils/functions'
 import { type TokenResInterface } from '../utils/interfaces'
-import { JWT_TYPES } from '../utils/enums'
 
 const prisma: PrismaClient = new PrismaClient()
 
@@ -58,7 +57,11 @@ export const refreshToken = async (req: Request, res: Response) => {
       res,
       200,
       {
-        accessToken: getJwtToken(accessTokenData, JWT_TYPES.ACCESS),
+        accessToken: getJwtToken(
+          accessTokenData,
+          `${process.env.JWT_USER_SECRET}`,
+          `${process.env.JWT_USER_EXP}`,
+        ),
       },
       'Successfully refreshed the token!',
     )
@@ -98,7 +101,11 @@ export const sendOTP = async (req: Request, res: Response) => {
       res,
       200,
       {
-        otpToken: getJwtToken(tokenData, JWT_TYPES.OTP),
+        otpToken: getJwtToken(
+          tokenData,
+          `${process.env.JWT_VERIFY_SECRET}`,
+          `${process.env.JWT_VERIFY_EXP}`,
+        ),
       },
       'Successfully sent the OTP code!',
     )
@@ -146,7 +153,11 @@ export const login = async (req: Request, res: Response) => {
       res,
       200,
       {
-        otpToken: getJwtToken(tokenData, JWT_TYPES.OTP),
+        otpToken: getJwtToken(
+          tokenData,
+          `${process.env.JWT_VERIFY_SECRET}`,
+          `${process.env.JWT_VERIFY_EXP}`,
+        ),
       },
       'Successfully logged in!',
     )
@@ -158,20 +169,6 @@ export const login = async (req: Request, res: Response) => {
 
 export const signup = async (req: Request, res: Response) => {
   try {
-    const duplicatedPhone = await prisma.users.findFirst({
-      where: {
-        phone: req.body.phone,
-      },
-    })
-    if (duplicatedPhone) {
-      return writeJsonRes<null>(
-        res,
-        409,
-        null,
-        'This phone number is already used!',
-      )
-    }
-
     const otpCode = generateOTPCode()
     const hashedOtp = await hashString(otpCode)
     const hashedPassword = await hashString(req.body.password)
@@ -195,7 +192,11 @@ export const signup = async (req: Request, res: Response) => {
       res,
       201,
       {
-        otpToken: getJwtToken(tokenData, JWT_TYPES.OTP),
+        otpToken: getJwtToken(
+          tokenData,
+          `${process.env.JWT_VERIFY_SECRET}`,
+          `${process.env.JWT_VERIFY_EXP}`,
+        ),
       },
       'Successfully created your account!',
     )
@@ -242,8 +243,16 @@ export const verifyOTPCode = async (req: Request, res: Response) => {
       res,
       200,
       {
-        accessToken: getJwtToken(tokenData, JWT_TYPES.ACCESS),
-        refreshToken: getJwtToken(refreshTokenData, JWT_TYPES.REFRESH),
+        accessToken: getJwtToken(
+          tokenData,
+          `${process.env.JWT_USER_SECRET}`,
+          `${process.env.JWT_USER_EXP}`,
+        ),
+        refreshToken: getJwtToken(
+          refreshTokenData,
+          `${process.env.JWT_REFRESH_SECRET}`,
+          `${process.env.JWT_REFRESH_EXP}`,
+        ),
       },
       'Successfully verified the OTP code!',
     )
@@ -281,7 +290,11 @@ export const verifyResetOTPCode = async (req: Request, res: Response) => {
       res,
       200,
       {
-        resetToken: getJwtToken(tokenData, JWT_TYPES.RESET_PASSWORD),
+        resetToken: getJwtToken(
+          tokenData,
+          `${process.env.JWT_RESET_PASSWORD_SECRET}`,
+          `${process.env.JWT_RESET_PASSWORD_EXP}`,
+        ),
       },
       'Successfully verified the OTP code!',
     )
@@ -340,8 +353,22 @@ export const confirmPassword = async (req: Request, res: Response) => {
       return writeJsonRes<null>(res, 400, null, 'Invalid password!')
     }
 
-    // generate token and return
-    return writeJsonRes<null>(res, 200, null, 'Correct password!')
+    const tokenData = {
+      id: user.id,
+      phone: user.phone,
+    }
+    return writeJsonRes<any>(
+      res,
+      200,
+      {
+        confirmPasswordToken: getJwtToken(
+          tokenData,
+          `${process.env.JWT_CONFIRM_PASSWORD_SECRET}`,
+          `${process.env.JWT_CONFIRM_PASSWORD_EXP}`,
+        ),
+      },
+      'Correct password!',
+    )
   } catch (error) {
     logError(error, 'Confirm Password Controller')
     return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
@@ -374,8 +401,16 @@ export const getTokens = async (req: Request, res: Response) => {
       res,
       200,
       {
-        accessToken: getJwtToken(tokenData, JWT_TYPES.ACCESS),
-        refreshToken: getJwtToken(refreshTokenData, JWT_TYPES.REFRESH),
+        accessToken: getJwtToken(
+          tokenData,
+          `${process.env.JWT_USER_SECRET}`,
+          `${process.env.JWT_USER_EXP}`,
+        ),
+        refreshToken: getJwtToken(
+          refreshTokenData,
+          `${process.env.JWT_REFRESH_SECRET}`,
+          `${process.env.JWT_REFRESH_EXP}`,
+        ),
       },
       'Successfully verified the OTP code!',
     )

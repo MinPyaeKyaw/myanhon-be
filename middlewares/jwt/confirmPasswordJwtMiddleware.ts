@@ -3,11 +3,15 @@ import { type NextFunction, type Request, type Response } from 'express'
 import { PrismaClient } from '@prisma/client'
 import jwt from 'jsonwebtoken'
 
-import { getJwtTokenFromReq, logError, writeJsonRes } from '../utils/functions'
+import {
+  getJwtTokenFromReq,
+  logError,
+  writeJsonRes,
+} from '../../utils/functions'
 
 const prisma: PrismaClient = new PrismaClient()
 
-export const refreshJwtMiddleware = async (
+export const verifyConfirmPasswordJwt = async (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -20,9 +24,10 @@ export const refreshJwtMiddleware = async (
 
     jwt.verify(
       token,
-      process.env.JWT_REFRESH_SECRET as string,
+      process.env.JWT_CONFIRM_PASSWORD_SECRET as string,
       async (err, decodedToken: any) => {
         if (err) {
+          console.log(err)
           return writeJsonRes<null>(res, 401, null, 'Unthorizied access!')
         }
 
@@ -35,7 +40,6 @@ export const refreshJwtMiddleware = async (
             id: decodedToken.id,
           },
         })
-
         if (!user) {
           return writeJsonRes<null>(res, 401, null, 'Invalid token!')
         }
@@ -44,7 +48,7 @@ export const refreshJwtMiddleware = async (
       },
     )
   } catch (error) {
-    logError(error, 'Verify User JWT Middleware')
+    logError(error, 'Confirm Password JWT Middleware')
     return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
   }
 }

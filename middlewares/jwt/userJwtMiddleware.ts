@@ -3,11 +3,15 @@ import { type NextFunction, type Request, type Response } from 'express'
 import { PrismaClient } from '@prisma/client'
 import jwt from 'jsonwebtoken'
 
-import { getJwtTokenFromReq, logError, writeJsonRes } from '../utils/functions'
+import {
+  getJwtTokenFromReq,
+  logError,
+  writeJsonRes,
+} from '../../utils/functions'
 
 const prisma: PrismaClient = new PrismaClient()
 
-export const verifyOtpJwt = async (
+export const verifyUserJwt = async (
   req: Request,
   res: Response,
   next: NextFunction,
@@ -20,7 +24,7 @@ export const verifyOtpJwt = async (
 
     jwt.verify(
       token,
-      process.env.JWT_VERIFY_SECRET as string,
+      process.env.JWT_USER_SECRET as string,
       async (err, decodedToken: any) => {
         if (err) {
           console.log(err)

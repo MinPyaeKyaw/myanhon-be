@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getTokens = exports.confirmPassword = exports.resetPassword = exports.verifyResetOTPCode = exports.verifyOTPCode = exports.signup = exports.login = exports.sendOTP = exports.refreshToken = exports.test = void 0;
 const client_1 = require("@prisma/client");
 const functions_1 = require("../utils/functions");
-const enums_1 = require("../utils/enums");
 const prisma = new client_1.PrismaClient();
 const test = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     // try {
@@ -50,7 +49,7 @@ const refreshToken = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             expiredDate: user === null || user === void 0 ? void 0 : user.expiredDate,
         };
         return (0, functions_1.writeJsonRes)(res, 200, {
-            accessToken: (0, functions_1.getJwtToken)(accessTokenData, enums_1.JWT_TYPES.ACCESS),
+            accessToken: (0, functions_1.getJwtToken)(accessTokenData, `${process.env.JWT_USER_SECRET}`, `${process.env.JWT_USER_EXP}`),
         }, 'Successfully refreshed the token!');
     }
     catch (error) {
@@ -78,7 +77,7 @@ const sendOTP = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             id: user.id,
         };
         return (0, functions_1.writeJsonRes)(res, 200, {
-            otpToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.OTP),
+            otpToken: (0, functions_1.getJwtToken)(tokenData, `${process.env.JWT_VERIFY_SECRET}`, `${process.env.JWT_VERIFY_EXP}`),
         }, 'Successfully sent the OTP code!');
     }
     catch (error) {
@@ -110,7 +109,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             id: user.id,
         };
         return (0, functions_1.writeJsonRes)(res, 200, {
-            otpToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.OTP),
+            otpToken: (0, functions_1.getJwtToken)(tokenData, `${process.env.JWT_VERIFY_SECRET}`, `${process.env.JWT_VERIFY_EXP}`),
         }, 'Successfully logged in!');
     }
     catch (error) {
@@ -121,14 +120,6 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.login = login;
 const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const duplicatedPhone = yield prisma.users.findFirst({
-            where: {
-                phone: req.body.phone,
-            },
-        });
-        if (duplicatedPhone) {
-            return (0, functions_1.writeJsonRes)(res, 409, null, 'This phone number is already used!');
-        }
         const otpCode = (0, functions_1.generateOTPCode)();
         const hashedOtp = yield (0, functions_1.hashString)(otpCode);
         const hashedPassword = yield (0, functions_1.hashString)(req.body.password);
@@ -147,7 +138,7 @@ const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             id: createdUser.id,
         };
         return (0, functions_1.writeJsonRes)(res, 201, {
-            otpToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.OTP),
+            otpToken: (0, functions_1.getJwtToken)(tokenData, `${process.env.JWT_VERIFY_SECRET}`, `${process.env.JWT_VERIFY_EXP}`),
         }, 'Successfully created your account!');
     }
     catch (error) {
@@ -187,8 +178,8 @@ const verifyOTPCode = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             id: user.id,
         };
         return (0, functions_1.writeJsonRes)(res, 200, {
-            accessToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.ACCESS),
-            refreshToken: (0, functions_1.getJwtToken)(refreshTokenData, enums_1.JWT_TYPES.REFRESH),
+            accessToken: (0, functions_1.getJwtToken)(tokenData, `${process.env.JWT_USER_SECRET}`, `${process.env.JWT_USER_EXP}`),
+            refreshToken: (0, functions_1.getJwtToken)(refreshTokenData, `${process.env.JWT_REFRESH_SECRET}`, `${process.env.JWT_REFRESH_EXP}`),
         }, 'Successfully verified the OTP code!');
     }
     catch (error) {
@@ -219,7 +210,7 @@ const verifyResetOTPCode = (req, res) => __awaiter(void 0, void 0, void 0, funct
             id: user.id,
         };
         return (0, functions_1.writeJsonRes)(res, 200, {
-            resetToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.RESET_PASSWORD),
+            resetToken: (0, functions_1.getJwtToken)(tokenData, `${process.env.JWT_RESET_PASSWORD_SECRET}`, `${process.env.JWT_RESET_PASSWORD_EXP}`),
         }, 'Successfully verified the OTP code!');
     }
     catch (error) {
@@ -261,8 +252,13 @@ const confirmPassword = (req, res) => __awaiter(void 0, void 0, void 0, function
         if (!isVerifiedPassword) {
             return (0, functions_1.writeJsonRes)(res, 400, null, 'Invalid password!');
         }
-        // generate token and return
-        return (0, functions_1.writeJsonRes)(res, 200, null, 'Correct password!');
+        const tokenData = {
+            id: user.id,
+            phone: user.phone,
+        };
+        return (0, functions_1.writeJsonRes)(res, 200, {
+            confirmPasswordToken: (0, functions_1.getJwtToken)(tokenData, `${process.env.JWT_CONFIRM_PASSWORD_SECRET}`, `${process.env.JWT_CONFIRM_PASSWORD_EXP}`),
+        }, 'Correct password!');
     }
     catch (error) {
         (0, functions_1.logError)(error, 'Confirm Password Controller');
@@ -291,8 +287,8 @@ const getTokens = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             id: user === null || user === void 0 ? void 0 : user.id,
         };
         return (0, functions_1.writeJsonRes)(res, 200, {
-            accessToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.ACCESS),
-            refreshToken: (0, functions_1.getJwtToken)(refreshTokenData, enums_1.JWT_TYPES.REFRESH),
+            accessToken: (0, functions_1.getJwtToken)(tokenData, `${process.env.JWT_USER_SECRET}`, `${process.env.JWT_USER_EXP}`),
+            refreshToken: (0, functions_1.getJwtToken)(refreshTokenData, `${process.env.JWT_REFRESH_SECRET}`, `${process.env.JWT_REFRESH_EXP}`),
         }, 'Successfully verified the OTP code!');
     }
     catch (error) {

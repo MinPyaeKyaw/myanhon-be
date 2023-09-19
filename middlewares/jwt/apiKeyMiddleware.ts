@@ -1,6 +1,6 @@
 import { type NextFunction, type Request, type Response } from 'express'
 
-import { writeJsonRes } from '../utils/functions'
+import { writeJsonRes } from '../../utils/functions'
 
 export function apiKeyMiddleware(
   req: Request,

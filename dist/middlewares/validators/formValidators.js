@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.testTrackingValidation = exports.contentTrackingValidation = exports.refreshTokenValidation = exports.confirmPasswordFormValidation = exports.resetFormValidation = exports.sendOTPFormValidation = exports.verifyOTPFormValidation = exports.signupFormValidation = exports.loginFormValidation = exports.suggestFormValidation = exports.editUserProfileFormValidation = void 0;
+exports.changePhoneFormValidation = exports.testTrackingValidation = exports.contentTrackingValidation = exports.refreshTokenValidation = exports.confirmPasswordFormValidation = exports.resetFormValidation = exports.sendOTPFormValidation = exports.verifyOTPFormValidation = exports.signupFormValidation = exports.loginFormValidation = exports.suggestFormValidation = exports.editUserProfileFormValidation = void 0;
 const express_validator_1 = require("express-validator");
 const functions_1 = require("../../utils/functions");
 exports.editUserProfileFormValidation = [
@@ -134,6 +134,17 @@ exports.testTrackingValidation = [
         .withMessage('Score cannot be empty!')
         .isNumeric()
         .withMessage('Score must be a number!'),
+    (req, res, next) => {
+        const errors = (0, express_validator_1.validationResult)(req);
+        if (!errors.isEmpty()) {
+            return (0, functions_1.writeJsonRes)(res, 400, errors.array(), 'Invalid payload!');
+        }
+        next();
+    },
+];
+exports.changePhoneFormValidation = [
+    (0, express_validator_1.param)('id').notEmpty().withMessage('User ID cannot be empty!'),
+    (0, express_validator_1.body)('phone').notEmpty().withMessage('Phone cannot be empty!'),
     (req, res, next) => {
         const errors = (0, express_validator_1.validationResult)(req);
         if (!errors.isEmpty()) {

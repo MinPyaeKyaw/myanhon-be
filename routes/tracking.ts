@@ -1,5 +1,4 @@
 import express from 'express'
-import { verifyUserJwt } from '../middlewares/userJwtMiddleware'
 import {
   setContentTracking,
   setTestTracking,
@@ -8,6 +7,7 @@ import {
   contentTrackingValidation,
   testTrackingValidation,
 } from '../middlewares/validators/formValidators'
+import { verifyUserJwt } from '../middlewares/jwt/userJwtMiddleware'
 
 const trackingRouter = express.Router()
 

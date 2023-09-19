@@ -9,21 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.editUserById = void 0;
+exports.changePhoneNumber = exports.editUserById = void 0;
 const client_1 = require("@prisma/client");
 const functions_1 = require("../utils/functions");
-const enums_1 = require("../utils/enums");
 const prisma = new client_1.PrismaClient();
 const editUserById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const user = yield prisma.users.findUnique({
-            where: {
-                id: req.params.id,
-            },
-        });
-        if (!user) {
-            return (0, functions_1.writeJsonRes)(res, 404, null, 'User not found!');
-        }
         const editedUser = yield prisma.users.update({
             where: {
                 id: req.params.id,
@@ -31,7 +22,6 @@ const editUserById = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             data: {
                 name: req.body.name,
                 email: req.body.email,
-                // phone: req.body.phone,
             },
         });
         const tokenData = {
@@ -44,11 +34,11 @@ const editUserById = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             expiredDate: editedUser.expiredDate,
         };
         const refreshTokenData = {
-            id: user === null || user === void 0 ? void 0 : user.id,
+            id: editedUser === null || editedUser === void 0 ? void 0 : editedUser.id,
         };
         return (0, functions_1.writeJsonRes)(res, 200, {
-            accessToken: (0, functions_1.getJwtToken)(tokenData, enums_1.JWT_TYPES.ACCESS),
-            refreshToken: (0, functions_1.getJwtToken)(refreshTokenData, enums_1.JWT_TYPES.ACCESS),
+            accessToken: (0, functions_1.getJwtToken)(tokenData, `${process.env.JWT_USER_SECRET}`, `${process.env.JWT_USER_EXP}`),
+            refreshToken: (0, functions_1.getJwtToken)(refreshTokenData, `${process.env.JWT_REFRESH_SECRET}`, `${process.env.JWT_REFRESH_EXP}`),
         }, 'Successfully edited your info!');
     }
     catch (error) {
@@ -57,3 +47,21 @@ const editUserById = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.editUserById = editUserById;
+const changePhoneNumber = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const updatedUser = yield prisma.users.update({
+            where: {
+                id: req.params.id,
+            },
+            data: {
+                phone: req.body.phone,
+            },
+        });
+        return (0, functions_1.writeJsonRes)(res, 200, updatedUser, 'Internal Server Error!');
+    }
+    catch (error) {
+        (0, functions_1.logError)(error, 'Change Phone Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
+    }
+});
+exports.changePhoneNumber = changePhoneNumber;

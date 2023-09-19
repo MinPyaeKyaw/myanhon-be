@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const queryValidators_1 = require("../utils/queryValidators");
 const examController_1 = require("../controllers/examController");
-const userJwtMiddleware_1 = require("../middlewares/userJwtMiddleware");
+const userJwtMiddleware_1 = require("../middlewares/jwt/userJwtMiddleware");
 const examRouter = express_1.default.Router();
 examRouter.post('/exam-submit', examController_1.submitExam);
 examRouter.get('/exam', queryValidators_1.examQueryValidation, userJwtMiddleware_1.verifyUserJwt, examController_1.getExam);

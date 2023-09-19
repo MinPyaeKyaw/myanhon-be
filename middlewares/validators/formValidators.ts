@@ -175,3 +175,17 @@ export const testTrackingValidation = [
     next()
   },
 ]
+
+export const changePhoneFormValidation = [
+  param('id').notEmpty().withMessage('User ID cannot be empty!'),
+  body('phone').notEmpty().withMessage('Phone cannot be empty!'),
+  (req: Request, res: Response, next: NextFunction) => {
+    const errors = validationResult(req)
+
+    if (!errors.isEmpty()) {
+      return writeJsonRes<any>(res, 400, errors.array(), 'Invalid payload!')
+    }
+
+    next()
+  },
+]

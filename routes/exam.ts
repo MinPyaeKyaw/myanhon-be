@@ -8,7 +8,7 @@ import {
   getExam,
   submitExam,
 } from '../controllers/examController'
-import { verifyUserJwt } from '../middlewares/userJwtMiddleware'
+import { verifyUserJwt } from '../middlewares/jwt/userJwtMiddleware'
 
 const examRouter = express.Router()
 

@@ -3833,3 +3833,48 @@ Argument suggestion: Got invalid value 43 on prisma.createOneSuggestion. Provide
     at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
     at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
 
+Tue Sep 19 2023 22:35:42 GMT+0630 (Myanmar Time)[ Edit User Controller ]
+Error: 
+Invalid `prisma.users.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/userController.js:61:48
+
+  58 exports.editUserById = editUserById;
+  59 const changePhoneNumber = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  60     try {
+→ 61         const updatedUser = yield prisma.users.update(
+Unique constraint failed on the fields: (`phone`)
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+
+Tue Sep 19 2023 22:36:12 GMT+0630 (Myanmar Time)[ Change Phone Controller ]
+Error: 
+Invalid `prisma.users.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/userController.js:61:48
+
+  58 exports.editUserById = editUserById;
+  59 const changePhoneNumber = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  60     try {
+→ 61         const updatedUser = yield prisma.users.update(
+Unique constraint failed on the fields: (`phone`)
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+
+Tue Sep 19 2023 22:40:11 GMT+0630 (Myanmar Time)[ Change Phone Controller ]
+Error: 
+Invalid `prisma.users.update()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/userController.js:60:48
+
+  57 exports.editUserById = editUserById;
+  58 const changePhoneNumber = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  59     try {
+→ 60         const updatedUser = yield prisma.users.update(
+Unique constraint failed on the fields: (`phone`)
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+

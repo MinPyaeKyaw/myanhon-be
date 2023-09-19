@@ -43,7 +43,7 @@ const questioniar_1 = __importDefault(require("./routes/questioniar"));
 const suggestoin_1 = __importDefault(require("./routes/suggestoin"));
 const exam_1 = __importDefault(require("./routes/exam"));
 const path_1 = __importDefault(require("path"));
-const apiKeyMiddleware_1 = require("./middlewares/apiKeyMiddleware");
+const apiKeyMiddleware_1 = require("./middlewares/jwt/apiKeyMiddleware");
 const tracking_1 = __importDefault(require("./routes/tracking"));
 dotenv.config({ path: path_1.default.join(__dirname, "/.env'") });
 dotenv.config();

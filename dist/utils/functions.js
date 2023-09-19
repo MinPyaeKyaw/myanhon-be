@@ -22,7 +22,6 @@ const dayjs_1 = __importDefault(require("dayjs"));
 const redis_1 = require("redis");
 const multer_1 = __importDefault(require("multer"));
 const node_rsa_1 = __importDefault(require("node-rsa"));
-const enums_1 = require("./enums");
 const prisma = new client_1.PrismaClient();
 const zipFile = (filePath) => {
     const splitedFilePath = filePath.split('/');
@@ -148,25 +147,8 @@ const verifyString = (userString, dbString) => __awaiter(void 0, void 0, void 0,
     });
 });
 exports.verifyString = verifyString;
-const getJwtToken = (data, type) => {
-    let exp, key;
-    if (type === enums_1.JWT_TYPES.ACCESS) {
-        exp = process.env.JWT_USER_EXP;
-        key = process.env.JWT_USER_SECRET;
-    }
-    else if (type === enums_1.JWT_TYPES.REFRESH) {
-        exp = process.env.JWT_USER_EXP;
-        key = process.env.JWT_REFRESH_SECRET;
-    }
-    else if (type === enums_1.JWT_TYPES.OTP) {
-        exp = process.env.JWT_VERIFY_EXP;
-        key = process.env.JWT_VERIFY_SECRET;
-    }
-    else {
-        exp = process.env.JWT_USER_EXP;
-        key = process.env.JWT_RESET_PASSWORD_SECRET;
-    }
-    const token = jsonwebtoken_1.default.sign(data, key, {
+const getJwtToken = (data, secret, exp) => {
+    const token = jsonwebtoken_1.default.sign(data, secret, {
         expiresIn: exp,
     });
     return token;

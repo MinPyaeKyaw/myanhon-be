@@ -17,7 +17,7 @@ import questioniarRouter from './routes/questioniar'
 import suggestionRouter from './routes/suggestoin'
 import examRouter from './routes/exam'
 import path from 'path'
-import { apiKeyMiddleware } from './middlewares/apiKeyMiddleware'
+import { apiKeyMiddleware } from './middlewares/jwt/apiKeyMiddleware'
 import trackingRouter from './routes/tracking'
 
 dotenv.config({ path: path.join(__dirname, "/.env'") })

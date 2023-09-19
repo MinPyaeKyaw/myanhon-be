@@ -2,7 +2,7 @@ import { type NextFunction, type Request, type Response } from 'express'
 
 import { validationResult } from 'express-validator'
 
-import { logError, writeJsonRes } from '../utils/functions'
+import { logError, writeJsonRes } from '../../utils/functions'
 
 export const validateCourseQuery = async (
   req: Request,

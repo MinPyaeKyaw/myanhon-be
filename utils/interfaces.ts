@@ -195,6 +195,19 @@ export interface TestTrackingResInterface {
   updatedAt: Date
 }
 
+export interface UserResInterface {
+  id: string
+  name: string
+  email: string
+  phone: string
+  password?: string
+  startDate: Date | null
+  expiredDate: Date | null
+  otpCode: string
+  createdAt: Date
+  updatedAt: Date
+}
+
 export type jwtType =
   | JWT_TYPES.ACCESS
   | JWT_TYPES.REFRESH

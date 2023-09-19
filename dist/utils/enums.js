@@ -36,5 +36,6 @@ var JWT_TYPES;
     JWT_TYPES["REFRESH"] = "refreshToken";
     JWT_TYPES["ACCESS"] = "accessToken";
     JWT_TYPES["RESET_PASSWORD"] = "resetPasswordToken";
+    JWT_TYPES["CONFIRM_PASSWORD"] = "confirmPasswordToken";
     JWT_TYPES["OTP"] = "otpToken";
 })(JWT_TYPES || (exports.JWT_TYPES = JWT_TYPES = {}));

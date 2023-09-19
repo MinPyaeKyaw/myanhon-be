@@ -32,5 +32,6 @@ export enum JWT_TYPES {
   REFRESH = 'refreshToken',
   ACCESS = 'accessToken',
   RESET_PASSWORD = 'resetPasswordToken',
+  CONFIRM_PASSWORD = 'confirmPasswordToken',
   OTP = 'otpToken',
 }
