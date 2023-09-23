@@ -5,8 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const courseController_1 = require("../controllers/courseController");
+const queryValidators_1 = require("../middlewares/validators/queryValidators");
 const courseRouter = express_1.default.Router();
-courseRouter.get('/courses', courseController_1.getCourses);
+courseRouter.get('/courses', queryValidators_1.getCoursesQueryValidation, courseController_1.getCourses);
 courseRouter.get('/courses/:id', courseController_1.getCourseByID);
 // just for development, remove later
 courseRouter.post('/create-instructor', courseController_1.createInstructor);

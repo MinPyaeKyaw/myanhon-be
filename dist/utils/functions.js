@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.calculatePercentage = exports.encryptPaymentPayload = exports.uploadFile = exports.updateAdminLoginCount = exports.getConnectedRedisClient = exports.isJwtExpired = exports.decodeJWT = exports.getJwtTokenFromReq = exports.getJwtToken = exports.verifyString = exports.hashString = exports.refreshOTPCode = exports.getUsernameFromEmail = exports.generateOTPCode = exports.writeJsonRes = exports.logError = exports.zipAndDelFile = exports.getFileSize = exports.zipFile = void 0;
+exports.calculatePercentage = exports.encryptPaymentPayload = exports.uploadFile = exports.updateAdminLoginCount = exports.getConnectedRedisClient = exports.isJwtExpired = exports.decodeJWT = exports.getJwtTokenFromReq = exports.getJwtToken = exports.verifyString = exports.hashString = exports.refreshOTPCode = exports.getUsernameFromEmail = exports.generateOTPCode = exports.getTake = exports.getSkip = exports.generatePagination = exports.writeJsonRes = exports.logError = exports.zipAndDelFile = exports.getFileSize = exports.zipFile = void 0;
 const fs_1 = __importDefault(require("fs"));
 const zlib_1 = __importDefault(require("zlib"));
 const client_1 = require("@prisma/client");
@@ -103,6 +103,32 @@ const writeJsonRes = (res, status, data, message) => {
         .end();
 };
 exports.writeJsonRes = writeJsonRes;
+const generatePagination = (data, totalItems, page = '0', size = '5') => {
+    return {
+        totalItems,
+        totalPages: Math.ceil(totalItems / +size),
+        page: +page + 1,
+        size: +size,
+        data,
+    };
+};
+exports.generatePagination = generatePagination;
+const getSkip = (req) => {
+    if (req.query.page && req.query.size) {
+        if (req.query.page === '' || +req.query.page === 0) {
+            return 0;
+        }
+        return +req.query.page * +req.query.size;
+    }
+    else {
+        return 0;
+    }
+};
+exports.getSkip = getSkip;
+const getTake = (req) => {
+    return req.query.size && req.query.size !== '' ? +req.query.size : 5;
+};
+exports.getTake = getTake;
 const generateOTPCode = () => {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

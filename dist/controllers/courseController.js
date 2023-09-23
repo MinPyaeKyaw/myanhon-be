@@ -15,27 +15,31 @@ const functions_1 = require("../utils/functions");
 const prisma = new client_1.PrismaClient();
 const getCourses = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        // const { type, level } = req.query
-        // const where = { isPublic: true }
-        // if (type) {
-        //   Object.assign(where, { type: { contains: type } })
-        // }
-        // if (level) {
-        //   Object.assign(where, { level: { contains: level } })
-        // }
+        const { type, level, search } = req.query;
+        const where = { isPublic: true };
+        if (type) {
+            Object.assign(where, { type: { contains: type } });
+        }
+        if (level) {
+            Object.assign(where, { level: { contains: level } });
+        }
+        if (search) {
+            Object.assign(where, { name: { mode: 'insensitive', contains: search } });
+        }
+        const courseCount = yield prisma.courses.count();
         const courses = yield prisma.courses.findMany({
-            // where,
-            // skip: req.query.offset && req.query.offset !== '' ? +req.query.offset : 0,
-            // take: req.query.size && req.query.size !== '' ? +req.query.size : 5,
+            where,
+            skip: (0, functions_1.getSkip)(req),
+            take: (0, functions_1.getTake)(req),
             include: {
                 courseType: true,
                 courseLevel: true,
             },
         });
         if (courses.length < 1) {
-            return (0, functions_1.writeJsonRes)(res, 404, null, 'No record found!');
+            return (0, functions_1.writeJsonRes)(res, 404, [], 'No record found!');
         }
-        return (0, functions_1.writeJsonRes)(res, 200, courses, 'Successfully retrived!');
+        return (0, functions_1.writeJsonRes)(res, 200, (0, functions_1.generatePagination)(courses, courseCount, req.query.page, req.query.size), 'Successfully retrived!');
     }
     catch (error) {
         (0, functions_1.logError)(error, 'Get Courses Controller');

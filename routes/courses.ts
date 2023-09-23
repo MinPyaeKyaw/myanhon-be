@@ -9,10 +9,11 @@ import {
   getCourseByID,
   getCourses,
 } from '../controllers/courseController'
+import { getCoursesQueryValidation } from '../middlewares/validators/queryValidators'
 
 const courseRouter = express.Router()
 
-courseRouter.get('/courses', getCourses)
+courseRouter.get('/courses', getCoursesQueryValidation, getCourses)
 
 courseRouter.get('/courses/:id', getCourseByID)
 

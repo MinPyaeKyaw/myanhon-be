@@ -10,7 +10,7 @@ import { type RedisClientType, createClient } from 'redis'
 import multer from 'multer'
 import NodeRSA from 'node-rsa'
 
-import { type AdminObjInterface } from './interfaces'
+import { type Pagination, type AdminObjInterface } from './interfaces'
 
 const prisma: PrismaClient = new PrismaClient()
 
@@ -106,6 +106,37 @@ export const writeJsonRes = <ResDataType>(
       data,
     })
     .end()
+}
+
+export const generatePagination = <T>(
+  data: T[],
+  totalItems: number,
+  page: string = '0',
+  size: string = '5',
+): Pagination<T> => {
+  return {
+    totalItems,
+    totalPages: Math.ceil(totalItems / +size),
+    page: +page + 1,
+    size: +size,
+    data,
+  }
+}
+
+export const getSkip = (req: express.Request): number => {
+  if (req.query.page && req.query.size) {
+    if (req.query.page === '' || +req.query.page === 0) {
+      return 0
+    }
+
+    return +req.query.page * +req.query.size
+  } else {
+    return 0
+  }
+}
+
+export const getTake = (req: express.Request): number => {
+  return req.query.size && req.query.size !== '' ? +req.query.size : 5
 }
 
 export const generateOTPCode = (): string => {

@@ -55,11 +55,11 @@ export interface ResponseStandard<T> {
 }
 
 export interface Pagination<T> {
-  totalElements: number
+  totalItems: number
   totalPages: number
-  pageNumber: number
-  dataPerPage: number
-  data: T
+  page: number
+  size: number
+  data: T[]
 }
 
 export interface TokenResInterface {

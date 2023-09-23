@@ -2,27 +2,37 @@ import { type Request, type Response } from 'express'
 
 import { PrismaClient } from '@prisma/client'
 
-import { logError, writeJsonRes } from '../utils/functions'
-import { type CourseResInterface } from '../utils/interfaces'
+import {
+  generatePagination,
+  getSkip,
+  getTake,
+  logError,
+  writeJsonRes,
+} from '../utils/functions'
+import { type Pagination, type CourseResInterface } from '../utils/interfaces'
 
 const prisma: PrismaClient = new PrismaClient()
 
 export const getCourses = async (req: Request, res: Response) => {
   try {
-    // const { type, level } = req.query
+    const { type, level, search } = req.query
 
-    // const where = { isPublic: true }
-    // if (type) {
-    //   Object.assign(where, { type: { contains: type } })
-    // }
-    // if (level) {
-    //   Object.assign(where, { level: { contains: level } })
-    // }
+    const where = { isPublic: true }
+    if (type) {
+      Object.assign(where, { type: { contains: type } })
+    }
+    if (level) {
+      Object.assign(where, { level: { contains: level } })
+    }
+    if (search) {
+      Object.assign(where, { name: { mode: 'insensitive', contains: search } })
+    }
 
+    const courseCount = await prisma.courses.count()
     const courses = await prisma.courses.findMany({
-      // where,
-      // skip: req.query.offset && req.query.offset !== '' ? +req.query.offset : 0,
-      // take: req.query.size && req.query.size !== '' ? +req.query.size : 5,
+      where,
+      skip: getSkip(req),
+      take: getTake(req),
       include: {
         courseType: true,
         courseLevel: true,
@@ -30,13 +40,18 @@ export const getCourses = async (req: Request, res: Response) => {
     })
 
     if (courses.length < 1) {
-      return writeJsonRes(res, 404, null, 'No record found!')
+      return writeJsonRes<any[]>(res, 404, [], 'No record found!')
     }
 
-    return writeJsonRes<CourseResInterface[]>(
+    return writeJsonRes<Pagination<CourseResInterface>>(
       res,
       200,
-      courses,
+      generatePagination<CourseResInterface>(
+        courses,
+        courseCount,
+        req.query.page as string,
+        req.query.size as string,
+      ),
       'Successfully retrived!',
     )
   } catch (error) {
