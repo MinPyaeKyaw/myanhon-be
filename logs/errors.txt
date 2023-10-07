@@ -3878,3 +3878,317 @@ Unique constraint failed on the fields: (`phone`)
     at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
     at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
 
+Wed Sep 27 2023 01:09:57 GMT+0630 (Myanmar Time)[ Get Exam Controller ]
+TypeError: clone.forEach is not a function
+    at shuffleExamQuestions (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/utils/functions.js:134:11)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:37:93
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:5:58)
+
+Fri Sep 29 2023 22:55:16 GMT+0630 (Myanmar Time)[ Get Exam Controller ]
+Error: 
+Invalid `prisma.examSection.findMany()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:24:51
+
+  21         levelId: req.params.level,
+  22     },
+  23 });
+→ 24 const sections = yield prisma.examSection.findMany({
+       include: {
+         questions: {
+           take: 10,
+           include: {
+             answers: true
+           },
+           orderBy: {
+             _sql: 'RANDOM()'
+             ~~~~
+           }
+         }
+       },
+       where: {
+         typeId: undefined,
+         levelId: undefined
+       }
+     })
+
+Unknown arg `_sql` in include.questions.orderBy._sql for type ExamQuestionOrderByWithRelationInput. Did you mean `id`? Available args:
+type ExamQuestionOrderByWithRelationInput {
+  id?: SortOrder
+  question?: SortOrder
+  examSectionId?: SortOrder
+  createdAt?: SortOrder
+  updatedAt?: SortOrder
+  answers?: ExamAnswerOrderByRelationAggregateInput
+  ExamSection?: ExamSectionOrderByWithRelationInput
+}
+
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+
+Sat Sep 30 2023 02:12:41 GMT+0630 (Myanmar Time)[ Get Exam Controller ]
+TypeError: Cannot read properties of undefined (reading 'findFirst')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:18:68
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:4:12)
+    at getExam (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:16:31)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/middlewares/jwt/userJwtMiddleware.js:42:13
+    at Generator.next (<anonymous>)
+
+Sat Sep 30 2023 02:17:55 GMT+0630 (Myanmar Time)[ Create Queston Count Controller ]
+Error: 
+Invalid `prisma.examSectionMeta.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:156:52
+
+  153 // for development, remove later
+  154 const createQuestionCount = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  155     try {
+→ 156         const count = yield prisma.examSectionMeta.create({
+                data: {
+              +   questionCount: Int,
+                  totalScore: 100,
+                  requiredMinScore: 50,
+                  typeId: 'd6efe1b2-c097-47c0-971b-e3f12146c7cb',
+                  levelId: '0e5a0044-136c-43d6-80d1-79b6591ba57c',
+              ?   id?: String,
+              ?   createdAt?: DateTime,
+              ?   updatedAt?: DateTime,
+              ?   UserExamSectionResult?: {
+              ?     create?: UserExamSectionResultCreateWithoutSectionMetaInput | UserExamSectionResultCreateWithoutSectionMetaInput | UserExamSectionResultUncheckedCreateWithoutSectionMetaInput | UserExamSectionResultUncheckedCreateWithoutSectionMetaInput,
+              ?     connectOrCreate?: UserExamSectionResultCreateOrConnectWithoutSectionMetaInput | UserExamSectionResultCreateOrConnectWithoutSectionMetaInput,
+              ?     createMany?: UserExamSectionResultCreateManySectionMetaInputEnvelope,
+              ?     connect?: UserExamSectionResultWhereUniqueInput | UserExamSectionResultWhereUniqueInput
+              ?   }
+                }
+              })
+
+Argument questionCount for data.questionCount is missing.
+
+Note: Lines with + are required, lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+
+Mon Oct 02 2023 20:15:22 GMT+0630 (Myanmar Time)[ Create Queston Controller ]
+Error: 
+Invalid `prisma.examQuestion.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:102:52
+
+   99 exports.createExamType = createExamType;
+  100 const createQuestion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  101     try {
+→ 102         const question = yield prisma.examQuestion.create(
+Foreign key constraint failed on the field: `ExamQuestion_sectionId_fkey (index)`
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+
+Mon Oct 02 2023 20:56:13 GMT+0630 (Myanmar Time)[ Create Queston Controller ]
+Error: 
+Invalid `prisma.examQuestion.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:102:52
+
+   99 exports.createExamType = createExamType;
+  100 const createQuestion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  101     try {
+→ 102         const question = yield prisma.examQuestion.create(
+Foreign key constraint failed on the field: `ExamQuestion_sectionId_fkey (index)`
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+
+Mon Oct 02 2023 20:57:06 GMT+0630 (Myanmar Time)[ Create Queston Controller ]
+Error: 
+Invalid `prisma.examQuestion.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:102:52
+
+   99 exports.createExamType = createExamType;
+  100 const createQuestion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  101     try {
+→ 102         const question = yield prisma.examQuestion.create(
+Foreign key constraint failed on the field: `ExamQuestion_sectionId_fkey (index)`
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+
+Mon Oct 02 2023 20:58:01 GMT+0630 (Myanmar Time)[ Create Queston Controller ]
+Error: 
+Invalid `prisma.examQuestion.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:102:52
+
+   99 exports.createExamType = createExamType;
+  100 const createQuestion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  101     try {
+→ 102         const question = yield prisma.examQuestion.create(
+Foreign key constraint failed on the field: `ExamQuestion_sectionId_fkey (index)`
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+
+Mon Oct 02 2023 20:58:31 GMT+0630 (Myanmar Time)[ Create Section Controller ]
+Error: 
+Invalid `prisma.examSection.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:66:50
+
+  63 exports.createExam = createExam;
+  64 const createSection = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  65     try {
+→ 66         const section = yield prisma.examSection.create(
+Foreign key constraint failed on the field: `ExamSection_examId_fkey (index)`
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+
+Mon Oct 02 2023 20:58:39 GMT+0630 (Myanmar Time)[ Create Exam Controller ]
+Error: 
+Invalid `prisma.exam.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:47:40
+
+  44 exports.getSections = getSections;
+  45 const createExam = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  46     try {
+→ 47         const exam = yield prisma.exam.create(
+Foreign key constraint failed on the field: `Exam_typeId_fkey (index)`
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+
+Mon Oct 02 2023 22:20:25 GMT+0630 (Myanmar Time)[ Get Sections Controller ]
+Error: 
+Invalid `prisma.examSection.findUnique()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:38:50
+
+  35 exports.getExam = getExam;
+  36 const getQuestionsBySection = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+  37     try {
+→ 38         const section = yield prisma.examSection.findUnique({
+               where: {
+             ?   id?: String
+               },
+               include: {
+                 questions: {
+                   take: undefined,
+                   include: {
+                     answers: {
+                       select: {
+                         id: true,
+                         answer: true
+                       }
+                     }
+                   }
+                 }
+               }
+             })
+
+Argument where of type ExamSectionWhereUniqueInput needs at least one argument. Available args are listed in green.
+
+Note: Lines with ? are optional.
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+
+Wed Oct 04 2023 23:01:04 GMT+0630 (Myanmar Time)[ Submit Exam Controller ]
+TypeError: Cannot read properties of undefined (reading 'forEach')
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:72:29
+    at Array.forEach (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:70:27
+    at Generator.next (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:8:71
+    at new Promise (<anonymous>)
+    at __awaiter (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:4:12)
+    at submitExam (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:64:34)
+    at Layer.handle [as handle_request] (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/layer.js:95:5)
+    at next (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/express/lib/router/route.js:144:13)
+
+Wed Oct 04 2023 23:12:56 GMT+0630 (Myanmar Time)[ Submit Exam Controller ]
+TypeError: section.questions.forEact is not a function
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:104:31
+    at Array.forEach (<anonymous>)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:102:28
+    at Generator.next (<anonymous>)
+    at fulfilled (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:5:58)
+
+Thu Oct 05 2023 01:27:19 GMT+0630 (Myanmar Time)[ Submit Exam Controller ]
+Error: 
+Invalid `prisma.userExamResult.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:148:37
+
+  145 examResult.sections = sectionResults;
+  146 examResult.status = (0, functions_1.calculateExamResultStatus)(examResult.totalScore, examResult.userScore);
+  147 // storing exam result by user
+→ 148 yield prisma.userExamResult.create(
+Foreign key constraint failed on the field: `UserExamResult_userId_fkey (index)`
+    at fn.handleRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:6477)
+    at fn.handleAndLogRequestError (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5907)
+    at fn.request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:174:5786)
+    at async t._request (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10477)
+
+Sat Oct 07 2023 12:39:12 GMT+0630 (Myanmar Time)[ Submit Exam Controller ]
+Error: 
+Invalid `prisma.userExamResult.create()` invocation in
+/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/dist/controllers/examController.js:168:56
+
+  165     },
+  166 };
+  167 // storing exam result by user
+→ 168 const examResult = yield prisma.userExamResult.create({
+        data: {
+          totalScore: 100,
+          requiredMinScore: 60,
+          userScore: 1,
+          levelId: '07d4c55e-caec-4285-b1c9-32d1dd9b83e3',
+          typeId: '5361d159-86d4-40e8-b06d-af0dd9927534',
+          status: 'Failed',
+          userId: '2ef8094c-3504-4b80-ade4-34667451d98c',
+          sections: {
+            create: [
+              {
+                userScore: 1,
+                sectionId: '7c71c824-15ef-4cde-8a17-9eeaa702cb65',
+                status: 'Failed'
+              }
+            ]
+          }
+        },
+        include: {
+      ?   sections?: true,
+          exam: true,
+          ~~~~
+      ?   user?: true,
+      ?   level?: true,
+      ?   type?: true,
+      ?   _count?: true
+        }
+      })
+
+
+Unknown field `exam` for include statement on model UserExamResult. Available options are listed in green. Did you mean `user`?
+
+    at mi.validate (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:149:91)
+    at rn.createMessage (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:164:13651)
+    at /Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10955
+    at runInChildSpan (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:70:25817)
+    at t._executeRequest (/Users/saiminpyaekyaw/Desktop/workspace/myanhon-be/node_modules/@prisma/client/runtime/library.js:177:10944)
+

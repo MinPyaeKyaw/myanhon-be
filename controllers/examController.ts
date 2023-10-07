@@ -2,93 +2,100 @@ import { type Request, type Response } from 'express'
 
 import { PrismaClient } from '@prisma/client'
 
-import { calculatePercentage, logError, writeJsonRes } from '../utils/functions'
-import { type ExamSectionResInterface } from '../utils/interfaces'
+import {
+  calculateExamResultStatus,
+  getRequestedUser,
+  // calculatePercentage,
+  logError,
+  // shuffleExamQuestions,
+  writeJsonRes,
+} from '../utils/functions'
+import {
+  type sectionResultQuery,
+  type ExamSectionResultResInterface,
+  type examResultResInterface,
+} from '../utils/interfaces'
 
 const prisma: PrismaClient = new PrismaClient()
 
 export const getExam = async (req: Request, res: Response) => {
   try {
-    const sections = await prisma.examSection.findMany({
-      include: {
-        questions: {
-          include: { answers: true },
-        },
-      },
+    const exam = await prisma.exam.findFirst({
       where: {
-        examId: req.params.type,
-        levelId: req.params.level,
+        typeId: req.query.type as string,
+        levelId: req.query.level as string,
+      },
+      include: {
+        sections: true,
       },
     })
 
-    return writeJsonRes<ExamSectionResInterface[]>(
-      res,
-      200,
-      sections,
-      'Successfully retrived!',
-    )
+    return writeJsonRes<any>(res, 200, exam, 'Successfully retrived!')
   } catch (error) {
     logError(error, 'Get Exam Controller')
     return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
   }
 }
 
+export const getQuestionsBySection = async (req: Request, res: Response) => {
+  try {
+    const section = await prisma.examSection.findUnique({
+      where: {
+        id: req.params.sectionId,
+      },
+      include: {
+        questions: {
+          take: req.query.questionCount ? +req.query.questionCount : 10,
+          include: {
+            answers: {
+              select: {
+                id: true,
+                answer: true,
+              },
+            },
+          },
+        },
+      },
+    })
+
+    return writeJsonRes<any>(res, 200, section, 'Successfully retrived!')
+  } catch (error) {
+    logError(error, 'Get Sections Controller')
+    return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
+  }
+}
+
+export const test = async (req: Request, res: Response) => {
+  try {
+    const requestedUser = getRequestedUser(req)
+
+    res.json(requestedUser)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const submitExam = async (req: Request, res: Response) => {
   try {
-    const reqPayload = {
-      userId: 'ca7ae16b-fae4-4c7a-a158-a4735ef31978',
-      examId: 'c0551fbd-7370-402d-b395-e060a058bfa1',
-      levelId: '0df2038f-a8d1-48bd-86fc-f66d2ff39c65',
-      sections: [
-        {
-          id: '131468eb-8035-42e4-ac27-a9119abe1bcc',
-          questionCount: 2,
-          questions: [
-            {
-              id: '444d3319-023c-40dc-95a8-cfd40f6d1142',
-              answerId: '7dfa3af7-4a43-4dd3-a069-eba6b3f7e3a9',
-            },
-            {
-              id: '167088a2-c43c-4975-9c20-1e78b3aa71ca',
-              answerId: '0a1cb481-1abd-43c1-9a4b-cd40e4a21444',
-            },
-          ],
-        },
-        {
-          id: 'd6084289-2588-44de-b159-0435a793827f',
-          questionCount: 2,
-          questions: [
-            {
-              id: '0765bbdd-1e3c-4788-914b-8a7c0ba11f1b',
-              answerId: 'b1c14de0-0fbd-4c54-a79d-7454b191fc0c',
-            },
-            {
-              id: 'ea0b5aec-3cc2-42de-aad0-f3af95b563b6',
-              answerId: '5bf736b8-3a83-4362-bd86-6629b2f0ac87',
-            },
-          ],
-        },
-      ],
-    }
+    const requestedUser = getRequestedUser(req)
 
+    // getting id lists of sections, questions, and answers from request
     const sectionIds: string[] = []
     const questionIds: string[] = []
     const answerIds: string[] = []
-    let totalScore: number = 0 // total score of exam for res
-
-    reqPayload.sections.forEach(section => {
-      sectionIds.push(section.id)
-      section.questions.forEach(question => {
-        questionIds.push(question.id)
+    req.body.sections.forEach((section: any) => {
+      sectionIds.push(section.sectionId)
+      section.questions.forEach((question: any) => {
         answerIds.push(question.answerId)
+        questionIds.push(question.questionId)
       })
-
-      totalScore += section.questionCount
     })
 
-    const sections = await prisma.examSection.findMany({
+    const sectionsWithAnswers = await prisma.examSection.findMany({
       where: {
-        id: { in: sectionIds },
+        id: {
+          in: sectionIds,
+        },
       },
       include: {
         questions: {
@@ -97,58 +104,86 @@ export const submitExam = async (req: Request, res: Response) => {
           },
           include: {
             answers: {
-              where: { id: { in: answerIds } },
+              where: {
+                id: { in: answerIds },
+              },
+              select: {
+                id: true,
+                isCorrect: true,
+              },
             },
           },
         },
       },
     })
 
-    const sectionResults: any = []
-    let userScore: number = 0 // user score of exam for res
-    sections.forEach(section => {
-      const tempResult = {
-        section: section.name,
-        result: 0,
-        totalScore: section.questions.length,
-      }
-
-      const reqQuestionCount = reqPayload.sections.filter(
-        s => s.id === section.id,
-      )[0].questionCount
-
-      let correctAnswerCount = 0
-      section.questions.forEach(question => {
-        if (question.answers[0]?.isCorrect) {
-          correctAnswerCount += 1
-          userScore += 1
+    // getting user score of specific sections
+    const sectionResults: ExamSectionResultResInterface[] = []
+    sectionsWithAnswers.forEach((section: any) => {
+      let userScore: number = 0
+      section.questions.forEach((question: any) => {
+        if (question.answers[0].isCorrect) {
+          userScore++
         }
       })
-
-      tempResult.result = calculatePercentage(
-        correctAnswerCount,
-        reqQuestionCount,
-      )
-
-      sectionResults.push(tempResult)
+      sectionResults.push({
+        sectionId: section.id,
+        totalScore: section.totalScore,
+        requiredMinScore: section.requiredMinScore,
+        userScore,
+      })
     })
 
-    const result = {
-      result: userScore,
-      totalScore,
-      sectionResults,
-    }
-
-    await prisma.examResult.create({
-      data: {
-        result,
-        examId: reqPayload.examId,
-        levelId: reqPayload.levelId,
-        userId: reqPayload.userId,
+    // getting query to store exam and related section results
+    let examUserScore: number = 0
+    const sectionResultQuery: sectionResultQuery[] = []
+    sectionResults.forEach((sectionResult: ExamSectionResultResInterface) => {
+      examUserScore += sectionResult.userScore
+      sectionResultQuery.push({
+        userScore: sectionResult.userScore,
+        sectionId: sectionResult.sectionId,
+        status: calculateExamResultStatus(
+          sectionResult.totalScore,
+          sectionResult.userScore,
+        ),
+      })
+    })
+    const exam = await prisma.exam.findFirst({
+      where: {
+        id: req.body.examId,
+      },
+      include: {
+        type: true,
+        level: true,
       },
     })
+    const examResultQuery = {
+      data: {
+        totalScore: exam?.totalScore || 0,
+        requiredMinScore: exam?.requiredMinScore || 0,
+        userScore: examUserScore,
+        levelId: exam?.levelId ?? '',
+        typeId: exam?.typeId ?? '',
+        status: calculateExamResultStatus(exam?.totalScore, examUserScore),
+        userId: requestedUser.id,
+        sections: {
+          create: sectionResultQuery,
+        },
+      },
+      include: {
+        sections: true,
+      },
+    }
 
-    return writeJsonRes<any>(res, 200, result, 'Successfully retrived!')
+    // storing exam result by user
+    const examResult = await prisma.userExamResult.create(examResultQuery)
+
+    return writeJsonRes<examResultResInterface>(
+      res,
+      200,
+      examResult,
+      'Successfully submitted!',
+    )
   } catch (error) {
     logError(error, 'Submit Exam Controller')
     return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
@@ -158,14 +193,17 @@ export const submitExam = async (req: Request, res: Response) => {
 // for development, remove later
 export const createExam = async (req: Request, res: Response) => {
   try {
-    await prisma.exam.create({
+    const exam = await prisma.exam.create({
       data: {
-        name: req.body.name,
+        totalScore: req.body.totalScore,
+        requiredMinScore: req.body.requiredMinScore,
         duration: req.body.duration,
+        typeId: req.body.typeId,
+        levelId: req.body.levelId,
       },
     })
 
-    return writeJsonRes<string>(res, 201, 'created', 'Successfully created!')
+    return writeJsonRes<any>(res, 500, exam, 'Successfully created!')
   } catch (error) {
     logError(error, 'Create Exam Controller')
     return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
@@ -174,31 +212,49 @@ export const createExam = async (req: Request, res: Response) => {
 
 export const createSection = async (req: Request, res: Response) => {
   try {
-    await prisma.examSection.create({
+    const section = await prisma.examSection.create({
       data: {
         name: req.body.name,
+        questionCount: req.body.questionCount,
+        requiredMinScore: req.body.requiredMinScore,
+        totalScore: req.body.totalScore,
+        duration: req.body.duration,
         examId: req.body.examId,
-        levelId: req.body.levelId,
       },
     })
 
-    return writeJsonRes<string>(res, 201, 'created', 'Successfully created!')
+    return writeJsonRes<any>(res, 500, section, 'Successfully created!')
   } catch (error) {
     logError(error, 'Create Section Controller')
     return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
   }
 }
 
+export const createExamType = async (req: Request, res: Response) => {
+  try {
+    const examType = await prisma.examType.create({
+      data: {
+        name: req.body.name,
+      },
+    })
+
+    return writeJsonRes<any>(res, 201, examType, 'Successfully created!')
+  } catch (error) {
+    logError(error, 'Create Exam Type Controller')
+    return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
+  }
+}
+
 export const createQuestion = async (req: Request, res: Response) => {
   try {
-    await prisma.examQuestion.create({
+    const question = await prisma.examQuestion.create({
       data: {
         question: req.body.question,
         sectionId: req.body.sectionId,
       },
     })
 
-    return writeJsonRes<string>(res, 201, 'created', 'Successfully created!')
+    return writeJsonRes<any>(res, 201, question, 'Successfully created!')
   } catch (error) {
     logError(error, 'Create Queston Controller')
     return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
@@ -207,7 +263,7 @@ export const createQuestion = async (req: Request, res: Response) => {
 
 export const createAnswer = async (req: Request, res: Response) => {
   try {
-    await prisma.examAnswer.create({
+    const answer = await prisma.examAnswer.create({
       data: {
         answer: req.body.answer,
         isCorrect: req.body.isCorrect,
@@ -215,9 +271,9 @@ export const createAnswer = async (req: Request, res: Response) => {
       },
     })
 
-    return writeJsonRes<string>(res, 201, 'created', 'Successfully created!')
+    return writeJsonRes<any>(res, 201, answer, 'Successfully created!')
   } catch (error) {
-    logError(error, 'Create Queston Controller')
+    logError(error, 'Create Answer Controller')
     return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
   }
 }

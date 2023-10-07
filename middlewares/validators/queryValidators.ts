@@ -1,8 +1,6 @@
-import { type NextFunction, type Request, type Response } from 'express'
+import { query, param } from 'express-validator'
 
-import { query, validationResult } from 'express-validator'
-
-import { writeJsonRes } from '../../utils/functions'
+import { getAndResValidationResult } from './getAndResValidationResultFns'
 
 export const getCoursesQueryValidation = [
   query('page')
@@ -24,13 +22,17 @@ export const getCoursesQueryValidation = [
     .notEmpty()
     .withMessage('level query cannot be empty!'),
   query('search').optional(),
-  (req: Request, res: Response, next: NextFunction) => {
-    const errors = validationResult(req)
+  getAndResValidationResult,
+]
 
-    if (!errors.isEmpty()) {
-      return writeJsonRes<any>(res, 400, errors.array(), 'Invalid payload!')
-    }
+export const getExamQueryValidation = [
+  query('type').notEmpty().withMessage('type query cannot be empty!'),
+  query('level').notEmpty().withMessage('level query cannot be empty!'),
+  getAndResValidationResult,
+]
 
-    next()
-  },
+export const getQuestionsBySectionValidation = [
+  query('questionCount').notEmpty().withMessage('type query cannot be empty!'),
+  param('sectionId').notEmpty().withMessage('sectionId cannot be empty!'),
+  getAndResValidationResult,
 ]

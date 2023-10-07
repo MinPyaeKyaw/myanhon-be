@@ -10,7 +10,13 @@ import { type RedisClientType, createClient } from 'redis'
 import multer from 'multer'
 import NodeRSA from 'node-rsa'
 
-import { type Pagination, type AdminObjInterface } from './interfaces'
+import {
+  type Pagination,
+  type AdminObjInterface,
+  type ExamSectionResInterface,
+  type ExamQuestionResInterface,
+  type ExamResultStatus,
+} from './interfaces'
 
 const prisma: PrismaClient = new PrismaClient()
 
@@ -108,6 +114,11 @@ export const writeJsonRes = <ResDataType>(
     .end()
 }
 
+export const getRequestedUser = (req: express.Request): any => {
+  const token = getJwtTokenFromReq(req.headers.authorization)
+  return token ? jwt.decode(token) : null
+}
+
 export const generatePagination = <T>(
   data: T[],
   totalItems: number,
@@ -137,6 +148,40 @@ export const getSkip = (req: express.Request): number => {
 
 export const getTake = (req: express.Request): number => {
   return req.query.size && req.query.size !== '' ? +req.query.size : 5
+}
+
+export const shuffleExamQuestions = (
+  sections: ExamSectionResInterface[],
+  questionCount: number = 10,
+): ExamSectionResInterface[] => {
+  const clone = [...sections]
+
+  clone.forEach(sec => {
+    sec.questions = shuffleArray<ExamQuestionResInterface>(sec.questions).slice(
+      0,
+      questionCount,
+    )
+  })
+
+  return clone
+}
+
+export const calculateExamResultStatus = (
+  totalScore: number = 100,
+  userScore: number,
+): ExamResultStatus => {
+  return userScore >= totalScore ? 'Passed' : 'Failed'
+}
+
+export function shuffleArray<T>(array: T[]): T[] {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1)) // Generate a random index from 0 to i
+
+    // Swap elements at i and j
+    ;[array[i], array[j]] = [array[j], array[i]]
+  }
+
+  return array
 }
 
 export const generateOTPCode = (): string => {

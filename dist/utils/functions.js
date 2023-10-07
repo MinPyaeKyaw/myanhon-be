@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.calculatePercentage = exports.encryptPaymentPayload = exports.uploadFile = exports.updateAdminLoginCount = exports.getConnectedRedisClient = exports.isJwtExpired = exports.decodeJWT = exports.getJwtTokenFromReq = exports.getJwtToken = exports.verifyString = exports.hashString = exports.refreshOTPCode = exports.getUsernameFromEmail = exports.generateOTPCode = exports.getTake = exports.getSkip = exports.generatePagination = exports.writeJsonRes = exports.logError = exports.zipAndDelFile = exports.getFileSize = exports.zipFile = void 0;
+exports.calculatePercentage = exports.encryptPaymentPayload = exports.uploadFile = exports.updateAdminLoginCount = exports.getConnectedRedisClient = exports.isJwtExpired = exports.decodeJWT = exports.getJwtTokenFromReq = exports.getJwtToken = exports.verifyString = exports.hashString = exports.refreshOTPCode = exports.getUsernameFromEmail = exports.generateOTPCode = exports.shuffleArray = exports.calculateExamResultStatus = exports.shuffleExamQuestions = exports.getTake = exports.getSkip = exports.generatePagination = exports.getRequestedUser = exports.writeJsonRes = exports.logError = exports.zipAndDelFile = exports.getFileSize = exports.zipFile = void 0;
 const fs_1 = __importDefault(require("fs"));
 const zlib_1 = __importDefault(require("zlib"));
 const client_1 = require("@prisma/client");
@@ -103,6 +103,11 @@ const writeJsonRes = (res, status, data, message) => {
         .end();
 };
 exports.writeJsonRes = writeJsonRes;
+const getRequestedUser = (req) => {
+    const token = (0, exports.getJwtTokenFromReq)(req.headers.authorization);
+    return token ? jsonwebtoken_1.default.decode(token) : null;
+};
+exports.getRequestedUser = getRequestedUser;
 const generatePagination = (data, totalItems, page = '0', size = '5') => {
     return {
         totalItems,
@@ -129,6 +134,27 @@ const getTake = (req) => {
     return req.query.size && req.query.size !== '' ? +req.query.size : 5;
 };
 exports.getTake = getTake;
+const shuffleExamQuestions = (sections, questionCount = 10) => {
+    const clone = [...sections];
+    clone.forEach(sec => {
+        sec.questions = shuffleArray(sec.questions).slice(0, questionCount);
+    });
+    return clone;
+};
+exports.shuffleExamQuestions = shuffleExamQuestions;
+const calculateExamResultStatus = (totalScore = 100, userScore) => {
+    return userScore >= totalScore ? 'Passed' : 'Failed';
+};
+exports.calculateExamResultStatus = calculateExamResultStatus;
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1)) // Generate a random index from 0 to i
+        ;
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+exports.shuffleArray = shuffleArray;
 const generateOTPCode = () => {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

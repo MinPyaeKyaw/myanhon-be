@@ -43,11 +43,11 @@ model Permissions {
 }
 
 model Levels {
-  id         String        @id @default(uuid())
-  name       LevelNames    @default(N5)
-  courses    Courses[]
-  sections   ExamSection[]
-  ExamResult ExamResult[]
+  id             String           @id @default(uuid())
+  name           LevelNames       @default(N5)
+  courses        Courses[]
+  Exam           Exam[]
+  UserExamResult UserExamResult[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -73,9 +73,9 @@ model Users {
   expiredDate     DateTime?
   otpCode         String
   questions       Questions[]
-  examResult      ExamResult[]
   contentTracking ContentTracking[]
   testTracking    TestTracking[]
+  UserExamResult  UserExamResult[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -90,7 +90,6 @@ model Instructors {
   photo       String?
   address     String
   password    String
-  // CourseInstructor CourseInstructor[]
   answers     Answers[]
   courses     Courses[]
 
@@ -201,39 +200,42 @@ model TestTracking {
   updatedAt DateTime @updatedAt
 }
 
-model ExamResult {
-  id      String @id @default(uuid())
-  result  Json
-  exam    Exam   @relation(fields: [examId], references: [id])
-  examId  String
-  level   Levels @relation(fields: [levelId], references: [id])
-  levelId String
-  user    Users  @relation(fields: [userId], references: [id])
-  userId  String
+model ExamType {
+  id             String           @id @default(uuid())
+  name           String
+  Exam           Exam[]
+  UserExamResult UserExamResult[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Exam {
-  id         String        @id @default(uuid())
-  name       String
-  duration   Int
-  sections   ExamSection[]
-  ExamResult ExamResult[]
+  id               String        @id @default(uuid())
+  totalScore       Int
+  requiredMinScore Int
+  duration         Int
+  type             ExamType      @relation(fields: [typeId], references: [id])
+  typeId           String
+  level            Levels        @relation(fields: [levelId], references: [id])
+  levelId          String
+  sections         ExamSection[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model ExamSection {
-  id        String         @id @default(uuid())
-  name      String
-  exam      Exam           @relation(fields: [examId], references: [id])
-  examId    String
-  level     Levels         @relation(fields: [levelId], references: [id])
-  levelId   String
-  questions ExamQuestion[]
+  id                    String                  @id @default(uuid())
+  name                  String
+  questionCount         Int
+  requiredMinScore      Int
+  totalScore            Int
+  duration              Int
+  exam                  Exam                    @relation(fields: [examId], references: [id])
+  examId                String
+  questions             ExamQuestion[]
+  UserExamSectionResult UserExamSectionResult[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -242,9 +244,9 @@ model ExamSection {
 model ExamQuestion {
   id        String       @id @default(uuid())
   question  String
+  answers   ExamAnswer[]
   section   ExamSection  @relation(fields: [sectionId], references: [id])
   sectionId String
-  answers   ExamAnswer[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -281,6 +283,37 @@ model QuestioniarAnswer {
   updatedAt DateTime @updatedAt
 }
 
+model UserExamResult {
+  id               String                  @id @default(uuid())
+  totalScore       Int
+  requiredMinScore Int
+  userScore        Int
+  status           ExamStatus              @default(Failed)
+  user             Users                   @relation(fields: [userId], references: [id])
+  userId           String
+  level            Levels                  @relation(fields: [levelId], references: [id])
+  levelId          String
+  type             ExamType                @relation(fields: [typeId], references: [id])
+  typeId           String
+  sections         UserExamSectionResult[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model UserExamSectionResult {
+  id           String         @id @default(uuid())
+  userScore    Int
+  status       ExamStatus     @default(Failed)
+  examResult   UserExamResult @relation(fields: [examResultId], references: [id])
+  examResultId String
+  section      ExamSection    @relation(fields: [sectionId], references: [id])
+  sectionId    String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Suggestion {
   id         String @id @default(uuid())
   title      String
@@ -298,6 +331,11 @@ enum CourseTypes {
   vocaburary
   speaking
   vlog
+}
+
+enum ExamStatus {
+  Failed
+  Passed
 }
 
 enum LevelNames {

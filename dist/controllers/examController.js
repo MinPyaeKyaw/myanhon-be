@@ -9,24 +9,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createAnswer = exports.createQuestion = exports.createSection = exports.createExam = exports.submitExam = exports.getExam = void 0;
+exports.createAnswer = exports.createQuestion = exports.createExamType = exports.createSection = exports.createExam = exports.submitExam = exports.test = exports.getQuestionsBySection = exports.getExam = void 0;
 const client_1 = require("@prisma/client");
 const functions_1 = require("../utils/functions");
 const prisma = new client_1.PrismaClient();
 const getExam = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const sections = yield prisma.examSection.findMany({
-            include: {
-                questions: {
-                    include: { answers: true },
-                },
-            },
+        const exam = yield prisma.exam.findFirst({
             where: {
-                examId: req.params.type,
-                levelId: req.params.level,
+                typeId: req.query.type,
+                levelId: req.query.level,
+            },
+            include: {
+                sections: true,
             },
         });
-        return (0, functions_1.writeJsonRes)(res, 200, sections, 'Successfully retrived!');
+        return (0, functions_1.writeJsonRes)(res, 200, exam, 'Successfully retrived!');
     }
     catch (error) {
         (0, functions_1.logError)(error, 'Get Exam Controller');
@@ -34,58 +32,64 @@ const getExam = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getExam = getExam;
-const submitExam = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getQuestionsBySection = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const reqPayload = {
-            userId: 'ca7ae16b-fae4-4c7a-a158-a4735ef31978',
-            examId: 'c0551fbd-7370-402d-b395-e060a058bfa1',
-            levelId: '0df2038f-a8d1-48bd-86fc-f66d2ff39c65',
-            sections: [
-                {
-                    id: '131468eb-8035-42e4-ac27-a9119abe1bcc',
-                    questionCount: 2,
-                    questions: [
-                        {
-                            id: '444d3319-023c-40dc-95a8-cfd40f6d1142',
-                            answerId: '7dfa3af7-4a43-4dd3-a069-eba6b3f7e3a9',
+        const section = yield prisma.examSection.findUnique({
+            where: {
+                id: req.params.sectionId,
+            },
+            include: {
+                questions: {
+                    take: req.query.questionCount ? +req.query.questionCount : 10,
+                    include: {
+                        answers: {
+                            select: {
+                                id: true,
+                                answer: true,
+                            },
                         },
-                        {
-                            id: '167088a2-c43c-4975-9c20-1e78b3aa71ca',
-                            answerId: '0a1cb481-1abd-43c1-9a4b-cd40e4a21444',
-                        },
-                    ],
+                    },
                 },
-                {
-                    id: 'd6084289-2588-44de-b159-0435a793827f',
-                    questionCount: 2,
-                    questions: [
-                        {
-                            id: '0765bbdd-1e3c-4788-914b-8a7c0ba11f1b',
-                            answerId: 'b1c14de0-0fbd-4c54-a79d-7454b191fc0c',
-                        },
-                        {
-                            id: 'ea0b5aec-3cc2-42de-aad0-f3af95b563b6',
-                            answerId: '5bf736b8-3a83-4362-bd86-6629b2f0ac87',
-                        },
-                    ],
-                },
-            ],
-        };
+            },
+        });
+        return (0, functions_1.writeJsonRes)(res, 200, section, 'Successfully retrived!');
+    }
+    catch (error) {
+        (0, functions_1.logError)(error, 'Get Sections Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
+    }
+});
+exports.getQuestionsBySection = getQuestionsBySection;
+const test = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const requestedUser = (0, functions_1.getRequestedUser)(req);
+        res.json(requestedUser);
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
+exports.test = test;
+const submitExam = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a, _b;
+    try {
+        const requestedUser = (0, functions_1.getRequestedUser)(req);
+        // getting id lists of sections, questions, and answers from request
         const sectionIds = [];
         const questionIds = [];
         const answerIds = [];
-        let totalScore = 0; // total score of exam for res
-        reqPayload.sections.forEach(section => {
-            sectionIds.push(section.id);
-            section.questions.forEach(question => {
-                questionIds.push(question.id);
+        req.body.sections.forEach((section) => {
+            sectionIds.push(section.sectionId);
+            section.questions.forEach((question) => {
                 answerIds.push(question.answerId);
+                questionIds.push(question.questionId);
             });
-            totalScore += section.questionCount;
         });
-        const sections = yield prisma.examSection.findMany({
+        const sectionsWithAnswers = yield prisma.examSection.findMany({
             where: {
-                id: { in: sectionIds },
+                id: {
+                    in: sectionIds,
+                },
             },
             include: {
                 questions: {
@@ -94,46 +98,74 @@ const submitExam = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                     },
                     include: {
                         answers: {
-                            where: { id: { in: answerIds } },
+                            where: {
+                                id: { in: answerIds },
+                            },
+                            select: {
+                                id: true,
+                                isCorrect: true,
+                            },
                         },
                     },
                 },
             },
         });
+        // getting user score of specific sections
         const sectionResults = [];
-        let userScore = 0; // user score of exam for res
-        sections.forEach(section => {
-            const tempResult = {
-                section: section.name,
-                result: 0,
-                totalScore: section.questions.length,
-            };
-            const reqQuestionCount = reqPayload.sections.filter(s => s.id === section.id)[0].questionCount;
-            let correctAnswerCount = 0;
-            section.questions.forEach(question => {
-                var _a;
-                if ((_a = question.answers[0]) === null || _a === void 0 ? void 0 : _a.isCorrect) {
-                    correctAnswerCount += 1;
-                    userScore += 1;
+        sectionsWithAnswers.forEach((section) => {
+            let userScore = 0;
+            section.questions.forEach((question) => {
+                if (question.answers[0].isCorrect) {
+                    userScore++;
                 }
             });
-            tempResult.result = (0, functions_1.calculatePercentage)(correctAnswerCount, reqQuestionCount);
-            sectionResults.push(tempResult);
+            sectionResults.push({
+                sectionId: section.id,
+                totalScore: section.totalScore,
+                requiredMinScore: section.requiredMinScore,
+                userScore,
+            });
         });
-        const result = {
-            result: userScore,
-            totalScore,
-            sectionResults,
-        };
-        yield prisma.examResult.create({
-            data: {
-                result,
-                examId: reqPayload.examId,
-                levelId: reqPayload.levelId,
-                userId: reqPayload.userId,
+        // getting query to store exam and related section results
+        let examUserScore = 0;
+        const sectionResultQuery = [];
+        sectionResults.forEach((sectionResult) => {
+            examUserScore += sectionResult.userScore;
+            sectionResultQuery.push({
+                userScore: sectionResult.userScore,
+                sectionId: sectionResult.sectionId,
+                status: (0, functions_1.calculateExamResultStatus)(sectionResult.totalScore, sectionResult.userScore),
+            });
+        });
+        const exam = yield prisma.exam.findFirst({
+            where: {
+                id: req.body.examId,
+            },
+            include: {
+                type: true,
+                level: true,
             },
         });
-        return (0, functions_1.writeJsonRes)(res, 200, result, 'Successfully retrived!');
+        const examResultQuery = {
+            data: {
+                totalScore: (exam === null || exam === void 0 ? void 0 : exam.totalScore) || 0,
+                requiredMinScore: (exam === null || exam === void 0 ? void 0 : exam.requiredMinScore) || 0,
+                userScore: examUserScore,
+                levelId: (_a = exam === null || exam === void 0 ? void 0 : exam.levelId) !== null && _a !== void 0 ? _a : '',
+                typeId: (_b = exam === null || exam === void 0 ? void 0 : exam.typeId) !== null && _b !== void 0 ? _b : '',
+                status: (0, functions_1.calculateExamResultStatus)(exam === null || exam === void 0 ? void 0 : exam.totalScore, examUserScore),
+                userId: requestedUser.id,
+                sections: {
+                    create: sectionResultQuery,
+                },
+            },
+            include: {
+                sections: true,
+            },
+        };
+        // storing exam result by user
+        const examResult = yield prisma.userExamResult.create(examResultQuery);
+        return (0, functions_1.writeJsonRes)(res, 200, examResult, 'Successfully submitted!');
     }
     catch (error) {
         (0, functions_1.logError)(error, 'Submit Exam Controller');
@@ -144,13 +176,16 @@ exports.submitExam = submitExam;
 // for development, remove later
 const createExam = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield prisma.exam.create({
+        const exam = yield prisma.exam.create({
             data: {
-                name: req.body.name,
+                totalScore: req.body.totalScore,
+                requiredMinScore: req.body.requiredMinScore,
                 duration: req.body.duration,
+                typeId: req.body.typeId,
+                levelId: req.body.levelId,
             },
         });
-        return (0, functions_1.writeJsonRes)(res, 201, 'created', 'Successfully created!');
+        return (0, functions_1.writeJsonRes)(res, 500, exam, 'Successfully created!');
     }
     catch (error) {
         (0, functions_1.logError)(error, 'Create Exam Controller');
@@ -160,14 +195,17 @@ const createExam = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.createExam = createExam;
 const createSection = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield prisma.examSection.create({
+        const section = yield prisma.examSection.create({
             data: {
                 name: req.body.name,
+                questionCount: req.body.questionCount,
+                requiredMinScore: req.body.requiredMinScore,
+                totalScore: req.body.totalScore,
+                duration: req.body.duration,
                 examId: req.body.examId,
-                levelId: req.body.levelId,
             },
         });
-        return (0, functions_1.writeJsonRes)(res, 201, 'created', 'Successfully created!');
+        return (0, functions_1.writeJsonRes)(res, 500, section, 'Successfully created!');
     }
     catch (error) {
         (0, functions_1.logError)(error, 'Create Section Controller');
@@ -175,15 +213,30 @@ const createSection = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.createSection = createSection;
+const createExamType = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const examType = yield prisma.examType.create({
+            data: {
+                name: req.body.name,
+            },
+        });
+        return (0, functions_1.writeJsonRes)(res, 201, examType, 'Successfully created!');
+    }
+    catch (error) {
+        (0, functions_1.logError)(error, 'Create Exam Type Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
+    }
+});
+exports.createExamType = createExamType;
 const createQuestion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield prisma.examQuestion.create({
+        const question = yield prisma.examQuestion.create({
             data: {
                 question: req.body.question,
                 sectionId: req.body.sectionId,
             },
         });
-        return (0, functions_1.writeJsonRes)(res, 201, 'created', 'Successfully created!');
+        return (0, functions_1.writeJsonRes)(res, 201, question, 'Successfully created!');
     }
     catch (error) {
         (0, functions_1.logError)(error, 'Create Queston Controller');
@@ -193,17 +246,17 @@ const createQuestion = (req, res) => __awaiter(void 0, void 0, void 0, function*
 exports.createQuestion = createQuestion;
 const createAnswer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield prisma.examAnswer.create({
+        const answer = yield prisma.examAnswer.create({
             data: {
                 answer: req.body.answer,
                 isCorrect: req.body.isCorrect,
                 questionId: req.body.questionId,
             },
         });
-        return (0, functions_1.writeJsonRes)(res, 201, 'created', 'Successfully created!');
+        return (0, functions_1.writeJsonRes)(res, 201, answer, 'Successfully created!');
     }
     catch (error) {
-        (0, functions_1.logError)(error, 'Create Queston Controller');
+        (0, functions_1.logError)(error, 'Create Answer Controller');
         return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
     }
 });

@@ -149,6 +149,25 @@ export interface SuggestionResInterface {
   updatedAt: Date
 }
 
+export interface ExamSectionResultResInterface {
+  sectionId: string
+  totalScore: number
+  requiredMinScore: number
+  userScore: number
+}
+
+export interface ExamResultResInterface {
+  userScore: number
+  totalScore: number
+  requiredMinScore: number
+  level: string
+  type: string
+  status: ExamResultStatus
+  sections: ExamSectionResultResInterface[]
+}
+
+export type ExamResultStatus = 'Passed' | 'Failed'
+
 export interface ExamAnswerResInterface {
   id: string
   answer: string
@@ -161,7 +180,7 @@ export interface ExamAnswerResInterface {
 export interface ExamQuestionResInterface {
   id: string
   question: string
-  sectionId: string
+  examSectionId: string
   answers: ExamAnswerResInterface[]
   createdAt: Date
   updatedAt: Date
@@ -170,9 +189,9 @@ export interface ExamQuestionResInterface {
 export interface ExamSectionResInterface {
   id: string
   name: string
-  examId: string
-  levelId: string
   questions: ExamQuestionResInterface[]
+  typeId: string
+  levelId: string
   createdAt: Date
   updatedAt: Date
 }
@@ -206,6 +225,36 @@ export interface UserResInterface {
   otpCode: string
   createdAt: Date
   updatedAt: Date
+}
+
+export interface sectionResultQuery {
+  userScore: number
+  sectionId: string
+  status: ExamResultStatus
+}
+
+export interface examSectionResultResInterface {
+  id: string
+  userScore: number
+  status: ExamResultStatus
+  examResultId: string
+  sectionId: string
+  createdAt: Date
+  updatedAt: Date
+}
+
+export interface examResultResInterface {
+  id: string
+  totalScore: number
+  requiredMinScore: number
+  userScore: number
+  status: ExamResultStatus
+  userId: string
+  levelId: string
+  typeId: string
+  createdAt: Date
+  updatedAt: Date
+  sections?: examSectionResultResInterface[]
 }
 
 export type jwtType =

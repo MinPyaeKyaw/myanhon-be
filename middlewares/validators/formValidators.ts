@@ -1,8 +1,6 @@
-import { type NextFunction, type Request, type Response } from 'express'
+import { body, param } from 'express-validator'
 
-import { body, param, validationResult } from 'express-validator'
-
-import { writeJsonRes } from '../../utils/functions'
+import { getAndResValidationResult } from './getAndResValidationResultFns'
 
 export const editUserProfileFormValidation = [
   body('email')
@@ -12,43 +10,19 @@ export const editUserProfileFormValidation = [
     .withMessage('Invalid email!'),
   body('name').notEmpty().withMessage('Name cannot be empty!'),
   param('id').notEmpty().withMessage('User ID is required!'),
-  (req: Request, res: Response, next: NextFunction) => {
-    const errors = validationResult(req)
-
-    if (!errors.isEmpty()) {
-      return writeJsonRes<any>(res, 400, errors.array(), 'Invalid payload!')
-    }
-
-    next()
-  },
+  getAndResValidationResult,
 ]
 
 export const suggestFormValidation = [
   body('title').notEmpty().withMessage('Title cannot be empty!'),
   body('suggestion').notEmpty().withMessage('Suggestion cannot be empty!'),
-  (req: Request, res: Response, next: NextFunction) => {
-    const errors = validationResult(req)
-
-    if (!errors.isEmpty()) {
-      return writeJsonRes<any>(res, 400, errors.array(), 'Invalid payload!')
-    }
-
-    next()
-  },
+  getAndResValidationResult,
 ]
 
 export const loginFormValidation = [
   body('phone').notEmpty().withMessage('Phone cannot be empty!'),
   body('password').notEmpty().withMessage('Password cannot be empty!'),
-  (req: Request, res: Response, next: NextFunction) => {
-    const errors = validationResult(req)
-
-    if (!errors.isEmpty()) {
-      return writeJsonRes<any>(res, 400, errors.array(), 'Invalid payload!')
-    }
-
-    next()
-  },
+  getAndResValidationResult,
 ]
 
 export const signupFormValidation = [
@@ -59,83 +33,35 @@ export const signupFormValidation = [
     .withMessage('Invalid email!'),
   body('phone').notEmpty().withMessage('Phone cannot be empty!'),
   body('password').notEmpty().withMessage('Password cannot be empty!'),
-  (req: Request, res: Response, next: NextFunction) => {
-    const errors = validationResult(req)
-
-    if (!errors.isEmpty()) {
-      return writeJsonRes<any>(res, 400, errors.array(), 'Invalid payload!')
-    }
-
-    next()
-  },
+  getAndResValidationResult,
 ]
 
 export const verifyOTPFormValidation = [
   body('phone').notEmpty().withMessage('Phone cannot be empty!'),
   body('otpCode').notEmpty().withMessage('OTP code cannot be empty!'),
-  (req: Request, res: Response, next: NextFunction) => {
-    const errors = validationResult(req)
-
-    if (!errors.isEmpty()) {
-      return writeJsonRes<any>(res, 400, errors.array(), 'Invalid payload!')
-    }
-
-    next()
-  },
+  getAndResValidationResult,
 ]
 
 export const sendOTPFormValidation = [
   body('phone').notEmpty().withMessage('Phone cannot be empty!'),
-  (req: Request, res: Response, next: NextFunction) => {
-    const errors = validationResult(req)
-
-    if (!errors.isEmpty()) {
-      return writeJsonRes<any>(res, 400, errors.array(), 'Invalid payload!')
-    }
-
-    next()
-  },
+  getAndResValidationResult,
 ]
 
 export const resetFormValidation = [
   body('phone').notEmpty().withMessage('Phone cannot be empty!'),
   body('newPassword').notEmpty().withMessage('Password cannot be empty!'),
-  (req: Request, res: Response, next: NextFunction) => {
-    const errors = validationResult(req)
-
-    if (!errors.isEmpty()) {
-      return writeJsonRes<any>(res, 400, errors.array(), 'Invalid payload!')
-    }
-
-    next()
-  },
+  getAndResValidationResult,
 ]
 
 export const confirmPasswordFormValidation = [
   body('userId').notEmpty().withMessage('User ID cannot be empty!'),
   body('password').notEmpty().withMessage('Password cannot be empty!'),
-  (req: Request, res: Response, next: NextFunction) => {
-    const errors = validationResult(req)
-
-    if (!errors.isEmpty()) {
-      return writeJsonRes<any>(res, 400, errors.array(), 'Invalid payload!')
-    }
-
-    next()
-  },
+  getAndResValidationResult,
 ]
 
 export const refreshTokenValidation = [
   body('id').notEmpty().withMessage('User ID cannot be empty!'),
-  (req: Request, res: Response, next: NextFunction) => {
-    const errors = validationResult(req)
-
-    if (!errors.isEmpty()) {
-      return writeJsonRes<any>(res, 400, errors.array(), 'Invalid payload!')
-    }
-
-    next()
-  },
+  getAndResValidationResult,
 ]
 
 export const contentTrackingValidation = [
@@ -146,15 +72,7 @@ export const contentTrackingValidation = [
     .withMessage('Completed percent cannot be empty!')
     .isNumeric()
     .withMessage('Completed percent must be a number!'),
-  (req: Request, res: Response, next: NextFunction) => {
-    const errors = validationResult(req)
-
-    if (!errors.isEmpty()) {
-      return writeJsonRes<any>(res, 400, errors.array(), 'Invalid payload!')
-    }
-
-    next()
-  },
+  getAndResValidationResult,
 ]
 
 export const testTrackingValidation = [
@@ -165,27 +83,29 @@ export const testTrackingValidation = [
     .withMessage('Score cannot be empty!')
     .isNumeric()
     .withMessage('Score must be a number!'),
-  (req: Request, res: Response, next: NextFunction) => {
-    const errors = validationResult(req)
-
-    if (!errors.isEmpty()) {
-      return writeJsonRes<any>(res, 400, errors.array(), 'Invalid payload!')
-    }
-
-    next()
-  },
+  getAndResValidationResult,
 ]
 
 export const changePhoneFormValidation = [
   param('id').notEmpty().withMessage('User ID cannot be empty!'),
   body('phone').notEmpty().withMessage('Phone cannot be empty!'),
-  (req: Request, res: Response, next: NextFunction) => {
-    const errors = validationResult(req)
+  getAndResValidationResult,
+]
 
-    if (!errors.isEmpty()) {
-      return writeJsonRes<any>(res, 400, errors.array(), 'Invalid payload!')
-    }
-
-    next()
-  },
+export const submitExamFormValidation = [
+  body('examId').notEmpty().withMessage('examId cannot be empty!'),
+  body('sections').isArray().withMessage('sections array cannot be empty!'),
+  body('sections.*.sectionId')
+    .notEmpty()
+    .withMessage('sectionId cannot be empty!'),
+  body('sections.*.questions')
+    .isArray()
+    .withMessage('sectionId cannot be empty!'),
+  body('sections.*.questions.*.questionId')
+    .notEmpty()
+    .withMessage('questionId cannot be empty!'),
+  body('sections.*.questions.*.answerId')
+    .notEmpty()
+    .withMessage('answerId cannot be empty!'),
+  getAndResValidationResult,
 ]
