@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getQuestionsBySectionValidation = exports.getExamQueryValidation = exports.getCoursesQueryValidation = void 0;
+exports.getExamResultsByUserValidation = exports.getQuestionsBySectionValidation = exports.getExamQueryValidation = exports.getCoursesQueryValidation = void 0;
 const express_validator_1 = require("express-validator");
 const getAndResValidationResultFns_1 = require("./getAndResValidationResultFns");
 exports.getCoursesQueryValidation = [
@@ -33,5 +33,9 @@ exports.getExamQueryValidation = [
 exports.getQuestionsBySectionValidation = [
     (0, express_validator_1.query)('questionCount').notEmpty().withMessage('type query cannot be empty!'),
     (0, express_validator_1.param)('sectionId').notEmpty().withMessage('sectionId cannot be empty!'),
+    getAndResValidationResultFns_1.getAndResValidationResult,
+];
+exports.getExamResultsByUserValidation = [
+    (0, express_validator_1.param)('userId').notEmpty().withMessage('userId cannot be empty!'),
     getAndResValidationResultFns_1.getAndResValidationResult,
 ];

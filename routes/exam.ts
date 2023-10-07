@@ -8,10 +8,12 @@ import {
   createExam,
   createSection,
   submitExam,
+  getExamResultsByUser,
 } from '../controllers/examController'
 import { verifyUserJwt } from '../middlewares/jwt/userJwtMiddleware'
 import {
   getExamQueryValidation,
+  getExamResultsByUserValidation,
   getQuestionsBySectionValidation,
 } from '../middlewares/validators/queryValidators'
 import { submitExamFormValidation } from '../middlewares/validators/formValidators'
@@ -32,6 +34,13 @@ examRouter.get(
   verifyUserJwt,
   getQuestionsBySectionValidation,
   getQuestionsBySection,
+)
+
+examRouter.get(
+  '/exam-result/:userId',
+  verifyUserJwt,
+  getExamResultsByUserValidation,
+  getExamResultsByUser,
 )
 
 // for development, remove later

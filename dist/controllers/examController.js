@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createAnswer = exports.createQuestion = exports.createExamType = exports.createSection = exports.createExam = exports.submitExam = exports.test = exports.getQuestionsBySection = exports.getExam = void 0;
+exports.createAnswer = exports.createQuestion = exports.createExamType = exports.createSection = exports.createExam = exports.getExamResultsByUser = exports.submitExam = exports.test = exports.getQuestionsBySection = exports.getExam = void 0;
 const client_1 = require("@prisma/client");
 const functions_1 = require("../utils/functions");
 const prisma = new client_1.PrismaClient();
@@ -173,6 +173,30 @@ const submitExam = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.submitExam = submitExam;
+const getExamResultsByUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const examResultByUser = yield prisma.userExamResult.findMany({
+            where: {
+                userId: req.params.userId,
+            },
+            include: {
+                sections: {
+                    include: {
+                        section: true,
+                    },
+                },
+                level: true,
+                type: true,
+            },
+        });
+        return (0, functions_1.writeJsonRes)(res, 500, examResultByUser, 'Successfully retrived!');
+    }
+    catch (error) {
+        (0, functions_1.logError)(error, 'Get Exam Result By User Controller');
+        return (0, functions_1.writeJsonRes)(res, 500, null, 'Internal Server Error!');
+    }
+});
+exports.getExamResultsByUser = getExamResultsByUser;
 // for development, remove later
 const createExam = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {

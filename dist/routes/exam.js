@@ -12,6 +12,7 @@ const examRouter = express_1.default.Router();
 examRouter.post('/exam-submit', userJwtMiddleware_1.verifyUserJwt, formValidators_1.submitExamFormValidation, examController_1.submitExam);
 examRouter.get('/exam', userJwtMiddleware_1.verifyUserJwt, queryValidators_1.getExamQueryValidation, examController_1.getExam);
 examRouter.get('/exam-questions/:sectionId', userJwtMiddleware_1.verifyUserJwt, queryValidators_1.getQuestionsBySectionValidation, examController_1.getQuestionsBySection);
+examRouter.get('/exam-result/:userId', userJwtMiddleware_1.verifyUserJwt, queryValidators_1.getExamResultsByUserValidation, examController_1.getExamResultsByUser);
 // for development, remove later
 examRouter.post('/exam', examController_1.createExam);
 examRouter.post('/exam-section', examController_1.createSection);

@@ -36,3 +36,8 @@ export const getQuestionsBySectionValidation = [
   param('sectionId').notEmpty().withMessage('sectionId cannot be empty!'),
   getAndResValidationResult,
 ]
+
+export const getExamResultsByUserValidation = [
+  param('userId').notEmpty().withMessage('userId cannot be empty!'),
+  getAndResValidationResult,
+]

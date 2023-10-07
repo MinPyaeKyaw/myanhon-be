@@ -190,6 +190,35 @@ export const submitExam = async (req: Request, res: Response) => {
   }
 }
 
+export const getExamResultsByUser = async (req: Request, res: Response) => {
+  try {
+    const examResultByUser = await prisma.userExamResult.findMany({
+      where: {
+        userId: req.params.userId,
+      },
+      include: {
+        sections: {
+          include: {
+            section: true,
+          },
+        },
+        level: true,
+        type: true,
+      },
+    })
+
+    return writeJsonRes<any>(
+      res,
+      500,
+      examResultByUser,
+      'Successfully retrived!',
+    )
+  } catch (error) {
+    logError(error, 'Get Exam Result By User Controller')
+    return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
+  }
+}
+
 // for development, remove later
 export const createExam = async (req: Request, res: Response) => {
   try {
