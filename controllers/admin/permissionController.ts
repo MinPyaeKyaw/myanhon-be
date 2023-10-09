@@ -1,44 +1,44 @@
-import { type Request, type Response } from 'express'
+// import { type Request, type Response } from 'express'
 
-import { PrismaClient } from '@prisma/client'
-import { type RedisClientType, createClient } from 'redis'
-import { logError, writeJsonRes } from '../../utils/functions'
-import { type PermissionResInterface } from '../../utils/interfaces'
+// import { PrismaClient } from '@prisma/client'
+// import { type RedisClientType, createClient } from 'redis'
+// import { logError, writeJsonRes } from '../../utils/functions'
+// import { type PermissionResInterface } from '../../utils/interfaces'
 
-const prisma: PrismaClient = new PrismaClient()
-const redisClient: RedisClientType = createClient()
-redisClient.on('error', err => {
-  console.log('Redis Client Error', err)
-})
-redisClient.connect()
+// const prisma: PrismaClient = new PrismaClient()
+// const redisClient: RedisClientType = createClient()
+// redisClient.on('error', err => {
+//   console.log('Redis Client Error', err)
+// })
+// redisClient.connect()
 
-export const getPermissions = async (req: Request, res: Response) => {
-  try {
-    const permissions = await prisma.permissions.findMany()
-    return writeJsonRes<PermissionResInterface[]>(
-      res,
-      200,
-      permissions,
-      'Successfully retrived!',
-    )
-  } catch (error) {
-    logError(error, 'Get Permission Controller')
-    return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
-  }
-}
+// export const getPermissions = async (req: Request, res: Response) => {
+//   try {
+//     const permissions = await prisma.permissions.findMany()
+//     return writeJsonRes<PermissionResInterface[]>(
+//       res,
+//       200,
+//       permissions,
+//       'Successfully retrived!',
+//     )
+//   } catch (error) {
+//     logError(error, 'Get Permission Controller')
+//     return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
+//   }
+// }
 
-// just for development, remove later
-export const createPermission = async (req: Request, res: Response) => {
-  try {
-    const createdPermission = await prisma.permissions.create({
-      data: {
-        name: req.body.name,
-      },
-    })
+// // just for development, remove later
+// export const createPermission = async (req: Request, res: Response) => {
+//   try {
+//     const createdPermission = await prisma.permissions.create({
+//       data: {
+//         name: req.body.name,
+//       },
+//     })
 
-    return writeJsonRes(res, 201, createdPermission, 'Successfully created!')
-  } catch (error) {
-    console.log('CREATE PERMISSION ERROR', error)
-    return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
-  }
-}
+//     return writeJsonRes(res, 201, createdPermission, 'Successfully created!')
+//   } catch (error) {
+//     console.log('CREATE PERMISSION ERROR', error)
+//     return writeJsonRes<null>(res, 500, null, 'Internal Server Error!')
+//   }
+// }

@@ -1,15 +1,15 @@
-import express from 'express'
+// import express from 'express'
 
-import {
-  createPermission,
-  getPermissions,
-} from '../../controllers/admin/permissionController'
+// import {
+//   createPermission,
+//   getPermissions,
+// } from '../../controllers/admin/permissionController'
 
-const permissionRoutes = express.Router()
+// const permissionRoutes = express.Router()
 
-permissionRoutes.get('/permissions', getPermissions)
+// permissionRoutes.get('/permissions', getPermissions)
 
-// just for development, remove later
-permissionRoutes.post('/permission', createPermission)
+// // just for development, remove later
+// permissionRoutes.post('/permission', createPermission)
 
-export default permissionRoutes
+// export default permissionRoutes

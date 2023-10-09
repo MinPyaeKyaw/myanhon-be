@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf dist && npx tsc",
+    "build": "rimraf dist && npx tsc && cp -R ./locales ./dist/locales",
     "prestart": "npm run build",
     "start": "node dist/index.js",
-    "dev": "concurrently \"npx tsc -w\" \"nodemon dist/index.js\" \"redis-server\"",
+    "dev": "concurrently \"npx tsc -w\" \"nodemon dist/index.js\" \"cp -R /locales /dist\"",
     "test": "set PORT=0 && jest --watchAll",
     "lint": "eslint --ext .js,.ts .",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
@@ -39,6 +39,7 @@
     "express": "^4.18.2",
     "express-validator": "^7.0.1",
     "http-errors": "^2.0.0",
+    "i18n": "^0.15.1",
     "jsonwebtoken": "^9.0.0",
     "jwt-decode": "^3.1.2",
     "multer": "^1.4.5-lts.1",
@@ -50,6 +51,7 @@
     "rimraf": "^4.4.1"
   },
   "devDependencies": {
+    "@types/i18n": "^0.13.6",
     "@types/jest": "^29.5.0",
     "@types/multer": "^1.4.7",
     "@types/nodemailer": "^6.4.7",
